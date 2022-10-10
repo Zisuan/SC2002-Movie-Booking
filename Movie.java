@@ -5,16 +5,16 @@ public class Movie {
     // create movie type
     private String movieType;
     // create movie name
-    private String movieName;
+    private String movieTitle;
     // create movie rating
     private String movieRating;
     // create movie status
     private String movieStatus;
 
     // create movie constructor
-    public Movie(String movieType, String movieName, String movieRating, String movieStatus) {
+    public Movie(String movieType, String movieTitle, String movieRating, String movieStatus) {
         this.movieType = movieType;
-        this.movieName = movieName;
+        this.movieTitle = movieTitle;
         this.movieRating = movieRating;
         this.movieStatus = movieStatus;
     }
@@ -26,7 +26,7 @@ public class Movie {
 
     // create movie name getter
     public String getMovieName() {
-        return movieName;
+        return movieTitle;
     }
 
     // create movie rating getter
@@ -46,7 +46,7 @@ public class Movie {
 
     // create movie name setter
     public void setMovieName(String movieName) {
-        this.movieName = movieName;
+        this.movieTitle = movieName;
     }
 
     // create movie rating setter
