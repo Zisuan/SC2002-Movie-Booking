@@ -58,4 +58,5 @@ public class Movie {
     public void setMovieStatus(String movieStatus) {
         this.movieStatus = movieStatus;
     }
+
 }
