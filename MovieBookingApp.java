@@ -25,5 +25,6 @@ public class MovieBookingApp {
                 System.out.println("Invalid option");
             }
         } while (option != 3);
+        sc.close();
     }
 }

@@ -1,4 +1,11 @@
+import java.util.*;
+
 public class AdminCinema extends Cinema {
+
+    public AdminCinema(String cinemaName, String cinemaCode, String cinemaType) {
+        super(cinemaName, cinemaCode, cinemaType); //
+    }
+
     // create cinema
     public static void addCinema() {
         Scanner sc = new Scanner(System.in);
@@ -11,6 +18,7 @@ public class AdminCinema extends Cinema {
         cinemaType = sc.nextLine();
         Cinema cinema = new Cinema(cinemaName, cinemaCode, cinemaType);
         System.out.println("Cinema added successfully");
+        sc.close();
     }
 
     // update cinema
@@ -25,6 +33,7 @@ public class AdminCinema extends Cinema {
         cinemaType = sc.nextLine();
         Cinema cinema = new Cinema(cinemaName, cinemaCode, cinemaType);
         System.out.println("Cinema updated successfully");
+        sc.close();
     }
 
     // remove cinema
@@ -39,5 +48,6 @@ public class AdminCinema extends Cinema {
         cinemaType = sc.nextLine();
         Cinema cinema = new Cinema(cinemaName, cinemaCode, cinemaType);
         System.out.println("Cinema removed successfully");
+        sc.close();
     }
 }
