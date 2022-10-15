@@ -3,7 +3,7 @@ public class Customer extends User {
 
     // create customer constructor
     public Customer(String username, String password, boolean isStaff, String firstName, String lastName, String email,
-            String mobileNumber) {
+            String mobileNumber, Object object) {
         super(username, password, isStaff, firstName, lastName, email, mobileNumber);
         this.mobileNumber = mobileNumber;
     }
