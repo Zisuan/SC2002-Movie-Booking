@@ -15,9 +15,9 @@ public class MovieBookingApp {
             System.out.print("Enter the number of your choice: ");
             option = sc.nextInt();
             if (option == 1) {
-                Login.adminLogin();
+                AdminLoginAuthenticator.adminLogin();
             } else if (option == 2) {
-                Login.CustomerLogin();
+                CustomerLoginAuthenticator.CustomerLogin();
             } else if (option == 3) {
                 System.out.println("Thank you for using MOBLIMA!");
                 System.exit(0);
