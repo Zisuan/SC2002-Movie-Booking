@@ -11,9 +11,9 @@ import java.io.IOException; // Import the IOException class to handle errors
 import java.io.Reader; // Import the File class
 import java.io.OutputStreamWriter;
 
-public class AdminCinema extends Cinema {
+public class CinemaManager extends Cinema {
 
-    public AdminCinema(String cinemaName, String cinemaCode, String cinemaType) {
+    public CinemaManager(String cinemaName, String cinemaCode, String cinemaType) {
         super(cinemaName, cinemaCode, cinemaType); //
     }
 

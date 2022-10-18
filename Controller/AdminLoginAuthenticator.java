@@ -2,8 +2,8 @@ package Controller;
 
 import java.util.*;
 
-import Authenticator;
-import ValidateAdminAuthenticator;
+import Controller.Authenticator;
+import Controller.ValidateAdminAuthenticator;
 import Model.Staff;
 
 public class AdminLoginAuthenticator {

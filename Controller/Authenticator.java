@@ -1,3 +1,5 @@
+package Controller;
+
 import java.util.*;
 
 public class Authenticator {
@@ -17,4 +19,4 @@ public class Authenticator {
         return this.passWord;
     }
 
-}   
+}

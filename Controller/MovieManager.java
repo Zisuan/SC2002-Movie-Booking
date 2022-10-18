@@ -4,9 +4,9 @@ import java.util.*;
 
 import Model.Movie;
 
-public class AdminMovie extends Movie {
+public class MovieManager extends Movie {
 
-    public AdminMovie(String movieType, String movieTitle, String movieRating, String movieStatus) {
+    public MovieManager(String movieType, String movieTitle, String movieRating, String movieStatus) {
         super(movieType, movieTitle, movieRating, movieStatus);
     }
 

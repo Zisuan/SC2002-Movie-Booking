@@ -1,6 +1,7 @@
 import java.util.*;
 
 import Controller.AdminLoginAuthenticator;
+import Controller.CustomerLoginAuthenticator;
 
 public class MovieBookingApp {
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package Controller;
+
 import java.io.*;
 
 public class ValidateAdminAuthenticator {

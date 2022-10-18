@@ -2,11 +2,11 @@ package Controller;
 
 import Model.Cinema;
 import Model.Movie;
-import Model.Showtimes;
+import Model.Showtime;
 
-public class AdminShowTime extends Showtimes {
+public class ShowtimeManager extends Showtime {
     // define an explicit constructor
-    public AdminShowTime(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {
+    public ShowtimeManager(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {
         super(showtime, movie, cinema, movieDate, movieTime);
     }
 

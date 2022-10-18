@@ -1,6 +1,6 @@
 package Model;
 
-public class Showtimes {
+public class Showtime {
     // create showtime
     private String showtime;
     // Movie object
@@ -14,7 +14,7 @@ public class Showtimes {
     private String movieTime;
 
     // create showtime constructor
-    public Showtimes(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {
+    public Showtime(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {
         this.showtime = showtime;
         this.movie = movie;
         this.cinema = cinema;
