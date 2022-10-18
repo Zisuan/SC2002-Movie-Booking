@@ -1,3 +1,5 @@
+package Model;
+
 public class Cinema {
     // create cinema name
     private String cinemaName;

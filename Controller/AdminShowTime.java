@@ -1,3 +1,9 @@
+package Controller;
+
+import Model.Cinema;
+import Model.Movie;
+import Model.Showtimes;
+
 public class AdminShowTime extends Showtimes {
     // define an explicit constructor
     public AdminShowTime(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {

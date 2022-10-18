@@ -1,3 +1,5 @@
+package Model;
+
 public class Showtimes {
     // create showtime
     private String showtime;

@@ -1,4 +1,9 @@
+package Model;
+
 import java.util.*;
+
+import Controller.AdminCinema;
+import Controller.AdminMovie;
 
 public class Staff extends User {
     private String staffID;

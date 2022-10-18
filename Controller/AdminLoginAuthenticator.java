@@ -1,4 +1,10 @@
+package Controller;
+
 import java.util.*;
+
+import Authenticator;
+import ValidateAdminAuthenticator;
+import Model.Staff;
 
 public class AdminLoginAuthenticator {
     public static void adminLogin() {
@@ -11,13 +17,10 @@ public class AdminLoginAuthenticator {
         Authenticator a = new Authenticator(username, password);
         ValidateAdminAuthenticator v = new ValidateAdminAuthenticator();
         v.validateLogin(a);
-        if (v.valid) 
-        {
+        if (v.valid) {
             System.out.println("Login successful!" + v.name);
             Staff.adminMenu();
-        } 
-        else
-         {
+        } else {
             System.out.println("Login failed!");
             System.out.println("Please try again!");
             adminLogin();

@@ -1,3 +1,5 @@
+package Model;
+
 public class User {
     // parent of Customer and Admin
     public String username;

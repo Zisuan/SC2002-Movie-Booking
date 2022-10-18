@@ -1,4 +1,9 @@
+package Controller;
+
 import java.util.*;
+
+import Model.Cinema;
+
 import java.io.File; // Import the File class
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

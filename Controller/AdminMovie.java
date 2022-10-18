@@ -1,4 +1,8 @@
+package Controller;
+
 import java.util.*;
+
+import Model.Movie;
 
 public class AdminMovie extends Movie {
 

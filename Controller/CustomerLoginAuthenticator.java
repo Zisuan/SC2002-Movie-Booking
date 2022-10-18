@@ -1,4 +1,7 @@
+
 import java.util.*;
+
+import Model.Customer;
 
 public class CustomerLoginAuthenticator {
 
@@ -12,17 +15,14 @@ public class CustomerLoginAuthenticator {
         Authenticator a = new Authenticator(username, password);
         ValidateCustomerAuthenticator v = new ValidateCustomerAuthenticator();
         v.validateLogin(a);
-        if (v.valid) 
-        {
+        if (v.valid) {
             System.out.println("Login successful!" + v.name);
             Customer.CustomerMenu();
-        } 
-        else {
+        } else {
             System.out.println("Login failed!");
             System.out.println("Please try again!");
             CustomerLogin();
         }
     }
 
-    
 }
