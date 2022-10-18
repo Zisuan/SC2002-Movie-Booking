@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException; // Import the IOException class to handle errors
 import java.io.Reader; // Import the File class
+import java.io.OutputStreamWriter;
 
 public class AdminCinema extends Cinema {
 
@@ -28,6 +29,7 @@ public class AdminCinema extends Cinema {
             fileWriter.append(cinemaName + "," + cinemaCode + "," + cinemaType);
             System.out.println("Cinema added successfully");
             fileWriter.close();
+            Cinema cinema = new Cinema(cinemaName, cinemaCode, cinemaType);
             sc.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -39,7 +41,8 @@ public class AdminCinema extends Cinema {
     // update cinema
     public static void updateCinema() {
         File csvFile = new File("Cinemas.csv");
-        try (Scanner reader = new Scanner(csvFile)) {
+        try (FileWriter fileWriter = new FileWriter(csvFile, true)) {
+            Scanner reader = new Scanner(csvFile);
             Scanner sc = new Scanner(System.in);
             String cinemaName, cinemaCode, cinemaType;
             System.out.println("Enter cinema name: ");
@@ -48,20 +51,22 @@ public class AdminCinema extends Cinema {
             cinemaCode = sc.nextLine();
             System.out.println("Enter cinema type: ");
             cinemaType = sc.nextLine();
-            Cinema cinema = new Cinema(cinemaName, cinemaCode, cinemaType);
             while (reader.hasNext()) {
                 String data = reader.nextLine();
                 String[] values = data.split(",");
-                if (values[0].equals(cinemaName)) {
+                if (values[0].equals(cinemaName) && values[1].equals(cinemaCode) && values[2].equals(cinemaType)) {
                     values[0] = cinemaName;
                     values[1] = cinemaCode;
                     values[2] = cinemaType;
+                    fileWriter.append((System.getProperty("line.separator")));
+                    fileWriter.append(cinemaName + "," + cinemaCode + "," + cinemaType);
                 }
+
             }
-            // no clue la sia fk this shyt
             System.out.println("Cinema updated successfully");
             sc.close();
-        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
