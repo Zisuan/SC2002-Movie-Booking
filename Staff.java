@@ -28,35 +28,35 @@ public class Staff extends User {
         choice = sc.nextInt();
         switch (choice) {
             case 1:
-                addMovie();
+                AdminMovie.addMovie();
                 break;
             case 2:
-                updateMovie();
+                AdminMovie.updateMovie();
                 break;
             case 3:
-                removeMovie();
+                AdminMovie.removeMovie();
                 break;
-            case 4:
-                addShowtime();
-                break;
-            case 5:
-                updateShowtime();
-                break;
-            case 6:
-                removeShowtime();
-                break;
+            // case 4:
+            // addShowtime();
+            // break;
+            // case 5:
+            // updateShowtime();
+            // break;
+            // case 6:
+            // removeShowtime();
+            // break;
             case 7:
-                addCinema();
+                AdminCinema.addCinema();
                 break;
             case 8:
-                updateCinema();
+                AdminCinema.updateCinema();
                 break;
             case 9:
-                removeCinema();
+                AdminCinema.removeCinema();
                 break;
-            case 10:
-                configureSystemSettings();
-                break;
+            // case 10:
+            // configureSystemSettings();
+            // break;
             default:
                 System.out.println("Invalid choice");
                 break;

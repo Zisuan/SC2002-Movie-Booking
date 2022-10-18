@@ -21,28 +21,28 @@ public class Customer extends User {
         System.out.println("5. View Booking History");
         System.out.println("6.List the Top 5 ranking movie");
         choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                searchMovie();
-                break;
-            case 2:
-                viewMovieDetails();
-                break;
-            case 3:
-                checkSeatAvailability();
-                break;
-            case 4:
-                bookTicket();
-                break;
-            case 5:
-                viewBookingHistory();
-                break;
-            case 6:
-                listTop5RankingMovie();
-                break;
-            default:
-                System.out.println("Invalid option");
-                break;
-        }
+        // switch (choice) {
+        // case 1:
+        // searchMovie();
+        // break;
+        // case 2:
+        // viewMovieDetails();
+        // break;
+        // case 3:
+        // checkSeatAvailability();
+        // break;
+        // case 4:
+        // bookTicket();
+        // break;
+        // case 5:
+        // viewBookingHistory();
+        // break;
+        // case 6:
+        // listTop5RankingMovie();
+        // break;
+        // default:
+        // System.out.println("Invalid option");
+        // break;
+        // }
     }
 }

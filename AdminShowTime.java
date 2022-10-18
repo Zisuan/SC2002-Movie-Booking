@@ -4,22 +4,22 @@ public class AdminShowTime extends Showtimes {
         super(showtime, movie, cinema, movieDate, movieTime);
     }
 
-    // create a method to add showtime
-    public static void addShowtime
-    {
+    // // create a method to add showtime
+    // public static void addShowtime
+    // {
 
-    }
+    // }
 
-    // create a method to remove showtime
-    public static void removeShowtime
-    {
+    // // create a method to remove showtime
+    // public static void removeShowtime
+    // {
 
-    }
+    // }
 
-    // create a method to update showtime
-    public static void updateShowtime
-    {
+    // // create a method to update showtime
+    // public static void updateShowtime
+    // {
 
-    }
+    // }
 
 }
