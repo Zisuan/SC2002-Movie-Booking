@@ -2,8 +2,8 @@ package Model;
 
 import java.util.*;
 
-import Controller.AdminCinema;
-import Controller.AdminMovie;
+import Controller.MovieManager;
+import Controller.CinemaManager;
 
 public class Staff extends User {
     private String staffID;
@@ -33,13 +33,13 @@ public class Staff extends User {
         choice = sc.nextInt();
         switch (choice) {
             case 1:
-                AdminMovie.addMovie();
+                MovieManager.addMovie();
                 break;
             case 2:
-                AdminMovie.updateMovie();
+                MovieManager.updateMovie();
                 break;
             case 3:
-                AdminMovie.removeMovie();
+                MovieManager.removeMovie();
                 break;
             // case 4:
             // addShowtime();
@@ -51,13 +51,13 @@ public class Staff extends User {
             // removeShowtime();
             // break;
             case 7:
-                AdminCinema.addCinema();
+                CinemaManager.addCinema();
                 break;
             case 8:
-                AdminCinema.updateCinema();
+                CinemaManager.updateCinema();
                 break;
             case 9:
-                AdminCinema.removeCinema();
+                CinemaManager.removeCinema();
                 break;
             // case 10:
             // configureSystemSettings();

@@ -1,7 +1,6 @@
 import java.util.*;
 
-import Controller.AdminLoginAuthenticator;
-import Controller.CustomerLoginAuthenticator;
+import Controller.LoginManager;
 
 public class MovieBookingApp {
     public static void main(String[] args) {
@@ -18,9 +17,9 @@ public class MovieBookingApp {
             System.out.print("Enter the number of your choice: ");
             option = sc.nextInt();
             if (option == 1) {
-                AdminLoginAuthenticator.adminLogin();
+                LoginManager.login();
             } else if (option == 2) {
-                CustomerLoginAuthenticator.CustomerLogin();
+                LoginManager.login();
             } else if (option == 3) {
                 System.out.println("Thank you for using MOBLIMA!");
                 System.exit(0);

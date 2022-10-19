@@ -12,13 +12,13 @@ public class Ticket {
     // create ticket seat
     private String ticketSeat;
     // create ticket showtime
-    private Showtimes ticketShowtime;
+    private Showtime ticketShowtime;
     // create ticket customer
     private Customer ticketCustomer;
 
     // create ticket constructor
     public Ticket(String ticketId, double ticketPrice, String ticketType, String ticketStatus, String ticketSeat,
-            Showtimes ticketShowtime, Customer ticketCustomer) {
+            Showtime ticketShowtime, Customer ticketCustomer) {
         this.ticketId = ticketId;
         this.ticketPrice = ticketPrice;
         this.ticketType = ticketType;
@@ -54,7 +54,7 @@ public class Ticket {
     }
 
     // create ticket showtime getter
-    public Showtimes getTicketShowtime() {
+    public Showtime getTicketShowtime() {
         return ticketShowtime;
     }
 
@@ -89,7 +89,7 @@ public class Ticket {
     }
 
     // create ticket showtime setter
-    public void setTicketShowtime(Showtimes ticketShowtime) {
+    public void setTicketShowtime(Showtime ticketShowtime) {
         this.ticketShowtime = ticketShowtime;
     }
 
