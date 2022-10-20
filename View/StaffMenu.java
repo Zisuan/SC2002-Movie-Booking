@@ -81,7 +81,7 @@ public class StaffMenu {
                 int system = sc.nextInt();
                 switch(system){
                     case 1:
-                        MovieManager.configureSystemSettings();
+                        ConfigureSystemSettings.configureSystemSettings();
                         break;
                     case 2:
                         System.out.println("Goodbye!");
