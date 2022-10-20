@@ -1,8 +1,8 @@
 package View;
+
 import java.util.*;
 
 import Controller.MovieManager;
-
 
 public class StaffMenu {
 
@@ -27,7 +27,7 @@ public class StaffMenu {
                 System.out.println("4. Exit");
                 System.out.println("Option > ");
                 int listing = sc.nextInt();
-                switch(listing){
+                switch (listing) {
                     case 1:
                         MovieManager.addMovie();
                         break;
@@ -54,16 +54,16 @@ public class StaffMenu {
                 System.out.println("4. Exit");
                 System.out.println("Option: ");
                 int showtime = sc.nextInt();
-                switch(showtime){
-                    case 1:
-                        MovieManager.addShowtime();
-                        break;
-                    case 2:
-                        MovieManager.updateShowtime();
-                        break;
-                    case 3:
-                        MovieManager.removeShowtime();
-                        break;
+                switch (showtime) {
+                    // case 1:
+                    // MovieManager.addShowtime();
+                    // break;
+                    // case 2:
+                    // MovieManager.updateShowtime();
+                    // break;
+                    // case 3:
+                    // MovieManager.removeShowtime();
+                    // break;
                     case 4:
                         System.out.println("Goodbye!");
                         break;
@@ -79,7 +79,7 @@ public class StaffMenu {
                 System.out.println("2. Exit");
                 System.out.println("Option: ");
                 int system = sc.nextInt();
-                switch(system){
+                switch (system) {
                     case 1:
                         ConfigureSystemSettings.configureSystemSettings();
                         break;
@@ -102,4 +102,3 @@ public class StaffMenu {
         }
     }
 }
-

@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import Model.Customer;
 import Model.Staff;
+import View.StaffMenu;
+import View.CustomerMenu;
 
 public class LoginManager {
     public static void login() {
@@ -20,7 +22,12 @@ public class LoginManager {
         LoginAuthenticator v = new LoginAuthenticator(username, password);
         if (v.validateLogin()) {
             System.out.println("Login successful");
-            
+            if (v.getRole()) {
+                StaffMenu.adminMenu();
+            } else {
+                CustomerMenu.MovieGoerMenu();
+            }
+
         } else {
             System.out.println("Login failed");
         }
