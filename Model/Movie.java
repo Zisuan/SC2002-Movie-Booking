@@ -3,7 +3,7 @@ package Model;
 import java.util.*;
 
 public class Movie {
-
+    private int movieID;
     // create movie type
     private String movieType;
     // create movie name
@@ -24,8 +24,10 @@ public class Movie {
     private String overallRating;
 
     // create movie constructor
-    public Movie(String movieType, String movieTitle, String movieRating, String movieStatus, String movieSynopsis,
+    public Movie(int movieID, String movieType, String movieTitle, String movieRating, String movieStatus,
+            String movieSynopsis,
             String movieDirector, String[] movieCast, String movieReview, String overallRating) {
+        this.movieID = movieID;
         this.movieType = movieType;
         this.movieTitle = movieTitle;
         this.movieRating = movieRating;
