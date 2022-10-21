@@ -1,18 +1,23 @@
 package Model;
 
 public class Cinema {
+    private int cinemaID;
     // create cinema name
     private String cinemaName;
     // create cinema code
     private String cinemaCode;
     // create cinema type
     private String cinemaType;
+    // create cinema seat
+    private Seat[][] cinemaSeats;
 
     // create cinema constructor
-    public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
+    public Cinema(int cinemaID, String cinemaName, String cinemaCode, String cinemaType, Seat[][] cinemaSeats) {
+        this.cinemaID = cinemaID;
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
+        this.cinemaSeats = cinemaSeats;
     }
 
     // create cinema name getter
@@ -44,4 +49,15 @@ public class Cinema {
     public void setCinemaType(String cinemaType) {
         this.cinemaType = cinemaType;
     }
+
+    // create cinema id getter
+    public int getCinemaID() {
+        return cinemaID;
+    }
+
+    // create cinema id setter
+    public void setCinemaID(int cinemaID) {
+        this.cinemaID = cinemaID;
+    }
+
 }

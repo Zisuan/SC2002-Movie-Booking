@@ -3,17 +3,18 @@ package Model;
 import java.util.*;
 
 public class Seat {
-    private String seatID;
+    private int seatID;
+    private String seatType;
     private boolean assigned;
     private String customerId;
 
-    public Seat(String seatID) {
+    public Seat(int seatID) {
         this.seatID = seatID;
         this.assigned = false;
         this.customerId = "0";
     }
 
-    public String getSeatID() {
+    public int getSeatID() {
         return seatID;
     }
 
@@ -33,6 +34,14 @@ public class Seat {
     public void unassign() {
         this.assigned = false;
         this.customerId = "0";
+    }
+
+    public String getSeatType() {
+        return seatType;
+    }
+
+    public void setSeatType(String seatType) {
+        this.seatType = seatType;
     }
 
 }
