@@ -26,6 +26,22 @@ public class Movie {
     private String movieCode;
 
     // create movie constructor
+
+    public Movie(ArrayList<String> fieldTokens) {
+        this.movieID = Integer.parseInt(fieldTokens.get(0));
+        this.movieType = fieldTokens.get(1);
+        this.movieTitle = fieldTokens.get(2);
+        this.movieCode = fieldTokens.get(3);
+        this.movieRating = fieldTokens.get(4);
+        this.movieStatus = fieldTokens.get(5);
+        this.movieSynopsis = fieldTokens.get(6);
+        this.movieDirector = fieldTokens.get(7);
+        this.movieCast = fieldTokens.get(8);
+        this.movieReview = fieldTokens.get(9);
+        this.overallRating = fieldTokens.get(10);
+
+    }
+
     public Movie(int movieID, String movieType, String movieTitle, String movieCode, String movieRating,
             String movieStatus,
             String movieSynopsis,

@@ -16,29 +16,24 @@ public class MovieManager extends Movie {
     }
 
     // add movie
-    public static void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieCode,
+    public static void addMovie(ArrayList<Movie> movieDB, int movieID, String movieType, String movieTitle,
+            String movieCode,
             String movieRating,
             String movieStatus, String movieSynopsis,
             String movieDirector, String movieCast, String movieReview, String overallRating)
             throws SecurityException, ClassNotFoundException {
-        int newID = movieDB.size() + 1;
-        Movie movie = new Movie(newID, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis,
-                movieDirector,
-                movieCast, movieReview, overallRating);
-        movieDB.add(movie);
-        String filename = "movie.txt";
-        try {
-            // read file containing Professor records.
-            movieDB = DatabaseManager.readCSV(filename, "movie");
-            for (int i = 0; i < movieDB.size(); i++) {
-                // put record into arraylist
-                movieDB.add(movieDB.get(i));
-
+        Movie newMovie = new Movie(movieID, movieType, movieTitle, movieCode, movieRating, movieStatus,
+                movieSynopsis, movieDirector, movieCast, movieReview, overallRating);
+        boolean exists = false;
+        for (Movie movie : movieDB) {
+            if (movie.getMovieCode().equals(movieCode)) {
+                System.out.println("Movie code already exists");
+                exists = true;
+                break;
             }
-            // write Professor record/s to file.
-            DatabaseManager.saveArray(filename, movieDB);
-        } catch (IOException e) {
-            System.out.println("IOException > " + e.getMessage());
+        }
+        if (!exists) {
+            movieDB.add(newMovie);
         }
     }
 
@@ -99,4 +94,35 @@ public class MovieManager extends Movie {
         movieDB.remove(movieID - 1);
     }
 
+    // print movies
+    public static void printMovie(Movie movie) {
+        System.out.println("Movie Type: " + movie.getMovieType());
+        System.out.println("Movie Title: " + movie.getMovieName());
+        System.out.println("Movie Code: " + movie.getMovieCode());
+        System.out.println("Movie Rating: " + movie.getMovieRating());
+        System.out.println("Movie Status: " + movie.getMovieStatus());
+        System.out.println("Movie Synopsis: " + movie.getMovieSynopsis());
+        System.out.println("Movie Director: " + movie.getMovieDirector());
+        System.out.println("Movie Cast: " + movie.getMovieCast());
+        System.out.println("Movie Review: " + movie.getMovieReview());
+        System.out.println("Overall Rating: " + movie.getOverallRating());
+    }
+
+    public void printMovies(ArrayList<Movie> movieDB) {
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println("Movie ID: " + (i + 1));
+            printMovie(movieDB.get(i));
+            System.out.println();
+        }
+    }
+
+    public void saveMovie(String filename, ArrayList<Movie> movieDB) throws IOException {
+        DatabaseManager.saveArray(filename, movieDB);
+
+    }
+
+    public ArrayList<Movie> loadMovie(String filename, String className)
+            throws IOException, SecurityException, ClassNotFoundException {
+        return DatabaseManager.readCSV(filename, "Model.Movie");
+    }
 }

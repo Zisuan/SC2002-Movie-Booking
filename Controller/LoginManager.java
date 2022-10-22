@@ -12,7 +12,7 @@ import View.StaffMenu;
 import View.CustomerMenu;
 
 public class LoginManager {
-    public static void login() {
+    public static void login() throws SecurityException, ClassNotFoundException, IOException {
         Scanner sc = new Scanner(System.in);
         String username, password;
         System.out.println("Enter username: ");
