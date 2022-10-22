@@ -1,7 +1,9 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Cinema {
-    private int cinemaID;
+    // private int cinemaID;
     // create cinema name
     private String cinemaName;
     // create cinema code
@@ -9,15 +11,24 @@ public class Cinema {
     // create cinema type
     private String cinemaType;
     // create cinema seat
-    private Seat[][] cinemaSeats;
+    private int cinemaSeatDBID;
 
     // create cinema constructor
-    public Cinema(int cinemaID, String cinemaName, String cinemaCode, String cinemaType, Seat[][] cinemaSeats) {
-        this.cinemaID = cinemaID;
+    public Cinema(ArrayList<String> fieldTokens) {
+        // this.cinemaID = Integer.parseInt(fieldTokens.get(0));
+        this.cinemaName = fieldTokens.get(0);
+        this.cinemaCode = fieldTokens.get(1);
+        this.cinemaType = fieldTokens.get(2);
+        this.cinemaSeatDBID = Integer.parseInt(fieldTokens.get(3));
+
+    }
+
+    public Cinema(String cinemaName, String cinemaCode, String cinemaType, int cinemaSeatDBID) {
+        // this.cinemaID = cinemaID;
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
-        this.cinemaSeats = cinemaSeats;
+        this.cinemaSeatDBID = cinemaSeatDBID;
     }
 
     // create cinema name getter
@@ -50,14 +61,22 @@ public class Cinema {
         this.cinemaType = cinemaType;
     }
 
-    // create cinema id getter
-    public int getCinemaID() {
-        return cinemaID;
+    // // create cinema id getter
+    // public int getCinemaID() {
+    // return cinemaID;
+    // }
+
+    // // create cinema id setter
+    // public void setCinemaID(int cinemaID) {
+    // this.cinemaID = cinemaID;
+    // }
+
+    public int getCinemaSeatDBID() {
+        return cinemaSeatDBID;
     }
 
-    // create cinema id setter
-    public void setCinemaID(int cinemaID) {
-        this.cinemaID = cinemaID;
+    public void setCinemaSeatDBID(int cinemaSeatDBID) {
+        this.cinemaSeatDBID = cinemaSeatDBID;
     }
 
 }

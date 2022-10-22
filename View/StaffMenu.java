@@ -50,9 +50,10 @@ public class StaffMenu {
                         String movieReview = sc.next();
                         System.out.println("Enter Overall Rating: ");
                         String overallRating = sc.next();
-                        MovieManager.addMovie(null, movieType, movieTitle, movieCode, movieRating, movieStatus,
-                                movieSynopsis,
-                                movieDirector, movieCast, movieReview, overallRating);
+                        // MovieManager.addMovie(null, movieType, movieTitle, movieCode, movieRating,
+                        // movieStatus,
+                        // movieSynopsis,
+                        // movieDirector, movieCast, movieReview, overallRating);
 
                         break;
                     // case 2:

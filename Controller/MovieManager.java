@@ -19,7 +19,8 @@ public class MovieManager extends Movie {
     public static void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieCode,
             String movieRating,
             String movieStatus, String movieSynopsis,
-            String movieDirector, String movieCast, String movieReview, String overallRating) {
+            String movieDirector, String movieCast, String movieReview, String overallRating)
+            throws SecurityException, ClassNotFoundException {
         int newID = movieDB.size() + 1;
         Movie movie = new Movie(newID, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis,
                 movieDirector,
@@ -28,7 +29,7 @@ public class MovieManager extends Movie {
         String filename = "movie.txt";
         try {
             // read file containing Professor records.
-            movieDB = DatabaseManager.readArray(filename);
+            movieDB = DatabaseManager.readCSV(filename, "movie");
             for (int i = 0; i < movieDB.size(); i++) {
                 // put record into arraylist
                 movieDB.add(movieDB.get(i));

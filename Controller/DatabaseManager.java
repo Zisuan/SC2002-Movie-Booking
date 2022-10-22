@@ -3,81 +3,90 @@ package Controller;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.*;
 import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import Model.Movie;
-
 public class DatabaseManager {
     public static final String SEPARATOR = ",";
 
-    // an example of reading
-    public static ArrayList readArray(String filename) throws IOException {
+    // Reads a csv file and returns an arraylist of the objects
+    public static ArrayList readCSV(String filename, String className)
+            throws IOException, SecurityException, ClassNotFoundException {
         // read String from text file
         ArrayList stringArray = (ArrayList) read(filename);
-        ArrayList alr = new ArrayList();// to store data
+        ArrayList alr = new ArrayList();// to store Professors data
 
+        ArrayList<String> fieldTokens = new ArrayList<String>();
         for (int i = 0; i < stringArray.size(); i++) {
             String st = (String) stringArray.get(i);
             // get individual 'fields' of the string separated by SEPARATOR
             StringTokenizer star = new StringTokenizer(st, SEPARATOR); // pass in the string to the string tokenizer
                                                                        // using delimiter ","
-
-            int movieID = Integer.parseInt(star.nextToken().trim()); // first token
-            String movieType = star.nextToken().trim(); // second token
-            String movieTitle = star.nextToken().trim(); // third token
-            String movieCode = star.nextToken().trim(); // fourth token
-            String movieRating = star.nextToken().trim(); // fifth token
-            String movieStatus = star.nextToken().trim(); // sixth token
-            String movieSynopsis = star.nextToken().trim(); // seventh token
-            String movieDirector = star.nextToken().trim(); // eighth token
-            String movieCast = star.nextToken().trim(); // ninth token
-            String movieReview = star.nextToken().trim(); // tenth token
-            String overallRating = star.nextToken().trim(); // eleventh token
-
-            // create movie object from file data
-            Movie movie = new Movie(movieID, movieType, movieTitle, movieCode, movieRating, movieStatus,
-                    movieSynopsis,
-                    movieDirector, movieCast, movieReview, overallRating);
-            // add to Professors list
-            alr.add(movie);
+            while (star.hasMoreTokens()) {
+                fieldTokens.add(star.nextToken().trim());
+            }
+        }
+        int noOfParameters = Class.forName(className).getDeclaredFields().length;
+        int initialFieldSize = fieldTokens.size();
+        for (int i = 0; i < initialFieldSize; i += noOfParameters) {
+            try {
+                Class obj = Class.forName(className);
+                Constructor constructor = obj.getConstructors()[0];
+                Object instance = constructor.newInstance(fieldTokens);
+                alr.add(instance);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            for (int j = 0; j < noOfParameters; j++) {
+                fieldTokens.remove(0);
+            }
         }
         return alr;
-    }
-    // an example of saving
 
+    }
+
+    // Saves an arraylist of objects to a csv file
     public static void saveArray(String filename, List al) throws IOException {
         List alw = new ArrayList();// to store Professors data
 
-        for (int i = 0; i < al.size(); i++) {
-            Movie movie = (Movie) al.get(i);
-            StringBuilder st = new StringBuilder();
-            st.append(movie.getMovieType().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieName().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieCode().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieRating().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieStatus().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieSynopsis().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieDirector().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieCast().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getMovieReview().trim());
-            st.append(SEPARATOR);
-            st.append(movie.getOverallRating().trim());
-            st.append(SEPARATOR);
-            alw.add(st.toString());
+        for (Object obj : al) {
+            try {
+                Class c = obj.getClass();
+                Field[] fields = c.getDeclaredFields();
+                int noOfFields = fields.length;
+                StringBuilder st = new StringBuilder();
+                for (int i = 0; i < noOfFields; i++) {
+                    // System.out.println("The field is: " + fields[i].getName());
+                    Field field = obj.getClass().getDeclaredField(fields[i].getName());
+                    field.setAccessible(true);
+                    Object value = field.get(obj);
+                    st.append(value.toString().trim());
+                    if (i != noOfFields - 1) {
+                        st.append(SEPARATOR);
+                    }
+                    // System.out.println("The field value is: " + value);
+                    // System.out.println("The field is: " + fields[i].getName());
+                    // System.out.println("The field value is: " + obj.fields[i].getName());
+                }
+                alw.add(st.toString());
+                write(filename, alw);
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+
         }
-        write(filename, alw);
     }
 
     /** Write fixed content to the given file. */
@@ -107,4 +116,25 @@ public class DatabaseManager {
         return data;
     }
 
+    // Used for debugging and refferences purposes only
+    public static void printAllFields(List al) throws IOException {
+        for (Object obj : al) {
+            try {
+                Class c = obj.getClass();
+                Field[] fields = c.getDeclaredFields();
+                int noOfFields = fields.length;
+                StringBuilder st = new StringBuilder();
+                for (int i = 0; i < noOfFields; i++) {
+                    Field field = obj.getClass().getDeclaredField(fields[i].getName());
+                    field.setAccessible(true);
+                    Object value = field.get(obj);
+                    System.out.println("The field is: " + fields[i].getName());
+                    System.out.println("The field value is: " + value);
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+
+        }
+    }
 }
