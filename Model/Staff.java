@@ -2,7 +2,7 @@ package Model;
 
 import java.util.*;
 
-import CinemaManager;
+import Controller.CinemaManager;
 import Controller.MovieManager;
 
 public class Staff extends User {
@@ -39,7 +39,7 @@ public class Staff extends User {
                 MovieManager.updateMovie();
                 break;
             case 3:
-                MovieManager.removeMovie();
+                MovieManager.removeMovie());
                 break;
             // case 4:
             // addShowtime();
@@ -57,7 +57,7 @@ public class Staff extends User {
                 CinemaManager.updateCinema();
                 break;
             case 9:
-                CinemaManager.removeCinema();
+                CinemaManager.deleteCinema();
                 break;
             // case 10:
             // configureSystemSettings();

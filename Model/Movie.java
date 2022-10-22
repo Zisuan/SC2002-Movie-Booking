@@ -17,19 +17,23 @@ public class Movie {
     // create movie director
     private String movieDirector;
     // create movie cast
-    private String[] movieCast;
+    private String movieCast;
     // create movie review
     private String movieReview;
     // create overall rating
     private String overallRating;
+    // create movie code
+    private String movieCode;
 
     // create movie constructor
-    public Movie(int movieID, String movieType, String movieTitle, String movieRating, String movieStatus,
+    public Movie(int movieID, String movieType, String movieTitle, String movieCode, String movieRating,
+            String movieStatus,
             String movieSynopsis,
-            String movieDirector, String[] movieCast, String movieReview, String overallRating) {
+            String movieDirector, String movieCast, String movieReview, String overallRating) {
         this.movieID = movieID;
         this.movieType = movieType;
         this.movieTitle = movieTitle;
+        this.movieCode = movieCode;
         this.movieRating = movieRating;
         this.movieStatus = movieStatus;
         this.movieSynopsis = movieSynopsis;
@@ -37,6 +41,16 @@ public class Movie {
         this.movieCast = movieCast;
         this.movieReview = movieReview;
         this.overallRating = overallRating;
+    }
+
+    // create movie code getter
+    public String getMovieCode() {
+        return movieCode;
+    }
+
+    // create movie code setter
+    public void setMovieCode(String movieCode) {
+        this.movieCode = movieCode;
     }
 
     // create movie type getter
@@ -100,12 +114,12 @@ public class Movie {
     }
 
     // create movie cast getter
-    public String[] getMovieCast() {
+    public String getMovieCast() {
         return movieCast;
     }
 
     // create movie cast setter
-    public void setMovieCast(String[] movieCast) {
+    public void setMovieCast(String movieCast) {
         this.movieCast = movieCast;
     }
 
