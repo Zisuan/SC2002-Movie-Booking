@@ -29,14 +29,38 @@ public class StaffMenu {
                 int listing = sc.nextInt();
                 switch (listing) {
                     case 1:
-                        MovieManager.addMovie();
+                        System.out.println("CREATE NEW MOVIE LISTING");
+                        System.out.println("Enter Movie Type: ");
+                        String movieType = sc.next();
+                        System.out.println("Enter Movie Title: ");
+                        String movieTitle = sc.next();
+                        System.out.println("Enter Movie Code: ");
+                        String movieCode = sc.next();
+                        System.out.println("Enter Movie Rating: ");
+                        String movieRating = sc.next();
+                        System.out.println("Enter Movie Status: ");
+                        String movieStatus = sc.next();
+                        System.out.println("Enter Movie Synopsis: ");
+                        String movieSynopsis = sc.next();
+                        System.out.println("Enter Movie Director: ");
+                        String movieDirector = sc.next();
+                        System.out.println("Enter Movie Cast: ");
+                        String movieCast = sc.next();
+                        System.out.println("Enter Movie Review: ");
+                        String movieReview = sc.next();
+                        System.out.println("Enter Overall Rating: ");
+                        String overallRating = sc.next();
+                        MovieManager.addMovie(null, movieType, movieTitle, movieCode, movieRating, movieStatus,
+                                movieSynopsis,
+                                movieDirector, movieCast, movieReview, overallRating);
+
                         break;
-                    case 2:
-                        MovieManager.updateMovie();
-                        break;
-                    case 3:
-                        MovieManager.removeMovie();
-                        break;
+                    // case 2:
+                    // MovieManager.updateMovie();
+                    // break;
+                    // case 3:
+                    // MovieManager.removeMovie();
+                    // break;
                     case 4:
                         System.out.println("Goodbye!");
                         break;
