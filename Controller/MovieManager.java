@@ -25,19 +25,17 @@ public class MovieManager extends Movie {
                 movieDirector,
                 movieCast, movieReview, overallRating);
         movieDB.add(movie);
-        MovieManager txtDB = new MovieManager(newID, overallRating, overallRating, overallRating, overallRating,
-                overallRating, overallRating, overallRating, overallRating, overallRating, overallRating);
         String filename = "movie.txt";
         try {
             // read file containing Professor records.
-            ArrayList al = DatabaseManager.readArray(filename);
-            for (int i = 0; i < al.size(); i++) {
-                Movie moviee = (Movie) al.get(i);
+            movieDB = DatabaseManager.readArray(filename);
+            for (int i = 0; i < movieDB.size(); i++) {
+                // put record into arraylist
+                movieDB.add(movieDB.get(i));
+
             }
-            // al is an array list containing Professor objs
-            al.add(movie);
             // write Professor record/s to file.
-            DatabaseManager.saveArray(filename, al);
+            DatabaseManager.saveArray(filename, movieDB);
         } catch (IOException e) {
             System.out.println("IOException > " + e.getMessage());
         }
