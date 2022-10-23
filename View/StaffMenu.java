@@ -23,8 +23,7 @@ public class StaffMenu {
         choice = sc.nextInt();
         switch (choice) {
             case 1:
-                MovieManager mm = new MovieManager(choice, null, null, null, null, null, null, null, null,
-                        null, null);
+                MovieManager mm = new MovieManager();
                 ArrayList<Movie> movieDB = new ArrayList<Movie>();
                 String dbPath = FILEPATH + "Movies.csv";
                 movieDB = mm.loadMovie(dbPath, "Model.Movie");
@@ -56,8 +55,8 @@ public class StaffMenu {
                         String movieSynopsis = sc.next();
                         System.out.println("Enter Movie Director: ");
                         String movieDirector = sc.next();
-                        System.out.println("Enter Movie Cast: ");
-                        String movieCast = sc.next();
+                        System.out.println("Enter Movie Cast: FIXME");
+                        ArrayList<String> movieCast = new ArrayList<String>();
                         System.out.println("Enter Movie Review: ");
                         String movieReview = sc.next();
                         System.out.println("Enter Overall Rating: ");

@@ -25,8 +25,7 @@ public class CustomerMenu {
 
         switch (choice) {
             case 1:
-                MovieManager mm = new MovieManager(choice, null, null, null, null, null, null, null, null,
-                        null, null);
+                MovieManager mm = new MovieManager();
                 ArrayList<Movie> movieDB = new ArrayList<Movie>();
                 String dbPath = FILEPATH + "Movies.csv";
                 movieDB = mm.loadMovie(dbPath, "Model.Movie");

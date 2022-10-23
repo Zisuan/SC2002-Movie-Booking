@@ -17,7 +17,7 @@ public class Movie {
     // create movie director
     private String movieDirector;
     // create movie cast
-    private String movieCast;
+    private ArrayList<String> movieCast;
     // create movie review
     private String movieReview;
     // create overall rating
@@ -36,7 +36,8 @@ public class Movie {
         this.movieStatus = fieldTokens.get(5);
         this.movieSynopsis = fieldTokens.get(6);
         this.movieDirector = fieldTokens.get(7);
-        this.movieCast = fieldTokens.get(8);
+        this.movieCast = new ArrayList<String>();
+        this.movieCast.add(fieldTokens.get(8));
         this.movieReview = fieldTokens.get(9);
         this.overallRating = fieldTokens.get(10);
 
@@ -45,7 +46,7 @@ public class Movie {
     public Movie(int movieID, String movieType, String movieTitle, String movieCode, String movieRating,
             String movieStatus,
             String movieSynopsis,
-            String movieDirector, String movieCast, String movieReview, String overallRating) {
+            String movieDirector, ArrayList<String> movieCast, String movieReview, String overallRating) {
         this.movieID = movieID;
         this.movieType = movieType;
         this.movieTitle = movieTitle;
@@ -130,12 +131,12 @@ public class Movie {
     }
 
     // create movie cast getter
-    public String getMovieCast() {
+    public ArrayList<String> getMovieCast() {
         return movieCast;
     }
 
     // create movie cast setter
-    public void setMovieCast(String movieCast) {
+    public void setMovieCast(ArrayList<String> movieCast) {
         this.movieCast = movieCast;
     }
 

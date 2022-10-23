@@ -12,7 +12,8 @@ public class MovieManager {
             String movieCode,
             String movieRating,
             String movieStatus, String movieSynopsis,
-            String movieDirector, String movieCast, String movieReview, String overallRating)
+            String movieDirector,
+            ArrayList<String> movieCast, String movieReview, String overallRating)
             throws SecurityException, ClassNotFoundException {
         Movie newMovie = new Movie(movieID, movieType, movieTitle, movieCode, movieRating, movieStatus,
                 movieSynopsis, movieDirector, movieCast, movieReview, overallRating);
@@ -33,7 +34,7 @@ public class MovieManager {
     public static void updateMovie(int updateCase, ArrayList<Movie> movieDB, int movieID, String movieType,
             String movieTitle, String movieCode, String movieRating,
             String movieStatus, String movieSynopsis,
-            String movieDirector, String movieCast, String movieReview, String overallRating) {
+            String movieDirector, ArrayList<String> movieCast, String movieReview, String overallRating) {
         switch (updateCase) {
             case 1:
                 movieDB.get(movieID - 1).setMovieType(movieType);
@@ -117,4 +118,5 @@ public class MovieManager {
             throws IOException, SecurityException, ClassNotFoundException {
         return DatabaseManager.readCSV(filename, "Model.Movie");
     }
+
 }

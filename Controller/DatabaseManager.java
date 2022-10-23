@@ -68,17 +68,30 @@ public class DatabaseManager {
                 int noOfFields = fields.length;
                 StringBuilder st = new StringBuilder();
                 for (int i = 0; i < noOfFields; i++) {
-                    // System.out.println("The field is: " + fields[i].getName());
-                    Field field = obj.getClass().getDeclaredField(fields[i].getName());
-                    field.setAccessible(true);
-                    Object value = field.get(obj);
-                    st.append(value.toString().trim());
-                    if (i != noOfFields - 1) {
-                        st.append(SEPARATOR);
+                    // if field is arraylist, call saveArray
+                    if (fields[i].getType().equals(ArrayList.class)) {
+                        fields[i].setAccessible(true);
+                        ArrayList tempList = (ArrayList) fields[i].get(obj);
+                        for (Object object : tempList) {
+                            st.append(object.toString().trim());
+                            if (i != noOfFields - 1) {
+                                st.append(SEPARATOR);
+                            }
+                            alw.add(st.toString());
+                        }
+                    } else {
+                        Field field = obj.getClass().getDeclaredField(fields[i].getName());
+                        field.setAccessible(true);
+                        Object value = field.get(obj);
+                        st.append(value.toString().trim());
+                        if (i != noOfFields - 1) {
+                            st.append(SEPARATOR);
+                        }
+                        // System.out.println("The field value is: " + value);
+                        // System.out.println("The field is: " + fields[i].getName());
+                        // System.out.println("The field value is: " + obj.fields[i].getName());
                     }
-                    // System.out.println("The field value is: " + value);
-                    // System.out.println("The field is: " + fields[i].getName());
-                    // System.out.println("The field value is: " + obj.fields[i].getName());
+
                 }
                 alw.add(st.toString());
                 write(filename, alw);

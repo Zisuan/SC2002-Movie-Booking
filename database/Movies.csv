@@ -1,1 +1,7 @@
-1,Comedy,./database/Movies.csv,Me,You,Good,Good,1001,10,Now,Showing
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,Joan Cusack,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,Joan Cusack,Don Rickles,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,Joan Cusack,Don Rickles,Jim Varney,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,Joan Cusack,Don Rickles,Jim Varney,Wallace Shawn,
+1,movieType,movieTitle,movieRating,movieStatus,movieSynopsis,movieDirector,Tom Hanks,Tim Allen,Joan Cusack,Don Rickles,Jim Varney,Wallace Shawn,movieReview,overallRating,movieCode
