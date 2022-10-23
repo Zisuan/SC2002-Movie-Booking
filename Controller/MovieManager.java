@@ -5,15 +5,7 @@ import java.util.*;
 
 import Model.Movie;
 
-public class MovieManager extends Movie {
-    // create constructor
-    public MovieManager(int movieID, String movieType, String movieTitle, String movieCode, String movieRating,
-            String movieStatus, String movieSynopsis, String movieDirector, String movieCast, String movieReview,
-            String overallRating) {
-        super(movieID, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis, movieDirector,
-                movieCast,
-                movieReview, overallRating);
-    }
+public class MovieManager {
 
     // add movie
     public static void addMovie(ArrayList<Movie> movieDB, int movieID, String movieType, String movieTitle,
