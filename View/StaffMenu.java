@@ -25,6 +25,7 @@ public class StaffMenu {
             case 1:
                 MovieManager mm = new MovieManager();
                 ArrayList<Movie> movieDB = new ArrayList<Movie>();
+                ArrayList<String> cast = new ArrayList<String>();
                 String dbPath = FILEPATH + "Movies.csv";
                 movieDB = mm.loadMovie(dbPath, "Model.Movie");
                 System.out.println("MOVIE LISTING");
@@ -92,7 +93,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Type: ");
                                 String movieType1 = sc.next();
                                 mm.updateMovie(select, movieDB, movieID1, movieType1, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 2:
@@ -102,7 +103,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Title: ");
                                 String movieTitle2 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID2, dbPath, movieTitle2, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 3:
@@ -112,7 +113,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Code: ");
                                 String movieCode3 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID3, dbPath, dbPath, movieCode3, dbPath, dbPath,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 4:
@@ -122,7 +123,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Rating: ");
                                 String movieRating4 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID4, dbPath, dbPath, dbPath, movieRating4, dbPath,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 5:
@@ -132,7 +133,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Status: ");
                                 String movieStatus5 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID5, dbPath, dbPath, dbPath, dbPath, movieStatus5,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 6:
@@ -142,7 +143,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Synopsis: ");
                                 String movieSynopsis6 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID6, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, movieSynopsis6, dbPath, dbPath, dbPath, dbPath);
+                                        dbPath, movieSynopsis6, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 7:
@@ -152,17 +153,22 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Director: ");
                                 String movieDirector7 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID7, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, movieDirector7, dbPath, dbPath, dbPath);
+                                        dbPath, dbPath, movieDirector7, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 8:
                                 System.out.println("UPDATE MOVIE CAST");
                                 System.out.println("Enter Movie ID: ");
                                 int movieID8 = sc.nextInt();
-                                System.out.println("Enter Movie Cast: ");
-                                String movieCast8 = sc.next();
+                                System.out.println("Enter Number of Movie Cast: ");
+                                int numCast = sc.nextInt();
+                                for (int i = 0; i < numCast; i++) {
+                                    System.out.println("Enter Movie Cast: ");
+                                    String movieCast8 = sc.next();
+                                    cast.add(movieCast8);
+                                }
                                 mm.updateMovie(listing, movieDB, movieID8, dbPath, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, movieCast8, dbPath, dbPath);
+                                        dbPath, dbPath, cast, dbPath, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 9:
@@ -172,7 +178,7 @@ public class StaffMenu {
                                 System.out.println("Enter Movie Review: ");
                                 String movieReview9 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID9, dbPath, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, dbPath, movieReview9, dbPath);
+                                        dbPath, dbPath, cast, movieReview9, dbPath);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 10:
@@ -182,7 +188,7 @@ public class StaffMenu {
                                 System.out.println("Enter Overall Rating: ");
                                 String overallRating10 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID10, dbPath, dbPath, dbPath, dbPath,
-                                        dbPath, dbPath, dbPath, dbPath, dbPath, overallRating10);
+                                        dbPath, dbPath, dbPath, cast, dbPath, overallRating10);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;
                             case 11:
@@ -203,14 +209,19 @@ public class StaffMenu {
                                 String movieSynopsis11 = sc.next();
                                 System.out.println("Enter Movie Director: ");
                                 String movieDirector11 = sc.next();
-                                System.out.println("Enter Movie Cast: ");
-                                String movieCast11 = sc.next();
+                                System.out.println("Enter Number of Movie Cast: ");
+                                int numOfCast = sc.nextInt();
+                                for (int i = 0; i < numOfCast; i++) {
+                                    System.out.println("Enter Movie Cast: ");
+                                    String movieCast8 = sc.next();
+                                    cast.add(movieCast8);
+                                }
                                 System.out.println("Enter Movie Review: ");
                                 String movieReview11 = sc.next();
                                 System.out.println("Enter Overall Rating: ");
                                 String overallRating11 = sc.next();
                                 mm.updateMovie(listing, movieDB, movieID11, movieType11, movieTitle11, movieCode11,
-                                        movieRating11, movieStatus11, movieSynopsis11, movieDirector11, movieCast11,
+                                        movieRating11, movieStatus11, movieSynopsis11, movieDirector11, cast,
                                         movieReview11, overallRating11);
                                 mm.saveMovie(dbPath, movieDB);
                                 break;

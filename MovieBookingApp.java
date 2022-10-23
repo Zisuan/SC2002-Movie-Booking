@@ -46,23 +46,23 @@ public class MovieBookingApp {
         // cm.saveCinema(dbPath, cinemaDB);
         // cm.printCinemas(cinemaDB);
 
-        MovieManager mm = new MovieManager();
-        ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        String dbPath = FILEPATH + "Movies.csv";
-        // movieDB = mm.loadMovie(dbPath, "Model.Movie");
-        ArrayList<String> cast = new ArrayList<String>();
-        cast.add("Tom Hanks");
-        cast.add("Tim Allen");
-        cast.add("Joan Cusack");
-        cast.add("Don Rickles");
-        cast.add("Jim Varney");
-        cast.add("Wallace Shawn");
-        mm.addMovie(movieDB, 1,
-                "movieType", "movieTitle", "movieCode",
-                "movieRating", "movieStatus", "movieSynopsis", "movieDirector",
-                cast, "movieReview", "overallRating");
-        // mm.printMovies(movieDB);
-        mm.saveMovie(dbPath, movieDB);
+        // MovieManager mm = new MovieManager();
+        // ArrayList<Movie> movieDB = new ArrayList<Movie>();
+        // String dbPath = FILEPATH + "Movies.csv";
+        // // movieDB = mm.loadMovie(dbPath, "Model.Movie");
+        // ArrayList<String> cast = new ArrayList<String>();
+        // cast.add("Tom Hanks");
+        // cast.add("Tim Allen");
+        // cast.add("Joan Cusack");
+        // cast.add("Don Rickles");
+        // cast.add("Jim Varney");
+        // cast.add("Wallace Shawn");
+        // mm.addMovie(movieDB, 1,
+        // "movieType", "movieTitle", "movieCode",
+        // "movieRating", "movieStatus", "movieSynopsis", "movieDirector",
+        // cast, "movieReview", "overallRating");
+        // // mm.printMovies(movieDB);
+        // mm.saveMovie(dbPath, movieDB);
 
     }
 }
