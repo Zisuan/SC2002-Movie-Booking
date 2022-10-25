@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.*;
+
 public class Price{ 
     //additional price can be charged according to these factors alongside base price based on age group
 
@@ -35,6 +37,18 @@ public class Price{
     private double weekendPHSurcharge;
 
     //price constructor
+
+    public Price(ArrayList<String> fieldTokens){
+        this.threeDSurcharge=Double.parseDouble(fieldTokens.get(0));
+        this.blkBusterSurcharge=Double.parseDouble(fieldTokens.get(1));
+        this.platinumSurcharge=Double.parseDouble(fieldTokens.get(2));
+        this.goldSurcharge=Double.parseDouble(fieldTokens.get(3));
+        this.seniorBasePrice=Double.parseDouble(fieldTokens.get(4));
+        this.studentBasePrice=Double.parseDouble(fieldTokens.get(5));
+        this.adultBasePrice=Double.parseDouble(fieldTokens.get(6));
+        this.weekendPHSurcharge=Double.parseDouble(fieldTokens.get(7));
+    }
+
     public Price(double threeDSurcharge, double blkBusterSurcharge, double platinumSurcharge, double goldSurcharge,
             double seniorBasePrice, double studentBasePrice, double adultBasePrice, double weekendPHSurcharge){
                 this.threeDSurcharge=threeDSurcharge;

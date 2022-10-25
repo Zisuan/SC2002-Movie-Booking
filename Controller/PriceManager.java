@@ -1,121 +1,76 @@
-// package Controller;
+package Controller;
 
-// import java.util.*;
-// import java.io.*;
-// import java.text.SimpleDateFormat;
+import java.util.*;
+import java.io.*;
+import java.text.SimpleDateFormat;
 
-// import Model.*;
+import Model.*;
 
-// public class PriceManager{
+public class PriceManager{
 
-// //create constructor
-// public PriceManager(){
-// }
+    // create a pricing model
+    public static void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge, double platinumSurcharge, double goldSurcharge,
+        double seniorBasePrice, double studentBasePrice, double adultBasePrice, double weekendPHSurcharge){
 
-// //create a pricing model
-// public static void createPrice(){
+        Price price=new Price(threeDSurcharge, blkBusterSurcharge, platinumSurcharge,
+            goldSurcharge, seniorBasePrice, studentBasePrice, adultBasePrice, weekendPHSurcharge);
 
-// Scanner sc = new Scanner(System.in);
-// //create surcharge for 3D movie
-// System.out.println("Enter 3D surcharge: ");
-// double threeDSurcharge=sc.nextDouble();
-// //create surcharge for blockbuster movie
-// System.out.println("Enter blockbuster surcharge: ");
-// double blkBusterSurcharge=sc.nextDouble();
-// //create surcharge for platinum cinema
-// System.out.println("Enter platinum class surcharge: ");
-// double platinumSurcharge=sc.nextDouble();
-// //create surcharge for gold cinema
-// System.out.println("Enter gold class surcharge: ");
-// double goldSurcharge=sc.nextDouble();
-// //create base price for senior
-// System.out.println("Enter senior base price: ");
-// double seniorBasePrice=sc.nextDouble();
-// //create base price for student
-// System.out.println("Enter student base price: ");
-// double studentBasePrice=sc.nextDouble();
-// //create base price for adult
-// System.out.println("Enter adult base price: ");
-// double adultBasePrice=sc.nextDouble();
-// //create surcharge for weekend/holiday
-// System.out.println("Enter weekend/public holiday surcharge: ");
-// double weekendPHSurcharge=sc.nextDouble();
+        priceDB.clear(); //remove old price model
+        priceDB.add(price);
+    }
 
-// Price price=new Price(threeDSurcharge, blkBusterSurcharge, platinumSurcharge,
-// goldSurcharge,
-// seniorBasePrice, studentBasePrice, adultBasePrice, weekendPHSurcharge);
+    //update various fields of the price model
 
-// //TODO add in database stuff maybe idk
-// }
-// //update various fields of the price model
+    public static void updatePrice(int updateCase, ArrayList<Price> priceDB, int priceModelID, double newValue){
+        switch(updateCase){ //1=threeDSurcharge, 2=blkBusterSurcharge, 3=platinumSurcharge, 4=goldSurcharge, 
+            // 5=seniorBasePrice, 6=studentBasePrice, 7=adultBasePrice, 8=weekendPHSurcharge
+            case 1:
+                priceDB.get(priceModelID-1).setThreeDSurcharge(newValue);
+                break;
+            case 2:
+                priceDB.get(priceModelID-1).setBlkBusterSurcharge(newValue);
+                break;
+            case 3:
+                priceDB.get(priceModelID-1).setPlatinumSurcharge(newValue);
+                break;
+            case 4:
+                priceDB.get(priceModelID-1).setGoldSurcharge(newValue);
+                break;
+            case 5:
+                priceDB.get(priceModelID-1).setSeniorBasePrice(newValue);
+                break;
+            case 6:
+                priceDB.get(priceModelID-1).setStudentBasePrice(newValue);
+                break;
+            case 7:
+                priceDB.get(priceModelID-1).setAdultBasePrice(newValue);
+                break;
+            case 8:
+                priceDB.get(priceModelID-1).setWeekendPHSurcharge(newValue);
+                break;
+        }
+    }
 
-// //TODO add in database stuff for all the stuff below
-// //public static void updateMovieTypePrice(){
+    public void listPrices(Price price){
+        System.out.println("3D surcharge: " + price.getThreeDSurcharge());
+        System.out.println("Blockbuster Surcharge: " + price.getBlkBusterSurcharge());
+        System.out.println("Platinum Class Surcharge: " + price.getPlatinumSurcharge());
+        System.out.println("Gold Class Surcharge: " + price.getGoldSurcharge());
+        System.out.println("Senior Base Price: " + price.getSeniorBasePrice());
+        System.out.println("Student Base Price: " + price.getStudentBasePrice());
+        System.out.println("Adult Base Price: " + price.getAdultBasePrice());
+        System.out.println("Weekend/Public Holiday Surcharge: " + price.getWeekendPHSurcharge());
+    }
 
-// //Scanner sc = new Scanner(System.in);
+    public void savePrice(String fileName, ArrayList<Price> priceDB) throws IOException {
+        DatabaseManager.saveArray(fileName, priceDB);
+    }
 
-// //System.out.println("Select movie type: ");
-// //System.out.println("1. 3D");
-// //System.out.println("2. Blockbuster");
-// //int sel=sc.nextInt();
-// //System.out.println("Enter new price: ");
-
-// //switch (sel){
-// // case 1: .setThreeDSurcharge(sc.nextDouble());
-// // break;
-// // case 2: .setBlkBusterSurcharge(sc.nextDouble());
-// // break;
-// //}
-// //}
-
-// //public static void updateCinemaTypePrice(){
-
-// //Scanner sc = new Scanner(System.in);
-
-// //System.out.println("Select cinema type: ");
-// //System.out.println("1. Platinum");
-// //System.out.println("2. Gold");
-// //int sel=sc.nextInt();
-// //System.out.println("Enter new price: ");
-
-// //switch (sel){
-// // case 1: .setPlatinumSurcharge(sc.nextDouble());
-// // break;
-// // case 2: .setGoldSurcharge(sc.nextDouble());
-// // break;
-// //}
-// //}
-
-// //public static void updateAgeGroupPrice(){
-
-// //Scanner sc = new Scanner(System.in);
-
-// //System.out.println("Select age group: ");
-// //System.out.println("1. Student");
-// //System.out.println("2. Senior");
-// //System.out.println("3. Adult");
-// //int sel=sc.nextInt();
-// //System.out.println("Enter new price: ");
-
-// //switch (sel){
-// //case 1: .setStudentBasePrice(sc.nextDouble());
-// //break;
-// //case 2: .setSeniorBasePrice(sc.nextDouble());
-// //break;
-// //case 3: .setAdultBasePrice(sc.nextDouble());
-// //break;
-// //}
-// //}
-
-// //public static void updateDayTypePrice(){
-
-// //Scanner sc = new Scanner(System.in);
-
-// //System.out.println("Enter new price: ");
-
-// // .setWeekendPHSurcharge(sc.nextDouble());
-// //}
-
+    public ArrayList<Price> loadPrice(String fileName, String className)
+            throws IOException, SecurityException, ClassNotFoundException {
+        return DatabaseManager.readCSV(fileName, className);
+    }
+}
 // //TODO this probably(?) doesn't belong here but idk where to put it for now
 // //placeholder stuff
 // public static enum AgeGroup{STUDENT,ADULT,SENIOR};
@@ -135,8 +90,7 @@
 // MovieType movieType=movie.getMovieType();
 // //get class of cinema for the movie screening
 // CinemaType cinemaType=cinema.getCinemaType();
-// //get date of screening, assuming date is in the form dd/mm/yyyy for now as
-// placeholder
+// //get date of screening, assuming date is in the form dd/mm/yyyy for now as placeholder
 // String movieDate=showtime.getMovieDate();
 
 // //check if any surcharges apply
@@ -154,8 +108,7 @@
 // cost+=price.getSeniorBasePrice();
 // if(ageGroup==AgeGroup.ADULT){
 // cost+=price.getAdultBasePrice();
-// //check for weekend/public holiday surcharge (only applicable for adult
-// tickets)
+// //check for weekend/public holiday surcharge (only applicable for adult tickets)
 // boolean weekendOrPublicHoliday=false;
 // //create calendar
 // Calendar c=Calendar.getInstance();
