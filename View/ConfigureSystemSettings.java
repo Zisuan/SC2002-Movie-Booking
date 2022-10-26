@@ -7,7 +7,7 @@ import Model.*;
 
 public class ConfigureSystemSettings {
 
-    public static final String FILEPATH = "./src/database/";
+    public static final String FILEPATH = "./database/";
 
     public static void configureSystemSettings() throws SecurityException, ClassNotFoundException, IOException{
         
