@@ -9,7 +9,7 @@ import Model.*;
 public class PriceManager{
 
     // create a pricing model
-    public static void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge, double platinumSurcharge, double goldSurcharge,
+    public void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge, double platinumSurcharge, double goldSurcharge,
         double seniorBasePrice, double studentBasePrice, double adultBasePrice, double weekendPHSurcharge){
 
         Price price=new Price(threeDSurcharge, blkBusterSurcharge, platinumSurcharge,
@@ -21,7 +21,7 @@ public class PriceManager{
 
     //update various fields of the price model
 
-    public static void updatePrice(int updateCase, ArrayList<Price> priceDB, int priceModelID, double newValue){
+    public void updatePrice(int updateCase, ArrayList<Price> priceDB, int priceModelID, double newValue){
         switch(updateCase){ //1=threeDSurcharge, 2=blkBusterSurcharge, 3=platinumSurcharge, 4=goldSurcharge, 
             // 5=seniorBasePrice, 6=studentBasePrice, 7=adultBasePrice, 8=weekendPHSurcharge
             case 1:
@@ -70,9 +70,60 @@ public class PriceManager{
             throws IOException, SecurityException, ClassNotFoundException {
         return DatabaseManager.readCSV(fileName, className);
     }
+
+    public void listHolidays(ArrayList<String> holidayDB){
+        System.out.println("Public Holidays: ");
+        for(int i=0; i<holidayDB.size(); i++){
+            System.out.println(holidayDB.get(i));
+        }
+    }
+
+    public void addHoliday(ArrayList<String> holidayDB, String holiday){
+        boolean exists=false;
+        for(int i=0; i<holidayDB.size(); i++){
+            if(holidayDB.get(i).equals(holiday)){
+                exists=true;
+                System.out.printf("Public Holiday %s already exists!\n", holiday);
+                break;
+            }     
+        }
+        if(!exists){
+            holidayDB.add(holiday);
+            System.out.printf("Public Holiday %s added!\n", holiday);
+        }
+    }
+
+    public void removeHoliday(ArrayList<String> holidayDB, String holiday){
+        boolean found=false;
+        for(int i=0; i<holidayDB.size(); i++){
+            if(holidayDB.get(i).equals(holiday)){
+                holidayDB.remove(i);
+                found=true;
+                System.out.printf("Public Holiday %s removed!\n", holiday);
+                break;
+            }     
+        }
+        if(!found)
+            System.out.printf("Public Holiday %s does not exist!\n", holiday);
+    }
+
+    public void loadHolidays(String filePath, ArrayList<String> holidayDB) 
+    throws IOException, SecurityException, ClassNotFoundException {
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line = "";
+        //check if movie date is a public holiday
+        while ((line = br.readLine()) != null){
+            holidayDB.add(line);
+        }
+        br.close();
+    }
+
+    public void saveHolidays(String fileName, ArrayList<String> holidayDB) throws IOException{
+        DatabaseManager.write(fileName, holidayDB);
+    }
 }
-// //TODO this probably(?) doesn't belong here but idk where to put it for now
-// //placeholder stuff
+//TODO this probably(?) doesn't belong here but idk where to put it for now
+//placeholder stuff
 // public static enum AgeGroup{STUDENT,ADULT,SENIOR};
 // public static enum CinemaType{GOLD, PLATINUM,DEFAULT};
 // public static enum MovieType{_3D,BLOCKBUSTER,DEFAULT};
@@ -147,5 +198,5 @@ public class PriceManager{
 // }
 
 // return cost;
-// }
-// }
+//}
+//}

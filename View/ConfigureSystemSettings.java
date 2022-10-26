@@ -7,7 +7,7 @@ import Model.*;
 
 public class ConfigureSystemSettings {
 
-    public static final String FILEPATH = "./database/";
+    public static final String FILEPATH = "./src/database/";
 
     public static void configureSystemSettings() throws SecurityException, ClassNotFoundException, IOException{
         
@@ -15,30 +15,59 @@ public class ConfigureSystemSettings {
             int choice;
             do{
             System.out.println("Configure System Settings:");
-            System.out.println("1. Add Holiday");
-            System.out.println("2. Delete Holiday");
-            System.out.println("3. List Holidays");
-            System.out.println("4. Configure Price Model");   
-            System.out.println("5. Return to Main Menu");
+            System.out.println("1. Configure Holidays");
+            System.out.println("2. Configure Price Model");   
+            System.out.println("3. Return to Main Menu");
 
             System.out.println("Option: ");
+            PriceManager pm=new PriceManager();
             choice = sc.nextInt();  
-
+            String dbPath = "";
                 switch(choice)
                 {
                     case 1:
-                        //addHoliday();
+                        dbPath = FILEPATH + "PublicHolidays.csv";
+                        ArrayList<String> holidayDB=new ArrayList<String>();
+                        pm.loadHolidays(dbPath, holidayDB);
+                        int sel2;
+                        do{
+                        System.out.println("PUBLIC HOLIDAYS");
+                        System.out.println("1. List Public Holidays");
+                        System.out.println("2. Add Public Holiday");
+                        System.out.println("3. Delete Public Holiday");
+                        System.out.println("4. Exit");
+                        sel2=sc.nextInt();
+                        sc.nextLine();
+                        String holiday="";
+                            switch(sel2){
+                                case 1:
+                                    pm.listHolidays(holidayDB);
+                                    break;
+                                case 2:
+                                    System.out.println("Enter New Public Holiday YYYY/MM/DD:");
+                                    holiday=sc.nextLine();
+                                    pm.addHoliday(holidayDB, holiday);
+                                    pm.saveHolidays(dbPath, holidayDB);
+                                    break;
+                                case 3:
+                                    System.out.println("Enter Public Holiday To Remove YYYY/MM/DD:");
+                                    holiday=sc.nextLine();
+                                    pm.removeHoliday(holidayDB, holiday);
+                                    pm.saveHolidays(dbPath, holidayDB);
+                                    break;
+                                case 4:
+                                    System.out.println("Exiting...");
+                                    break;
+                                default:
+                                    System.out.println("Invalid option");
+                                    System.out.println("Please re-enter!");
+                                    break;     
+                            }
+                        }while(sel2!=4);
                         break;
                     case 2:
-                        //deleteHoliday();
-                        break;
-                    case 3:
-                        //listHolidays();
-                        break;
-                    case 4:
-                        PriceManager pm=new PriceManager();
                         ArrayList<Price> priceDB=new ArrayList<Price>();
-                        String dbPath = FILEPATH + "Prices.csv";
+                        dbPath = FILEPATH + "Prices.csv";
                         priceDB=pm.loadPrice(dbPath, "Model.Price");
                         int sel1;
                         do{
@@ -97,7 +126,7 @@ public class ConfigureSystemSettings {
                                     }
                                     break;
                                 case 4:
-                                    System.out.println("Goodbye!");
+                                    System.out.println("Exiting...");
                                     break;
                                 default:
                                     System.out.println("Invalid option");
@@ -105,14 +134,14 @@ public class ConfigureSystemSettings {
                                     break;
                             }
                         } while(sel1!=4);
-                    case 5:
-                        System.out.println("Goodbye!");
+                    case 3:
+                        System.out.println("Returning to main menu...");
                         break;
                     default:
                         System.out.println("Invalid option");
                         System.out.println("Please re-enter!");
                         break;
                 }
-            }while(choice!=5);
+            }while(choice!=3);
         }   
 }
