@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Seat {
     private int seatID;
+    private String cinemaCode;
     private String seatRow;
     private String seatColumn;
     private String seatType;
@@ -12,11 +13,12 @@ public class Seat {
 
     public Seat(ArrayList<String> fieldTokens) {
         this.seatID = Integer.parseInt(fieldTokens.get(0));
-        this.seatRow = fieldTokens.get(1);
-        this.seatColumn = fieldTokens.get(2);
-        this.seatType = fieldTokens.get(3);
-        this.assigned = Boolean.parseBoolean(fieldTokens.get(4));
-        this.customerId = Integer.parseInt(fieldTokens.get(5));
+        this.cinemaCode = fieldTokens.get(1);
+        this.seatRow = fieldTokens.get(2);
+        this.seatColumn = fieldTokens.get(3);
+        this.seatType = fieldTokens.get(4);
+        this.assigned = Boolean.parseBoolean(fieldTokens.get(5));
+        this.customerId = Integer.parseInt(fieldTokens.get(6));
     }
 
     public Seat(int seatID) {
@@ -24,10 +26,13 @@ public class Seat {
         this.seatRow = this.seatColumn = "";
         this.assigned = false;
         this.customerId = 0;
+        this.cinemaCode = null;
     }
 
-    public Seat(int seatID, String seatRow, String seatColumn, String seatType, Boolean assigned, int customerId) {
+    public Seat(int seatID, String cinemaCode, String seatRow, String seatColumn, String seatType, Boolean assigned,
+            int customerId) {
         this.seatID = seatID;
+        this.cinemaCode = cinemaCode;
         this.seatRow = seatRow;
         this.seatColumn = seatColumn;
         this.assigned = assigned;
@@ -62,6 +67,30 @@ public class Seat {
 
     public void setSeatType(String seatType) {
         this.seatType = seatType;
+    }
+
+    public String getSeatRow() {
+        return seatRow;
+    }
+
+    public void setSeatRow(String seatRow) {
+        this.seatRow = seatRow;
+    }
+
+    public String getSeatColumn() {
+        return seatColumn;
+    }
+
+    public void setSeatColumn(String seatColumn) {
+        this.seatColumn = seatColumn;
+    }
+
+    public String getCinemaCode() {
+        return cinemaCode;
+    }
+
+    public void setCinemaCode(String cinemaID) {
+        this.cinemaCode = cinemaID;
     }
 
 }

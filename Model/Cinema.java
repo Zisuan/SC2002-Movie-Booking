@@ -12,6 +12,8 @@ public class Cinema {
     private String cinemaType;
     // create cinema seat
     private int cinemaSeatDBID;
+    // create cinemaSeatDB
+    private ArrayList<Seat> cinemaSeatDB;
 
     // create cinema constructor
     public Cinema(ArrayList<String> fieldTokens) {
@@ -29,6 +31,16 @@ public class Cinema {
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
         this.cinemaSeatDBID = cinemaSeatDBID;
+    }
+
+    public Cinema(String cinemaName, String cinemaCode, String cinemaType, int cinemaSeatDBID,
+            ArrayList<Seat> cinemaSeatDB) {
+        // this.cinemaID = cinemaID;
+        this.cinemaName = cinemaName;
+        this.cinemaCode = cinemaCode;
+        this.cinemaType = cinemaType;
+        this.cinemaSeatDBID = cinemaSeatDBID;
+        this.cinemaSeatDB = cinemaSeatDB;
     }
 
     // create cinema name getter
@@ -77,6 +89,14 @@ public class Cinema {
 
     public void setCinemaSeatDBID(int cinemaSeatDBID) {
         this.cinemaSeatDBID = cinemaSeatDBID;
+    }
+
+    public ArrayList<Seat> getCinemaSeatDB() {
+        return cinemaSeatDB;
+    }
+
+    public void setCinemaSeatDB(ArrayList<Seat> cinemaSeatDB) {
+        this.cinemaSeatDB = cinemaSeatDB;
     }
 
 }

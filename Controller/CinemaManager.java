@@ -1,10 +1,10 @@
 package Controller;
 
 import java.util.*;
-import Model.Cinema;
+import Model.*;
 import java.io.IOException; // Import the IOException class to handle errors
 
-public class CinemaManager implements SeatManager {
+public class CinemaManager {
 
     public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType,
             int cinemaSeatDBID) {
@@ -75,6 +75,24 @@ public class CinemaManager implements SeatManager {
     public ArrayList<Cinema> loadCinema(String filename, String className)
             throws IOException, SecurityException, ClassNotFoundException {
         return DatabaseManager.readCSV(filename, "Model.Cinema");
+    }
+
+    public ArrayList<Cinema> loadCinemaWithSeat(String filename, String className, ArrayList<Seat> seatDB)
+            throws IOException, SecurityException, ClassNotFoundException {
+        ArrayList<Cinema> cinemaDB = DatabaseManager.readCSV(filename, "Model.Cinema");
+        seatDB = SeatManager.loadSeat("Seat.csv", "Model.Seat");
+        // either make a db of seatdb or make a db of seats then add to cinema
+        for (Cinema cinema : cinemaDB) {
+            ArrayList<Seat> temp = new ArrayList<Seat>();
+            for (Seat seat : seatDB) {
+                if (cinema.getCinemaCode() == seat.getCinemaCode()) {
+                    temp.add(seat);
+                    seatDB.remove(seat);
+                }
+                cinema.setCinemaSeatDB(temp);
+            }
+        }
+        return cinemaDB;
     }
 
 }
