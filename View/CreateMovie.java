@@ -40,10 +40,11 @@ public class CreateMovie {
         String movieReview = sc.next();
         System.out.println("Enter Overall Rating: ");
         String overallRating = sc.next();
-        mm.addMovie(movieDB, movieID, movieType, movieTitle, movieCode, movieRating, movieStatus,
-                movieSynopsis,
-                movieDirector, movieCast, movieReview, overallRating);
-        mm.saveMovie(dbPath, movieDB);
+        // mm.addMovie(movieDB, movieID, movieType, movieTitle, movieCode, movieRating,
+        // movieStatus,
+        // movieSynopsis,
+        // movieDirector, movieCast, movieReview, overallRating);
+        // mm.saveMovie(dbPath, movieDB);
         sc.close();
     }
 }

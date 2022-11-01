@@ -26,15 +26,13 @@ public class StaffMenu {
                 MovieListing.MovieMenu();
                 break;
             case 2:
-                // ShowtimeListing.ShowtimeMenu();
-                System.out.println("Need to do");
+                ShowtimeListing.ShowtimeMenu();
                 break;
             case 3:
                 ConfigureSystemSettings.configureSystemSettings();
                 break;
             case 4:
                 System.out.println("Goodbye!");
-                break;
             default:
                 System.out.println("Invalid option");
                 System.out.println("Please re-enter!");
