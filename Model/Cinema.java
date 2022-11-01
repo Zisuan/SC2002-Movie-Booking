@@ -17,12 +17,6 @@ public class Cinema implements Serializable {
     private ArrayList<Seat> cinemaSeatDB;
 
     // create cinema constructor
-    public Cinema(ArrayList<String> fieldTokens) {
-        this.cinemaName = fieldTokens.get(0);
-        this.cinemaCode = fieldTokens.get(1);
-        this.cinemaType = fieldTokens.get(2);
-        this.cinemaSeatDBID = Integer.parseInt(fieldTokens.get(3));
-    }
 
     public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
         this.cinemaName = cinemaName;

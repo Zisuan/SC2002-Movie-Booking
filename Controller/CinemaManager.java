@@ -95,6 +95,19 @@ public class CinemaManager {
         }
     }
 
+    public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws IOException {
+        DatabaseManager.writeSerializedObject(filename, cinemaDB);
+
+    }
+
+    public ArrayList<Cinema> loadCinema(String filename)
+            throws IOException, SecurityException, ClassNotFoundException {
+        ArrayList<Cinema> cinemaDB = DatabaseManager.readSerializedObject(filename);
+        if (cinemaDB == null) {
+            cinemaDB = new ArrayList<Cinema>();
+        }
+        return cinemaDB;
+    }
     // public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws
     // IOException {
     // DatabaseManager.writeSerializedObject(filename, cinemaDB);
@@ -125,15 +138,5 @@ public class CinemaManager {
     // }
     // return cinemaDB;
     // }
-
-    public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws IOException {
-        DatabaseManager.writeSerializedObject(filename, cinemaDB);
-
-    }
-
-    public ArrayList<Cinema> loadCinema(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
-        return DatabaseManager.readSerializedObject(filename);
-    }
 
 }

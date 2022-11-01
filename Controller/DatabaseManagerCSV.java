@@ -58,7 +58,7 @@ public class DatabaseManagerCSV {
     }
 
     // Saves an arraylist of objects to a csv file
-    public static void writeSerializedObject(String filename, List al) throws IOException {
+    public static void saveArray(String filename, List al) throws IOException {
         List alw = new ArrayList();// to store Professors data
 
         for (Object obj : al) {
@@ -68,7 +68,7 @@ public class DatabaseManagerCSV {
                 int noOfFields = fields.length;
                 StringBuilder st = new StringBuilder();
                 for (int i = 0; i < noOfFields; i++) {
-                    // if field is arraylist, call writeSerializedObject
+                    // if field is arraylist, call saveArray
                     if (fields[i].getType().equals(ArrayList.class)) {
                         fields[i].setAccessible(true);
                         ArrayList tempList = (ArrayList) fields[i].get(obj);

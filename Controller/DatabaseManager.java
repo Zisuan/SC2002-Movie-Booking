@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -13,10 +14,15 @@ public class DatabaseManager {
         FileInputStream fis = null;
         ObjectInputStream in = null;
         try {
-            fis = new FileInputStream(filename);
-            in = new ObjectInputStream(fis);
-            pDetails = (ArrayList) in.readObject();
-            in.close();
+            File file = new File(filename);
+            if (file.exists()) {
+                fis = new FileInputStream(filename);
+                in = new ObjectInputStream(fis);
+                pDetails = (ArrayList) in.readObject();
+                in.close();
+            } else {
+                file.createNewFile();
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
