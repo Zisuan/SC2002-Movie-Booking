@@ -81,7 +81,7 @@ public class CinemaManager {
         System.out.println("Cinema Name: " + cinema.getCinemaName());
         System.out.println("Cinema Code: " + cinema.getCinemaCode());
         System.out.println("Cinema Type: " + cinema.getCinemaType());
-        System.out.println("Cinema Seat: " + cinema.getCinemaSeatDB().get(0).getSeatID());
+        System.out.println("Cinema Seat: " + cinema.getCinemaSeatDB());
     }
 
     public void printCinemas(ArrayList<Cinema> cinemaDB) {

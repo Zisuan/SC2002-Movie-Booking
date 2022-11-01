@@ -11,17 +11,18 @@ public class MovieBookingApp {
 
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
         int option;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("=====================================================================");
-        System.out.println("Welcome to MOBLIMA\n");
-        System.out.println("(1) Use App as Admin");
-        System.out.println("(2) Use App as Movie-goer");
-        System.out.println("(3) Exit");
-        System.out.println();
-
         do {
+            Scanner sc = new Scanner(System.in);
+            option = 0;
+            System.out.println("=====================================================================");
+            System.out.println("Welcome to MOBLIMA\n");
+            System.out.println("(1) Use App as Admin");
+            System.out.println("(2) Use App as Movie-goer");
+            System.out.println("(3) Exit");
+            System.out.println();
             System.out.print("Enter the number of your choice: ");
             option = sc.nextInt();
+            // sc.nextLine();
             if (option == 1) {
                 LoginManager.login();
             } else if (option == 2) {
@@ -33,7 +34,7 @@ public class MovieBookingApp {
                 System.out.println("Invalid option");
             }
         } while (option != 3);
-        sc.close();
+        // sc.close();
 
     }
 }

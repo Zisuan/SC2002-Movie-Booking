@@ -12,15 +12,14 @@ public class RemoveMovie {
     public static void removeMovie() throws IOException, SecurityException, ClassNotFoundException {
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        String dbPath = FILEPATH + "Movies.csv";
-        movieDB = mm.loadMovie(dbPath, "Model.Movie");
-
+        String dbPath = FILEPATH + "Movies.dat";
+        movieDB = mm.loadMovie(dbPath);
         Scanner sc = new Scanner(System.in);
         System.out.println("DELETE MOVIE");
-        System.out.println("Enter Movie ID: ");
-        int movieID = sc.nextInt();
-        mm.removeMovie(movieDB, movieID);
+        System.out.println("Enter Movie Code to delete movie: ");
+        String code = sc.nextLine();
+        mm.removeMovie(movieDB, code);
         mm.saveMovie(dbPath, movieDB);
-        sc.close();
+        // sc.close();
     }
 }

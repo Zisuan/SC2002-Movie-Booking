@@ -14,37 +14,35 @@ public class CreateMovie {
 
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        String dbPath = FILEPATH + "Movies.csv";
-        movieDB = mm.loadMovie(dbPath, "Model.Movie");
-
+        String dbPath = FILEPATH + "Movies.dat";
+        movieDB = mm.loadMovie(dbPath);
         System.out.println("CREATE NEW MOVIE LISTING");
-        System.out.println("Enter Movie ID: ");
-        int movieID = sc.nextInt();
         System.out.println("Enter Movie Type: ");
-        String movieType = sc.next();
+        String movieType = sc.nextLine();
         System.out.println("Enter Movie Title: ");
-        String movieTitle = sc.next();
+        String movieTitle = sc.nextLine();
         System.out.println("Enter Movie Code: ");
-        String movieCode = sc.next();
+        String movieCode = sc.nextLine();
         System.out.println("Enter Movie Rating: ");
-        String movieRating = sc.next();
+        String movieRating = sc.nextLine();
         System.out.println("Enter Movie Status: ");
-        String movieStatus = sc.next();
+        String movieStatus = sc.nextLine();
         System.out.println("Enter Movie Synopsis: ");
-        String movieSynopsis = sc.next();
+        String movieSynopsis = sc.nextLine();
         System.out.println("Enter Movie Director: ");
-        String movieDirector = sc.next();
-        System.out.println("Enter Movie Cast: FIXME");
+        String movieDirector = sc.nextLine();
+        System.out.println("Enter Number of Movie Casts: ");
         ArrayList<String> movieCast = new ArrayList<String>();
-        System.out.println("Enter Movie Review: ");
-        String movieReview = sc.next();
-        System.out.println("Enter Overall Rating: ");
-        String overallRating = sc.next();
-        // mm.addMovie(movieDB, movieID, movieType, movieTitle, movieCode, movieRating,
-        // movieStatus,
-        // movieSynopsis,
-        // movieDirector, movieCast, movieReview, overallRating);
-        // mm.saveMovie(dbPath, movieDB);
-        sc.close();
+        int cast = sc.nextInt();
+        sc.nextLine();
+        for (int i = 0; i < cast; i++) {
+            System.out.println("Enter Movie Cast: ");
+            String castName = sc.nextLine();
+            movieCast.add(castName);
+        }
+        mm.addMovie(movieDB, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis, movieDirector,
+                movieCast);
+        mm.saveMovie(dbPath, movieDB);
+        // sc.close();
     }
 }
