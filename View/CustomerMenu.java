@@ -27,17 +27,17 @@ public class CustomerMenu {
             case 1:
                 MovieManager mm = new MovieManager();
                 ArrayList<Movie> movieDB = new ArrayList<Movie>();
-                String dbPath = FILEPATH + "Movies.csv";
-                movieDB = mm.loadMovie(dbPath, "Model.Movie");
+                String dbPath = FILEPATH + "Movies.dat";
+                movieDB = mm.loadMovie(dbPath);
                 mm.printMovies(movieDB);
                 break;
-            //case 2:
-                //MovieManager mm = new MovieManager();
-                //ArrayList<Movie> movieDB = new ArrayList<Movie>();
-                //String dbPath = FILEPATH + "Movies.csv";
-                //movieDB = mm.loadMovie(dbPath, "Model.Movie");
-                //mm.printMovies(movieDB);
-                //break;
+            // case 2:
+            // MovieManager mm = new MovieManager();
+            // ArrayList<Movie> movieDB = new ArrayList<Movie>();
+            // String dbPath = FILEPATH + "Movies.csv";
+            // movieDB = mm.loadMovie(dbPath, "Model.Movie");
+            // mm.printMovies(movieDB);
+            // break;
             // case 3:
             // checkSeatAvailability();
             // break;

@@ -32,7 +32,7 @@ public class LoginManager {
             System.out.println("Login failed");
         }
 
-        sc.close();
+        // sc.close();
     }
 
 }
