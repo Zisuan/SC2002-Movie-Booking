@@ -15,17 +15,18 @@ public class Ticket {
     private Showtime ticketShowtime;
     // create ticket customer
     private Customer ticketCustomer;
+    private String customerId;
 
     // create ticket constructor
     public Ticket(String ticketId, double ticketPrice, String ticketType, String ticketStatus, String ticketSeat,
-            Showtime ticketShowtime, Customer ticketCustomer) {
+            Showtime ticketShowtime, String customerId) {
         this.ticketId = ticketId;
         this.ticketPrice = ticketPrice;
         this.ticketType = ticketType;
         this.ticketStatus = ticketStatus;
         this.ticketSeat = ticketSeat;
         this.ticketShowtime = ticketShowtime;
-        this.ticketCustomer = ticketCustomer;
+        this.customerId = customerId;
     }
 
     // create ticket id getter
@@ -96,6 +97,14 @@ public class Ticket {
     // create ticket customer setter
     public void setTicketCustomer(Customer ticketCustomer) {
         this.ticketCustomer = ticketCustomer;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
 }
