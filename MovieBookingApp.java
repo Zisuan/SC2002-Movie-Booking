@@ -35,34 +35,5 @@ public class MovieBookingApp {
         } while (option != 3);
         sc.close();
 
-        // CinemaManager cm = new CinemaManager();
-        // ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
-        // String dbPath = FILEPATH + "Cinemas.csv";
-        // cinemaDB = cm.loadCinema(dbPath, "Model.Cinema");
-        // // cm.printCinemas(cinemaDB);
-        // cm.addCinema(cinemaDB, "Cathay", "004", "3D", 4);
-        // cm.addCinema(cinemaDB, "Cathay", "004", "2D", 5);
-        // // cm.printCinemas(cinemaDB);
-        // cm.saveCinema(dbPath, cinemaDB);
-        // cm.printCinemas(cinemaDB);
-
-        // MovieManager mm = new MovieManager();
-        // ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        // String dbPath = FILEPATH + "Movies.csv";
-        // // movieDB = mm.loadMovie(dbPath, "Model.Movie");
-        // ArrayList<String> cast = new ArrayList<String>();
-        // cast.add("Tom Hanks");
-        // cast.add("Tim Allen");
-        // cast.add("Joan Cusack");
-        // cast.add("Don Rickles");
-        // cast.add("Jim Varney");
-        // cast.add("Wallace Shawn");
-        // mm.addMovie(movieDB, 1,
-        // "movieType", "movieTitle", "movieCode",
-        // "movieRating", "movieStatus", "movieSynopsis", "movieDirector",
-        // cast, "movieReview", "overallRating");
-        // // mm.printMovies(movieDB);
-        // mm.saveMovie(dbPath, movieDB);
-
     }
 }

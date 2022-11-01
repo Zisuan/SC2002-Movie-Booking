@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Seat {
-    private int seatID;
+public class Seat implements Serializable {
+    private String seatID;
     private String cinemaCode;
     private String seatRow;
     private String seatColumn;
@@ -11,17 +12,17 @@ public class Seat {
     private boolean assigned;
     private int customerId;
 
-    public Seat(ArrayList<String> fieldTokens) {
-        this.seatID = Integer.parseInt(fieldTokens.get(0));
-        this.cinemaCode = fieldTokens.get(1);
-        this.seatRow = fieldTokens.get(2);
-        this.seatColumn = fieldTokens.get(3);
-        this.seatType = fieldTokens.get(4);
-        this.assigned = Boolean.parseBoolean(fieldTokens.get(5));
-        this.customerId = Integer.parseInt(fieldTokens.get(6));
-    }
+    // public Seat(ArrayList<String> fieldTokens) {
+    // this.seatID = Integer.parseInt(fieldTokens.get(0));
+    // this.cinemaCode = fieldTokens.get(1);
+    // this.seatRow = fieldTokens.get(2);
+    // this.seatColumn = fieldTokens.get(3);
+    // this.seatType = fieldTokens.get(4);
+    // this.assigned = Boolean.parseBoolean(fieldTokens.get(5));
+    // this.customerId = Integer.parseInt(fieldTokens.get(6));
+    // }
 
-    public Seat(int seatID) {
+    public Seat(String seatID) {
         this.seatID = seatID;
         this.seatRow = this.seatColumn = "";
         this.assigned = false;
@@ -29,7 +30,7 @@ public class Seat {
         this.cinemaCode = null;
     }
 
-    public Seat(int seatID, String cinemaCode, String seatRow, String seatColumn, String seatType, Boolean assigned,
+    public Seat(String seatID, String cinemaCode, String seatRow, String seatColumn, String seatType, Boolean assigned,
             int customerId) {
         this.seatID = seatID;
         this.cinemaCode = cinemaCode;
@@ -39,7 +40,7 @@ public class Seat {
         this.customerId = customerId;
     }
 
-    public int getSeatID() {
+    public String getSeatID() {
         return seatID;
     }
 

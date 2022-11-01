@@ -6,52 +6,54 @@ import java.text.SimpleDateFormat;
 
 import Model.*;
 
-public class PriceManager{
+public class PriceManager {
 
     // create a pricing model
-    public void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge, double platinumSurcharge, double goldSurcharge,
-        double seniorBasePrice, double studentBasePrice, double adultBasePrice, double weekendPHSurcharge){
+    public void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge,
+            double platinumSurcharge, double goldSurcharge,
+            double seniorBasePrice, double studentBasePrice, double adultBasePrice, double weekendPHSurcharge) {
 
-        Price price=new Price(threeDSurcharge, blkBusterSurcharge, platinumSurcharge,
-            goldSurcharge, seniorBasePrice, studentBasePrice, adultBasePrice, weekendPHSurcharge);
+        Price price = new Price(threeDSurcharge, blkBusterSurcharge, platinumSurcharge,
+                goldSurcharge, seniorBasePrice, studentBasePrice, adultBasePrice, weekendPHSurcharge);
 
-        priceDB.clear(); //remove old price model
+        priceDB.clear(); // remove old price model
         priceDB.add(price);
     }
 
-    //update various fields of the price model
+    // update various fields of the price model
 
-    public void updatePrice(int updateCase, ArrayList<Price> priceDB, int priceModelID, double newValue){
-        switch(updateCase){ //1=threeDSurcharge, 2=blkBusterSurcharge, 3=platinumSurcharge, 4=goldSurcharge, 
+    public void updatePrice(int updateCase, ArrayList<Price> priceDB, int priceModelID, double newValue) {
+        switch (updateCase) { // 1=threeDSurcharge, 2=blkBusterSurcharge, 3=platinumSurcharge,
+                              // 4=goldSurcharge,
             // 5=seniorBasePrice, 6=studentBasePrice, 7=adultBasePrice, 8=weekendPHSurcharge
             case 1:
-                priceDB.get(priceModelID-1).setThreeDSurcharge(newValue);
+                priceDB.get(priceModelID - 1).setThreeDSurcharge(newValue);
                 break;
             case 2:
-                priceDB.get(priceModelID-1).setBlkBusterSurcharge(newValue);
+                priceDB.get(priceModelID - 1).setBlkBusterSurcharge(newValue);
                 break;
             case 3:
-                priceDB.get(priceModelID-1).setPlatinumSurcharge(newValue);
+                priceDB.get(priceModelID - 1).setPlatinumSurcharge(newValue);
                 break;
             case 4:
-                priceDB.get(priceModelID-1).setGoldSurcharge(newValue);
+                priceDB.get(priceModelID - 1).setGoldSurcharge(newValue);
                 break;
             case 5:
-                priceDB.get(priceModelID-1).setSeniorBasePrice(newValue);
+                priceDB.get(priceModelID - 1).setSeniorBasePrice(newValue);
                 break;
             case 6:
-                priceDB.get(priceModelID-1).setStudentBasePrice(newValue);
+                priceDB.get(priceModelID - 1).setStudentBasePrice(newValue);
                 break;
             case 7:
-                priceDB.get(priceModelID-1).setAdultBasePrice(newValue);
+                priceDB.get(priceModelID - 1).setAdultBasePrice(newValue);
                 break;
             case 8:
-                priceDB.get(priceModelID-1).setWeekendPHSurcharge(newValue);
+                priceDB.get(priceModelID - 1).setWeekendPHSurcharge(newValue);
                 break;
         }
     }
 
-    public void listPrices(Price price){
+    public void listPrices(Price price) {
         System.out.println("3D surcharge: " + price.getThreeDSurcharge());
         System.out.println("Blockbuster Surcharge: " + price.getBlkBusterSurcharge());
         System.out.println("Platinum Class Surcharge: " + price.getPlatinumSurcharge());
@@ -63,67 +65,67 @@ public class PriceManager{
     }
 
     public void savePrice(String fileName, ArrayList<Price> priceDB) throws IOException {
-        DatabaseManager.saveArray(fileName, priceDB);
+        DatabaseManager.writeSerializedObject(fileName, priceDB);
     }
 
     public ArrayList<Price> loadPrice(String fileName, String className)
             throws IOException, SecurityException, ClassNotFoundException {
-        return DatabaseManager.readCSV(fileName, className);
+        return DatabaseManager.readSerializedObject(fileName);
     }
 
-    public void listHolidays(ArrayList<String> holidayDB){
+    public void listHolidays(ArrayList<String> holidayDB) {
         System.out.println("Public Holidays: ");
-        for(int i=0; i<holidayDB.size(); i++){
+        for (int i = 0; i < holidayDB.size(); i++) {
             System.out.println(holidayDB.get(i));
         }
     }
 
-    public void addHoliday(ArrayList<String> holidayDB, String holiday){
-        boolean exists=false;
-        for(int i=0; i<holidayDB.size(); i++){
-            if(holidayDB.get(i).equals(holiday)){
-                exists=true;
+    public void addHoliday(ArrayList<String> holidayDB, String holiday) {
+        boolean exists = false;
+        for (int i = 0; i < holidayDB.size(); i++) {
+            if (holidayDB.get(i).equals(holiday)) {
+                exists = true;
                 System.out.printf("Public Holiday %s already exists!\n", holiday);
                 break;
-            }     
+            }
         }
-        if(!exists){
+        if (!exists) {
             holidayDB.add(holiday);
             System.out.printf("Public Holiday %s added!\n", holiday);
         }
     }
 
-    public void removeHoliday(ArrayList<String> holidayDB, String holiday){
-        boolean found=false;
-        for(int i=0; i<holidayDB.size(); i++){
-            if(holidayDB.get(i).equals(holiday)){
+    public void removeHoliday(ArrayList<String> holidayDB, String holiday) {
+        boolean found = false;
+        for (int i = 0; i < holidayDB.size(); i++) {
+            if (holidayDB.get(i).equals(holiday)) {
                 holidayDB.remove(i);
-                found=true;
+                found = true;
                 System.out.printf("Public Holiday %s removed!\n", holiday);
                 break;
-            }     
+            }
         }
-        if(!found)
+        if (!found)
             System.out.printf("Public Holiday %s does not exist!\n", holiday);
     }
 
-    public void loadHolidays(String filePath, ArrayList<String> holidayDB) 
-    throws IOException, SecurityException, ClassNotFoundException {
+    public void loadHolidays(String filePath, ArrayList<String> holidayDB)
+            throws IOException, SecurityException, ClassNotFoundException {
         BufferedReader br = new BufferedReader(new FileReader(filePath));
         String line = "";
-        //check if movie date is a public holiday
-        while ((line = br.readLine()) != null){
+        // check if movie date is a public holiday
+        while ((line = br.readLine()) != null) {
             holidayDB.add(line);
         }
         br.close();
     }
 
-    public void saveHolidays(String fileName, ArrayList<String> holidayDB) throws IOException{
-        DatabaseManager.write(fileName, holidayDB);
+    public void saveHolidays(String fileName, ArrayList<String> holidayDB) throws IOException {
+        DatabaseManager.writeSerializedObject(fileName, holidayDB);
     }
 }
-//TODO this probably(?) doesn't belong here but idk where to put it for now
-//placeholder stuff
+// TODO this probably(?) doesn't belong here but idk where to put it for now
+// placeholder stuff
 // public static enum AgeGroup{STUDENT,ADULT,SENIOR};
 // public static enum CinemaType{GOLD, PLATINUM,DEFAULT};
 // public static enum MovieType{_3D,BLOCKBUSTER,DEFAULT};
@@ -141,7 +143,8 @@ public class PriceManager{
 // MovieType movieType=movie.getMovieType();
 // //get class of cinema for the movie screening
 // CinemaType cinemaType=cinema.getCinemaType();
-// //get date of screening, assuming date is in the form dd/mm/yyyy for now as placeholder
+// //get date of screening, assuming date is in the form dd/mm/yyyy for now as
+// placeholder
 // String movieDate=showtime.getMovieDate();
 
 // //check if any surcharges apply
@@ -159,7 +162,8 @@ public class PriceManager{
 // cost+=price.getSeniorBasePrice();
 // if(ageGroup==AgeGroup.ADULT){
 // cost+=price.getAdultBasePrice();
-// //check for weekend/public holiday surcharge (only applicable for adult tickets)
+// //check for weekend/public holiday surcharge (only applicable for adult
+// tickets)
 // boolean weekendOrPublicHoliday=false;
 // //create calendar
 // Calendar c=Calendar.getInstance();
@@ -198,5 +202,5 @@ public class PriceManager{
 // }
 
 // return cost;
-//}
-//}
+// }
+// }

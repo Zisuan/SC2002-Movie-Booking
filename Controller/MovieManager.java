@@ -8,7 +8,7 @@ import Model.Movie;
 public class MovieManager {
 
     // add movie
-    public static void addMovie(ArrayList<Movie> movieDB, int movieID, String movieType, String movieTitle,
+    public void addMovie(ArrayList<Movie> movieDB, int movieID, String movieType, String movieTitle,
             String movieCode,
             String movieRating,
             String movieStatus, String movieSynopsis,
@@ -110,13 +110,13 @@ public class MovieManager {
     }
 
     public void saveMovie(String filename, ArrayList<Movie> movieDB) throws IOException {
-        DatabaseManager.saveArray(filename, movieDB);
+        DatabaseManager.writeSerializedObject(filename, movieDB);
 
     }
 
     public ArrayList<Movie> loadMovie(String filename, String className)
             throws IOException, SecurityException, ClassNotFoundException {
-        return DatabaseManager.readCSV(filename, "Model.Movie");
+        return DatabaseManager.readSerializedObject(filename);
     }
 
 }

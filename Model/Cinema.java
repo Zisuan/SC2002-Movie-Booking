@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cinema {
+public class Cinema implements Serializable {
     // private int cinemaID;
     // create cinema name
     private String cinemaName;
@@ -17,29 +18,23 @@ public class Cinema {
 
     // create cinema constructor
     public Cinema(ArrayList<String> fieldTokens) {
-        // this.cinemaID = Integer.parseInt(fieldTokens.get(0));
         this.cinemaName = fieldTokens.get(0);
         this.cinemaCode = fieldTokens.get(1);
         this.cinemaType = fieldTokens.get(2);
         this.cinemaSeatDBID = Integer.parseInt(fieldTokens.get(3));
-
     }
 
-    public Cinema(String cinemaName, String cinemaCode, String cinemaType, int cinemaSeatDBID) {
-        // this.cinemaID = cinemaID;
+    public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
-        this.cinemaSeatDBID = cinemaSeatDBID;
+        this.cinemaSeatDB = new ArrayList<Seat>();
     }
 
-    public Cinema(String cinemaName, String cinemaCode, String cinemaType, int cinemaSeatDBID,
-            ArrayList<Seat> cinemaSeatDB) {
-        // this.cinemaID = cinemaID;
+    public Cinema(String cinemaName, String cinemaCode, String cinemaType, ArrayList<Seat> cinemaSeatDB) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
-        this.cinemaSeatDBID = cinemaSeatDBID;
         this.cinemaSeatDB = cinemaSeatDB;
     }
 
