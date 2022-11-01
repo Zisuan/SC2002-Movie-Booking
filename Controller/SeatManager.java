@@ -55,6 +55,16 @@ public class SeatManager {
         return DatabaseManager.readCSV(filename, "Model.Seat");
     }
 
+    public ArrayList<Seat> getSeatsByHall(ArrayList<Seat> seatDB, String cinemaCode) {
+        ArrayList<Seat> temp = new ArrayList<Seat>();
+        for (Seat seat : seatDB) {
+            if (seat.getCinemaCode() == cinemaCode) {
+                temp.add(seat);
+            }
+        }
+        return temp;
+    }
+
     public static void printSeat(Seat seat) {
         System.out.println("Seat ID: " + seat.getSeatID());
         System.out.println("Seat Type: " + seat.getSeatType());
