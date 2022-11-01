@@ -161,11 +161,6 @@ public class MovieManager {
 
     public ArrayList<Movie> loadMovie(String filename)
             throws IOException, SecurityException, ClassNotFoundException {
-        return DatabaseManager.readSerializedObject(filename);
-    }
-
-    public ArrayList<Movie> loadMovie(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
         ArrayList<Movie> movieDB = DatabaseManager.readSerializedObject(filename);
         if (movieDB == null) {
             movieDB = new ArrayList<Movie>();
