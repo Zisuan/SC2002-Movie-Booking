@@ -13,12 +13,6 @@ public class MovieListing {
         Scanner sc = new Scanner(System.in);
 
         int listing;
-        // load movie database
-        MovieManager mm = new MovieManager();
-        ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        ArrayList<String> cast = new ArrayList<String>();
-        String dbPath = FILEPATH + "Movies.csv";
-        movieDB = mm.loadMovie(dbPath, "Model.Movie");
         // print movie menu to staff
         System.out.println("MOVIE LISTING");
         System.out.println("1. Create New Movie Listing");

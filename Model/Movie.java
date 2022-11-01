@@ -36,10 +36,10 @@ public class Movie {
         this.movieStatus = fieldTokens.get(5);
         this.movieSynopsis = fieldTokens.get(6);
         this.movieDirector = fieldTokens.get(7);
+        this.movieReview = fieldTokens.get(8);
+        this.overallRating = fieldTokens.get(9);
         this.movieCast = new ArrayList<String>();
-        this.movieCast.add(fieldTokens.get(8));
-        this.movieReview = fieldTokens.get(9);
-        this.overallRating = fieldTokens.get(10);
+        this.movieCast.add(fieldTokens.get(10));
 
     }
 
