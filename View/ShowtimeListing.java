@@ -18,7 +18,7 @@ public class ShowtimeListing {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    CreateShowTime.addShowtime();
+                    CreateShowTime.CreateShowTime();
                     break;
                 case 2:
                     UpdateShowtime.updateShowtime();

@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Showtime {
     // Movie object
-    private Movie movie;
+    private String movie;
     // Cinema object
-    private Cinema cinema;
+    private String cinema;
 
     // movie date
     private String movieDate;
@@ -14,7 +14,7 @@ public class Showtime {
     private String movieTime;
 
     // create showtime constructor
-    public Showtime(Movie movie, Cinema cinema, String movieDate, String movieTime) {
+    public Showtime(String movie, String cinema, String movieDate, String movieTime) {
         this.movie = movie;
         this.cinema = cinema;
         this.movieDate = movieDate;
@@ -22,12 +22,12 @@ public class Showtime {
     }
 
     // create movie getter
-    public Movie getMovie() {
+    public String getMovie() {
         return movie;
     }
 
     // create cinema getter
-    public Cinema getCinema() {
+    public String getCinema() {
         return cinema;
     }
 
@@ -42,12 +42,12 @@ public class Showtime {
     }
 
     // create movie setter
-    public void setMovie(Movie movie) {
+    public void setMovie(String movie) {
         this.movie = movie;
     }
 
     // create cinema setter
-    public void setCinema(Cinema cinema) {
+    public void setCinema(String cinema) {
         this.cinema = cinema;
     }
 

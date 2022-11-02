@@ -1,14 +1,14 @@
 package Controller;
 
-import java.util.ArrayList;
-
+import java.util.*;
+import java.io.IOException;
 import Model.Cinema;
 import Model.Movie;
 import Model.Showtime;
 
 public class ShowtimeManager {
     // add showtime
-    public void addShowtime(ArrayList<Showtime> showtimeDB, Movie movie, Cinema cinema, String movieDate,
+    public void addShowtime(ArrayList<Showtime> showtimeDB, String movie, String cinema, String movieDate,
             String movieTime) {
         Showtime newShowtime = new Showtime(movie, cinema, movieDate, movieTime);
         showtimeDB.add(newShowtime);

@@ -12,8 +12,7 @@ public class CreateShowTime {
 
     public static final String FILEPATH = "./database/";
 
-    public static void CeateShowTime
-    {
+    public static void CreateShowTime() throws SecurityException, ClassNotFoundException, IOException {
 
         Scanner sc = new Scanner(System.in);
 
@@ -22,24 +21,15 @@ public class CreateShowTime {
         String dbPath = FILEPATH + "Showtime.dat";
         showtimeDB = sm.loadShowtime(dbPath);
         System.out.print("CREATE NEW SHOWTIME LISTING");
-        System.out.print("Enter Showtime ID: ");
-        String showtimeID = sc.nextLine();
-        System.out.print("Enter Showtime Date: ");
-        String showtimeDate = sc.nextLine();
-        System.out.print("Enter Showtime Time: ");
+        System.out.println("Enter Showtime Date: ");
+        String movieDate = sc.nextLine();
+        System.out.print("Enter Showtime: ");
         String showtimeTime = sc.nextLine();
-        System.out.print("Enter Showtime Status: ");
-        String showtimeStatus = sc.nextLine();
-        System.out.print("Enter Showtime Type: ");
-        String showtimeType = sc.nextLine();
         System.out.print("Enter Showtime Movie: ");
         String showtimeMovie = sc.nextLine();
         System.out.print("Enter Showtime Cinema: ");
         String showtimeCinema = sc.nextLine();
-        System.out.print("Enter Showtime Price: ");
-        double showtimePrice = sc.nextDouble();
-        sm.addShowtime(showtimeDB, showtimeID, showtimeDate, showtimeTime, showtimeStatus, showtimeType, showtimeMovie,
-                showtimeCinema, showtimePrice);
+        sm.addShowtime(showtimeDB, showtimeMovie, showtimeCinema, movieDate, showtimeTime);
         sm.saveShowtime(dbPath, showtimeDB);
 
     }
