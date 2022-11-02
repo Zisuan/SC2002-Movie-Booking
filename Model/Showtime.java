@@ -1,8 +1,8 @@
 package Model;
 
+import java.util.*;
+
 public class Showtime {
-    // create showtime
-    private String showtime;
     // Movie object
     private Movie movie;
     // Cinema object
@@ -14,17 +14,11 @@ public class Showtime {
     private String movieTime;
 
     // create showtime constructor
-    public Showtime(String showtime, Movie movie, Cinema cinema, String movieDate, String movieTime) {
-        this.showtime = showtime;
+    public Showtime(Movie movie, Cinema cinema, String movieDate, String movieTime) {
         this.movie = movie;
         this.cinema = cinema;
         this.movieDate = movieDate;
         this.movieTime = movieTime;
-    }
-
-    // create showtime getter
-    public String getShowtime() {
-        return showtime;
     }
 
     // create movie getter
@@ -45,11 +39,6 @@ public class Showtime {
     // create movie time getter
     public String getMovieTime() {
         return movieTime;
-    }
-
-    // create showtime setter
-    public void setShowtime(String showtime) {
-        this.showtime = showtime;
     }
 
     // create movie setter
