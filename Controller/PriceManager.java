@@ -64,11 +64,19 @@ public class PriceManager {
         System.out.println("Weekend/Public Holiday Surcharge: " + price.getWeekendPHSurcharge());
     }
 
+    // print price model from database
+    public void printPrice(ArrayList<Price> priceDB) {
+        for (int i = 0; i < priceDB.size(); i++) {
+            System.out.println("Price Model " + (i + 1));
+            listPrices(priceDB.get(i));
+        }
+    }
+
     public void savePrice(String fileName, ArrayList<Price> priceDB) throws IOException {
         DatabaseManager.writeSerializedObject(fileName, priceDB);
     }
 
-    public ArrayList<Price> loadPrice(String fileName, String className)
+    public ArrayList<Price> loadPrice(String fileName)
             throws IOException, SecurityException, ClassNotFoundException {
         return DatabaseManager.readSerializedObject(fileName);
     }

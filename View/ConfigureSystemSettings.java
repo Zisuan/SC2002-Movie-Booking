@@ -25,7 +25,7 @@ public class ConfigureSystemSettings {
                     Holiday.HolidayMenu();
                     break;
                 case 2:
-                    // Price.PriceMenu();
+                    TicketPriceView.PriceMenu();
                     break;
                 case 3:
                     System.out.println("Returning to main menu...");

@@ -62,9 +62,21 @@ public class DBTestingApp {
         // cm.printCinemas(cinemaDB);
     }
 
+    public static void testPriceManager() throws IOException, SecurityException, ClassNotFoundException {
+        PriceManager pm = new PriceManager();
+        ArrayList<Price> priceDB = new ArrayList<Price>();
+        String dbPath = FILEPATH + "Prices.dat";
+        pm.createPrice(priceDB, 10,3,4,1,3,56,7,8);
+        pm.savePrice(dbPath, priceDB);
+        priceDB = pm.loadPrice(dbPath);
+        pm.printPrice(priceDB);
+    }
+
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
         testCinemaManagerS();
+
+        testPriceManager();
 
         // testMovieManager();
 
