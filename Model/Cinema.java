@@ -17,6 +17,8 @@ public class Cinema implements Serializable {
     // create cinemaSeatDB
     private ArrayList<Seat> cinemaSeatDB;
 
+    private ArrayList<Movie> cinemaMovieDB;
+
     // create cinema constructor
     private ArrayList<String> cinemaTypes = new ArrayList<>(Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
 
@@ -33,6 +35,7 @@ public class Cinema implements Serializable {
             noOfSeats = 10;
         }
         this.cinemaSeatDB = new ArrayList<Seat>(noOfSeats);
+        this.cinemaMovieDB = new ArrayList<Movie>();
     }
 
     public Cinema(String cinemaName, String cinemaCode, String cinemaType, ArrayList<Seat> cinemaSeatDB) {
@@ -96,6 +99,14 @@ public class Cinema implements Serializable {
 
     public void setCinemaSeatDB(ArrayList<Seat> cinemaSeatDB) {
         this.cinemaSeatDB = cinemaSeatDB;
+    }
+
+    public ArrayList<Movie> getCinemaMovieDB() {
+        return cinemaMovieDB;
+    }
+
+    public void setCinemaMovieDB(ArrayList<Movie> cinemaMovieDB){
+        this.cinemaMovieDB = cinemaMovieDB;
     }
 
 }

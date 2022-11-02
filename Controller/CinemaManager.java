@@ -76,6 +76,22 @@ public class CinemaManager {
         return cinema;
     }
 
+    public ArrayList<Integer> printCinemaNamesWithMovie(ArrayList<Cinema> cinemaDB, String movieName) {
+        int i = 0;
+        for (Cinema c : cinemaDB) {
+            ArrayList<Movie> movieDB = c.getCinemaMovieDB();
+            for (Movie m : movieDB) {
+                if(m.getMovieName().equals(movieName)){
+                    i++;
+                    System.out.println(i+". " + c.getCinemaName() + "- " + c.getCinemaType());
+
+                }
+                
+            }
+        }
+    }
+
+
     public void printCinema(Cinema cinema) {
         // System.out.println("Cinema ID: " + cinema.getCinemaID());
         System.out.println("Cinema Name: " + cinema.getCinemaName());
