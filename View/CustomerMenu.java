@@ -10,9 +10,9 @@ public class CustomerMenu {
     public static void MovieGoerMenu() throws SecurityException, ClassNotFoundException, IOException {
 
         final String FILEPATH = "./database/";
-
-        Scanner sc = new Scanner(System.in);
         int choice;
+        do{
+        Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Customer Menu");
         System.out.println("1. Search Movie");
         System.out.println("2. List Movies");
@@ -60,6 +60,9 @@ public class CustomerMenu {
             // System.out.println("Please re-enter!");
             // break;
         }
+
+    }while (choice != 8);
+
 
     }
 

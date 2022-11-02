@@ -29,7 +29,7 @@ public class ViewMovieDetails {
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadMovie(dbPath);
         mm.printMovieTitles(movieDB);
-
+    }
     public static void ViewMovieDetails() throws SecurityException, ClassNotFoundException, IOException {
         // show movie details
         MovieManager mm = new MovieManager();
@@ -41,4 +41,5 @@ public class ViewMovieDetails {
         String movieTitle = sc.nextLine();
         mm.printMovieDetails(movieDB, movieTitle);
     }
+
 }
