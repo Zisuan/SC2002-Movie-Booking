@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Price{ 
+public class Price implements Serializable{ 
     //additional price can be charged according to these factors alongside base price based on age group
 
     //subject to change, these are placeholder values probably
