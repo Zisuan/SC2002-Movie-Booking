@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Cinema implements Serializable {
     // private int cinemaID;
@@ -17,12 +18,21 @@ public class Cinema implements Serializable {
     private ArrayList<Seat> cinemaSeatDB;
 
     // create cinema constructor
+    private ArrayList<String> cinemaTypes = new ArrayList<>(Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
 
     public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
-        this.cinemaSeatDB = new ArrayList<Seat>();
+        int noOfSeats = 0;
+        if(cinemaType.equals(cinemaTypes.get(0))){
+            noOfSeats = 30;
+        }else if (cinemaType.equals(cinemaTypes.get(1))){
+            noOfSeats = 20; 
+        }else if(cinemaType.equals(cinemaTypes.get(2))){
+            noOfSeats = 10;
+        }
+        this.cinemaSeatDB = new ArrayList<Seat>(noOfSeats);
     }
 
     public Cinema(String cinemaName, String cinemaCode, String cinemaType, ArrayList<Seat> cinemaSeatDB) {

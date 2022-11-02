@@ -46,13 +46,21 @@ public class DBTestingApp {
 
     // }
 
-    public static void testCinemaManagerS() throws IOException, SecurityException, ClassNotFoundException {
+    public static void initCinemas() throws IOException, SecurityException, ClassNotFoundException {
         CinemaManager cm = new CinemaManager();
         ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
         String dbPath = FILEPATH + "Cinemas.dat";
-        cm.addCinema(cinemaDB, "Cathay", "004", "3D");
-        Cinema curCinema = cm.getCinema(cinemaDB, "004");
-        curCinema.getCinemaSeatDB().add(new Seat("A21", "004", "A", "21", "Standard", true, 10));
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH1", "NormalClass");
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH2", "PlatinumClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH3", "GoldClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH1", "NormalClass");
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH2", "PlatinumClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH3", "GoldClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH1", "NormalClass");
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH2", "PlatinumClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH3", "GoldClassSuite");
+        // Cinema curCinema = cm.getCinema(cinemaDB, "004");
+        // curCinema.getCinemaSeatDB().add(new Seat("A21", "004", "A", "21", "Standard", true, 10));
         // cm.printCinema(curCinema);
         cm.saveCinema(dbPath, cinemaDB);
         cinemaDB = cm.loadCinema(dbPath);
@@ -76,9 +84,8 @@ public class DBTestingApp {
 
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
-        testCinemaManagerS();
-
-        testPriceManager();
+        initCinemas();
+        // testPriceManager();
 
         // testMovieManager();
 
