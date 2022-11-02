@@ -146,6 +146,22 @@ public class MovieManager {
         }
     }
 
+    // select movie
+    public static String selectMovie(ArrayList<Movie> movieDB) {
+        printMovieTitles(movieDB);
+        String selectedMovie = "";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter movie title: ");
+        String movieTitle = sc.nextLine();
+        for (Movie movie : movieDB) {
+            if (movie.getMovieCode().equals(movieTitle)) {
+                selectedMovie = movie.getMovieName();
+                break;
+            }
+        }
+        return selectedMovie;
+    }
+
     // print movies
     public static void printMovie(Movie movie) {
         System.out.println("Movie Type: " + movie.getMovieType());
@@ -181,7 +197,7 @@ public class MovieManager {
     }
 
     // print movie titles
-    public void printMovieTitles(ArrayList<Movie> movieDB) {
+    public static void printMovieTitles(ArrayList<Movie> movieDB) {
         for (int i = 0; i < movieDB.size(); i++) {
             System.out.println(movieDB.get(i).getMovieName());
         }
