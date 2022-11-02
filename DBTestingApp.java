@@ -4,6 +4,7 @@ import java.util.*;
 import Controller.*;
 
 import Model.*;
+import View.TicketPriceView;
 
 public class DBTestingApp {
 
@@ -71,6 +72,7 @@ public class DBTestingApp {
         priceDB = pm.loadPrice(dbPath);
         pm.printPrice(priceDB);
     }
+        
 
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
