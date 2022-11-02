@@ -1,7 +1,9 @@
-package Controller;
+package Controller.SeatControl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Controller.DatabaseManager;
 import Model.*;
 
 public class SeatManager {
@@ -49,7 +51,7 @@ public class SeatManager {
         DatabaseManager.writeSerializedObject(filename, seatDB);
     }
 
-    public static ArrayList<Seat> loadSeat(String filename, String className)
+    public ArrayList<Seat> loadSeat(String filename)
             throws IOException, SecurityException, ClassNotFoundException {
         // load seatDB from file
         return DatabaseManager.readSerializedObject(filename);
@@ -63,27 +65,6 @@ public class SeatManager {
             }
         }
         return temp;
-    }
-
-    public static void printSeat(Seat seat) {
-        System.out.println("Seat ID: " + seat.getSeatID());
-        System.out.println("Seat Type: " + seat.getSeatType());
-        System.out.println("Seat Status: " + seat.isAssigned());
-    }
-
-    public void printSeat3DGrid(ArrayList<Seat> seatDB) {
-        int seatCount = 0;
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (seatDB.get(seatCount).isAssigned()) {
-                    System.out.print("X ");
-                } else {
-                    System.out.print("O ");
-                }
-                seatCount++;
-            }
-            System.out.println();
-        }
     }
 
 }

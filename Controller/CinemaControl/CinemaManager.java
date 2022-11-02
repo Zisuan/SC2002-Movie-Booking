@@ -1,10 +1,12 @@
-package Controller;
+package Controller.CinemaControl;
 
 import java.util.*;
+
+import Controller.DatabaseManager;
 import Model.*;
 import java.io.IOException; // Import the IOException class to handle errors
 
-public class CinemaManager {
+public class CinemaManager extends CinemaPrinter {
 
     public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType) {
         // int newID = cinemaDB.size() + 1;
@@ -76,39 +78,14 @@ public class CinemaManager {
         return cinema;
     }
 
-    public ArrayList<Integer> printCinemaNamesWithMovie(ArrayList<Cinema> cinemaDB, String movieName) {
-        int i = 0;
+    public static Cinema getCinemaByName(ArrayList<Cinema> cinemaDB, String cinemaName) {
         for (Cinema c : cinemaDB) {
-            ArrayList<Movie> movieDB = c.getCinemaMovieDB();
-            for (Movie m : movieDB) {
-                if(m.getMovieName().equals(movieName)){
-                    i++;
-                    System.out.println(i+". " + c.getCinemaName() + "- " + c.getCinemaType());
-
-                }
-                
+            if (c.getCinemaName().equals(cinemaName)) {
+                System.out.println(c);
+                return c;
             }
         }
-    }
-
-
-    public void printCinema(Cinema cinema) {
-        // System.out.println("Cinema ID: " + cinema.getCinemaID());
-        System.out.println("Cinema Name: " + cinema.getCinemaName());
-        System.out.println("Cinema Code: " + cinema.getCinemaCode());
-        System.out.println("Cinema Type: " + cinema.getCinemaType());
-        System.out.println("Cinema Seat: " + cinema.getCinemaSeatDB());
-    }
-
-    public void printCinemas(ArrayList<Cinema> cinemaDB) {
-        if (cinemaDB == null) {
-            System.out.println("No cinema in the database");
-        } else {
-            for (int i = 0; i < cinemaDB.size(); i++) {
-                printCinema(cinemaDB.get(i));
-                System.out.println();
-            }
-        }
+        return null;
     }
 
     public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws IOException {

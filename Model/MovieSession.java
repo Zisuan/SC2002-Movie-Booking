@@ -2,32 +2,35 @@ package Model;
 
 import java.util.*;
 
-public class Showtime {
+public class MovieSession {
     // Movie object
-    private String movie;
+    private Movie movie;
     // Cinema object
-    private String cinema;
+    private Cinema cinema;
 
     // movie date
     private String movieDate;
     // movie time
     private String movieTime;
 
+    private ArrayList<Seat> sessionSeats;
+
     // create showtime constructor
-    public Showtime(String movie, String cinema, String movieDate, String movieTime) {
+    public MovieSession(Movie movie, Cinema cinema, String movieDate, String movieTime, ArrayList<Seat> sessionSeats) {
         this.movie = movie;
         this.cinema = cinema;
         this.movieDate = movieDate;
         this.movieTime = movieTime;
+        this.sessionSeats = sessionSeats;
     }
 
     // create movie getter
-    public String getMovie() {
+    public Movie getMovie() {
         return movie;
     }
 
     // create cinema getter
-    public String getCinema() {
+    public Cinema getCinema() {
         return cinema;
     }
 
@@ -42,12 +45,12 @@ public class Showtime {
     }
 
     // create movie setter
-    public void setMovie(String movie) {
+    public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
     // create cinema setter
-    public void setCinema(String cinema) {
+    public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
 
@@ -60,4 +63,13 @@ public class Showtime {
     public void setMovieTime(String movieTime) {
         this.movieTime = movieTime;
     }
+
+    public ArrayList<Seat> getSessionSeats() {
+        return sessionSeats;
+    }
+
+    public void setSessionSeats(ArrayList<Seat> sessionSeats) {
+        this.sessionSeats = sessionSeats;
+    }
+
 }

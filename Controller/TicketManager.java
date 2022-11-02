@@ -7,7 +7,7 @@ import Model.*;
 public class TicketManager {
 
     public static void addNewTicket(ArrayList<Ticket> ticketDB, String ticketId, double ticketPrice, String ticketType,
-            String ticketStatus, String ticketSeat, Showtime ticketShowtime, String customerId) {
+            String ticketStatus, String ticketSeat, MovieSession ticketShowtime, String customerId) {
         Ticket ticket = new Ticket(ticketId, ticketPrice, ticketType, ticketStatus, ticketSeat, ticketShowtime,
                 customerId);
         ticketDB.add(ticket);
@@ -22,7 +22,7 @@ public class TicketManager {
     }
 
     public static void updateTicket(ArrayList<Ticket> ticketDB, String ticketId, double ticketPrice, String ticketType,
-            String ticketStatus, String ticketSeat, Showtime ticketShowtime, Customer ticketCustomer) {
+            String ticketStatus, String ticketSeat, MovieSession ticketShowtime, Customer ticketCustomer) {
         for (int i = 0; i < ticketDB.size(); i++) {
             if (ticketDB.get(i).getTicketId().equals(ticketId)) {
                 ticketDB.get(i).setTicketPrice(ticketPrice);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import Model.Movie;
+import Model.MovieSession;
 
 public class MovieManager {
 
@@ -137,13 +138,16 @@ public class MovieManager {
     }
 
     // search movie
-    public static void searchMovie(ArrayList<Movie> movieDB, String movieName) {
-        for (Movie movie : movieDB) {
+    public Movie searchMovie(ArrayList<Movie> movieSessionDB, String movieName) {
+        for (Movie movie : movieSessionDB) {
             if (movie.getMovieName().equals(movieName)) {
                 System.out.println("Movie exists");
-                break;
+                return movie;
             }
         }
+        System.out.println("Movie does not exist");
+        return null;
+
     }
 
     // select movie
@@ -199,7 +203,7 @@ public class MovieManager {
     // print movie titles
     public static void printMovieTitles(ArrayList<Movie> movieDB) {
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(movieDB.get(i).getMovieName());
+            System.out.println(i + "." + movieDB.get(i).getMovieName());
         }
     }
 
@@ -216,5 +220,4 @@ public class MovieManager {
         }
         return movieDB;
     }
-
 }
