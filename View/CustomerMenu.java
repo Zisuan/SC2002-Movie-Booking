@@ -14,24 +14,26 @@ public class CustomerMenu {
         Scanner sc = new Scanner(System.in);
         int choice;
         System.out.println("Welcome to Customer Menu");
-        System.out.println("1. Search/List Movie");
-        System.out.println("2. View Movie Details");
-        System.out.println("3. Check Seat Availability and selection of Seats");
-        System.out.println("4. Book & Purchase Tickets");
-        System.out.println("5. View Booking History");
-        System.out.println("6. List the Top 5 ranking movie by ticket sales OR by overall ratings");
-        System.out.println("7. Exit");
+        System.out.println("1. Search Movie");
+        System.out.println("2. List Movies");
+        System.out.println("3. View Movie Details");
+        System.out.println("4. Check Seat Availability and selection of Seats");
+        System.out.println("5. Book & Purchase Tickets");
+        System.out.println("6. View Booking History");
+        System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
+        System.out.println("8. Exit");
         choice = sc.nextInt();
 
         switch (choice) {
             case 1:
-                MovieManager mm = new MovieManager();
-                ArrayList<Movie> movieDB = new ArrayList<Movie>();
-                String dbPath = FILEPATH + "Movies.dat";
-                movieDB = mm.loadMovie(dbPath);
-                mm.printMovies(movieDB);
+                ViewMovieDetails.searchMovie();
                 break;
-            // case 2:
+            case 2:
+                ViewMovieDetails.ViewMoviesTitle();
+                break;
+            case 3:
+                ViewMovieDetails.ViewMovieDetails();
+                break;
             // MovieManager mm = new MovieManager();
             // ArrayList<Movie> movieDB = new ArrayList<Movie>();
             // String dbPath = FILEPATH + "Movies.csv";

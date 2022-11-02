@@ -136,6 +136,16 @@ public class MovieManager {
         }
     }
 
+    // search movie
+    public static void searchMovie(ArrayList<Movie> movieDB, String movieName) {
+        for (Movie movie : movieDB) {
+            if (movie.getMovieName().equals(movieName)) {
+                System.out.println("Movie exists");
+                break;
+            }
+        }
+    }
+
     // print movies
     public static void printMovie(Movie movie) {
         System.out.println("Movie Type: " + movie.getMovieType());
@@ -151,6 +161,29 @@ public class MovieManager {
         for (int i = 0; i < movieDB.size(); i++) {
             printMovie(movieDB.get(i));
             System.out.println();
+        }
+    }
+
+    // print movie details by movie title
+    public static void printMovieDetails(ArrayList<Movie> movieDB, String movieName) {
+        for (Movie movie : movieDB) {
+            if (movie.getMovieName().equals(movieName)) {
+                System.out.println("Movie Type: " + movie.getMovieType());
+                System.out.println("Movie Title: " + movie.getMovieName());
+                System.out.println("Movie Code: " + movie.getMovieCode());
+                System.out.println("Movie Status: " + movie.getMovieStatus());
+                System.out.println("Movie Synopsis: " + movie.getMovieSynopsis());
+                System.out.println("Movie Director: " + movie.getMovieDirector());
+                System.out.println("Movie Cast: " + movie.getMovieCast());
+                break;
+            }
+        }
+    }
+
+    // print movie titles
+    public void printMovieTitles(ArrayList<Movie> movieDB) {
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println(movieDB.get(i).getMovieName());
         }
     }
 
