@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class MovieSession {
+public class MovieSession implements Serializable {
     // Movie object
     private Movie movie;
     // Cinema object

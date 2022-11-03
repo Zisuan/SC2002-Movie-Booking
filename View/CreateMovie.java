@@ -16,7 +16,7 @@ public class CreateMovie {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadMovie(dbPath);
-        System.out.println("CREATE NEW MOVIE LISTING");
+        System.out.println("====CREATE NEW MOVIE LISTING====");
         System.out.println("Enter Movie Type: ");
         String movieType = sc.nextLine();
         System.out.println("Enter Movie Title: ");

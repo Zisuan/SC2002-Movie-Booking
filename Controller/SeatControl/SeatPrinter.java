@@ -1,3 +1,5 @@
+package Controller.SeatControl;
+
 import java.util.ArrayList;
 
 import Controller.ObjectControl.ObjectPrinter;

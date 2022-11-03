@@ -12,8 +12,10 @@ public class CustomerMenu {
         final String FILEPATH = "./database/";
         int choice;
         do {
+            // System.out.print("\033[H\033[2J");
             Scanner sc = new Scanner(System.in);
-            System.out.println("Welcome to Customer Menu");
+            System.out.println("====Welcome to Customer Menu====");
+            System.out.println("Select an option: ");
             System.out.println("1. Search Movie");
             System.out.println("2. List Movies");
             System.out.println("3. View Movie Details");
@@ -22,6 +24,7 @@ public class CustomerMenu {
             System.out.println("6. View Booking History");
             System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
             System.out.println("8. Exit");
+            System.out.println("Option: ");
             choice = sc.nextInt();
 
             switch (choice) {

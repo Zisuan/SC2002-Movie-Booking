@@ -29,19 +29,20 @@ public class CreateShowTime {
         movieSessionDB = msm.loadMovieSession(dbPath);
         movieDB = mm.loadMovie(FILEPATH + "Movies.dat");
         cinemaDB = cm.loadCinema(FILEPATH + "Cinemas.dat");
-        System.out.print("CREATE NEW SHOWTIME LISTING");
-        System.out.println("Enter Showtime Date: ");
-        String movieDate = sc.nextLine();
-        System.out.print("Enter Showtime: ");
-        String movieTime = sc.nextLine();
-        System.out.print("Enter Showtime Movie: ");
+        System.out.print("====CREATE NEW SHOWTIME LISTING====");
+        System.out.print("Enter Movie Name: ");
         String showtimeMovie = sc.nextLine();
+        System.out.println("Enter New Showtime Date: ");
+        String movieDate = sc.nextLine();
+        System.out.print("Enter New Showtime Timing: ");
+        String movieTime = sc.nextLine();
         Movie movie = mm.searchMovie(movieDB, showtimeMovie);
-        System.out.print("Enter Showtime Cinema: ");
+        System.out.print("Enter New Showtime Cinema: ");
         String showtimeCinema = sc.nextLine();
         Cinema cinema = cm.getCinemaByName(cinemaDB, showtimeCinema);
         msm.addMovieSession(movieSessionDB, movie, cinema, movieDate, movieTime, sessionSeats);
         msm.saveMovieSession(dbPath, movieSessionDB);
+        System.out.println("Showtime Listing for " + showtimeMovie + " Created!");
 
     }
 }

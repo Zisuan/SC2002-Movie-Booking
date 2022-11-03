@@ -20,7 +20,7 @@ public class TicketPriceView {
         priceDB = pm.loadPrice(dbPath);
         do {
 
-            System.out.println("PRICE MODEL");
+            System.out.println("====PRICE MODEL====");
             System.out.println("1. View Current Price Model");
             System.out.println("2. Create New Price Model"); // assume only 1 model
             // active at any time
