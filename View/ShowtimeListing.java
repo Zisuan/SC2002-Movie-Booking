@@ -21,10 +21,10 @@ public class ShowtimeListing {
                     CreateShowTime.CreateShowTime();
                     break;
                 case 2:
-                    // UpdateShowtime.updateShowtime();
+                    // UpdateShowtime.UpdateShowtime();
                     break;
                 case 3:
-                    // RemoveShowtime.removeShowtime();
+                    // RemoveShowtime.RemoveShowtime();
                     break;
                 case 4:
                     System.out.println("Goodbye!");

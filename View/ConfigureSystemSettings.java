@@ -14,7 +14,7 @@ public class ConfigureSystemSettings {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("Configure System Settings:");
+            System.out.println("====Configure System Settings====");
             System.out.println("1. Configure Holidays");
             System.out.println("2. Configure Price Model");
             System.out.println("3. Return to Main Menu");

@@ -13,6 +13,7 @@ public class MovieListing {
 
         int listing;
         do {
+            System.out.print("\033[H\033[2J");
             Scanner sc = new Scanner(System.in);
             listing = 0;
             // print movie menu to staff
@@ -20,7 +21,7 @@ public class MovieListing {
             System.out.println("1. Create New Movie Listing");
             System.out.println("2. Update Current Movie Listing");
             System.out.println("3. Remove Movie Listing");
-            System.out.println("4. Exit");
+            System.out.println("4. Back");
             System.out.println("Option: ");
 
             listing = sc.nextInt();

@@ -18,7 +18,7 @@ public class Holiday {
         PriceManager pm = new PriceManager();
         pm.loadHolidays(dbPath, holidayDB);
         int sel2;
-        System.out.println("PUBLIC HOLIDAYS");
+        System.out.println("====PUBLIC HOLIDAYS====");
         System.out.println("1. List Public Holidays");
         System.out.println("2. Add Public Holiday");
         System.out.println("3. Delete Public Holiday");
