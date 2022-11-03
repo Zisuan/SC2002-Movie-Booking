@@ -24,12 +24,16 @@ public class ViewMovieDetails {
 
     public static void ViewMoviesTitle() throws SecurityException, ClassNotFoundException, IOException {
         // show movie titles
+        Helper.clearConsole();
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadMovie(dbPath);
+        System.out.println("-------------------------");
+        System.out.println("List of Movies:");
         mm.printMovieTitles(movieDB);
     }
+
     public static void ViewMovieDetails() throws SecurityException, ClassNotFoundException, IOException {
         // show movie details
         MovieManager mm = new MovieManager();

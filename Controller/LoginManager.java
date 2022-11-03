@@ -10,9 +10,11 @@ import Model.Customer;
 import Model.Staff;
 import View.StaffMenu;
 import View.CustomerMenu;
+import View.Helper;
 
 public class LoginManager {
     public static void login() throws SecurityException, ClassNotFoundException, IOException {
+        Helper.clearConsole();
         Scanner sc = new Scanner(System.in);
         String username, password;
         System.out.println("Enter username: ");
@@ -25,13 +27,12 @@ public class LoginManager {
             if (v.getRole()) {
                 StaffMenu.adminMenu();
             } else {
-                CustomerMenu.MovieGoerMenu();
+                CustomerMenu.MovieGoerMenu(v.getUserName());
             }
 
         } else {
             System.out.println("Login failed");
         }
-
         // sc.close();
     }
 

@@ -7,13 +7,16 @@ import Model.Movie;
 
 public class CustomerMenu {
 
-    public static void MovieGoerMenu() throws SecurityException, ClassNotFoundException, IOException {
+    public static void MovieGoerMenu(String cutomerName) throws SecurityException, ClassNotFoundException, IOException {
 
         final String FILEPATH = "./database/";
         int choice;
         do {
+            // Helper.clearConsole();
             Scanner sc = new Scanner(System.in);
-            System.out.println("Welcome to Customer Menu");
+            System.out.println("-------------------------");
+            System.out.println("Hi " + cutomerName + ",");
+            System.out.println("Welcome to MOBLIMA!");
             System.out.println("1. Search Movie");
             System.out.println("2. List Movies");
             System.out.println("3. View Movie Details");
@@ -22,8 +25,9 @@ public class CustomerMenu {
             System.out.println("6. View Booking History");
             System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
             System.out.println("8. Exit");
+            System.out.print("Enter your choice: ");
             choice = sc.nextInt();
-
+            Helper.clearConsole();
             switch (choice) {
                 case 1:
                     ViewMovieDetails.searchMovie();

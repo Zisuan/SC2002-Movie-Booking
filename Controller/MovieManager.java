@@ -203,7 +203,7 @@ public class MovieManager {
     // print movie titles
     public static void printMovieTitles(ArrayList<Movie> movieDB) {
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(i + "." + movieDB.get(i).getMovieName());
+            System.out.println(i + 1 + "." + movieDB.get(i).getMovieName());
         }
     }
 

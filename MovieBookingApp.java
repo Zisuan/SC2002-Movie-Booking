@@ -4,6 +4,7 @@ import java.util.*;
 import Controller.*;
 
 import Model.*;
+import View.Helper;
 
 public class MovieBookingApp {
 
@@ -12,6 +13,7 @@ public class MovieBookingApp {
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
         int option;
         do {
+            Helper.clearConsole();
             Scanner sc = new Scanner(System.in);
             option = 0;
             System.out.println("=====================================================================");

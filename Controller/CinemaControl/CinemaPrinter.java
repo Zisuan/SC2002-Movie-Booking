@@ -27,7 +27,7 @@ public class CinemaPrinter implements ObjectPrinter<Cinema> {
         System.out.println("Cinema Seat: " + object.getCinemaSeatDB());
     }
 
-    public ArrayList<Integer> printCinemaNamesWithMovie(ArrayList<Cinema> cinemaDB, String movieName) {
+    public void printCinemaNamesWithMovie(ArrayList<Cinema> cinemaDB, String movieName) {
         int i = 0;
         for (Cinema c : cinemaDB) {
             ArrayList<Movie> movieDB = c.getCinemaMovieDB();

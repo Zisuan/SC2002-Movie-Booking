@@ -4,7 +4,6 @@ import java.util.*;
 import Controller.*;
 import Controller.CinemaControl.CinemaManager;
 import Model.*;
-import View.TicketPriceView;
 
 public class DBTestingApp {
 
@@ -65,7 +64,7 @@ public class DBTestingApp {
         // cm.printCinema(curCinema);
         cm.saveCinema(dbPath, cinemaDB);
         cinemaDB = cm.loadCinema(dbPath);
-        cm.printCinemas(cinemaDB);
+        cm.printObjects(cinemaDB);
 
         // cm.addCinema(cinemaDB, "Cathay", "004", "2D");
         // cm.printCinemas(cinemaDB);

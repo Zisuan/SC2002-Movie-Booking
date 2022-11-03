@@ -6,7 +6,7 @@ import Controller.MovieManager;
 import Model.Movie;
 
 public class ShowtimeListing {
-    public static void ShowtimeMenu() {
+    public static void ShowtimeMenu() throws SecurityException, ClassNotFoundException, IOException {
         int choice;
         do {
             Scanner sc = new Scanner(System.in);
@@ -21,10 +21,10 @@ public class ShowtimeListing {
                     CreateShowTime.CreateShowTime();
                     break;
                 case 2:
-                    UpdateShowtime.updateShowtime();
+                    // UpdateShowtime.updateShowtime();
                     break;
                 case 3:
-                    RemoveShowtime.removeShowtime();
+                    // RemoveShowtime.removeShowtime();
                     break;
                 case 4:
                     System.out.println("Goodbye!");

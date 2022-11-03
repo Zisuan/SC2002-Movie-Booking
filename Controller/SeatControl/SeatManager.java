@@ -8,10 +8,6 @@ import Model.*;
 
 public class SeatManager {
 
-    // public static ArrayList<Seat> createSeatList(){
-
-    // }
-
     public static void addNewSeat(ArrayList<Seat> seatDB, String seatID, String seatType, String seatStatus) {
         Seat seat = new Seat(seatID);
         seatDB.add(seat);
