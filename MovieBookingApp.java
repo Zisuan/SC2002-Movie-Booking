@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.*;
+import java.text.ParseException;
 
 import Controller.*;
 
@@ -11,7 +12,7 @@ public class MovieBookingApp {
 
     public static final String FILEPATH = "./database/";
 
-    public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException, ParseException {
         int option;
         do {
             Helper.clearConsole();

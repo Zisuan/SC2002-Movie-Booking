@@ -2,6 +2,7 @@ package View;
 
 import java.util.*;
 import java.io.*;
+import java.text.ParseException;
 import Controller.*;
 import Model.*;
 
@@ -9,7 +10,7 @@ public class ConfigureSystemSettings {
 
     public static final String FILEPATH = "./database/";
 
-    public static void configureSystemSettings() throws SecurityException, ClassNotFoundException, IOException {
+    public static void configureSystemSettings() throws SecurityException, ClassNotFoundException, IOException, ParseException {
 
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -22,7 +23,7 @@ public class ConfigureSystemSettings {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    Holiday.HolidayMenu();
+                    HolidayView.HolidayMenu();
                     break;
                 case 2:
                     TicketPriceView.PriceMenu();

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 import Model.Customer;
@@ -13,7 +14,7 @@ import View.CustomerMenu;
 import View.Helper;
 
 public class LoginManager {
-    public static void login() throws SecurityException, ClassNotFoundException, IOException {
+    public static void login() throws SecurityException, ClassNotFoundException, IOException, ParseException {
         Helper.clearConsole();
         Scanner sc = new Scanner(System.in);
         String username, password;

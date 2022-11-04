@@ -5,12 +5,13 @@ import java.io.Console;
 import java.io.IOException;
 import Controller.MovieManager;
 import Model.Movie;
+import java.text.ParseException;
 
 public class StaffMenu {
 
     public static final String FILEPATH = "./database/";
 
-    public static void adminMenu() throws SecurityException, ClassNotFoundException, IOException {
+    public static void adminMenu() throws SecurityException, ClassNotFoundException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
