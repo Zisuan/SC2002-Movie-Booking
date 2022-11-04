@@ -80,57 +80,6 @@ public class PriceManager {
             throws IOException, SecurityException, ClassNotFoundException {
         return DatabaseManager.readSerializedObject(fileName);
     }
-
-    public void listHolidays(ArrayList<String> holidayDB) {
-        System.out.println("Public Holidays: ");
-        for (int i = 0; i < holidayDB.size(); i++) {
-            System.out.println(holidayDB.get(i));
-        }
-    }
-
-    public void addHoliday(ArrayList<String> holidayDB, String holiday) {
-        boolean exists = false;
-        for (int i = 0; i < holidayDB.size(); i++) {
-            if (holidayDB.get(i).equals(holiday)) {
-                exists = true;
-                System.out.printf("Public Holiday %s already exists!\n", holiday);
-                break;
-            }
-        }
-        if (!exists) {
-            holidayDB.add(holiday);
-            System.out.printf("Public Holiday %s added!\n", holiday);
-        }
-    }
-
-    public void removeHoliday(ArrayList<String> holidayDB, String holiday) {
-        boolean found = false;
-        for (int i = 0; i < holidayDB.size(); i++) {
-            if (holidayDB.get(i).equals(holiday)) {
-                holidayDB.remove(i);
-                found = true;
-                System.out.printf("Public Holiday %s removed!\n", holiday);
-                break;
-            }
-        }
-        if (!found)
-            System.out.printf("Public Holiday %s does not exist!\n", holiday);
-    }
-
-    public void loadHolidays(String filePath, ArrayList<String> holidayDB)
-            throws IOException, SecurityException, ClassNotFoundException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        String line = "";
-        // check if movie date is a public holiday
-        while ((line = br.readLine()) != null) {
-            holidayDB.add(line);
-        }
-        br.close();
-    }
-
-    public void saveHolidays(String fileName, ArrayList<String> holidayDB) throws IOException {
-        DatabaseManager.writeSerializedObject(fileName, holidayDB);
-    }
 }
 // TODO this probably(?) doesn't belong here but idk where to put it for now
 // placeholder stuff
