@@ -94,4 +94,13 @@ public class Seat implements Serializable {
         this.cinemaCode = cinemaID;
     }
 
+    // to String
+    @Override
+    public String toString() {
+        return "Seat ID: " + getSeatID() + "\n" +
+                "Seat Row: " + getSeatRow() + "\n" +
+                "Seat Column: " + getSeatColumn() + "\n" +
+                "Seat Status: " + isAssigned();
+    }
+
 }

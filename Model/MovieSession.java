@@ -73,4 +73,13 @@ public class MovieSession implements Serializable {
         this.sessionSeats = sessionSeats;
     }
 
+    // to string method
+    public String toString() {
+        return "Movie Session Movie: " + getMovie().getMovieName() + "\n" +
+                "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
+                "Movie Session Date: " + getMovieDate() + "\n" +
+                "Movie Session Time: " + getMovieTime() + "\n" +
+                "Movie Session Seats: " + getSessionSeats().toString();
+    }
+
 }

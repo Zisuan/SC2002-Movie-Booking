@@ -1,4 +1,4 @@
-package View;
+package View.MovieView;
 
 import java.util.*;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class UpdateMovie {
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
-        movieDB = mm.loadMovie(dbPath);
+        movieDB = mm.loadObjects(dbPath);
         int select;
         do {
             System.out.println("UPDATE CURRENT MOVIE LISTING");
@@ -39,49 +39,42 @@ public class UpdateMovie {
                     System.out.println("Enter Movie Type: ");
                     String movieType = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieType, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 2:
                     System.out.println("UPDATE MOVIE TITLE");
                     System.out.println("Enter Movie Title: ");
                     String movieTitle2 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieTitle2, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 3:
                     System.out.println("UPDATE MOVIE CODE");
                     System.out.println("Enter Movie Code: ");
                     String movieCode3 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieCode3, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 4:
                     System.out.println("UPDATE MOVIE RATING");
                     System.out.println("Enter Movie Rating: ");
                     String movieRating4 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieRating4, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 5:
                     System.out.println("UPDATE MOVIE STATUS");
                     System.out.println("Enter Movie Status: ");
                     String movieStatus5 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieStatus5, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 6:
                     System.out.println("UPDATE MOVIE SYNOPSIS");
                     System.out.println("Enter Movie Synopsis: ");
                     String movieSynopsis6 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieSynopsis6, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 7:
                     System.out.println("UPDATE MOVIE DIRECTOR");
                     System.out.println("Enter Movie Director: ");
                     String movieDirector7 = sc.nextLine();
                     mm.updateMovie(select, movieDB, movieCode, movieDirector7, null);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 8:
                     System.out.println("UPDATE MOVIE CAST");
@@ -94,7 +87,6 @@ public class UpdateMovie {
                         movieCast.add(movieCast8);
                     }
                     mm.updateMovie(select, movieDB, movieCode, null, movieCast);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 9:
                     System.out.println("UPDATE EVERYTHING");
@@ -123,7 +115,6 @@ public class UpdateMovie {
                     mm.updateWholeMovie(select, movieCode, movieDB, movieType11, movieTitle11, movieCode11,
                             movieRating11,
                             movieStatus11, movieSynopsis11, movieDirector11, movieCastall);
-                    mm.saveMovie(dbPath, movieDB);
                     break;
                 case 10:
                     System.out.println("Exit");
@@ -131,7 +122,6 @@ public class UpdateMovie {
                 default:
                     System.out.println("Invalid Input");
                     break;
-
             }
         } while (select != 10);
         // sc.close();

@@ -10,42 +10,42 @@ public class Review {
     // movie rating given by customer
     private double movieRating;
 
-    public Review(String movieReview, String customerName, String movieTitle, double movieRating){
-        this.movieReview=movieReview;
-        this.customerName=customerName;
-        this.movieTitle=movieTitle;
-        this.movieRating=movieRating;
+    public Review(String movieReview, String customerName, String movieTitle, double movieRating) {
+        this.movieReview = movieReview;
+        this.customerName = customerName;
+        this.movieTitle = movieTitle;
+        this.movieRating = movieRating;
     }
 
-    public String getMovieReview(){
+    public String getMovieReview() {
         return movieReview;
     }
 
-    public String getCustomerName(){
+    public String getCustomerName() {
         return customerName;
     }
 
-    public String getMovieTitle(){
+    public String getMovieTitle() {
         return movieTitle;
     }
 
-    public double movieRating(){
+    public double getMovieRating() {
         return movieRating;
     }
 
-    public void setMovieReview(String movieReview){
-        this.movieReview=movieReview;
+    public void setMovieReview(String movieReview) {
+        this.movieReview = movieReview;
     }
 
-    public void setCustomerName(String customerName){
-        this.customerName=customerName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void setMovieTitle(String movieTitle){
-        this.movieTitle=movieTitle;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
-    public void setMovieRating(double movieRating){
-        this.movieRating=movieRating;
+    public void setMovieRating(double movieRating) {
+        this.movieRating = movieRating;
     }
 }

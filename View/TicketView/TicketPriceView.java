@@ -1,4 +1,4 @@
-package View;
+package View.TicketView;
 
 import java.util.*;
 import java.io.*;
@@ -17,7 +17,7 @@ public class TicketPriceView {
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = "";
         dbPath = FILEPATH + "Prices.dat";
-        priceDB = pm.loadPrice(dbPath);
+        priceDB = pm.loadObjects(dbPath);
         do {
 
             System.out.println("====PRICE MODEL====");
@@ -55,7 +55,7 @@ public class TicketPriceView {
 
                     priceDB.add(newPrice);
                     System.out.println(priceDB.get(0));
-                    pm.savePrice(dbPath, priceDB);
+                    pm.saveObjects(dbPath, priceDB);
                     break;
                 case 3:
                     int updateCase;
@@ -76,7 +76,7 @@ public class TicketPriceView {
                         System.out.println("Enter New Value: ");
                         newValue = sc.nextDouble();
                         pm.updatePrice(updateCase, priceDB, 1, newValue);
-                        pm.savePrice(dbPath, priceDB);
+                        pm.saveObjects(dbPath, priceDB);
                     }
                     break;
                 case 4:

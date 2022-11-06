@@ -2,12 +2,11 @@ package Controller.MovieSessionControl;
 
 import java.util.*;
 
-import Controller.DatabaseManager;
-
-import java.io.IOException;
+import Controller.ObjectControl.ObjectManager;
+import Controller.SeatControl.SeatManager;
 import Model.*;
 
-public class MovieSessionManager extends MovieSessionPrinter {
+public class MovieSessionManager extends ObjectManager<MovieSession> {
     // add MovieSession
     public void addMovieSession(ArrayList<MovieSession> MovieSessionDB, Movie movie, Cinema cinema, String movieDate,
             String movieTime, ArrayList<Seat> sessionSeats) {
@@ -99,18 +98,10 @@ public class MovieSessionManager extends MovieSessionPrinter {
         return movieSession = listOfObjects.get(selectedSession + 1);
     }
 
-    public void saveMovieSession(String filename, ArrayList<MovieSession> MovieSessionDB) throws IOException {
-        DatabaseManager.writeSerializedObject(filename, MovieSessionDB);
-
-    }
-
-    public ArrayList<MovieSession> loadMovieSession(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
-        ArrayList<MovieSession> MovieSessionDB = DatabaseManager.readSerializedObject(filename);
-        if (MovieSessionDB == null) {
-            MovieSessionDB = new ArrayList<MovieSession>();
-        }
-        return MovieSessionDB;
+    public void printSessionSeats(MovieSession selectedSesssion) {
+        ArrayList<Seat> listOfSeats = selectedSesssion.getSessionSeats();
+        SeatManager seatManager = new SeatManager();
+        seatManager.printObjects(listOfSeats);
     }
 
 }

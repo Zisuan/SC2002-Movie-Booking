@@ -1,4 +1,4 @@
-package View;
+package View.TicketView;
 
 import java.util.*;
 import java.io.*;
@@ -18,22 +18,22 @@ public class BookTicket {
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieInSessionDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
-        movieInSessionDB = mm.loadMovie(dbPath);
+        movieInSessionDB = mm.loadObjects(dbPath);
 
         CinemaManager cm = new CinemaManager();
         ArrayList<Cinema> cinemaInSessionDB = new ArrayList<Cinema>();
         String dbPath2 = FILEPATH + "Cinemas.dat";
-        cinemaInSessionDB = cm.loadCinema(dbPath2);
+        cinemaInSessionDB = cm.loadObjects(dbPath2);
 
         MovieSessionManager msm = new MovieSessionManager();
         ArrayList<MovieSession> showtimeDB = new ArrayList<MovieSession>();
         String dbPath3 = FILEPATH + "Showtimes.dat";
-        showtimeDB = msm.loadMovieSession(dbPath3);
+        showtimeDB = msm.loadObjects(dbPath3);
 
         SeatManager seatm = new SeatManager();
         ArrayList<Seat> seatDB = new ArrayList<Seat>();
         String dbPath4 = FILEPATH + "Seats.dat";
-        seatDB = seatm.loadSeat(dbPath4);
+        seatDB = seatm.loadObjects(dbPath4);
 
         // BookingManager bm = new BookingManager();
         // ArrayList<Booking> bookingDB = new ArrayList<Booking>();

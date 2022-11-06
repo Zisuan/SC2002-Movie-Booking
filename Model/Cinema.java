@@ -20,18 +20,19 @@ public class Cinema implements Serializable {
     private ArrayList<Movie> cinemaMovieDB;
 
     // create cinema constructor
-    private ArrayList<String> cinemaTypes = new ArrayList<>(Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
+    private ArrayList<String> cinemaTypes = new ArrayList<>(
+            Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
 
     public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
         int noOfSeats = 0;
-        if(cinemaType.equals(cinemaTypes.get(0))){
+        if (cinemaType.equals(cinemaTypes.get(0))) {
             noOfSeats = 30;
-        }else if (cinemaType.equals(cinemaTypes.get(1))){
-            noOfSeats = 20; 
-        }else if(cinemaType.equals(cinemaTypes.get(2))){
+        } else if (cinemaType.equals(cinemaTypes.get(1))) {
+            noOfSeats = 20;
+        } else if (cinemaType.equals(cinemaTypes.get(2))) {
             noOfSeats = 10;
         }
         this.cinemaSeatDB = new ArrayList<Seat>(noOfSeats);
@@ -105,8 +106,17 @@ public class Cinema implements Serializable {
         return cinemaMovieDB;
     }
 
-    public void setCinemaMovieDB(ArrayList<Movie> cinemaMovieDB){
+    public void setCinemaMovieDB(ArrayList<Movie> cinemaMovieDB) {
         this.cinemaMovieDB = cinemaMovieDB;
+    }
+
+    // create cinema toString
+    @Override
+    public String toString() {
+        return "Cinema Name: " + getCinemaName() + "\n" +
+                "Cinema Code: " + getCinemaCode() + "\n" +
+                "Cinema Type: " + getCinemaType() + "\n" +
+                "Cinema Seat: " + getCinemaSeatDB().toString();
     }
 
 }

@@ -1,4 +1,4 @@
-package View;
+package View.MovieView;
 
 import java.util.*;
 import java.io.IOException;
@@ -13,13 +13,13 @@ public class RemoveMovie {
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
-        movieDB = mm.loadMovie(dbPath);
+        movieDB = mm.loadObjects(dbPath);
         Scanner sc = new Scanner(System.in);
         System.out.println("DELETE MOVIE");
         System.out.println("Enter Movie Code to delete movie: ");
         String code = sc.nextLine();
         mm.removeMovie(movieDB, code);
-        mm.saveMovie(dbPath, movieDB);
+        mm.saveObjects(dbPath, movieDB);
         // sc.close();
     }
 }

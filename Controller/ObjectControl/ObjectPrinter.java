@@ -2,9 +2,21 @@ package Controller.ObjectControl;
 
 import java.util.ArrayList;
 
-public interface ObjectPrinter<T> {
-    public void printObjects(ArrayList<T> listOfObjects);
+public class ObjectPrinter<T> {
+    public void printObjects(ArrayList<T> listOfObjects) {
+        if (listOfObjects == null) {
+            System.out.println("The database is empty!");
+        } else {
+            for (int i = 0; i < listOfObjects.size(); i++) {
+                System.out.println(i + ". ");
+                printObject(listOfObjects.get(i));
+                System.out.println();
+            }
+        }
+    }
 
-    public void printObject(T object);
-
+    // function that prints the object's attributes
+    public void printObject(T object) {
+        System.out.println(object.toString());
+    }
 }

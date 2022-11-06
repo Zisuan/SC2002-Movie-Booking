@@ -1,17 +1,12 @@
 package Controller;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
 
-import Model.Customer;
-import Model.Staff;
-import View.StaffMenu;
-import View.CustomerMenu;
 import View.Helper;
+import View.UserMenuView.CustomerMenu;
+import View.UserMenuView.StaffMenu;
 
 public class LoginManager {
     public static void login() throws SecurityException, ClassNotFoundException, IOException, ParseException {

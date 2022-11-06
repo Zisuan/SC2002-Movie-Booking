@@ -1,12 +1,11 @@
 package Controller.SeatControl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import Controller.DatabaseManager;
+import Controller.ObjectControl.ObjectManager;
 import Model.*;
 
-public class SeatManager {
+public class SeatManager extends ObjectManager<Seat> {
 
     public static void addNewSeat(ArrayList<Seat> seatDB, String seatID, String seatType, String seatStatus) {
         Seat seat = new Seat(seatID);
@@ -42,17 +41,6 @@ public class SeatManager {
         return false;
     }
 
-    public void saveSeat(String filename, ArrayList<Seat> seatDB) throws IOException {
-        // save seatDB to file
-        DatabaseManager.writeSerializedObject(filename, seatDB);
-    }
-
-    public ArrayList<Seat> loadSeat(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
-        // load seatDB from file
-        return DatabaseManager.readSerializedObject(filename);
-    }
-
     public ArrayList<Seat> getSeatsByHall(ArrayList<Seat> seatDB, String cinemaCode) {
         ArrayList<Seat> temp = new ArrayList<Seat>();
         for (Seat seat : seatDB) {
@@ -61,6 +49,21 @@ public class SeatManager {
             }
         }
         return temp;
+    }
+
+    public void printSeat3DGrid(ArrayList<Seat> seatDB) {
+        int seatCount = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (seatDB.get(seatCount).isAssigned()) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print("O ");
+                }
+                seatCount++;
+            }
+            System.out.println();
+        }
     }
 
 }

@@ -1,15 +1,14 @@
 package Controller;
 
-import java.io.IOException;
 import java.util.*;
 
+import Controller.ObjectControl.ObjectManager;
 import Model.Movie;
-import Model.MovieSession;
 
-public class MovieManager {
+public class MovieManager extends ObjectManager<Movie> {
 
     // add movie
-    public void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieRating,
+    public static void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieRating,
             String movieCode,
             String movieStatus, String movieSynopsis,
             String movieDirector,
@@ -33,76 +32,74 @@ public class MovieManager {
     // update movie
     public static void updateMovie(int updateCase, ArrayList<Movie> movieDB, String movieCode, String updateVariable,
             ArrayList<String> movieCast) {
-        {
-            switch (updateCase) {
-                case 1:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieType(updateVariable);
-                            break;
-                        }
+        switch (updateCase) {
+            case 1:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieType(updateVariable);
+                        break;
                     }
-                    break;
-                case 2:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieName(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 2:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieName(updateVariable);
+                        break;
                     }
-                    break;
-                case 3:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieCode(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 3:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieCode(updateVariable);
+                        break;
                     }
-                    break;
-                case 4:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieRating(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 4:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieRating(updateVariable);
+                        break;
                     }
-                    break;
-                case 5:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieStatus(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 5:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieStatus(updateVariable);
+                        break;
                     }
-                    break;
-                case 6:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieSynopsis(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 6:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieSynopsis(updateVariable);
+                        break;
                     }
-                    break;
-                case 7:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieDirector(updateVariable);
-                            break;
-                        }
+                }
+                break;
+            case 7:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieDirector(updateVariable);
+                        break;
                     }
-                    break;
-                case 8:
-                    for (Movie movie : movieDB) {
-                        if (movie.getMovieCode().equals(movieCode)) {
-                            movie.setMovieCast(movieCast);
-                            break;
-                        }
+                }
+                break;
+            case 8:
+                for (Movie movie : movieDB) {
+                    if (movie.getMovieCode().equals(movieCode)) {
+                        movie.setMovieCast(movieCast);
+                        break;
                     }
-                    break;
-                default:
-                    System.out.println("Invalid option");
-                    break;
-            }
+                }
+                break;
+            default:
+                System.out.println("Invalid option");
+                break;
         }
     }
 
@@ -138,7 +135,7 @@ public class MovieManager {
     }
 
     // search movie
-    public Movie searchMovie(ArrayList<Movie> movieSessionDB, String movieName) {
+    public static Movie searchMovie(ArrayList<Movie> movieSessionDB, String movieName) {
         for (Movie movie : movieSessionDB) {
             if (movie.getMovieName().equals(movieName)) {
                 System.out.println("Movie exists");
@@ -177,7 +174,7 @@ public class MovieManager {
         System.out.println("Movie Cast: " + movie.getMovieCast());
     }
 
-    public void printMovies(ArrayList<Movie> movieDB) {
+    public static void printMovies(ArrayList<Movie> movieDB) {
         for (int i = 0; i < movieDB.size(); i++) {
             printMovie(movieDB.get(i));
             System.out.println();
@@ -188,13 +185,15 @@ public class MovieManager {
     public static void printMovieDetails(ArrayList<Movie> movieDB, String movieName) {
         for (Movie movie : movieDB) {
             if (movie.getMovieName().equals(movieName)) {
-                System.out.println("Movie Type: " + movie.getMovieType());
                 System.out.println("Movie Title: " + movie.getMovieName());
-                System.out.println("Movie Code: " + movie.getMovieCode());
                 System.out.println("Movie Status: " + movie.getMovieStatus());
                 System.out.println("Movie Synopsis: " + movie.getMovieSynopsis());
                 System.out.println("Movie Director: " + movie.getMovieDirector());
                 System.out.println("Movie Cast: " + movie.getMovieCast());
+                System.out.println("Movie Review Rating: toget overall rating avg");
+                System.out.println("Movie Review Rating: toget past user reviews and ratings");
+                System.out.println("Movie Type: " + movie.getMovieType());
+                System.out.println("Movie Code: " + movie.getMovieCode());
                 break;
             }
         }
@@ -207,17 +206,4 @@ public class MovieManager {
         }
     }
 
-    public void saveMovie(String filename, ArrayList<Movie> movieDB) throws IOException {
-        DatabaseManager.writeSerializedObject(filename, movieDB);
-
-    }
-
-    public ArrayList<Movie> loadMovie(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
-        ArrayList<Movie> movieDB = DatabaseManager.readSerializedObject(filename);
-        if (movieDB == null) {
-            movieDB = new ArrayList<Movie>();
-        }
-        return movieDB;
-    }
 }

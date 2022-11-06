@@ -1,4 +1,4 @@
-package View;
+package View.MovieView;
 
 import java.util.*;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class CreateMovie {
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
-        movieDB = mm.loadMovie(dbPath);
+        movieDB = mm.loadObjects(dbPath);
         System.out.println("====CREATE NEW MOVIE LISTING====");
         System.out.println("Enter Movie Type: ");
         String movieType = sc.nextLine();
@@ -42,7 +42,7 @@ public class CreateMovie {
         }
         mm.addMovie(movieDB, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis, movieDirector,
                 movieCast);
-        mm.saveMovie(dbPath, movieDB);
+        mm.saveObjects(dbPath, movieDB);
         // sc.close();
     }
 }

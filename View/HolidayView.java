@@ -18,8 +18,8 @@ public class HolidayView {
         dbPath = FILEPATH + "Holidays.dat";
         ArrayList<Holiday> holidayDB = new ArrayList<Holiday>();
         HolidayManager hm = new HolidayManager();
-        DateHelper dh=new DateHelper();
-        holidayDB = hm.loadHolidays(dbPath);
+        DateHelper dh = new DateHelper();
+        holidayDB = hm.loadObjects(dbPath);
         int sel2, year, month, day;
         do {
             System.out.println("====PUBLIC HOLIDAYS====");
@@ -37,26 +37,26 @@ public class HolidayView {
                     System.out.println("Enter New Public Holiday Name:");
                     holidayName = sc.nextLine();
                     System.out.println("Enter Year:");
-                    year=sc.nextInt();
+                    year = sc.nextInt();
                     System.out.println("Enter Month:");
-                    month=sc.nextInt();
+                    month = sc.nextInt();
                     System.out.println("Enter Day of month:");
-                    day=sc.nextInt();
-                    Date newDate=dh.createDate(year, month, day);
+                    day = sc.nextInt();
+                    Date newDate = dh.createDate(year, month, day);
                     hm.addHoliday(holidayDB, newDate, holidayName);
-                    hm.saveHolidays(dbPath, holidayDB);
+                    hm.saveObjects(holidayName, holidayDB);
                     break;
                 case 3:
                     System.out.println("Remove a Public Holiday");
                     System.out.println("Enter Year:");
-                    year=sc.nextInt();
+                    year = sc.nextInt();
                     System.out.println("Enter Month:");
-                    month=sc.nextInt();
+                    month = sc.nextInt();
                     System.out.println("Enter Day of month:");
-                    day=sc.nextInt();
-                    Date removeDate=dh.createDate(year, month, day);
+                    day = sc.nextInt();
+                    Date removeDate = dh.createDate(year, month, day);
                     hm.removeHoliday(holidayDB, removeDate);
-                    hm.saveHolidays(dbPath, holidayDB);
+                    hm.saveObjects(holidayName, holidayDB);
                     break;
                 case 4:
                     System.out.println("Exiting...");
@@ -66,6 +66,6 @@ public class HolidayView {
                     System.out.println("Please re-enter!");
                     break;
             }
-        }while(sel2!=4);
+        } while (sel2 != 4);
     }
 }

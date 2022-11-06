@@ -1,4 +1,4 @@
-package View;
+package View.ShowtimeView;
 
 import java.util.*;
 import java.io.IOException;
@@ -16,7 +16,9 @@ public class RemoveShowTime {
         System.out.println("Enter Showtime ID to delete movie showtime: ");
         // delete showtime
         // save showtime
-        System.out.println("Showtime Listing for " + showtimeMovie + " Deleted!");
+        // System.out.println("Showtime Listing for todo" + showtimeMovie + "
+        // Deleted!");
+        System.out.println("Showtime Listing for todo" + " Deleted!");
 
         // sc.close();
     }

@@ -1,12 +1,12 @@
 package Controller;
 
 import java.util.*;
-import java.io.*;
-import java.text.SimpleDateFormat;
+
+import Controller.ObjectControl.ObjectManager;
 
 import Model.*;
 
-public class PriceManager {
+public class PriceManager extends ObjectManager<Price> {
 
     // create a pricing model
     public void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge,
@@ -70,15 +70,6 @@ public class PriceManager {
             System.out.println("Price Model " + (i + 1));
             listPrices(priceDB.get(i));
         }
-    }
-
-    public void savePrice(String fileName, ArrayList<Price> priceDB) throws IOException {
-        DatabaseManager.writeSerializedObject(fileName, priceDB);
-    }
-
-    public ArrayList<Price> loadPrice(String fileName)
-            throws IOException, SecurityException, ClassNotFoundException {
-        return DatabaseManager.readSerializedObject(fileName);
     }
 }
 // TODO this probably(?) doesn't belong here but idk where to put it for now

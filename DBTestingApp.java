@@ -62,8 +62,8 @@ public class DBTestingApp {
         // curCinema.getCinemaSeatDB().add(new Seat("A21", "004", "A", "21", "Standard",
         // true, 10));
         // cm.printCinema(curCinema);
-        cm.saveCinema(dbPath, cinemaDB);
-        cinemaDB = cm.loadCinema(dbPath);
+        cm.saveObjects(dbPath, cinemaDB);
+        cinemaDB = cm.loadObjects(dbPath);
         cm.printObjects(cinemaDB);
 
         // cm.addCinema(cinemaDB, "Cathay", "004", "2D");
@@ -76,8 +76,8 @@ public class DBTestingApp {
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = FILEPATH + "Prices.dat";
         pm.createPrice(priceDB, 10, 3, 4, 1, 3, 56, 7, 8);
-        pm.savePrice(dbPath, priceDB);
-        priceDB = pm.loadPrice(dbPath);
+        pm.saveObjects(dbPath, priceDB);
+        priceDB = pm.loadObjects(dbPath);
         pm.printPrice(priceDB);
     }
 

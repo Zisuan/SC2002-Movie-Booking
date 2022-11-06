@@ -1,4 +1,4 @@
-package View;
+package View.ShowtimeView;
 
 import java.util.*;
 import java.io.IOException;
@@ -26,9 +26,9 @@ public class CreateShowTime {
         ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
         ArrayList<Seat> sessionSeats = null;
         String dbPath = FILEPATH + "Showtime.dat";
-        movieSessionDB = msm.loadMovieSession(dbPath);
-        movieDB = mm.loadMovie(FILEPATH + "Movies.dat");
-        cinemaDB = cm.loadCinema(FILEPATH + "Cinemas.dat");
+        movieSessionDB = msm.loadObjects(dbPath);
+        movieDB = mm.loadObjects(FILEPATH + "Movies.dat");
+        cinemaDB = cm.loadObjects(FILEPATH + "Cinemas.dat");
         System.out.print("====CREATE NEW SHOWTIME LISTING====");
         System.out.print("Enter Movie Name: ");
         String showtimeMovie = sc.nextLine();
@@ -41,7 +41,7 @@ public class CreateShowTime {
         String showtimeCinema = sc.nextLine();
         Cinema cinema = cm.getCinemaByName(cinemaDB, showtimeCinema);
         msm.addMovieSession(movieSessionDB, movie, cinema, movieDate, movieTime, sessionSeats);
-        msm.saveMovieSession(dbPath, movieSessionDB);
+        msm.saveObjects(dbPath, movieSessionDB);
         System.out.println("Showtime Listing for " + showtimeMovie + " Created!");
 
     }
