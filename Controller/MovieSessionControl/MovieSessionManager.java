@@ -11,7 +11,7 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     public void addMovieSession(ArrayList<MovieSession> MovieSessionDB, Movie movie, Cinema cinema, String movieDate,
             String movieTime, ArrayList<Seat> sessionSeats) {
         MovieSession newMovieSession = new MovieSession(movie, cinema, movieDate, movieTime, sessionSeats);
-        MovieSessionDB.add(newMovieSession);
+        addObject(MovieSessionDB, newMovieSession);
     }
 
     // update MovieSession
@@ -102,6 +102,19 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         ArrayList<Seat> listOfSeats = selectedSesssion.getSessionSeats();
         SeatManager seatManager = new SeatManager();
         seatManager.printObjects(listOfSeats);
+    }
+
+    @Override
+    public boolean objectExists(ArrayList<MovieSession> objectDB, MovieSession object) {
+        for (MovieSession movieSession : objectDB) {
+            if (movieSession.getMovie().getMovieCode().equals(object.getMovie().getMovieCode())
+                    && movieSession.getCinema().getCinemaCode().equals(object.getCinema().getCinemaCode())
+                    && movieSession.getMovieDate().equals(object.getMovieDate())
+                    && movieSession.getMovieTime().equals(object.getMovieTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

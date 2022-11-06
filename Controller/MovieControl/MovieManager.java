@@ -1,32 +1,22 @@
-package Controller;
+package Controller.MovieControl;
 
 import java.util.*;
 
 import Controller.ObjectControl.ObjectManager;
 import Model.Movie;
+import Model.Review;
 
 public class MovieManager extends ObjectManager<Movie> {
 
     // add movie
-    public static void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieRating,
-            String movieCode,
-            String movieStatus, String movieSynopsis,
+    public void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle, String movieStatus,
+            String movieCode, String movieSynopsis,
             String movieDirector,
-            ArrayList<String> movieCast)
+            ArrayList<String> movieCast, ArrayList<Review> reviewsDB, String movieRating)
             throws SecurityException, ClassNotFoundException {
-        Movie newMovie = new Movie(movieType, movieTitle, movieRating, movieCode, movieStatus,
-                movieSynopsis, movieDirector, movieCast);
-        boolean exists = false;
-        for (Movie movie : movieDB) {
-            if (movie.getMovieCode().equals(movieCode)) {
-                System.out.println("Movie code already exists");
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            movieDB.add(newMovie);
-        }
+        Movie newMovie = new Movie(movieType, movieTitle, movieStatus, movieCode,
+                movieSynopsis, movieDirector, movieCast, reviewsDB, movieRating);
+        addObject(movieDB, newMovie);
     }
 
     // update movie
@@ -138,11 +128,11 @@ public class MovieManager extends ObjectManager<Movie> {
     public static Movie searchMovie(ArrayList<Movie> movieSessionDB, String movieName) {
         for (Movie movie : movieSessionDB) {
             if (movie.getMovieName().equals(movieName)) {
-                System.out.println("Movie exists");
+                // System.out.println("Movie exists");
                 return movie;
             }
         }
-        System.out.println("Movie does not exist");
+        // System.out.println("Movie does not exist");
         return null;
 
     }
@@ -161,6 +151,16 @@ public class MovieManager extends ObjectManager<Movie> {
             }
         }
         return selectedMovie;
+    }
+
+    // get movie reviews
+    public ArrayList<Review> getMovieReviews(ArrayList<Movie> movieDB, String movieCode) {
+        for (Movie movie : movieDB) {
+            if (movie.getMovieCode().equals(movieCode)) {
+                return movie.getReviewsDB();
+            }
+        }
+        return null;
     }
 
     // print movies
@@ -183,27 +183,38 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movie details by movie title
     public static void printMovieDetails(ArrayList<Movie> movieDB, String movieName) {
+        boolean movieExists = false;
         for (Movie movie : movieDB) {
-            if (movie.getMovieName().equals(movieName)) {
-                System.out.println("Movie Title: " + movie.getMovieName());
-                System.out.println("Movie Status: " + movie.getMovieStatus());
-                System.out.println("Movie Synopsis: " + movie.getMovieSynopsis());
-                System.out.println("Movie Director: " + movie.getMovieDirector());
-                System.out.println("Movie Cast: " + movie.getMovieCast());
-                System.out.println("Movie Review Rating: toget overall rating avg");
-                System.out.println("Movie Review Rating: toget past user reviews and ratings");
-                System.out.println("Movie Type: " + movie.getMovieType());
-                System.out.println("Movie Code: " + movie.getMovieCode());
+            if (movie.getMovieName().equalsIgnoreCase(movieName)) {
+                System.out.println(movie.toString());
+                movieExists = true;
                 break;
             }
+        }
+        if (movieExists == false) {
+            System.out.println("Movie does not exist!");
         }
     }
 
     // print movie titles
     public static void printMovieTitles(ArrayList<Movie> movieDB) {
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(i + 1 + "." + movieDB.get(i).getMovieName());
+            System.out.println(i + 1 + ". " + movieDB.get(i).getMovieName());
         }
+        if (movieDB.size() == 0) {
+            System.out.println("No movies available");
+        }
+    }
+
+    @Override
+    public boolean objectExists(ArrayList<Movie> objectDB, Movie object) {
+        for (Movie movie : objectDB) {
+            if (movie.getMovieCode().equals(object.getMovieCode())) {
+                System.out.println("Movie code already exists");
+                return true;
+            }
+        }
+        return false;
     }
 
 }

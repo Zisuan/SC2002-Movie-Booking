@@ -1,9 +1,10 @@
-package Controller;
+package Controller.LoginControl;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
 
+import Controller.Helpers.LoginAuthenticator;
 import View.Helper;
 import View.UserMenuView.CustomerMenu;
 import View.UserMenuView.StaffMenu;

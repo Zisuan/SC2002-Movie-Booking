@@ -2,6 +2,8 @@ package Controller.CinemaControl;
 
 import java.util.*;
 
+import javax.crypto.AEADBadTagException;
+
 import Controller.ObjectControl.ObjectManager;
 import Model.*;
 
@@ -11,17 +13,7 @@ public class CinemaManager extends ObjectManager<Cinema> {
         // int newID = cinemaDB.size() + 1;
         // check for duplicate cinema code
         Cinema newCinema = new Cinema(cinemaName, cinemaCode, cinemaType);
-        boolean exists = false;
-        for (Cinema cinema : cinemaDB) {
-            if (cinema.getCinemaCode().equals(cinemaCode)) {
-                System.out.println("Cinema code already exists");
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            cinemaDB.add(newCinema);
-        }
+        addObject(cinemaDB, newCinema);
     }
 
     public void addCinemaWithSeats(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType,
@@ -29,17 +21,7 @@ public class CinemaManager extends ObjectManager<Cinema> {
         // int newID = cinemaDB.size() + 1;
         // check for duplicate cinema code
         Cinema newCinema = new Cinema(cinemaName, cinemaCode, cinemaType, seatDB);
-        boolean exists = false;
-        for (Cinema cinema : cinemaDB) {
-            if (cinema.getCinemaCode().equals(cinemaCode)) {
-                System.out.println("Cinema code already exists");
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            cinemaDB.add(newCinema);
-        }
+        addObject(cinemaDB, newCinema);
     }
 
     public static void updateCinema(int upadateCase, ArrayList<Cinema> cinemaDB, int cinemaID, String cinemaName,
@@ -104,6 +86,16 @@ public class CinemaManager extends ObjectManager<Cinema> {
     // public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws
     // IOException {
     // DatabaseManager.writeSerializedObject(filename, cinemaDB);
+
+    @Override
+    public boolean objectExists(ArrayList<Cinema> objectDB, Cinema object) {
+        for (Cinema cinema : objectDB) {
+            if (cinema.getCinemaCode().equals(object.getCinemaCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // }
 

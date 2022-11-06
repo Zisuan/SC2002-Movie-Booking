@@ -1,9 +1,10 @@
-package Controller;
+package Controller.HolidayControl;
 
 import java.util.*;
 import java.text.*;
 
 import Model.*;
+import Controller.Helpers.DateHelper;
 import Controller.ObjectControl.ObjectManager;
 
 public class HolidayManager extends ObjectManager<Holiday> {
@@ -11,18 +12,7 @@ public class HolidayManager extends ObjectManager<Holiday> {
     public void addHoliday(ArrayList<Holiday> holidayDB, Date holidayDate, String holidayName) {
 
         Holiday holiday = new Holiday(holidayDate, holidayName);
-        boolean exists = false;
-        for (int i = 0; i < holidayDB.size(); i++) {
-            if (holiday.getHolidayDate().equals(holidayDB.get(i).getHolidayDate())) {
-                System.out.println("Holiday already exists!");
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            holidayDB.add(holiday);
-            System.out.println("Holiday successfully added!");
-        }
+        addObject(holidayDB, holiday);
     }
 
     // public void updateHoliday(int updateCase, ArrayList<Holiday> holidayDB, Date
@@ -74,4 +64,13 @@ public class HolidayManager extends ObjectManager<Holiday> {
         }
     }
 
+    @Override
+    public boolean objectExists(ArrayList<Holiday> objectDB, Holiday object) {
+        for (int i = 0; i < objectDB.size(); i++) {
+            if (object.getHolidayDate().equals(objectDB.get(i).getHolidayDate())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -3,6 +3,7 @@ package View.TicketView;
 import java.util.*;
 import java.io.*;
 import Controller.*;
+import Controller.PriceControl.PriceManager;
 import Model.*;
 
 public class TicketPriceView {

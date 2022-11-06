@@ -3,6 +3,8 @@ package Model;
 import java.io.Serializable;
 import java.util.*;
 
+import Controller.ReviewControl.ReviewManager;
+
 public class Movie implements Serializable {
     private int movieID;
     // create movie type
@@ -18,28 +20,45 @@ public class Movie implements Serializable {
     // create movie cast
     private ArrayList<String> movieCast;
     // create movie rating
-    private String movieRating;
+    private ArrayList<Review> reviewsDB;
     // create movie code
     private String movieCode;
 
+    private String movieRating;
+
     // create movie constructor
 
-    public Movie(String movieType, String movieTitle, String movieCode, String movieRating,
-            String movieStatus,
-            String movieSynopsis,
-            String movieDirector, ArrayList<String> movieCast) {
+    public Movie(String movieType,
+            String movieTitle, String movieStatus, String movieCode, String movieSynopsis,
+            String movieDirector, ArrayList<String> movieCast,
+            ArrayList<Review> reviewsDB, String movieRating) {
         this.movieType = movieType;
         this.movieTitle = movieTitle;
-        this.movieCode = movieCode;
-        this.movieRating = movieRating;
         this.movieStatus = movieStatus;
         this.movieSynopsis = movieSynopsis;
-        this.movieDirector = movieDirector;
         this.movieCast = movieCast;
+        this.reviewsDB = reviewsDB;
+        this.movieDirector = movieDirector;
+        this.movieRating = movieRating;
+        this.movieCode = movieCode;
 
     }
 
+    // create movie reviewsDB getter and setter
+    public ArrayList<Review> getReviewsDB() {
+        return reviewsDB;
+    }
+
+    public void setReviewsDB(ArrayList<Review> reviewsDB) {
+        this.reviewsDB = reviewsDB;
+    }
+
     // create movie rating getter
+    public double getMovieOverallRating() {
+        ReviewManager rm = new ReviewManager();
+        return rm.movieOverallRating(this.reviewsDB, this.movieTitle);
+    }
+
     public String getMovieRating() {
         return movieRating;
     }
@@ -117,6 +136,29 @@ public class Movie implements Serializable {
     // create movie cast setter
     public void setMovieCast(ArrayList<String> movieCast) {
         this.movieCast = movieCast;
+    }
+
+    @Override
+    public String toString() {
+        String overallReviewRating = "NA";
+        ReviewManager rm = new ReviewManager();
+        if (getMovieOverallRating() != -1) {
+            overallReviewRating = String.valueOf(getMovieOverallRating());
+        }
+        return "Movie Title: " + getMovieName() + "\n" +
+                "Movie Status: " + getMovieStatus() + "\n" +
+                "Movie Synopsis: " + getMovieSynopsis() + "\n" +
+                "Movie Director: " + getMovieDirector() + "\n" +
+                "Movie Cast: " + getMovieCast() + "\n" +
+                "Movie Rating: " + getMovieRating() + "\n" +
+                "Overall Movie Review Rating: " + overallReviewRating + "\n" +
+                "Movie Type: " + getMovieType() + "\n" +
+                "Movie Code: " + getMovieCode() + "\n" +
+                "=========================================================\n" +
+                "                  Movie Review Rating\n" +
+                "=========================================================\n" +
+                rm.printLast3Reviews(reviewsDB);
+
     }
 
 }

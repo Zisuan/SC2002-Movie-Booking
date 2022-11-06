@@ -1,4 +1,4 @@
-package Controller;
+package Controller.PriceControl;
 
 import java.util.*;
 
@@ -71,6 +71,15 @@ public class PriceManager extends ObjectManager<Price> {
             listPrices(priceDB.get(i));
         }
     }
+
+    @Override
+    public boolean objectExists(ArrayList<Price> objectDB, Price object) {
+        for (Price price : objectDB) {
+
+        }
+        return false;
+    }
+
 }
 // TODO this probably(?) doesn't belong here but idk where to put it for now
 // placeholder stuff

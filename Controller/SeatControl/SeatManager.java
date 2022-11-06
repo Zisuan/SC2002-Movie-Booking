@@ -7,9 +7,11 @@ import Model.*;
 
 public class SeatManager extends ObjectManager<Seat> {
 
-    public static void addNewSeat(ArrayList<Seat> seatDB, String seatID, String seatType, String seatStatus) {
+    public void addNewSeat(ArrayList<Seat> seatDB, String seatID, String seatType, String seatStatus) {
         Seat seat = new Seat(seatID);
-        seatDB.add(seat);
+        if (objectExists(seatDB, seat)) {
+            seatDB.add(seat);
+        }
     }
 
     public static void deleteSeat(ArrayList<Seat> seatDB, String seatID) {
@@ -64,6 +66,16 @@ public class SeatManager extends ObjectManager<Seat> {
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public boolean objectExists(ArrayList<Seat> objectDB, Seat object) {
+        for (Seat seat : objectDB) {
+            if (seat.getSeatID().equals(object.getSeatID())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

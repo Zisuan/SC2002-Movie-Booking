@@ -1,8 +1,11 @@
 package View.MovieView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+
 import java.io.IOException;
-import Controller.MovieManager;
+
 import Model.Movie;
 
 public class UpdateMovie {

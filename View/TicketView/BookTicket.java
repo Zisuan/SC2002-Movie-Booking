@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 import Controller.*;
 import Controller.CinemaControl.CinemaManager;
+import Controller.MovieControl.MovieManager;
 import Controller.MovieSessionControl.MovieSessionManager;
 import Controller.SeatControl.SeatManager;
 import Model.*;

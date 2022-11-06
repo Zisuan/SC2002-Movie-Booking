@@ -3,6 +3,8 @@ import java.util.*;
 
 import Controller.*;
 import Controller.CinemaControl.CinemaManager;
+import Controller.MovieControl.MovieManager;
+import Controller.PriceControl.PriceManager;
 import Model.*;
 
 public class DBTestingApp {
@@ -71,6 +73,25 @@ public class DBTestingApp {
         // cm.printCinemas(cinemaDB);
     }
 
+    public static void initMovies() throws SecurityException, ClassNotFoundException, IOException {
+        MovieManager mm = new MovieManager();
+        ArrayList<Movie> movieDB = new ArrayList<Movie>();
+        String dbPath = FILEPATH + "Movies.dat";
+        ArrayList<String> cast = new ArrayList<String>();
+        ArrayList<Review> reviewsDB = new ArrayList<Review>();
+        cast.add("Tom Hanks");
+        cast.add("Tim Allen");
+        cast.add("Joan Cusack");
+        cast.add("Don Rickles");
+        cast.add("Jim Varney");
+        cast.add("Wallace Shawn");
+        mm.addMovie(movieDB, "movieType", "movieTitle", "movieStatus", "movieCode",
+                "movieSynopsis", "movieDirector", cast, reviewsDB, "movieRating");
+        // mm.saveObjects(dbPath, movieDB);
+        // movieDB = mm.loadObjects(dbPath);
+        mm.printObjects(movieDB);
+    }
+
     public static void testPriceManager() throws IOException, SecurityException, ClassNotFoundException {
         PriceManager pm = new PriceManager();
         ArrayList<Price> priceDB = new ArrayList<Price>();
@@ -83,7 +104,8 @@ public class DBTestingApp {
 
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
-        initCinemas();
+        // initCinemas();
+        initMovies();
         // testPriceManager();
 
         // testMovieManager();

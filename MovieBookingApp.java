@@ -3,7 +3,7 @@ import java.util.*;
 import java.text.ParseException;
 
 import Controller.*;
-
+import Controller.LoginControl.LoginManager;
 import View.Helper;
 
 public class MovieBookingApp {

@@ -8,7 +8,7 @@ public class ObjectPrinter<T> {
             System.out.println("The database is empty!");
         } else {
             for (int i = 0; i < listOfObjects.size(); i++) {
-                System.out.println(i + ". ");
+                System.out.print(i + 1 + ". ");
                 printObject(listOfObjects.get(i));
                 System.out.println();
             }

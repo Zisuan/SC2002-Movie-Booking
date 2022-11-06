@@ -2,8 +2,9 @@ package View.ShowtimeView;
 
 import java.util.*;
 import java.io.IOException;
-import Controller.MovieManager;
+
 import Controller.CinemaControl.CinemaManager;
+import Controller.MovieControl.MovieManager;
 import Controller.MovieSessionControl.MovieSessionManager;
 import Model.Movie;
 import Model.MovieSession;

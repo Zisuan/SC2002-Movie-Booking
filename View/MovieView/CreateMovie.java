@@ -1,9 +1,13 @@
 package View.MovieView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+
 import java.io.IOException;
-import Controller.MovieManager;
+
 import Model.Movie;
+import Model.Review;
 
 public class CreateMovie {
 
@@ -33,6 +37,7 @@ public class CreateMovie {
         String movieDirector = sc.nextLine();
         System.out.println("Enter Number of Movie Casts: ");
         ArrayList<String> movieCast = new ArrayList<String>();
+        ArrayList<Review> reviewsDB = new ArrayList<Review>();
         int cast = sc.nextInt();
         sc.nextLine();
         for (int i = 0; i < cast; i++) {
@@ -40,8 +45,8 @@ public class CreateMovie {
             String castName = sc.nextLine();
             movieCast.add(castName);
         }
-        mm.addMovie(movieDB, movieType, movieTitle, movieCode, movieRating, movieStatus, movieSynopsis, movieDirector,
-                movieCast);
+        mm.addMovie(movieDB, movieType, movieTitle, movieStatus, movieCode, movieSynopsis, movieDirector, movieCast,
+                reviewsDB, movieRating);
         mm.saveObjects(dbPath, movieDB);
         // sc.close();
     }

@@ -48,4 +48,11 @@ public class Review {
     public void setMovieRating(double movieRating) {
         this.movieRating = movieRating;
     }
+
+    @Override
+    public String toString() {
+        return "Review: " + movieReview + "\n" +
+                "Rating: " + movieRating + "/5" + "\n" +
+                "Reviewed by: " + customerName;
+    }
 }

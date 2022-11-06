@@ -5,6 +5,8 @@ import java.io.*;
 import java.text.ParseException;
 
 import Controller.*;
+import Controller.Helpers.DateHelper;
+import Controller.HolidayControl.HolidayManager;
 import Model.*;
 
 public class HolidayView {
@@ -27,9 +29,9 @@ public class HolidayView {
             System.out.println("2. Add Public Holiday");
             System.out.println("3. Delete Public Holiday");
             System.out.println("4. Exit");
-            sel1 = sc.nextInt();
+            sel2 = sc.nextInt();
             sc.nextLine();
-            switch (sel1) {
+            switch (sel2) {
                 case 1:
                     hm.listHolidays(holidayDB);
                     break;
@@ -66,6 +68,6 @@ public class HolidayView {
                     System.out.println("Please re-enter!");
                     break;
             }
-        } while (sel1 != 4);
+        } while (sel2 != 4);
     }
 }

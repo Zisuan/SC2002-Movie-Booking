@@ -1,8 +1,11 @@
 package View.MovieView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+
 import java.io.IOException;
-import Controller.MovieManager;
+
 import Model.Movie;
 import View.Helper;
 
@@ -35,7 +38,7 @@ public class ViewMovieDetails {
         mm.printMovieTitles(movieDB);
     }
 
-    public static void ViewMovieDetails() throws SecurityException, ClassNotFoundException, IOException {
+    public static void ViewMovieDetails(String username) throws SecurityException, ClassNotFoundException, IOException {
         // show movie details
         MovieManager mm = new MovieManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
@@ -45,6 +48,13 @@ public class ViewMovieDetails {
         Scanner sc = new Scanner(System.in);
         String movieTitle = sc.nextLine();
         mm.printMovieDetails(movieDB, movieTitle);
+        if (mm.searchMovie(movieDB, movieTitle) != null) {
+            System.out.println("Would you like to rate this movie? (Y/N)");
+            String choice = sc.nextLine();
+            if (choice.equalsIgnoreCase("Y")) {
+                AddMovieReviewView.addMovieReview(movieDB, movieTitle, username);
+            }
+        }
     }
 
 }

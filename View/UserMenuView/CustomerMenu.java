@@ -15,7 +15,7 @@ public class CustomerMenu {
         do {
             // Helper.clearConsole();
             Scanner sc = new Scanner(System.in);
-            System.out.println("====-------------------------");
+            System.out.println("====================================");
             System.out.println("Hi " + cutomerName + ",");
             System.out.println("Welcome to MOBLIMA!====");
             System.out.println("Select an option: ");
@@ -38,7 +38,7 @@ public class CustomerMenu {
                     ViewMovieDetails.ViewMoviesTitle();
                     break;
                 case 3:
-                    ViewMovieDetails.ViewMovieDetails();
+                    ViewMovieDetails.ViewMovieDetails(cutomerName);
                     break;
                 // case 3:
                 // checkSeatAvailability();

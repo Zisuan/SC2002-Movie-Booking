@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ReviewControl;
 
 import java.util.*;
 import Model.*;
@@ -10,19 +10,21 @@ public class ReviewManager {
         Review review = new Review(movieReview, customerName, movieTitle, movieRating);
         int i = 0;
         boolean exists = false;
-        for (i = 0; i < reviewDB.size(); i++) {
-            if (reviewDB.get(i).getCustomerName().equals(customerName)
-                    && reviewDB.get(i).getMovieTitle().equals(movieTitle)) {
-                exists = true;
-                System.out.println("You have already left a review previously.");
-                break;
+        if (reviewDB != null) {
+            for (Review r : reviewDB) {
+                if (r.getCustomerName().equals(customerName) && r.getMovieTitle().equals(movieTitle)) {
+                    exists = true;
+                    break;
+                }
+                i++;
             }
-        }
-        if (!exists) {
+            if (!exists) {
+                reviewDB.add(review);
+            }
+        } else {
+            reviewDB = new ArrayList<Review>();
             reviewDB.add(review);
-            System.out.println("Review successfully created!");
         }
-
     }
 
     public void updateReview(ArrayList<Review> reviewDB, String movieReview, String customerName, String movieTitle,
@@ -102,9 +104,23 @@ public class ReviewManager {
             overallRating /= count;
             return overallRating;
         } else {
-            System.out.println("No reviews have been made yet.");
+            // System.out.println("No reviews have been made yet.");
             return -1;
         }
+    }
+
+    public String printLast3Reviews(ArrayList<Review> reviewDB) {
+        String last3Reviews = "No reviews have been made yet.";
+        int count = 0;
+        for (int i = reviewDB.size() - 1; i >= 0; i--) {
+            if (count < 3) {
+                last3Reviews += reviewDB.get(i).toString() + "\n";
+                count++;
+            }
+        }
+        if (count == 0)
+            return last3Reviews;
+        return last3Reviews;
     }
 
 }

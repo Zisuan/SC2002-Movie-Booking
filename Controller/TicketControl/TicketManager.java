@@ -1,19 +1,22 @@
-package Controller;
+package Controller.TicketControl;
 
 import java.util.ArrayList;
 
+import Controller.ObjectControl.ObjectManager;
 import Model.*;
 
-public class TicketManager {
+public class TicketManager extends ObjectManager<Ticket> {
 
-    public static void addNewTicket(ArrayList<Ticket> ticketDB, String ticketId, double ticketPrice, String ticketType,
+    public void addNewTicket(ArrayList<Ticket> ticketDB, String ticketId, double ticketPrice, String ticketType,
             String ticketStatus, String ticketSeat, MovieSession ticketShowtime, String customerId) {
         Ticket ticket = new Ticket(ticketId, ticketPrice, ticketType, ticketStatus, ticketSeat, ticketShowtime,
                 customerId);
-        ticketDB.add(ticket);
+        if (!objectExists(ticketDB, ticket)) {
+            ticketDB.add(ticket);
+        }
     }
 
-    public static void removeTicket(ArrayList<Ticket> ticketDB, String ticketId) {
+    public void removeTicket(ArrayList<Ticket> ticketDB, String ticketId) {
         for (int i = 0; i < ticketDB.size(); i++) {
             if (ticketDB.get(i).getTicketId().equals(ticketId)) {
                 ticketDB.remove(i);
@@ -65,6 +68,16 @@ public class TicketManager {
             }
         }
         return tickets;
+    }
+
+    @Override
+    public boolean objectExists(ArrayList<Ticket> objectDB, Ticket object) {
+        for (int i = 0; i < objectDB.size(); i++) {
+            if (objectDB.get(i).getTicketId().equals(object.getTicketId())) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
