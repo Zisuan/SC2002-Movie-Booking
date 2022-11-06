@@ -17,9 +17,10 @@ public class TicketPriceView {
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = "";
         dbPath = FILEPATH + "Prices.dat";
-        priceDB = pm.loadPrice(dbPath);
+        File f= new File(dbPath);
+        if(f.exists())
+            priceDB = pm.loadPrice(dbPath);
         do {
-
             System.out.println("====PRICE MODEL====");
             System.out.println("1. View Current Price Model");
             System.out.println("2. Create New Price Model"); // assume only 1 model
@@ -54,7 +55,6 @@ public class TicketPriceView {
                             seniorBasePrice, studentBasePrice, adultBasePrice, weekendPHSurcharge);
 
                     priceDB.add(newPrice);
-                    System.out.println(priceDB.get(0));
                     pm.savePrice(dbPath, priceDB);
                     break;
                 case 3:
