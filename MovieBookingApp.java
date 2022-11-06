@@ -4,15 +4,14 @@ import java.text.ParseException;
 
 import Controller.*;
 
-import Model.*;
-import View.CustomerMenu;
 import View.Helper;
 
 public class MovieBookingApp {
 
     public static final String FILEPATH = "./database/";
 
-    public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException, ParseException {
+    public static void main(String[] args)
+            throws IOException, SecurityException, ClassNotFoundException, ParseException {
         int option;
         do {
             Helper.clearConsole();

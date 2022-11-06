@@ -2,11 +2,10 @@ package Controller.CinemaControl;
 
 import java.util.*;
 
-import Controller.DatabaseManager;
+import Controller.ObjectControl.ObjectManager;
 import Model.*;
-import java.io.IOException; // Import the IOException class to handle errors
 
-public class CinemaManager extends CinemaPrinter {
+public class CinemaManager extends ObjectManager<Cinema> {
 
     public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType) {
         // int newID = cinemaDB.size() + 1;
@@ -88,18 +87,19 @@ public class CinemaManager extends CinemaPrinter {
         return null;
     }
 
-    public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws IOException {
-        DatabaseManager.writeSerializedObject(filename, cinemaDB);
+    public void printCinemaNamesWithMovie(ArrayList<Cinema> cinemaDB, String movieName) {
+        int i = 0;
+        for (Cinema c : cinemaDB) {
+            ArrayList<Movie> movieDB = c.getCinemaMovieDB();
+            for (Movie m : movieDB) {
+                if (m.getMovieName().equals(movieName)) {
+                    i++;
+                    System.out.println(i + ". " + c.getCinemaName() + "- " + c.getCinemaType());
 
-    }
+                }
 
-    public ArrayList<Cinema> loadCinema(String filename)
-            throws IOException, SecurityException, ClassNotFoundException {
-        ArrayList<Cinema> cinemaDB = DatabaseManager.readSerializedObject(filename);
-        if (cinemaDB == null) {
-            cinemaDB = new ArrayList<Cinema>();
+            }
         }
-        return cinemaDB;
     }
     // public void saveCinema(String filename, ArrayList<Cinema> cinemaDB) throws
     // IOException {

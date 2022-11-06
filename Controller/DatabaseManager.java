@@ -8,9 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class DatabaseManager {
-    public static ArrayList readSerializedObject(String filename) {
-        ArrayList pDetails = null;
+public class DatabaseManager<T> {
+
+    public ArrayList<T> readSerializedObject(String filename) {
+        ArrayList<T> pDetails = null;
         FileInputStream fis = null;
         ObjectInputStream in = null;
         try {
@@ -18,7 +19,7 @@ public class DatabaseManager {
             if (file.exists()) {
                 fis = new FileInputStream(filename);
                 in = new ObjectInputStream(fis);
-                pDetails = (ArrayList) in.readObject();
+                pDetails = (ArrayList<T>) in.readObject();
                 in.close();
             } else {
                 file.createNewFile();
@@ -34,7 +35,7 @@ public class DatabaseManager {
         return pDetails;
     }
 
-    public static void writeSerializedObject(String filename, ArrayList list) {
+    public void writeSerializedObject(String filename, ArrayList<T> list) {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {

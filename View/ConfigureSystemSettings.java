@@ -3,14 +3,14 @@ package View;
 import java.util.*;
 import java.io.*;
 import java.text.ParseException;
-import Controller.*;
-import Model.*;
+import View.TicketView.TicketPriceView;
 
 public class ConfigureSystemSettings {
 
     public static final String FILEPATH = "./database/";
 
-    public static void configureSystemSettings() throws SecurityException, ClassNotFoundException, IOException, ParseException {
+    public static void configureSystemSettings()
+            throws SecurityException, ClassNotFoundException, IOException, ParseException {
 
         Scanner sc = new Scanner(System.in);
         int choice;
