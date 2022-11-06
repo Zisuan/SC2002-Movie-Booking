@@ -1,8 +1,10 @@
 package Model;
 
 import java.util.*;
+import java.io.*;
 
-public class Holiday {
+
+public class Holiday implements Serializable{
 
     // date of holiday
     private Date holidayDate;
@@ -10,8 +12,8 @@ public class Holiday {
     private String holidayName;
 
     public Holiday(Date holidayDate, String holidayName){
-        holidayDate=this.holidayDate;
-        holidayName=this.holidayName;
+        this.holidayDate=holidayDate;
+        this.holidayName=holidayName;
     }
 
     public Date getHolidayDate(){
