@@ -9,7 +9,7 @@ import Model.*;
 
 public class HolidayView {
 
-    public static final String FILEPATH = "./src/database/";
+    public static final String FILEPATH = "./database/";
 
     public static void HolidayMenu() throws SecurityException, ClassNotFoundException, IOException, ParseException {
         Scanner sc = new Scanner(System.in);
@@ -27,9 +27,9 @@ public class HolidayView {
             System.out.println("2. Add Public Holiday");
             System.out.println("3. Delete Public Holiday");
             System.out.println("4. Exit");
-            sel2 = sc.nextInt();
+            sel1 = sc.nextInt();
             sc.nextLine();
-            switch (sel2) {
+            switch (sel1) {
                 case 1:
                     hm.listHolidays(holidayDB);
                     break;
@@ -66,6 +66,6 @@ public class HolidayView {
                     System.out.println("Please re-enter!");
                     break;
             }
-        } while (sel2 != 4);
+        } while (sel1 != 4);
     }
 }
