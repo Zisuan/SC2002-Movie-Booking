@@ -14,4 +14,12 @@ public class Helper {
             // Handle any exceptions.
         }
     }
+
+    public static String getCharacterFromInt(int i) {
+        return String.valueOf((char) (i + 'A'));
+    }
+
+    public static int getIntFromCharacter(String s) {
+        return s.charAt(0) - 'A';
+    }
 }

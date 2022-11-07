@@ -8,15 +8,15 @@ import java.io.IOException;
 
 import Model.Movie;
 import Model.Review;
+import Model.Movie.MovieStatus;
+import Model.Movie.MovieType;
 
 public class CreateMovie {
 
     public static final String FILEPATH = "./database/";
 
-    public static void createMovie() throws SecurityException, ClassNotFoundException, IOException {
-        Scanner sc = new Scanner(System.in);
-
-        MovieManager mm = new MovieManager();
+    public static void createMovie(MovieManager mm, Scanner sc)
+            throws SecurityException, ClassNotFoundException, IOException {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadObjects(dbPath);
@@ -45,7 +45,8 @@ public class CreateMovie {
             String castName = sc.nextLine();
             movieCast.add(castName);
         }
-        mm.addMovie(movieDB, movieType, movieTitle, movieStatus, movieCode, movieSynopsis, movieDirector, movieCast,
+        mm.addMovie(movieDB, MovieType.valueOf(movieType), movieTitle, MovieStatus.valueOf(movieStatus), movieCode,
+                movieSynopsis, movieDirector, movieCast,
                 reviewsDB, movieRating);
         mm.saveObjects(dbPath, movieDB);
         // sc.close();

@@ -1,22 +1,31 @@
 package Controller.CinemaControl;
 
+import java.io.IOException;
 import java.util.*;
-
-import javax.crypto.AEADBadTagException;
 
 import Controller.ObjectControl.ObjectManager;
 import Model.*;
+import Model.Cinema.CinemaType;
 
 public class CinemaManager extends ObjectManager<Cinema> {
+    public static final String FILEPATH = "./database/";
+    public static final String DBNAME = "Cinemas.dat";
 
-    public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType) {
+    public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, CinemaType cinemaType) {
         // int newID = cinemaDB.size() + 1;
         // check for duplicate cinema code
         Cinema newCinema = new Cinema(cinemaName, cinemaCode, cinemaType);
         addObject(cinemaDB, newCinema);
+
+        // try {
+        // saveObjects(FILEPATH + DBNAME, cinemaDB);
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
     }
 
-    public void addCinemaWithSeats(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, String cinemaType,
+    public void addCinemaWithSeats(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode,
+            CinemaType cinemaType,
             ArrayList<Seat> seatDB) {
         // int newID = cinemaDB.size() + 1;
         // check for duplicate cinema code
@@ -25,7 +34,7 @@ public class CinemaManager extends ObjectManager<Cinema> {
     }
 
     public static void updateCinema(int upadateCase, ArrayList<Cinema> cinemaDB, int cinemaID, String cinemaName,
-            String cinemaCode, String cinemaType) {
+            String cinemaCode, CinemaType cinemaType) {
         switch (upadateCase) {
             case 1:
                 cinemaDB.get(cinemaID - 1).setCinemaName(cinemaName);
@@ -74,7 +83,7 @@ public class CinemaManager extends ObjectManager<Cinema> {
         for (Cinema c : cinemaDB) {
             ArrayList<Movie> movieDB = c.getCinemaMovieDB();
             for (Movie m : movieDB) {
-                if (m.getMovieName().equals(movieName)) {
+                if (m.getMovieTitle().equals(movieName)) {
                     i++;
                     System.out.println(i + ". " + c.getCinemaName() + "- " + c.getCinemaType());
 

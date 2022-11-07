@@ -10,11 +10,9 @@ public class TicketPriceView {
 
     public static final String FILEPATH = "./database/";
 
-    public static void PriceMenu() throws SecurityException,
+    public static void PriceMenu(Scanner sc, PriceManager pm) throws SecurityException,
             ClassNotFoundException, IOException {
-        Scanner sc = new Scanner(System.in);
         int sel1;
-        PriceManager pm = new PriceManager();
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = "";
         dbPath = FILEPATH + "Prices.dat";

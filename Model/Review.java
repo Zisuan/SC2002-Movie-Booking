@@ -1,6 +1,8 @@
 package Model;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     // text content of the review
     private String movieReview;
     // name of customer

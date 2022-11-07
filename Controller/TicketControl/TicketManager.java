@@ -7,12 +7,20 @@ import Model.*;
 
 public class TicketManager extends ObjectManager<Ticket> {
 
-    public void addNewTicket(ArrayList<Ticket> ticketDB, String ticketId, double ticketPrice, String ticketType,
+    public void addNewTicket(ArrayList<Ticket> ticketDB, double ticketPrice, String ticketType,
             String ticketStatus, String ticketSeat, MovieSession ticketShowtime, String customerId) {
-        Ticket ticket = new Ticket(ticketId, ticketPrice, ticketType, ticketStatus, ticketSeat, ticketShowtime,
+        int ticketId = ticketDB.size() + 1;
+        Ticket ticket = new Ticket(Integer.toString(ticketId), ticketPrice, ticketType, ticketStatus, ticketSeat,
+                ticketShowtime,
                 customerId);
         if (!objectExists(ticketDB, ticket)) {
             ticketDB.add(ticket);
+        }
+    }
+
+    public void addNewTicket(ArrayList<Ticket> ticketDB, Ticket newTicket) {
+        if (!objectExists(ticketDB, newTicket)) {
+            ticketDB.add(newTicket);
         }
     }
 
@@ -74,10 +82,10 @@ public class TicketManager extends ObjectManager<Ticket> {
     public boolean objectExists(ArrayList<Ticket> objectDB, Ticket object) {
         for (int i = 0; i < objectDB.size(); i++) {
             if (objectDB.get(i).getTicketId().equals(object.getTicketId())) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 }

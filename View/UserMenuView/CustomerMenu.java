@@ -2,21 +2,40 @@ package View.UserMenuView;
 
 import java.io.IOException;
 import java.util.*;
+
+import Controller.HolidayControl.HolidayManager;
+import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
+import Controller.PriceControl.PriceManager;
+import Controller.ReviewControl.ReviewManager;
+import Controller.SeatControl.SeatManager;
+import Controller.TicketControl.TicketManager;
+import View.CheckSeatAvailability;
 import View.Helper;
+import View.ViewBookingHistory;
 import View.MovieView.ViewMovieDetails;
 import View.TicketView.BookTicket;
 
 public class CustomerMenu {
 
-    public static void MovieGoerMenu(String cutomerName) throws SecurityException, ClassNotFoundException, IOException {
+    public static void MovieGoerMenu(String customerName)
+            throws SecurityException, ClassNotFoundException, IOException {
 
         final String FILEPATH = "./database/";
         int choice;
+        MovieManager mm = new MovieManager();
+        ReviewManager rm = new ReviewManager();
+        MovieSessionManager msm = new MovieSessionManager();
+        SeatManager sm = new SeatManager();
+        PriceManager pm = new PriceManager();
+        TicketManager tm = new TicketManager();
+        HolidayManager hm = new HolidayManager();
+        Scanner sc = new Scanner(System.in);
+
         do {
             // Helper.clearConsole();
-            Scanner sc = new Scanner(System.in);
             System.out.println("====================================");
-            System.out.println("Hi " + cutomerName + ",");
+            System.out.println("Hi " + customerName + ",");
             System.out.println("Welcome to MOBLIMA!====");
             System.out.println("Select an option: ");
             System.out.println("1. Search Movie");
@@ -32,33 +51,33 @@ public class CustomerMenu {
             Helper.clearConsole();
             switch (choice) {
                 case 1:
-                    ViewMovieDetails.searchMovie();
+                    ViewMovieDetails.searchMovie(mm);
                     break;
                 case 2:
-                    ViewMovieDetails.ViewMoviesTitle();
+                    ViewMovieDetails.ViewMoviesTitle(mm);
                     break;
                 case 3:
-                    ViewMovieDetails.ViewMovieDetails(cutomerName);
+                    ViewMovieDetails.ViewMovieDetail(customerName, mm, rm);
                     break;
-                // case 3:
-                // checkSeatAvailability();
-                // break;
+                case 4:
+                    CheckSeatAvailability.checkSeatAvailability(mm, msm);
+                    break;
                 case 5:
-                    BookTicket.BookingMenu();
-                    // break;
-                    // case 5:
-                    // viewBookingHistory();
-                    // break;
-                    // case 6:
-                    // listTop5RankingMovie();
-                    // break;
-                    // case 7:
-                    // System.out.println("Goodbye!");
-                    // break;
-                    // default:
-                    // System.out.println("Invalid option");
-                    // System.out.println("Please re-enter!");
-                    // break;
+                    BookTicket.BookingMenu(customerName, mm, msm, sm, pm, tm, hm);
+                    break;
+                case 6:
+                    ViewBookingHistory.viewBookingHistory(customerName, tm);
+                    break;
+                // case 6:
+                // listTop5RankingMovie();
+                // break;
+                // case 7:
+                // System.out.println("Goodbye!");
+                // break;
+                // default:
+                // System.out.println("Invalid option");
+                // System.out.println("Please re-enter!");
+                // break;
             }
 
         } while (choice != 8);

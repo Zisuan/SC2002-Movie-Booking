@@ -2,13 +2,20 @@ package Controller.Helpers;
 
 import java.util.*;
 import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoField;
 
 public class DateHelper {
 
     public String dateToString(Date date) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String stringDate = dateFormat.format(date);
         return stringDate;
+    }
+
+    public LocalDate stringToDate(String stringDate) {
+        LocalDate date = LocalDate.parse(stringDate);
+        return date;
     }
 
     public Date createDate(int year, int month, int day) {
@@ -18,5 +25,10 @@ public class DateHelper {
         // c.get(Calendar.DAY_OF_MONTH));
         Date createdDate = c.getTime();
         return createdDate;
+    }
+
+    public static boolean isWeekend(final LocalDate ld) {
+        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
     }
 }

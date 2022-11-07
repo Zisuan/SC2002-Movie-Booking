@@ -1,18 +1,21 @@
 package View.MovieView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+
 import java.io.IOException;
 
 public class MovieListing {
 
     public static final String FILEPATH = "./database/";
 
-    public static void MovieMenu() throws SecurityException, ClassNotFoundException, IOException {
+    public static void MovieMenu(MovieManager mm, Scanner sc)
+            throws SecurityException, ClassNotFoundException, IOException {
 
         int listing;
         do {
             System.out.print("\033[H\033[2J");
-            Scanner sc = new Scanner(System.in);
             listing = 0;
             // print movie menu to staff
             System.out.println("MOVIE LISTING");
@@ -25,13 +28,13 @@ public class MovieListing {
             listing = sc.nextInt();
             switch (listing) {
                 case 1:
-                    CreateMovie.createMovie();
+                    CreateMovie.createMovie(mm, sc);
                     break;
                 case 2:
-                    UpdateMovie.updateMovie();
+                    UpdateMovie.updateMovie(mm, sc);
                     break;
                 case 3:
-                    RemoveMovie.removeMovie();
+                    RemoveMovie.removeMovie(sc, mm);
                     break;
                 case 4:
                     System.out.println("Goodbye!");
@@ -41,7 +44,6 @@ public class MovieListing {
                     System.out.println("Please re-enter!");
                     break;
             }
-            // sc.close();
         } while (listing != 4);
     }
 }

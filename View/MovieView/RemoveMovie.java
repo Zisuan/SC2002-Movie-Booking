@@ -12,12 +12,11 @@ public class RemoveMovie {
 
     public static final String FILEPATH = "./database/";
 
-    public static void removeMovie() throws IOException, SecurityException, ClassNotFoundException {
-        MovieManager mm = new MovieManager();
+    public static void removeMovie(Scanner sc,
+            MovieManager mm) throws IOException, SecurityException, ClassNotFoundException {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadObjects(dbPath);
-        Scanner sc = new Scanner(System.in);
         System.out.println("DELETE MOVIE");
         System.out.println("Enter Movie Code to delete movie: ");
         String code = sc.nextLine();

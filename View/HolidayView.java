@@ -3,6 +3,7 @@ package View;
 import java.util.*;
 import java.io.*;
 import java.text.ParseException;
+import java.time.LocalDate;
 
 import Controller.*;
 import Controller.Helpers.DateHelper;
@@ -44,8 +45,8 @@ public class HolidayView {
                     month = sc.nextInt();
                     System.out.println("Enter Day of month:");
                     day = sc.nextInt();
-                    Date newDate = dh.createDate(year, month, day);
-                    hm.addHoliday(holidayDB, newDate, holidayName);
+                    LocalDate holidayDate = LocalDate.parse(year + "-" + month + "-" + day);
+                    hm.addHoliday(holidayDB, holidayDate, holidayName);
                     hm.saveObjects(holidayName, holidayDB);
                     break;
                 case 3:
@@ -56,7 +57,7 @@ public class HolidayView {
                     month = sc.nextInt();
                     System.out.println("Enter Day of month:");
                     day = sc.nextInt();
-                    Date removeDate = dh.createDate(year, month, day);
+                    LocalDate removeDate = LocalDate.parse(year + "-" + month + "-" + day);
                     hm.removeHoliday(holidayDB, removeDate);
                     hm.saveObjects(holidayName, holidayDB);
                     break;

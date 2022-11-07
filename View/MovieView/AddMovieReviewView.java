@@ -6,12 +6,13 @@ import java.util.Scanner;
 import Controller.MovieControl.MovieManager;
 import Controller.ReviewControl.ReviewManager;
 import Model.Movie;
+import Model.Review;
 
 public class AddMovieReviewView {
     public static void addMovieReview(ArrayList<Movie> movieDB, String movieTitle, String username) {
         // add movie review
         Scanner sc = new Scanner(System.in);
-        ArrayList reviewDB = new ArrayList();
+        ArrayList<Review> reviewDB = new ArrayList<Review>();
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
         reviewDB = mm.getMovieReviews(movieDB, movieTitle);
@@ -21,6 +22,8 @@ public class AddMovieReviewView {
         System.out.println("Enter your review: ");
         String review = sc.nextLine();
         rm.addReview(reviewDB, review, username, movieTitle, rating);
+        mm.updateReviewsDB(movieDB, movieTitle, reviewDB);
 
+        sc.close();
     }
 }

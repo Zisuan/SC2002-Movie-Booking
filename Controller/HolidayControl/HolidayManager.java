@@ -2,14 +2,14 @@ package Controller.HolidayControl;
 
 import java.util.*;
 import java.text.*;
+import java.time.LocalDate;
 
 import Model.*;
-import Controller.Helpers.DateHelper;
 import Controller.ObjectControl.ObjectManager;
 
 public class HolidayManager extends ObjectManager<Holiday> {
 
-    public void addHoliday(ArrayList<Holiday> holidayDB, Date holidayDate, String holidayName) {
+    public void addHoliday(ArrayList<Holiday> holidayDB, LocalDate holidayDate, String holidayName) {
 
         Holiday holiday = new Holiday(holidayDate, holidayName);
         addObject(holidayDB, holiday);
@@ -39,7 +39,18 @@ public class HolidayManager extends ObjectManager<Holiday> {
     // System.out.println("Holiday does not exist!");
     // }
 
-    public void removeHoliday(ArrayList<Holiday> holidayDB, Date holidayDate) {
+    public boolean isPublicHoliday(ArrayList<Holiday> holidayDB, LocalDate date) {
+        boolean isPublicHoliday = false;
+        for (Holiday holiday : holidayDB) {
+            if (holiday.getHolidayDate().equals(date)) {
+                isPublicHoliday = true;
+                break;
+            }
+        }
+        return isPublicHoliday;
+    }
+
+    public void removeHoliday(ArrayList<Holiday> holidayDB, LocalDate holidayDate) {
         int i = 0;
         boolean exists = false;
         for (i = 0; i < holidayDB.size(); i++) {
@@ -55,12 +66,11 @@ public class HolidayManager extends ObjectManager<Holiday> {
             System.out.println("Holiday does not exist!");
     }
 
-    public void listHolidays(ArrayList<Holiday> holidayDB) throws ParseException {
-        DateHelper dh = new DateHelper();
+    public void listHolidays(ArrayList<Holiday> holidayDB) {
         System.out.println("Public Holidays:");
         for (int i = 0; i < holidayDB.size(); i++) {
             System.out.printf("%s   %s\n", holidayDB.get(i).getHolidayName(),
-                    dh.dateToString(holidayDB.get(i).getHolidayDate()));
+                    holidayDB.get(i).getHolidayDate()).toString();
         }
     }
 

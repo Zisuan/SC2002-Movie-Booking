@@ -1,6 +1,10 @@
 package View.UserMenuView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+import Controller.PriceControl.PriceManager;
+
 import java.io.IOException;
 import View.ConfigureSystemSettings;
 import View.MovieView.MovieListing;
@@ -12,9 +16,12 @@ public class StaffMenu {
 
     public static final String FILEPATH = "./database/";
 
-    public static void adminMenu() throws SecurityException, ClassNotFoundException, IOException, ParseException {
-        Scanner sc = new Scanner(System.in);
+    public static void adminMenu()
+            throws SecurityException, ClassNotFoundException, IOException, ParseException {
         int choice;
+        Scanner sc = new Scanner(System.in);
+        MovieManager mm = new MovieManager();
+        PriceManager pm = new PriceManager();
         do {
             // System.out.print("\033[H\033[2J");
             System.out.println("====Welcome to Staff Menu====");
@@ -33,13 +40,13 @@ public class StaffMenu {
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    MovieListing.MovieMenu();
+                    MovieListing.MovieMenu(mm, sc);
                     break;
                 case 2:
                     ShowtimeListing.ShowtimeMenu();
                     break;
                 case 3:
-                    ConfigureSystemSettings.configureSystemSettings();
+                    ConfigureSystemSettings.configureSystemSettings(sc, pm);
                     break;
                 case 4:
                     // List top 5 Movies by Ratings

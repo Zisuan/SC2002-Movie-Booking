@@ -2,6 +2,7 @@ package View.ShowtimeView;
 
 import java.util.*;
 import java.io.IOException;
+import java.time.LocalDate;
 
 import Controller.CinemaControl.CinemaManager;
 import Controller.MovieControl.MovieManager;
@@ -35,13 +36,14 @@ public class CreateShowTime {
         String showtimeMovie = sc.nextLine();
         System.out.println("Enter New Showtime Date: ");
         String movieDate = sc.nextLine();
+        LocalDate showtimeDate = LocalDate.parse(movieDate);
         System.out.print("Enter New Showtime Timing: ");
         String movieTime = sc.nextLine();
         Movie movie = mm.searchMovie(movieDB, showtimeMovie);
         System.out.print("Enter New Showtime Cinema: ");
         String showtimeCinema = sc.nextLine();
         Cinema cinema = cm.getCinemaByName(cinemaDB, showtimeCinema);
-        msm.addMovieSession(movieSessionDB, movie, cinema, movieDate, movieTime, sessionSeats);
+        msm.addMovieSession(movieSessionDB, movie, cinema, showtimeDate, movieTime, sessionSeats);
         msm.saveObjects(dbPath, movieSessionDB);
         System.out.println("Showtime Listing for " + showtimeMovie + " Created!");
 

@@ -1,7 +1,10 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
+
+import Controller.SeatControl.SeatManager;
 
 public class MovieSession implements Serializable {
     // Movie object
@@ -10,19 +13,21 @@ public class MovieSession implements Serializable {
     private Cinema cinema;
 
     // movie date
-    private String movieDate;
+    private LocalDate movieDate;
     // movie time
     private String movieTime;
 
     private ArrayList<Seat> sessionSeats;
 
     // create showtime constructor
-    public MovieSession(Movie movie, Cinema cinema, String movieDate, String movieTime, ArrayList<Seat> sessionSeats) {
+    public MovieSession(Movie movie, Cinema cinema, LocalDate movieDate, String movieTime,
+            ArrayList<Seat> sessionSeats) {
         this.movie = movie;
         this.cinema = cinema;
         this.movieDate = movieDate;
         this.movieTime = movieTime;
         this.sessionSeats = sessionSeats;
+
     }
 
     // create movie getter
@@ -36,7 +41,7 @@ public class MovieSession implements Serializable {
     }
 
     // create movie date getter
-    public String getMovieDate() {
+    public LocalDate getMovieDate() {
         return movieDate;
     }
 
@@ -56,8 +61,9 @@ public class MovieSession implements Serializable {
     }
 
     // create movie date setter
-    public void setMovieDate(String movieDate) {
+    public void setMovieDate(LocalDate movieDate) {
         this.movieDate = movieDate;
+
     }
 
     // create movie time setter
@@ -75,11 +81,11 @@ public class MovieSession implements Serializable {
 
     // to string method
     public String toString() {
-        return "Movie Session Movie: " + getMovie().getMovieName() + "\n" +
+        return "Movie Session Movie: " + getMovie().getMovieTitle() + "\n" +
                 "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
                 "Movie Session Date: " + getMovieDate() + "\n" +
                 "Movie Session Time: " + getMovieTime() + "\n" +
-                "Movie Session Seats: " + getSessionSeats().toString();
+                "Movie Session Seats: \n" + SeatManager.getSessionSeatsInGrid(getSessionSeats());
     }
 
 }

@@ -6,13 +6,22 @@ import java.util.*;
 import Controller.ReviewControl.ReviewManager;
 
 public class Movie implements Serializable {
+
+    public enum MovieStatus {
+        COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
+    }
+
+    public enum MovieType {
+        THREE_D, BLOCKBUSTER, NORMAL
+    }
+
     private int movieID;
     // create movie type
-    private String movieType;
+    private MovieType movieType;
     // create movie name
     private String movieTitle;
     // create movie status
-    private String movieStatus;
+    private MovieStatus movieStatus;
     // create movie synopsis
     private String movieSynopsis;
     // create movie director
@@ -28,8 +37,9 @@ public class Movie implements Serializable {
 
     // create movie constructor
 
-    public Movie(String movieType,
-            String movieTitle, String movieStatus, String movieCode, String movieSynopsis,
+    public Movie(MovieType movieType,
+            String movieTitle,
+            MovieStatus movieStatus, String movieCode, String movieSynopsis,
             String movieDirector, ArrayList<String> movieCast,
             ArrayList<Review> reviewsDB, String movieRating) {
         this.movieType = movieType;
@@ -79,32 +89,32 @@ public class Movie implements Serializable {
     }
 
     // create movie type getter
-    public String getMovieType() {
+    public MovieType getMovieType() {
         return movieType;
     }
 
     // create movie type setter
-    public void setMovieType(String movieType) {
+    public void setMovieType(MovieType movieType) {
         this.movieType = movieType;
     }
 
     // create movie name getter
-    public String getMovieName() {
+    public String getMovieTitle() {
         return movieTitle;
     }
 
     // create movie name setter
-    public void setMovieName(String movieName) {
-        this.movieTitle = movieName;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     // create movie status getter
-    public String getMovieStatus() {
+    public MovieStatus getMovieStatus() {
         return movieStatus;
     }
 
     // create movie status setter
-    public void setMovieStatus(String movieStatus) {
+    public void setMovieStatus(MovieStatus movieStatus) {
         this.movieStatus = movieStatus;
     }
 
@@ -145,7 +155,7 @@ public class Movie implements Serializable {
         if (getMovieOverallRating() != -1) {
             overallReviewRating = String.valueOf(getMovieOverallRating());
         }
-        return "Movie Title: " + getMovieName() + "\n" +
+        return "Movie Title: " + getMovieTitle() + "\n" +
                 "Movie Status: " + getMovieStatus() + "\n" +
                 "Movie Synopsis: " + getMovieSynopsis() + "\n" +
                 "Movie Director: " + getMovieDirector() + "\n" +
@@ -157,7 +167,7 @@ public class Movie implements Serializable {
                 "=========================================================\n" +
                 "                  Movie Review Rating\n" +
                 "=========================================================\n" +
-                rm.printLast3Reviews(reviewsDB);
+                rm.getLast3Reviews(reviewsDB);
 
     }
 

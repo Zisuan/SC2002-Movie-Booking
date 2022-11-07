@@ -1,6 +1,13 @@
 package Model;
 
-public class Ticket {
+import java.io.Serializable;
+
+public class Ticket implements Serializable {
+
+    public enum CinemaType {
+        Student, Senior, Normal
+    }
+
     // create ticket id
     private String ticketId;
     // create ticket price

@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Cinema implements Serializable {
+
+    public enum CinemaType {
+        PLATINUM, GOLD, NORMAL
+    }
+
     // private int cinemaID;
     // create cinema name
     private String cinemaName;
     // create cinema code
     private String cinemaCode;
     // create cinema type
-    private String cinemaType;
+    private CinemaType cinemaType;
     // create cinema seat
     private int cinemaSeatDBID;
     // create cinemaSeatDB
@@ -23,7 +28,7 @@ public class Cinema implements Serializable {
     private ArrayList<String> cinemaTypes = new ArrayList<>(
             Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
 
-    public Cinema(String cinemaName, String cinemaCode, String cinemaType) {
+    public Cinema(String cinemaName, String cinemaCode, CinemaType cinemaType) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
@@ -39,7 +44,7 @@ public class Cinema implements Serializable {
         this.cinemaMovieDB = new ArrayList<Movie>();
     }
 
-    public Cinema(String cinemaName, String cinemaCode, String cinemaType, ArrayList<Seat> cinemaSeatDB) {
+    public Cinema(String cinemaName, String cinemaCode, CinemaType cinemaType, ArrayList<Seat> cinemaSeatDB) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
         this.cinemaType = cinemaType;
@@ -57,7 +62,7 @@ public class Cinema implements Serializable {
     }
 
     // create cinema type getter
-    public String getCinemaType() {
+    public CinemaType getCinemaType() {
         return cinemaType;
     }
 
@@ -72,7 +77,7 @@ public class Cinema implements Serializable {
     }
 
     // create cinema type setter
-    public void setCinemaType(String cinemaType) {
+    public void setCinemaType(CinemaType cinemaType) {
         this.cinemaType = cinemaType;
     }
 

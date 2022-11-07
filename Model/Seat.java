@@ -8,10 +8,13 @@ public class Seat implements Serializable {
     private String cinemaCode;
     private String seatRow;
     private String seatColumn;
-    private String seatType;
+    private SeatType seatType;
     private boolean assigned;
     private int customerId;
 
+    public enum SeatType {
+        NORMAL, COUPLE
+    }
     // public Seat(ArrayList<String> fieldTokens) {
     // this.seatID = Integer.parseInt(fieldTokens.get(0));
     // this.cinemaCode = fieldTokens.get(1);
@@ -30,7 +33,8 @@ public class Seat implements Serializable {
         this.cinemaCode = null;
     }
 
-    public Seat(String seatID, String cinemaCode, String seatRow, String seatColumn, String seatType, Boolean assigned,
+    public Seat(String seatID, String cinemaCode, String seatRow, String seatColumn,
+            SeatType seatType, Boolean assigned,
             int customerId) {
         this.seatID = seatID;
         this.cinemaCode = cinemaCode;
@@ -62,11 +66,11 @@ public class Seat implements Serializable {
         this.customerId = 0;
     }
 
-    public String getSeatType() {
+    public SeatType getSeatType() {
         return seatType;
     }
 
-    public void setSeatType(String seatType) {
+    public void setSeatType(SeatType seatType) {
         this.seatType = seatType;
     }
 

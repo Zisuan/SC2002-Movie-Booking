@@ -1,11 +1,20 @@
 import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.*;
 
-import Controller.*;
 import Controller.CinemaControl.CinemaManager;
+import Controller.HolidayControl.HolidayManager;
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
 import Controller.PriceControl.PriceManager;
+import Controller.ReviewControl.ReviewManager;
+import Controller.SeatControl.SeatManager;
+import Controller.TicketControl.TicketManager;
 import Model.*;
+import Model.Cinema.CinemaType;
+import Model.Movie.MovieStatus;
+import Model.Movie.MovieType;
 
 public class DBTestingApp {
 
@@ -51,15 +60,15 @@ public class DBTestingApp {
         CinemaManager cm = new CinemaManager();
         ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
         String dbPath = FILEPATH + "Cinemas.dat";
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH1", "NormalClass");
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH2", "PlatinumClassSuite");
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH3", "GoldClassSuite");
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH1", "NormalClass");
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH2", "PlatinumClassSuite");
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH3", "GoldClassSuite");
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH1", "NormalClass");
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH2", "PlatinumClassSuite");
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH3", "GoldClassSuite");
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH1", CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH2", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH3", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH1", CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH2", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH3", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH1", CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH2", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH3", CinemaType.PLATINUM);
         // Cinema curCinema = cm.getCinema(cinemaDB, "004");
         // curCinema.getCinemaSeatDB().add(new Seat("A21", "004", "A", "21", "Standard",
         // true, 10));
@@ -75,6 +84,7 @@ public class DBTestingApp {
 
     public static void initMovies() throws SecurityException, ClassNotFoundException, IOException {
         MovieManager mm = new MovieManager();
+        ReviewManager rm = new ReviewManager();
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         ArrayList<String> cast = new ArrayList<String>();
@@ -85,14 +95,57 @@ public class DBTestingApp {
         cast.add("Don Rickles");
         cast.add("Jim Varney");
         cast.add("Wallace Shawn");
-        mm.addMovie(movieDB, "movieType", "movieTitle", "movieStatus", "movieCode",
+        rm.addReview(reviewsDB, "My review", "CustomerName", "movieTitle", 3);
+        mm.addMovie(movieDB, MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "movieCode",
                 "movieSynopsis", "movieDirector", cast, reviewsDB, "movieRating");
-        // mm.saveObjects(dbPath, movieDB);
-        // movieDB = mm.loadObjects(dbPath);
+        mm.saveObjects(dbPath, movieDB);
+        movieDB = mm.loadObjects(dbPath);
         mm.printObjects(movieDB);
     }
 
-    public static void testPriceManager() throws IOException, SecurityException, ClassNotFoundException {
+    public static void initMovieSessions() throws IOException, SecurityException, ClassNotFoundException {
+        MovieSessionManager msm = new MovieSessionManager();
+        SeatManager sm = new SeatManager();
+        ArrayList<MovieSession> movieSessionDB = new ArrayList<MovieSession>();
+        ArrayList<Seat> seatDB = sm.generateSeats(7, 10, "JemH1");
+        String dbPath = FILEPATH + "MovieSessions.dat";
+        Cinema temp = new Cinema("Cathay@Jem", "JemH1", CinemaType.NORMAL);
+        Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle", MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
+                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
+        Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "tem12pCode",
+                "tempSynopsis",
+                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
+        LocalDate tempDate = LocalDate.parse("2022-12-25");
+        msm.addMovieSession(movieSessionDB, tempMovie, temp,
+                tempDate, "12:00",
+                seatDB);
+        msm.addMovieSession(movieSessionDB, tempMovie1, temp,
+                tempDate, "12:11",
+                seatDB);
+        msm.saveObjects(dbPath, movieSessionDB);
+        movieSessionDB = msm.loadObjects(dbPath);
+        msm.printObjects(movieSessionDB);
+
+    }
+
+    public static void initHolidays() throws IOException, SecurityException, ClassNotFoundException {
+        HolidayManager hm = new HolidayManager();
+        ArrayList<Holiday> holidayDB = new ArrayList<Holiday>();
+        String dbPath = FILEPATH + "Holidays.dat";
+        hm.addHoliday(holidayDB, LocalDate.parse("2022-12-25"), "Boxing Day");
+        hm.addHoliday(holidayDB, LocalDate.parse("2022-12-26"), "Chinese New Year");
+        hm.addHoliday(holidayDB, LocalDate.parse("2022-12-30"), "Christmas");
+        hm.addHoliday(holidayDB, LocalDate.parse("2022-12-31"), "Hari Raya");
+        hm.addHoliday(holidayDB, LocalDate.parse("2023-01-01"), "Deepavali");
+        hm.addHoliday(holidayDB, LocalDate.parse("2023-01-02"), "New Year");
+        hm.listHolidays(holidayDB);
+        hm.saveObjects(dbPath, holidayDB);
+        holidayDB = hm.loadObjects(dbPath);
+        hm.listHolidays(holidayDB);
+
+    }
+
+    public static void initPrices() throws IOException, SecurityException, ClassNotFoundException {
         PriceManager pm = new PriceManager();
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = FILEPATH + "Prices.dat";
@@ -102,12 +155,45 @@ public class DBTestingApp {
         pm.printPrice(priceDB);
     }
 
+    public static void initTicket() throws IOException, SecurityException, ClassNotFoundException {
+        TicketManager tm = new TicketManager();
+        ArrayList<Ticket> ticketDB = new ArrayList<Ticket>();
+        String dbPath = FILEPATH + "Tickets.dat";
+        Cinema temp = new Cinema("Cathay@Jem", "JemH1", CinemaType.NORMAL);
+        Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle", MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
+                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
+        Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "tem12pCode",
+                "tempSynopsis",
+                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
+        LocalDate tempDate = LocalDate.parse("2022-12-25");
+        MovieSession tempMS = new MovieSession(tempMovie, temp, tempDate, "12:00", new ArrayList<Seat>());
+        MovieSession tempMS1 = new MovieSession(tempMovie1, temp, tempDate, "12:11", new ArrayList<Seat>());
+        // tm.addTicket(ticketDB, tempMS, "A1", "Adult", 10);
+        // tm.addTicket(ticketDB, tempMS1, "A2", "Adult", 10);
+        tm.saveObjects(dbPath, ticketDB);
+        ticketDB = tm.loadObjects(dbPath);
+        tm.printObjects(ticketDB);
+    }
+
+    // public static void testPriceManager() throws IOException, SecurityException,
+    // ClassNotFoundException {
+    // PriceManager pm = new PriceManager();
+    // ArrayList<Price> priceDB = new ArrayList<Price>();
+    // String dbPath = FILEPATH + "Prices.dat";
+    // pm.createPrice(priceDB, 10, 3, 4, 1, 3, 56, 7, 8);
+    // pm.saveObjects(dbPath, priceDB);
+    // priceDB = pm.loadObjects(dbPath);
+    // pm.printPrice(priceDB);
+    // }
+
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
         // initCinemas();
-        initMovies();
+        // initMovies();
+        // initHolidays();
+        initPrices();
         // testPriceManager();
-
+        // initMovieSessions();
         // testMovieManager();
 
     }

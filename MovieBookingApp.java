@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.util.*;
 import java.text.ParseException;
 
-import Controller.*;
 import Controller.LoginControl.LoginManager;
 import View.Helper;
 
@@ -13,9 +12,9 @@ public class MovieBookingApp {
     public static void main(String[] args)
             throws IOException, SecurityException, ClassNotFoundException, ParseException {
         int option;
+        Scanner sc = new Scanner(System.in);
         do {
             Helper.clearConsole();
-            Scanner sc = new Scanner(System.in);
             option = 0;
             System.out.println("=====================================================================");
             System.out.println("Welcome to MOBLIMA\n");
@@ -40,7 +39,7 @@ public class MovieBookingApp {
                 System.out.println("Invalid option");
             }
         } while (option != 3);
-        // sc.close();
+        sc.close();
 
     }
 }

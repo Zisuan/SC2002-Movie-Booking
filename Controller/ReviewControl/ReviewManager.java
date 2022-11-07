@@ -1,30 +1,16 @@
 package Controller.ReviewControl;
 
 import java.util.*;
+
+import Controller.ObjectControl.ObjectManager;
 import Model.*;
 
-public class ReviewManager {
+public class ReviewManager extends ObjectManager<Review> {
 
     public void addReview(ArrayList<Review> reviewDB, String movieReview, String customerName, String movieTitle,
             int movieRating) {
         Review review = new Review(movieReview, customerName, movieTitle, movieRating);
-        int i = 0;
-        boolean exists = false;
-        if (reviewDB != null) {
-            for (Review r : reviewDB) {
-                if (r.getCustomerName().equals(customerName) && r.getMovieTitle().equals(movieTitle)) {
-                    exists = true;
-                    break;
-                }
-                i++;
-            }
-            if (!exists) {
-                reviewDB.add(review);
-            }
-        } else {
-            reviewDB = new ArrayList<Review>();
-            reviewDB.add(review);
-        }
+        addObject(reviewDB, review);
     }
 
     public void updateReview(ArrayList<Review> reviewDB, String movieReview, String customerName, String movieTitle,
@@ -63,7 +49,18 @@ public class ReviewManager {
             System.out.println("Review does not exist!");
     }
 
-    public void listMovieReviews(ArrayList<Review> reviewDB, String movieTitle) {
+    public boolean searchReview(ArrayList<Review> reviewDB, String movieTitle, String customerName) {
+        Review tempReview = new Review("", customerName, movieTitle, 0);
+        if (objectExists(reviewDB, tempReview)) {
+            // System.out.println("Review found!");
+            // printObject(reviewDB.get(i));
+            return true;
+        } else
+            return false;
+        // System.out.println("Review does not exist!");
+    }
+
+    public void searchByMovie(ArrayList<Review> reviewDB, String movieTitle) {
         boolean exists = false;
         for (int i = 0; i < reviewDB.size(); i++) {
             if (reviewDB.get(i).getMovieTitle().equals(movieTitle)) {
@@ -77,7 +74,7 @@ public class ReviewManager {
             System.out.println("No reviews have been made yet.");
     }
 
-    public void listCustomerReviews(ArrayList<Review> reviewDB, String customerName) {
+    public void searchByCustomer(ArrayList<Review> reviewDB, String customerName) {
         boolean exists = false;
         for (int i = 0; i < reviewDB.size(); i++) {
             if (reviewDB.get(i).getCustomerName().equals(customerName)) {
@@ -109,18 +106,42 @@ public class ReviewManager {
         }
     }
 
-    public String printLast3Reviews(ArrayList<Review> reviewDB) {
-        String last3Reviews = "No reviews have been made yet.";
+    public String getLast3Reviews(ArrayList<Review> reviewDB) {
+        String last3Reviews = "";
         int count = 0;
         for (int i = reviewDB.size() - 1; i >= 0; i--) {
             if (count < 3) {
-                last3Reviews += reviewDB.get(i).toString() + "\n";
                 count++;
+                last3Reviews += count + ". " + reviewDB.get(i).toString() + "\n";
             }
         }
         if (count == 0)
-            return last3Reviews;
+            return "No reviews have been made yet.";
         return last3Reviews;
+    }
+
+    @Override
+    public boolean objectExists(ArrayList<Review> objectDB, Review object) {
+        if (objectDB != null) {
+            for (Review r : objectDB) {
+                if (r.getCustomerName().equals(object.getCustomerName())
+                        && r.getMovieTitle().equals(object.getMovieTitle())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean objectExistsInMovie(ArrayList<Review> objectDB, Review object) {
+        if (objectDB != null) {
+            for (Review r : objectDB) {
+                if (r.getMovieTitle().equalsIgnoreCase(object.getMovieTitle())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

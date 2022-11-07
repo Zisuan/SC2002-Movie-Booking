@@ -7,14 +7,15 @@ import Controller.MovieControl.MovieManager;
 import java.io.IOException;
 
 import Model.Movie;
+import Model.Movie.MovieStatus;
+import Model.Movie.MovieType;
 
 public class UpdateMovie {
 
     public static final String FILEPATH = "./database/";
 
-    public static void updateMovie() throws SecurityException, ClassNotFoundException, IOException {
-        Scanner sc = new Scanner(System.in);
-        MovieManager mm = new MovieManager();
+    public static void updateMovie(MovieManager mm, Scanner sc)
+            throws SecurityException, ClassNotFoundException, IOException {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         String dbPath = FILEPATH + "Movies.dat";
         movieDB = mm.loadObjects(dbPath);
@@ -41,7 +42,7 @@ public class UpdateMovie {
                     System.out.println("UPDATE MOVIE TYPE");
                     System.out.println("Enter Movie Type: ");
                     String movieType = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieType, null);
+                    mm.updateMovie(select, movieDB, movieCode, MovieType.valueOf(movieType), null);
                     break;
                 case 2:
                     System.out.println("UPDATE MOVIE TITLE");
@@ -65,7 +66,7 @@ public class UpdateMovie {
                     System.out.println("UPDATE MOVIE STATUS");
                     System.out.println("Enter Movie Status: ");
                     String movieStatus5 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieStatus5, null);
+                    mm.updateMovie(select, movieDB, movieCode, MovieStatus.valueOf(movieStatus5), null);
                     break;
                 case 6:
                     System.out.println("UPDATE MOVIE SYNOPSIS");
@@ -115,9 +116,10 @@ public class UpdateMovie {
                         String movieCast8 = sc.next();
                         movieCastall.add(movieCast8);
                     }
-                    mm.updateWholeMovie(select, movieCode, movieDB, movieType11, movieTitle11, movieCode11,
+                    mm.updateWholeMovie(select, movieCode, movieDB, MovieType.valueOf(movieType11), movieTitle11,
+                            movieCode11,
                             movieRating11,
-                            movieStatus11, movieSynopsis11, movieDirector11, movieCastall);
+                            MovieStatus.valueOf(movieStatus11), movieSynopsis11, movieDirector11, movieCastall);
                     break;
                 case 10:
                     System.out.println("Exit");
@@ -127,6 +129,5 @@ public class UpdateMovie {
                     break;
             }
         } while (select != 10);
-        // sc.close();
     }
 }

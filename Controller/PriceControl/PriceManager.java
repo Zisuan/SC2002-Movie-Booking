@@ -1,12 +1,17 @@
 package Controller.PriceControl;
 
+import java.time.LocalDate;
 import java.util.*;
 
+import Controller.Helpers.DateHelper;
+import Controller.HolidayControl.HolidayManager;
 import Controller.ObjectControl.ObjectManager;
 
 import Model.*;
 
 public class PriceManager extends ObjectManager<Price> {
+
+    public static final String FILEPATH = "./database/";
 
     // create a pricing model
     public void createPrice(ArrayList<Price> priceDB, double threeDSurcharge, double blkBusterSurcharge,
@@ -51,6 +56,64 @@ public class PriceManager extends ObjectManager<Price> {
                 priceDB.get(priceModelID - 1).setWeekendPHSurcharge(newValue);
                 break;
         }
+    }
+
+    // get the price model
+    public Price getPrice(ArrayList<Price> priceDB) {
+        return priceDB.get(0);
+    }
+
+    public static double getPrice(MovieSession movieSession, Price price,
+            ArrayList<Holiday> holidays, String ticketType) {
+        double finalPrice = 0;
+        Movie selectedMovie = movieSession.getMovie();
+        Cinema selectedCinema = movieSession.getCinema();
+        switch (selectedMovie.getMovieType()) {
+            case BLOCKBUSTER:
+                finalPrice += price.getBlkBusterSurcharge();
+                break;
+            case THREE_D:
+                finalPrice += price.getThreeDSurcharge();
+                break;
+            case NORMAL:
+                finalPrice += 0;
+                break;
+            default:
+                break;
+        }
+
+        switch (selectedCinema.getCinemaType()) {
+            case PLATINUM:
+                finalPrice += price.getPlatinumSurcharge();
+                break;
+            case GOLD:
+                finalPrice += price.getGoldSurcharge();
+                break;
+            default:
+                break;
+        }
+
+        switch (Integer.parseInt(ticketType)) {
+            case 1:
+                finalPrice += price.getSeniorBasePrice();
+                break;
+            case 2:
+                finalPrice += price.getStudentBasePrice();
+                break;
+            case 3:
+                finalPrice += price.getAdultBasePrice();
+                break;
+            default:
+                break;
+        }
+
+        LocalDate movieDate = movieSession.getMovieDate();
+        HolidayManager holidayManager = new HolidayManager();
+        if (DateHelper.isWeekend(movieDate) || holidayManager.isPublicHoliday(holidays, movieDate)) {
+            finalPrice += price.getWeekendPHSurcharge();
+        }
+
+        return finalPrice;
     }
 
     public void listPrices(Price price) {

@@ -12,12 +12,11 @@ public abstract class ObjectManager<T> {
     public abstract boolean objectExists(ArrayList<T> objectDB, T object);
 
     public void addObject(ArrayList<T> objectDB, T object) {
-        boolean exists = objectExists(objectDB, object);
-        if (!exists) {
+        if (!objectExists(objectDB, object) || objectDB == null) {
             objectDB.add(object);
-            System.out.println("Object successfully added!");
+            System.out.println(object.getClass().getSimpleName() + " successfully added!");
         } else {
-            System.out.println("Object already exists!");
+            System.out.println(object.getClass().getSimpleName() + " already exists!");
         }
     }
 

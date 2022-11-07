@@ -1,6 +1,9 @@
 package View;
 
 import java.util.*;
+
+import Controller.PriceControl.PriceManager;
+
 import java.io.*;
 import java.text.ParseException;
 import View.TicketView.TicketPriceView;
@@ -9,10 +12,9 @@ public class ConfigureSystemSettings {
 
     public static final String FILEPATH = "./database/";
 
-    public static void configureSystemSettings()
+    public static void configureSystemSettings(Scanner sc, PriceManager pm)
             throws SecurityException, ClassNotFoundException, IOException, ParseException {
 
-        Scanner sc = new Scanner(System.in);
         int choice;
         do {
             System.out.println("====Configure System Settings====");
@@ -26,7 +28,7 @@ public class ConfigureSystemSettings {
                     HolidayView.HolidayMenu();
                     break;
                 case 2:
-                    TicketPriceView.PriceMenu();
+                    TicketPriceView.PriceMenu(sc, pm);
                     break;
                 case 3:
                     System.out.println("Returning to main menu...");
