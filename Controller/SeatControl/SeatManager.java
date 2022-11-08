@@ -42,8 +42,15 @@ public class SeatManager extends ObjectManager<Seat> {
     public static void assignSeat(ArrayList<Seat> seatDB, String seatID, int customerId) {
         for (Seat seat : seatDB) {
             if (seat.getSeatID().equalsIgnoreCase(seatID)) {
-                seat.assign(customerId);
+                if (!seat.isAssigned()) {
+                    seat.assign(customerId);
+                    break;
+                } else {
+                    System.out.println("Seat is already taken!");
+                    break;
+                }
             }
+            // System.out.println("Seat does not exist!");
         }
     }
 

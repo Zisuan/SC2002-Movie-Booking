@@ -12,6 +12,7 @@ import Model.*;
 
 public class ViewBookingHistory {
     private static String dbPath = DatabaseFilePath.Tickets.getFilePath();
+    public static final Scanner sc = new Scanner(System.in);
 
     public static void viewBookingHistory(String customerId, TicketManager ticketManager)
             throws SecurityException, ClassNotFoundException, IOException {
@@ -22,8 +23,8 @@ public class ViewBookingHistory {
         System.out.println("---------------");
         TicketManager.printAllTicketsByCustomer(ticketDB, customerId);
         System.out.println("Press enter to return to main menu");
-        Scanner sc = new Scanner(System.in);
         sc.nextLine();
-        sc.close();
+        Helper.clearConsole();
+        // sc.close();
     }
 }

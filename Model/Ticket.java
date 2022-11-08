@@ -29,11 +29,21 @@ public class Ticket implements Serializable {
             MovieSession ticketShowtime, String customerId) {
         this.ticketId = ticketId;
         this.ticketPrice = ticketPrice;
-        this.ticketType = ticketType;
         this.ticketStatus = ticketStatus;
         this.ticketSeat = ticketSeat;
         this.ticketShowtime = ticketShowtime;
         this.customerId = customerId;
+        switch (Integer.parseInt(ticketType)) {
+            case 1:
+                this.ticketType = CinemaType.Student.toString();
+                break;
+            case 2:
+                this.ticketType = CinemaType.Senior.toString();
+                break;
+            case 3:
+                this.ticketType = CinemaType.Normal.toString();
+                break;
+        }
     }
 
     // create ticket id getter
@@ -112,6 +122,19 @@ public class Ticket implements Serializable {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    // create cinema toString
+    @Override
+    public String toString() {
+        return "Ticket Id: " + getTicketId() + "\n" +
+                "Ticket Price: " + getTicketPrice() + "\n" +
+                "Ticket Type: " + getTicketType() + "\n" +
+                "Ticket Status: " + getTicketStatus() + "\n" +
+                "Ticket Seat: " + getTicketSeat() + "\n" +
+                "Ticket Showtime: " + getTicketShowtime().getMovieDate() + " @ " + getTicketShowtime().getMovieTime()
+                + "\n" +
+                "Customer Id: " + getCustomerId();
     }
 
 }

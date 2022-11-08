@@ -33,9 +33,7 @@ public class BookTicket {
         ArrayList<MovieSession> selectedMovieSessionDB = new ArrayList<MovieSession>();
         ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
         ArrayList<Seat> seatDB = new ArrayList<Seat>();
-        ArrayList<Ticket> ticketDB = new ArrayList<Ticket>();
-        ArrayList<Price> priceDB = pm.loadObjects(DatabaseFilePath.Prices.getFilePath());
-        ArrayList<Holiday> holidayDB = hm.loadObjects(DatabaseFilePath.Holidays.getFilePath());
+
         movieSessionDB = msm.loadObjects(dbPath);
         System.out.println("Welcome to Booking Menu");
         System.out.println("Please select the movie you want to book:");
@@ -56,43 +54,92 @@ public class BookTicket {
                 selectedCinema.getCinemaCode());
         msm.printShowtimes(selectedMovieSessionDB);
         String showtime = sc.nextLine();
-        MovieSession seletedShowtime = msm.getMovieSession(selectedMovieSessionDB, Integer.parseInt(showtime));
-        msm.printSessionSeats(seletedShowtime);
 
-        System.out.println("Please select the seat you want to book:");
-        System.out.println("Please enter the row number:");
-        String row = sc.nextLine();
+        MovieSession selectedShowtime = msm.getMovieSession(selectedMovieSessionDB, Integer.parseInt(showtime));
 
-        System.out.println("Please enter the column number:");
-        String col = sc.nextLine();
-        if (Integer.parseInt(col) < 10) {
-            col = "0" + col;
-        }
-        System.out.println("Are you a :");
-        System.out.println("(1) Senior Citizen");
-        System.out.println("(2) Student");
-        System.out.println("(3) None of the above");
-        String ticketType = sc.nextLine();
+        ArrayList<Seat> sessionSeats = selectedShowtime.getSessionSeats();
 
-        String seatID = row + col;
+        ArrayList<String> seatIDInfo = new ArrayList<String>();
+        seatIDInfo = checkSeatAvailability(sessionSeats, selectedShowtime, msm, sm);
+        String seatID = seatIDInfo.get(0);
+        String row = seatIDInfo.get(1);
+        String col = seatIDInfo.get(2);
+        String ticketType = getUserTicketType();
+
         Seat selectedSeat = new Seat(seatID, selectedCinema.getCinemaCode(), row, col, SeatType.NORMAL, true, 10);
-
-        ArrayList<Seat> sessionSeats = seletedShowtime.getSessionSeats();
         sm.assignSeat(sessionSeats, seatID, 1112);
-        seletedShowtime.setSessionSeats(sessionSeats);
+        selectedShowtime.setSessionSeats(sessionSeats);
+        confrimBooking(selectedMovie, selectedCinema, selectedShowtime, selectedSeat, ticketType, username, seatID,
+                selectedMovieSessionDB, msm, tm, pm, hm);
+    }
+
+    private static String getUserTicketType() {
+        System.out.println("Are you a:");
+        System.out.println("1. Student");
+        System.out.println("2. Senior Citizen");
+        System.out.println("3. None of the above");
+        String ticketType = sc.nextLine();
+        return ticketType;
+    }
+
+    public static ArrayList<String> checkSeatAvailability(ArrayList<Seat> sessionSeats, MovieSession selectedShowtime,
+            MovieSessionManager msm, SeatManager sm)
+            throws SecurityException, ClassNotFoundException, IOException {
+        String seatID = "";
+        String row = "";
+        String col = "";
+        boolean isSeatBooked = true;
+        do {
+            Helper.clearConsole();
+            if (!isSeatBooked) {
+                System.out.println("Seat is not available, please try again:");
+            }
+
+            msm.printSessionSeats(selectedShowtime);
+            System.out.println("Please select the seat you want to book:");
+            System.out.println("Please enter the row number:");
+            row = sc.nextLine();
+
+            System.out.println("Please enter the column number:");
+            col = sc.nextLine();
+            sessionSeats = selectedShowtime.getSessionSeats();
+            if (Integer.parseInt(col) < 10) {
+                col = "0" + col;
+            }
+            seatID = row + col;
+            isSeatBooked = sm.getSeatStatus(sessionSeats, seatID);
+        } while (isSeatBooked);
+        ArrayList<String> seatIDInfo = new ArrayList<String>();
+        seatIDInfo.add(seatID);
+        seatIDInfo.add(row);
+        seatIDInfo.add(col);
+        return seatIDInfo;
+    }
+
+    public static void confrimBooking(Movie selectedMovie, Cinema selectedCinema, MovieSession selectedShowtime,
+            Seat selectedSeat, String ticketType, String username, String seatID,
+            ArrayList<MovieSession> movieSessionDB,
+            MovieSessionManager msm, TicketManager tm, PriceManager pm, HolidayManager hm)
+            throws SecurityException, ClassNotFoundException, IOException {
+        ArrayList<Ticket> ticketDB = tm.loadObjects(DatabaseFilePath.Tickets.getFilePath());
+        ArrayList<Price> priceDB = pm.loadObjects(DatabaseFilePath.Prices.getFilePath());
+        ArrayList<Holiday> holidayDB = hm.loadObjects(DatabaseFilePath.Holidays.getFilePath());
         Helper.clearConsole();
+
         System.out.println("Please confirm your booking:");
         System.out.println("Movie: " + selectedMovie.getMovieTitle());
         System.out.println("Cinema: " + selectedCinema.getCinemaCode());
-        System.out.println("Showtime: " + seletedShowtime.getMovieDate() + " @ " + seletedShowtime.getMovieTime());
+        System.out.println("Showtime: " + selectedShowtime.getMovieDate() + " @ " + selectedShowtime.getMovieTime());
         System.out.println("Seat: " + selectedSeat.getSeatID());
-        double ticketPrice = pm.getPrice(seletedShowtime, pm.getPrice(priceDB), holidayDB, ticketType);
+        double ticketPrice = pm.getPrice(selectedShowtime, pm.getPrice(priceDB), holidayDB, ticketType);
         System.out.println("Price: " + ticketPrice);
-        msm.printSessionSeats(seletedShowtime);
+        msm.printSessionSeats(selectedShowtime);
+
         System.out.println("Please enter 1 to confirm booking, 2 to cancel booking:");
         String confirm = sc.nextLine();
         if (confirm.equals("1")) {
-            tm.addNewTicket(ticketDB, ticketPrice, ticketType, "Booked", seatID, seletedShowtime, username);
+            tm.addNewTicket(ticketDB, ticketPrice, ticketType, "Booked", seatID, selectedShowtime, username);
+            msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);
             tm.saveObjects(DatabaseFilePath.Tickets.getFilePath(), ticketDB);
             System.out.println("Booking confirmed!");
             System.out.println("Thank you for using MOBLIMA!");

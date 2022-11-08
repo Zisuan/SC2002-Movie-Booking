@@ -63,7 +63,9 @@ public class TicketManager extends ObjectManager<Ticket> {
     public static void printAllTicketsByCustomer(ArrayList<Ticket> ticketDB, String customerId) {
         for (int i = 0; i < ticketDB.size(); i++) {
             if (ticketDB.get(i).getCustomerId().equals(customerId)) {
+                System.out.println("-------------Ticket " + (i + 1) + "-------------");
                 System.out.println(ticketDB.get(i).toString());
+                System.out.println("----------------------------------");
             }
         }
     }
