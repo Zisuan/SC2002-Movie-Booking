@@ -154,6 +154,17 @@ public class MovieManager extends ObjectManager<Movie> {
 
     }
 
+    public static ArrayList<Movie> filterMovieByBookableStatus(ArrayList<Movie> movieDB) {
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
+        for (Movie movie : movieDB) {
+            if (movie.getMovieStatus().equals(MovieStatus.COMING_SOON)
+                    || movie.getMovieStatus().equals(MovieStatus.NOW_SHOWING)) {
+                movieList.add(movie);
+            }
+        }
+        return movieList;
+    }
+
     // // select movie
     // public static String selectMovie(ArrayList<Movie> movieDB) {
     // printMovieTitles(movieDB);
@@ -237,6 +248,18 @@ public class MovieManager extends ObjectManager<Movie> {
         for (int i = 0; i < movieDB.size(); i++) {
             System.out.println(
                     i + 1 + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode() + ")");
+
+        }
+        if (movieDB.size() == 0) {
+            System.out.println("No movies available");
+        }
+    }
+
+    // print movie titles + movie code + movie status
+    public static void printMovieTitlesAndCodeAndStatus(ArrayList<Movie> movieDB) {
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println(i + 1 + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode()
+                    + ") - " + movieDB.get(i).getMovieStatus());
         }
         if (movieDB.size() == 0) {
             System.out.println("No movies available");
@@ -247,7 +270,7 @@ public class MovieManager extends ObjectManager<Movie> {
     public boolean objectExists(ArrayList<Movie> objectDB, Movie object) {
         for (Movie movie : objectDB) {
             if (movie.getMovieCode().equals(object.getMovieCode())) {
-                System.out.println("Movie code already exists");
+                // System.out.println("Movie code already exists");
                 return true;
             }
         }

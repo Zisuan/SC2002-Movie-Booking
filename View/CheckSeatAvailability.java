@@ -25,7 +25,7 @@ public class CheckSeatAvailability {
 
         System.out.println("---------Check Seat Availability---------");
         System.out.println("Please select the movie you want to check the seat availability for:");
-        movieDB = msm.getMoviesInSession(movieSessionDB);
+        movieDB = msm.getMoviesInSession(movieSessionDB, mm);
         if (movieDB.size() == 0) {
             System.out.println("There are no movies in session at the moment.");
             System.out.println("Please come back later.");

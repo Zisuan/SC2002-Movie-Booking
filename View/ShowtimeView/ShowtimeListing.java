@@ -35,7 +35,7 @@ public class ShowtimeListing {
                     UpdateShowTime.updateShowTime(msm, cm, mm, sm);
                     break;
                 case 3:
-                    RemoveShowTime.removeShowTime(mm);
+                    RemoveShowTime.removeShowTime(mm, msm);
                     break;
                 case 4:
                     System.out.println("Goodbye!");

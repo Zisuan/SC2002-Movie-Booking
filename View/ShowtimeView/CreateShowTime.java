@@ -23,6 +23,7 @@ public class CreateShowTime {
 
         ArrayList<MovieSession> movieSessionDB = msm.loadObjects(DatabaseFilePath.MovieSessions.getFilePath());
         ArrayList<Movie> movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
+        movieDB = mm.filterMovieByBookableStatus(movieDB);
         ArrayList<Cinema> cinemaDB = cm.loadObjects(DatabaseFilePath.Cinemas.getFilePath());
         System.out.println("====CREATE NEW SHOWTIME LISTING====");
         MovieSession movieSession = fullMovieSessionPrompt(movieDB, cinemaDB, sm);

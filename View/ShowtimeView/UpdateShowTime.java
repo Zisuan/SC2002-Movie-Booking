@@ -30,10 +30,7 @@ public class UpdateShowTime {
 
         ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
 
-        System.out.println("Enter Showtime ID to update movie showtime: ");
-        msm.printShowtimes(movieSessionsByMovie);
-        int showtimeID = sc.nextInt();
-        MovieSession movieSession = movieSessionsByMovie.get(showtimeID - 1);
+        MovieSession movieSession = chooseAShowtime(movieSessionsByMovie, msm);
 
         System.out.println("Select Update case");
         System.out.println("1. Update Movie Date");
@@ -75,5 +72,17 @@ public class UpdateShowTime {
         msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);
         // case options for update
         // System.out.println("Showtime Listing for " + showtimeMovie + " Updated!");
+    }
+
+    public static MovieSession chooseAShowtime(ArrayList<MovieSession> movieSessionsByMovie, MovieSessionManager msm) {
+        MovieSession movieSession = null;
+        do {
+            System.out.println("Choose a showtime: ");
+            msm.printShowtimes(movieSessionsByMovie);
+            int showtimeID = sc.nextInt();
+            movieSession = movieSessionsByMovie.get(showtimeID - 1);
+
+        } while (movieSession == null);
+        return movieSession;
     }
 }

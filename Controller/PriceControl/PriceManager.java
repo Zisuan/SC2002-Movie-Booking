@@ -63,6 +63,7 @@ public class PriceManager extends ObjectManager<Price> {
         return priceDB.get(0);
     }
 
+    // TODO check weekend prices and PH prices + surcharges
     public static double getPrice(MovieSession movieSession, Price price,
             ArrayList<Holiday> holidays, String ticketType) {
         double finalPrice = 0;

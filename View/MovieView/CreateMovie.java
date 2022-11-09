@@ -47,7 +47,7 @@ public class CreateMovie {
         System.out.println("Enter Movie Rating: \n 1. G \n 2. PG \n 3. PG13 \n 4. NC16 \n 5. M18 \n 6. R21");
         String movieRating = sc.nextLine();
         System.out
-                .println("Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing \n 4. End of Showing");
+                .println("Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing");
         String movieStatus = sc.nextLine();
         System.out.println("Enter Movie Synopsis: ");
         String movieSynopsis = sc.nextLine();

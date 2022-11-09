@@ -3,6 +3,7 @@ package Controller.MovieSessionControl;
 import java.time.LocalDate;
 import java.util.*;
 
+import Controller.MovieControl.MovieManager;
 import Controller.ObjectControl.ObjectManager;
 import Controller.SeatControl.SeatManager;
 import Model.*;
@@ -40,7 +41,8 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     }
 
     // remove MovieSession
-    public static void removeMovieSession(ArrayList<MovieSession> MovieSessionDB, String movieCode) {
+    public static void removeMovieSession(ArrayList<MovieSession> MovieSessionDB, MovieSession session) {
+        String movieCode = session.getMovie().getMovieCode();
         for (MovieSession MovieSession : MovieSessionDB) {
             if (MovieSession.getMovie().getMovieCode().equals(movieCode)) {
                 MovieSessionDB.remove(MovieSession);
@@ -49,14 +51,17 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         }
     }
 
-    public ArrayList<Movie> getMoviesInSession(ArrayList<MovieSession> movieDB) {
+    public ArrayList<Movie> getMoviesInSession(ArrayList<MovieSession> movieDB, MovieManager mm) {
         ArrayList<Movie> listOfMoviesInSession = new ArrayList<Movie>();
         if (movieDB == null) {
             System.out.println("No movies in the database");
         } else {
             for (MovieSession movieSession : movieDB) {
-                if (movieSession.getMovie().getMovieStatus().equals(Movie.MovieStatus.NOW_SHOWING)) {
-                    listOfMoviesInSession.add(movieSession.getMovie());
+                if (movieSession.getMovie().getMovieStatus().equals(Movie.MovieStatus.NOW_SHOWING)
+                        || movieSession.getMovie().getMovieStatus().equals(Movie.MovieStatus.PREVIEW)) {
+                    if (!mm.objectExists(listOfMoviesInSession, movieSession.getMovie())) {
+                        listOfMoviesInSession.add(movieSession.getMovie());
+                    }
                 }
             }
         }

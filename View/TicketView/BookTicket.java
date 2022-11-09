@@ -38,7 +38,7 @@ public class BookTicket {
         movieSessionDB = msm.loadObjects(dbPath);
         System.out.println("Welcome to Booking Menu");
         System.out.println("Please select the movie you want to book:");
-        moviesInSessionDB = msm.getMoviesInSession(movieSessionDB);
+        moviesInSessionDB = msm.getMoviesInSession(movieSessionDB, mm);
         MovieManager.printMovieTitles(moviesInSessionDB);
         if (moviesInSessionDB.size() == 0) {
             System.out.println("There are no movies in session at the moment.");
