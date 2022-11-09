@@ -10,6 +10,9 @@ import Model.Movie.MovieType;
 
 public class MovieManager extends ObjectManager<Movie> {
     public static final Scanner sc = new Scanner(System.in);
+    final static String ANSI_RESET = "\u001B[0m";
+    final static String ANSI_CYAN = "\u001B[36m";
+    final static String ANSI_BLUE = "\u001B[34m";
 
     // add movie
     public void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle,
@@ -235,13 +238,12 @@ public class MovieManager extends ObjectManager<Movie> {
             }
         }
         if (movieExists == false) {
-            System.out.println("Movie does not exist!");
+            System.out.println(ANSI_CYAN + "Movie does not exist!" + ANSI_RESET);
         }
     }
 
     // print movie titles
     public static void printMovieTitles(ArrayList<Movie> movieDB) {
-        final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieDB.size(); i++) {
@@ -254,8 +256,7 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movie titles + movie code
     public static void printMovieTitlesAndCode(ArrayList<Movie> movieDB) {
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_CYAN = "\u001B[36m";
+
         for (int i = 0; i < movieDB.size(); i++) {
             System.out.println(ANSI_CYAN +
                     (i + 1) + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode() + ")"
@@ -263,7 +264,7 @@ public class MovieManager extends ObjectManager<Movie> {
 
         }
         if (movieDB.size() == 0) {
-            System.out.println("No movies available");
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
         }
     }
 
@@ -274,7 +275,7 @@ public class MovieManager extends ObjectManager<Movie> {
                     + ") - " + movieDB.get(i).getMovieStatus());
         }
         if (movieDB.size() == 0) {
-            System.out.println("No movies available");
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
         }
     }
 
