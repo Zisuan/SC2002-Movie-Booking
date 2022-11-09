@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 import Controller.Helpers.LoginAuthenticator;
+import Model.Customer;
 import View.Helper;
 import View.UserMenuView.CustomerMenu;
 import View.UserMenuView.StaffMenu;
@@ -24,9 +25,10 @@ public class LoginManager {
             if (v.getRole()) {
                 StaffMenu.adminMenu();
             } else {
-                CustomerMenu.MovieGoerMenu(v.getUserName());
+                Customer customer = new Customer(v.getUserName(), v.getPassword(), v.getRole(), v.getFirstName(),
+                        v.getLastName());
+                CustomerMenu.MovieGoerMenu(customer);
             }
-
         } else {
             System.out.println("Login failed");
         }

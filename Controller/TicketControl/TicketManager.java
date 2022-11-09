@@ -1,5 +1,7 @@
 package Controller.TicketControl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import Controller.ObjectControl.ObjectManager;
@@ -7,18 +9,21 @@ import Model.*;
 
 public class TicketManager extends ObjectManager<Ticket> {
 
-    public void addNewTicket(ArrayList<Ticket> ticketDB, double ticketPrice, String ticketType,
-            String ticketStatus, String ticketSeat, MovieSession ticketShowtime, String customerId) {
-        int ticketId = ticketDB.size() + 1;
-        Ticket ticket = new Ticket(Integer.toString(ticketId), ticketPrice, ticketType, ticketStatus, ticketSeat,
-                ticketShowtime,
-                customerId);
-        if (!objectExists(ticketDB, ticket)) {
-            ticketDB.add(ticket);
-        }
-    }
+    // public void addNewTicket(ArrayList<Ticket> ticketDB, String ticketID, double
+    // ticketPrice, String ticketType,
+    // String ticketStatus, String ticketSeat, MovieSession ticketShowtime, Customer
+    // customer) {
+    // Ticket ticket = new Ticket(ticketPrice, ticketType, ticketStatus, ticketSeat,
+    // ticketShowtime,
+    // customer);
+    // if (!objectExists(ticketDB, ticket)) {
+    // ticketDB.add(ticket);
+    // }
+    // }
 
     public void addNewTicket(ArrayList<Ticket> ticketDB, Ticket newTicket) {
+        Cinema ticketCinema = newTicket.getTicketShowtime().getCinema();
+        newTicket.setTicketId(generateTicketID(ticketCinema));
         if (!objectExists(ticketDB, newTicket)) {
             ticketDB.add(newTicket);
         }
@@ -39,7 +44,7 @@ public class TicketManager extends ObjectManager<Ticket> {
                 ticketDB.get(i).setTicketPrice(ticketPrice);
                 ticketDB.get(i).setTicketType(ticketType);
                 ticketDB.get(i).setTicketStatus(ticketStatus);
-                ticketDB.get(i).setTicketSeat(ticketSeat);
+                ticketDB.get(i).setTicketSeatID(ticketSeat);
                 ticketDB.get(i).setTicketShowtime(ticketShowtime);
                 ticketDB.get(i).setTicketCustomer(ticketCustomer);
             }
@@ -62,7 +67,10 @@ public class TicketManager extends ObjectManager<Ticket> {
 
     public static void printAllTicketsByCustomer(ArrayList<Ticket> ticketDB, String customerId) {
         for (int i = 0; i < ticketDB.size(); i++) {
-            if (ticketDB.get(i).getCustomerId().equals(customerId)) {
+            if (ticketDB.size() == 0) {
+                System.out.println("No tickets found");
+                break;
+            } else if (ticketDB.get(i).getCustomerId().equals(customerId)) {
                 System.out.println("-------------Ticket " + (i + 1) + "-------------");
                 System.out.println(ticketDB.get(i).toString());
                 System.out.println("----------------------------------");
@@ -78,6 +86,29 @@ public class TicketManager extends ObjectManager<Ticket> {
             }
         }
         return tickets;
+    }
+
+    public ArrayList<Ticket> getTicketsByMovie(ArrayList<Ticket> ticketDB, String movieTitle) {
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        for (int i = 0; i < ticketDB.size(); i++) {
+            if (ticketDB.get(i).getTicketShowtime().getMovie().getMovieTitle().equalsIgnoreCase(movieTitle)) {
+                tickets.add(ticketDB.get(i));
+            }
+        }
+        return tickets;
+    }
+
+    public int getNumberOfTicketSales(ArrayList<Ticket> ticketDB, String movieTitle) {
+        int numberOfTicketSales = getTicketsByMovie(ticketDB, movieTitle).size();
+        return numberOfTicketSales;
+    }
+
+    public String generateTicketID(Cinema cinema) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYYMMddHHmm");
+        String dateTime = LocalDateTime.now().format(formatter).toString();
+        String cinemaCode = cinema.getCinemaCode();
+        String ticketID = cinemaCode + dateTime;
+        return ticketID;
     }
 
     @Override

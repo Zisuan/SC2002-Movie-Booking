@@ -40,7 +40,7 @@ public class StaffMenu {
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    MovieListing.MovieMenu(mm, sc);
+                    MovieListing.MovieMenu(mm);
                     break;
                 case 2:
                     ShowtimeListing.ShowtimeMenu();

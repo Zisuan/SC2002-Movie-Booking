@@ -12,14 +12,18 @@ public class MovieManager extends ObjectManager<Movie> {
     public static final Scanner sc = new Scanner(System.in);
 
     // add movie
-    public void addMovie(ArrayList<Movie> movieDB, MovieType movieType, String movieTitle,
-            MovieStatus movieStatus,
-            String movieCode, String movieSynopsis,
+    public void addMovie(ArrayList<Movie> movieDB, String movieType, String movieTitle,
+            String movieStatus, String movieSynopsis,
             String movieDirector,
             ArrayList<String> movieCast, ArrayList<Review> reviewsDB, String movieRating)
             throws SecurityException, ClassNotFoundException {
-        Movie newMovie = new Movie(movieType, movieTitle, movieStatus, movieCode,
+        Movie newMovie = new Movie(movieType, movieTitle, movieStatus,
                 movieSynopsis, movieDirector, movieCast, reviewsDB, movieRating);
+        addObject(movieDB, newMovie);
+    }
+
+    public void addMovie(ArrayList<Movie> movieDB, Movie newMovie)
+            throws SecurityException, ClassNotFoundException {
         addObject(movieDB, newMovie);
     }
 
@@ -97,26 +101,16 @@ public class MovieManager extends ObjectManager<Movie> {
         }
     }
 
-    public void updateWholeMovie(int updateCase, String OGmovieCode, ArrayList<Movie> movieDB,
-            MovieType movieType,
-            String movieTitle, String movieCode, String movieRating,
-            MovieStatus movieStatus, String movieSynopsis,
-            String movieDirector, ArrayList<String> movieCast) {
-
+    public void updateWholeMovie(ArrayList<Movie> movieDB, Movie updatedMovie, Movie oldMovie) {
+        int i = 0;
         for (Movie movie : movieDB) {
-            if (movie.getMovieCode().equals(OGmovieCode)) {
-                movie.setMovieType(movieType);
-                movie.setMovieTitle(movieTitle);
-                movie.setMovieCode(movieCode);
-                movie.setMovieRating(movieRating);
-                movie.setMovieStatus(movieStatus);
-                movie.setMovieSynopsis(movieSynopsis);
-                movie.setMovieDirector(movieDirector);
-                movie.setMovieCast(movieCast);
+            if (movie.equals(oldMovie)) {
+                updatedMovie.setReviewsDB(oldMovie.getReviewsDB());
+                movieDB.set(i, updatedMovie);
                 break;
             }
+            i++;
         }
-
     }
 
     // updateReviewsDB
@@ -150,6 +144,16 @@ public class MovieManager extends ObjectManager<Movie> {
 
     }
 
+    public static Movie searchMovieByCode(ArrayList<Movie> movieDB, String movieCode) {
+        for (Movie movie : movieDB) {
+            if (movie.getMovieCode().equalsIgnoreCase(movieCode)) {
+                return movie;
+            }
+        }
+        return null;
+
+    }
+
     // // select movie
     // public static String selectMovie(ArrayList<Movie> movieDB) {
     // printMovieTitles(movieDB);
@@ -167,9 +171,18 @@ public class MovieManager extends ObjectManager<Movie> {
     // }
 
     // get movie reviews
-    public ArrayList<Review> getMovieReviews(ArrayList<Movie> movieDB, String movieTitle) {
+    public ArrayList<Review> getReviews(ArrayList<Movie> movieDB, String movieTitle) {
         for (Movie movie : movieDB) {
             if (movie.getMovieTitle().equalsIgnoreCase(movieTitle)) {
+                return movie.getReviewsDB();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Review> getReviewsByCode(ArrayList<Movie> movieDB, String movieCode) {
+        for (Movie movie : movieDB) {
+            if (movie.getMovieCode().equalsIgnoreCase(movieCode)) {
                 return movie.getReviewsDB();
             }
         }
@@ -219,6 +232,17 @@ public class MovieManager extends ObjectManager<Movie> {
         }
     }
 
+    // print movie titles + movie code
+    public static void printMovieTitlesAndCode(ArrayList<Movie> movieDB) {
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println(
+                    i + 1 + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode() + ")");
+        }
+        if (movieDB.size() == 0) {
+            System.out.println("No movies available");
+        }
+    }
+
     @Override
     public boolean objectExists(ArrayList<Movie> objectDB, Movie object) {
         for (Movie movie : objectDB) {
@@ -230,8 +254,18 @@ public class MovieManager extends ObjectManager<Movie> {
         return false;
     }
 
-    public Movie getMovieByIndex(ArrayList<Movie> movieDB, String movieIndex) {
+    public static Movie getMovieByIndex(ArrayList<Movie> movieDB, String movieIndex) {
         return movieDB.get(Integer.parseInt(movieIndex) - 1);
+    }
+
+    public ArrayList<Movie> getMoviesByStatus(ArrayList<Movie> movieDB, MovieStatus movieStatus) {
+        ArrayList<Movie> moviesByStatus = new ArrayList<>();
+        for (Movie movie : movieDB) {
+            if (movie.getMovieStatus().equals(movieStatus)) {
+                moviesByStatus.add(movie);
+            }
+        }
+        return moviesByStatus;
     }
 
 }

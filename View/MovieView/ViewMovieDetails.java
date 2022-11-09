@@ -52,7 +52,7 @@ public class ViewMovieDetails {
         movieDB = mm.loadObjects(dbPath);
         System.out.print("Enter Movie Title: ");
         String movieTitle = sc.nextLine();
-        reviewDB = mm.getMovieReviews(movieDB, movieTitle);
+        reviewDB = mm.getReviews(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
         if (mm.searchMovie(movieDB, movieTitle) != null && !rm.searchReview(reviewDB, movieTitle, username)) {
             System.out.println("Would you like to rate this movie? (Y/N)");

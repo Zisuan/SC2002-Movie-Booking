@@ -11,10 +11,10 @@ public class CinemaManager extends ObjectManager<Cinema> {
     public static final String FILEPATH = "./database/";
     public static final String DBNAME = "Cinemas.dat";
 
-    public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, String cinemaCode, CinemaType cinemaType) {
+    public void addCinema(ArrayList<Cinema> cinemaDB, String cinemaName, int cinemaHall, CinemaType cinemaType) {
         // int newID = cinemaDB.size() + 1;
         // check for duplicate cinema code
-        Cinema newCinema = new Cinema(cinemaName, cinemaCode, cinemaType);
+        Cinema newCinema = new Cinema(cinemaName, cinemaHall, cinemaType);
         addObject(cinemaDB, newCinema);
 
         // try {
@@ -104,6 +104,23 @@ public class CinemaManager extends ObjectManager<Cinema> {
             }
         }
         return false;
+    }
+
+    public static void printCinemaTitlesAndCode(ArrayList<Cinema> cinemaDB) {
+        int i = 0;
+        for (Cinema c : cinemaDB) {
+            i++;
+            System.out.println(i + ". " + c.getCinemaName() + "- " + c.getCinemaCode());
+        }
+    }
+
+    public static Cinema searchCinemaByCode(ArrayList<Cinema> cinemaDB, String cinemaCode) {
+        for (Cinema c : cinemaDB) {
+            if (c.getCinemaCode().equals(cinemaCode)) {
+                return c;
+            }
+        }
+        return null;
     }
 
     // }

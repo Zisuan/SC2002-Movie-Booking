@@ -5,43 +5,55 @@ import java.util.*;
 
 public class Seat implements Serializable {
     private String seatID;
+    private Cinema cinema;
     private String cinemaCode;
     private String seatRow;
     private String seatColumn;
     private SeatType seatType;
     private boolean assigned;
-    private int customerId;
+    private String customerId;
+    private Customer customer;
 
     public enum SeatType {
         NORMAL, COUPLE
     }
-    // public Seat(ArrayList<String> fieldTokens) {
-    // this.seatID = Integer.parseInt(fieldTokens.get(0));
-    // this.cinemaCode = fieldTokens.get(1);
-    // this.seatRow = fieldTokens.get(2);
-    // this.seatColumn = fieldTokens.get(3);
-    // this.seatType = fieldTokens.get(4);
-    // this.assigned = Boolean.parseBoolean(fieldTokens.get(5));
-    // this.customerId = Integer.parseInt(fieldTokens.get(6));
-    // }
 
     public Seat(String seatID) {
         this.seatID = seatID;
         this.seatRow = this.seatColumn = "";
         this.assigned = false;
-        this.customerId = 0;
-        this.cinemaCode = null;
+        this.customerId = null;
+        this.cinema = null;
     }
 
-    public Seat(String seatID, String cinemaCode, String seatRow, String seatColumn,
-            SeatType seatType, Boolean assigned,
-            int customerId) {
+    public Seat(String seatID, Cinema cinema, String seatRow, String seatColumn, Boolean assigned,
+            String customerId) {
         this.seatID = seatID;
-        this.cinemaCode = cinemaCode;
+        this.cinema = cinema;
         this.seatRow = seatRow;
         this.seatColumn = seatColumn;
         this.assigned = assigned;
         this.customerId = customerId;
+    }
+
+    public Seat(String seatID, Cinema cinema, String seatRow, String seatColumn, Customer customer) {
+        this.seatID = seatID;
+        this.cinema = cinema;
+        this.seatRow = seatRow;
+        this.seatColumn = seatColumn;
+        this.assigned = false;
+        this.customer = customer;
+        this.customerId = customer.getUsername();
+    }
+
+    public Seat(String seatID, Cinema cinema, String seatRow, String seatColumn) {
+        this.seatID = seatID;
+        this.cinema = cinema;
+        this.seatRow = seatRow;
+        this.seatColumn = seatColumn;
+        this.assigned = false;
+        this.customer = null;
+        this.customerId = null;
     }
 
     public String getSeatID() {
@@ -52,18 +64,22 @@ public class Seat implements Serializable {
         return assigned;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void assign(int customerId) {
+    public void assign(String customerId) {
         this.assigned = true;
         this.customerId = customerId;
     }
 
+    public void assign() {
+        this.assigned = true;
+    }
+
     public void unassign() {
         this.assigned = false;
-        this.customerId = 0;
+        this.customerId = null;
     }
 
     public SeatType getSeatType() {
@@ -94,8 +110,12 @@ public class Seat implements Serializable {
         return cinemaCode;
     }
 
-    public void setCinemaCode(String cinemaID) {
-        this.cinemaCode = cinemaID;
+    public void setCinemaCode(String cinemaCode) {
+        this.cinemaCode = cinemaCode;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
     }
 
     // to String

@@ -60,15 +60,15 @@ public class DBTestingApp {
         CinemaManager cm = new CinemaManager();
         ArrayList<Cinema> cinemaDB = new ArrayList<Cinema>();
         String dbPath = FILEPATH + "Cinemas.dat";
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH1", CinemaType.NORMAL);
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH2", CinemaType.PLATINUM);
-        cm.addCinema(cinemaDB, "Cathay@Jem", "JemH3", CinemaType.PLATINUM);
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH1", CinemaType.NORMAL);
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH2", CinemaType.PLATINUM);
-        cm.addCinema(cinemaDB, "Cathay@Orchard", "OrcH3", CinemaType.PLATINUM);
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH1", CinemaType.NORMAL);
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH2", CinemaType.PLATINUM);
-        cm.addCinema(cinemaDB, "Cathay@Vivo", "VivH3", CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Jem", 1, CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Jem", 2, CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Jem", 3, CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", 1, CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", 2, CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Orchard", 3, CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", 1, CinemaType.NORMAL);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", 2, CinemaType.PLATINUM);
+        cm.addCinema(cinemaDB, "Cathay@Vivo", 3, CinemaType.PLATINUM);
         // Cinema curCinema = cm.getCinema(cinemaDB, "004");
         // curCinema.getCinemaSeatDB().add(new Seat("A21", "004", "A", "21", "Standard",
         // true, 10));
@@ -96,8 +96,9 @@ public class DBTestingApp {
         cast.add("Jim Varney");
         cast.add("Wallace Shawn");
         rm.addReview(reviewsDB, "My review", "CustomerName", "movieTitle", 3);
-        mm.addMovie(movieDB, MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "movieCode",
-                "movieSynopsis", "movieDirector", cast, reviewsDB, "movieRating");
+        // mm.addMovie(movieDB, MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING,
+        // "movieCode",
+        // "movieSynopsis", "movieDirector", cast, reviewsDB, "movieRating");
         mm.saveObjects(dbPath, movieDB);
         movieDB = mm.loadObjects(dbPath);
         mm.printObjects(movieDB);
@@ -107,21 +108,25 @@ public class DBTestingApp {
         MovieSessionManager msm = new MovieSessionManager();
         SeatManager sm = new SeatManager();
         ArrayList<MovieSession> movieSessionDB = new ArrayList<MovieSession>();
-        ArrayList<Seat> seatDB = sm.generateSeats(7, 10, "JemH1");
+        // ArrayList<Seat> seatDB = sm.generateSeats(7, 10, "JemH1");
         String dbPath = FILEPATH + "MovieSessions.dat";
-        Cinema temp = new Cinema("Cathay@Jem", "JemH1", CinemaType.NORMAL);
-        Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle", MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
-                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
-        Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "tem12pCode",
-                "tempSynopsis",
-                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
+        Cinema temp = new Cinema("Cathay@Jem", 1, CinemaType.NORMAL);
+        // Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle",
+        // MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
+        // "tempDirector", new ArrayList<String>(), new ArrayList<Review>(),
+        // "tempRating");
+        // Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle",
+        // MovieStatus.NOW_SHOWING, "tem12pCode",
+        // "tempSynopsis",
+        // "tempDirector", new ArrayList<String>(), new ArrayList<Review>(),
+        // "tempRating");
         LocalDate tempDate = LocalDate.parse("2022-12-25");
-        msm.addMovieSession(movieSessionDB, tempMovie, temp,
-                tempDate, "12:00",
-                seatDB);
-        msm.addMovieSession(movieSessionDB, tempMovie1, temp,
-                tempDate, "12:11",
-                seatDB);
+        // msm.addMovieSession(movieSessionDB, tempMovie, temp,
+        // tempDate, "12:00",
+        // seatDB);
+        // msm.addMovieSession(movieSessionDB, tempMovie1, temp,
+        // tempDate, "12:11",
+        // seatDB);
         msm.saveObjects(dbPath, movieSessionDB);
         movieSessionDB = msm.loadObjects(dbPath);
         msm.printObjects(movieSessionDB);
@@ -159,15 +164,21 @@ public class DBTestingApp {
         TicketManager tm = new TicketManager();
         ArrayList<Ticket> ticketDB = new ArrayList<Ticket>();
         String dbPath = FILEPATH + "Tickets.dat";
-        Cinema temp = new Cinema("Cathay@Jem", "JemH1", CinemaType.NORMAL);
-        Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle", MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
-                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
-        Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle", MovieStatus.NOW_SHOWING, "tem12pCode",
-                "tempSynopsis",
-                "tempDirector", new ArrayList<String>(), new ArrayList<Review>(), "tempRating");
-        LocalDate tempDate = LocalDate.parse("2022-12-25");
-        MovieSession tempMS = new MovieSession(tempMovie, temp, tempDate, "12:00", new ArrayList<Seat>());
-        MovieSession tempMS1 = new MovieSession(tempMovie1, temp, tempDate, "12:11", new ArrayList<Seat>());
+        Cinema temp = new Cinema("Cathay@Jem", 1, CinemaType.NORMAL);
+        // Movie tempMovie = new Movie(MovieType.NORMAL, "tempTitle",
+        // MovieStatus.NOW_SHOWING, "tempCode", "tempSynopsis",
+        // "tempDirector", new ArrayList<String>(), new ArrayList<Review>(),
+        // "tempRating");
+        // Movie tempMovie1 = new Movie(MovieType.NORMAL, "movieTitle",
+        // MovieStatus.NOW_SHOWING, "tem12pCode",
+        // "tempSynopsis",
+        // "tempDirector", new ArrayList<String>(), new ArrayList<Review>(),
+        // "tempRating");
+        // // LocalDate tempDate = LocalDate.parse("2022-12-25");
+        // MovieSession tempMS = new MovieSession(tempMovie, temp, tempDate, "12:00",
+        // new ArrayList<Seat>());
+        // MovieSession tempMS1 = new MovieSession(tempMovie1, temp, tempDate, "12:11",
+        // new ArrayList<Seat>());
         // tm.addTicket(ticketDB, tempMS, "A1", "Adult", 10);
         // tm.addTicket(ticketDB, tempMS1, "A2", "Adult", 10);
         tm.saveObjects(dbPath, ticketDB);
@@ -188,10 +199,10 @@ public class DBTestingApp {
 
     public static void main(String[] args) throws IOException, SecurityException, ClassNotFoundException {
 
-        // initCinemas();
+        initCinemas();
         // initMovies();
         // initHolidays();
-        initPrices();
+        // initPrices();
         // testPriceManager();
         // initMovieSessions();
         // testMovieManager();

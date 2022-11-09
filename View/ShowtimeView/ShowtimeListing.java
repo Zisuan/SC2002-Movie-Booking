@@ -2,17 +2,25 @@ package View.ShowtimeView;
 
 import java.util.*;
 
+import Controller.CinemaControl.CinemaManager;
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
+import Controller.SeatControl.SeatManager;
 
 import java.io.IOException;
 
 import Model.Movie;
 
 public class ShowtimeListing {
+    public static final Scanner sc = new Scanner(System.in);
+
     public static void ShowtimeMenu() throws SecurityException, ClassNotFoundException, IOException {
+        MovieSessionManager msm = new MovieSessionManager();
+        MovieManager mm = new MovieManager();
+        CinemaManager cm = new CinemaManager();
+        SeatManager sm = new SeatManager();
         int choice;
         do {
-            Scanner sc = new Scanner(System.in);
             System.out.println("1. Add Showtime");
             System.out.println("2. Update Showtime");
             System.out.println("3. Remove Showtime");
@@ -21,13 +29,13 @@ public class ShowtimeListing {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    CreateShowTime.CreateShowTime();
+                    CreateShowTime.CreateShowTime(msm, mm, cm, sm);
                     break;
                 case 2:
-                    // UpdateShowtime.UpdateShowtime();
+                    UpdateShowTime.updateShowTime(msm, cm, mm, sm);
                     break;
                 case 3:
-                    // RemoveShowtime.RemoveShowtime();
+                    RemoveShowTime.removeShowTime(mm);
                     break;
                 case 4:
                     System.out.println("Goodbye!");

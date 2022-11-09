@@ -3,6 +3,7 @@ package View.UserMenuView;
 import java.io.IOException;
 import java.util.*;
 
+import Controller.BookingManager;
 import Controller.HolidayControl.HolidayManager;
 import Controller.MovieControl.MovieManager;
 import Controller.MovieSessionControl.MovieSessionManager;
@@ -10,6 +11,7 @@ import Controller.PriceControl.PriceManager;
 import Controller.ReviewControl.ReviewManager;
 import Controller.SeatControl.SeatManager;
 import Controller.TicketControl.TicketManager;
+import Model.Customer;
 import View.CheckSeatAvailability;
 import View.Helper;
 import View.ViewBookingHistory;
@@ -18,7 +20,7 @@ import View.TicketView.BookTicket;
 
 public class CustomerMenu {
 
-    public static void MovieGoerMenu(String customerName)
+    public static void MovieGoerMenu(Customer customer)
             throws SecurityException, ClassNotFoundException, IOException {
 
         final String FILEPATH = "./database/";
@@ -30,12 +32,13 @@ public class CustomerMenu {
         PriceManager pm = new PriceManager();
         TicketManager tm = new TicketManager();
         HolidayManager hm = new HolidayManager();
+        BookingManager bm = new BookingManager();
         Scanner sc = new Scanner(System.in);
 
         do {
             // Helper.clearConsole();
             System.out.println("====================================");
-            System.out.println("Hi " + customerName + ",");
+            System.out.println("Hi " + customer.getUsername() + ",");
             System.out.println("Welcome to MOBLIMA!====");
             System.out.println("Select an option: ");
             System.out.println("1. Search Movie");
@@ -57,20 +60,20 @@ public class CustomerMenu {
                     ViewMovieDetails.ViewMoviesTitle(mm);
                     break;
                 case 3:
-                    ViewMovieDetails.ViewMovieDetail(customerName, mm, rm);
+                    ViewMovieDetails.ViewMovieDetail(customer.getUsername(), mm, rm);
                     break;
                 case 4:
                     CheckSeatAvailability.checkSeatAvailability(mm, msm);
                     break;
                 case 5:
-                    BookTicket.BookingMenu(customerName, mm, msm, sm, pm, tm, hm);
+                    BookTicket.BookingMenu(customer, mm, msm, sm, pm, tm, hm, bm);
                     break;
                 case 6:
-                    ViewBookingHistory.viewBookingHistory(customerName, tm);
+                    ViewBookingHistory.viewBookingHistory(customer.getUsername(), tm);
                     break;
-                // case 6:
-                // listTop5RankingMovie();
-                // break;
+                case 7:
+                    // listTop5RankingMovie();
+                    break;
                 // case 7:
                 // System.out.println("Goodbye!");
                 // break;

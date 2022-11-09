@@ -1,18 +1,25 @@
 package View.ShowtimeView;
 
 import java.util.*;
+
+import Controller.MovieControl.MovieManager;
+import Model.Cinema;
+import Model.Movie;
+
 import java.io.IOException;
 
 public class RemoveShowTime {
 
-    public static final String FILEPATH = "./database/";
+    public static final Scanner sc = new Scanner(System.in);
 
-    public static void removeShowTime() throws IOException, SecurityException, ClassNotFoundException {
-
+    public static void removeShowTime(MovieManager mm) throws IOException, SecurityException, ClassNotFoundException {
+        ArrayList<Movie> movieDB = new ArrayList<Movie>();
         System.out.println("=====REMOVE SHOWTIME=====");
-        System.out.println("Enter Movie Code to show movie showtimes: ");
         // show showtimes for movie
         // ask for showtime id to delete
+        Movie movie = CreateShowTime.chooseAMovie(movieDB);
+        Cinema cinema = null;
+
         System.out.println("Enter Showtime ID to delete movie showtime: ");
         // delete showtime
         // save showtime

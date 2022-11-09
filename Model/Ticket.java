@@ -1,11 +1,29 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Ticket implements Serializable {
 
-    public enum CinemaType {
-        Student, Senior, Normal
+    public enum TicketType {
+        STUDENT {
+            @Override
+            public String toString() {
+                return "Student";
+            }
+        },
+        SENIOR {
+            @Override
+            public String toString() {
+                return "Senior";
+            }
+        },
+        NORMAL {
+            @Override
+            public String toString() {
+                return "Normal";
+            }
+        }
     }
 
     // create ticket id
@@ -13,11 +31,11 @@ public class Ticket implements Serializable {
     // create ticket price
     private double ticketPrice;
     // create ticket type
-    private String ticketType;
+    private TicketType ticketType;
     // create ticket status
     private String ticketStatus;
     // create ticket seat
-    private String ticketSeat;
+    private String ticketSeatID;
     // create ticket showtime
     private MovieSession ticketShowtime;
     // create ticket customer
@@ -25,25 +43,31 @@ public class Ticket implements Serializable {
     private String customerId;
 
     // create ticket constructor
-    public Ticket(String ticketId, double ticketPrice, String ticketType, String ticketStatus, String ticketSeat,
-            MovieSession ticketShowtime, String customerId) {
-        this.ticketId = ticketId;
+    public Ticket(String ticketID, double ticketPrice, String ticketType, String ticketStatus, String ticketSeatID,
+            MovieSession ticketShowtime, Customer ticketCustomer) {
+        this.ticketId = ticketID;
         this.ticketPrice = ticketPrice;
         this.ticketStatus = ticketStatus;
-        this.ticketSeat = ticketSeat;
+        this.ticketSeatID = ticketSeatID;
         this.ticketShowtime = ticketShowtime;
-        this.customerId = customerId;
-        switch (Integer.parseInt(ticketType)) {
-            case 1:
-                this.ticketType = CinemaType.Student.toString();
-                break;
-            case 2:
-                this.ticketType = CinemaType.Senior.toString();
-                break;
-            case 3:
-                this.ticketType = CinemaType.Normal.toString();
-                break;
-        }
+        this.ticketCustomer = ticketCustomer;
+        this.customerId = ticketCustomer.getUsername();
+        setTicketType(ticketType);
+
+    }
+
+    // create ticket constructor
+    public Ticket(double ticketPrice, String ticketType, String ticketStatus, String ticketSeatID,
+            MovieSession ticketShowtime, Customer ticketCustomer) {
+        this.ticketId = null;
+        this.ticketPrice = ticketPrice;
+        this.ticketStatus = ticketStatus;
+        this.ticketSeatID = ticketSeatID;
+        this.ticketShowtime = ticketShowtime;
+        this.ticketCustomer = ticketCustomer;
+        this.customerId = ticketCustomer.getUsername();
+        setTicketType(ticketType);
+
     }
 
     // create ticket id getter
@@ -57,7 +81,7 @@ public class Ticket implements Serializable {
     }
 
     // create ticket type getter
-    public String getTicketType() {
+    public TicketType getTicketType() {
         return ticketType;
     }
 
@@ -67,8 +91,8 @@ public class Ticket implements Serializable {
     }
 
     // create ticket seat getter
-    public String getTicketSeat() {
-        return ticketSeat;
+    public String getTicketSeatID() {
+        return ticketSeatID;
     }
 
     // create ticket showtime getter
@@ -92,8 +116,22 @@ public class Ticket implements Serializable {
     }
 
     // create ticket type setter
-    public void setTicketType(String ticketType) {
+    public void setTicketType(TicketType ticketType) {
         this.ticketType = ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        switch (Integer.parseInt(ticketType)) {
+            case 1:
+                this.ticketType = TicketType.STUDENT;
+                break;
+            case 2:
+                this.ticketType = TicketType.SENIOR;
+                break;
+            case 3:
+                this.ticketType = TicketType.NORMAL;
+                break;
+        }
     }
 
     // create ticket status setter
@@ -102,8 +140,8 @@ public class Ticket implements Serializable {
     }
 
     // create ticket seat setter
-    public void setTicketSeat(String ticketSeat) {
-        this.ticketSeat = ticketSeat;
+    public void setTicketSeatID(String ticketSeatID) {
+        this.ticketSeatID = ticketSeatID;
     }
 
     // create ticket showtime setter
@@ -129,9 +167,9 @@ public class Ticket implements Serializable {
     public String toString() {
         return "Ticket Id: " + getTicketId() + "\n" +
                 "Ticket Price: " + getTicketPrice() + "\n" +
-                "Ticket Type: " + getTicketType() + "\n" +
+                "Ticket Type: " + getTicketType().toString() + "\n" +
                 "Ticket Status: " + getTicketStatus() + "\n" +
-                "Ticket Seat: " + getTicketSeat() + "\n" +
+                "Ticket Seat: " + getTicketSeatID() + "\n" +
                 "Ticket Showtime: " + getTicketShowtime().getMovieDate() + " @ " + getTicketShowtime().getMovieTime()
                 + "\n" +
                 "Customer Id: " + getCustomerId();

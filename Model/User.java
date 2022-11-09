@@ -1,25 +1,28 @@
 package Model;
 
-public class User {
+public class User implements java.io.Serializable {
     // parent of Customer and Admin
     public String username;
     public String password;
     public boolean isStaff;
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String mobileNumber;
 
-    // create user constructor
-    public User(String username, String password, boolean isStaff, String firstName, String lastName, String email,
-            String mobileNumber) {
+    public User(String username, String password, boolean isStaff) {
         this.username = username;
         this.password = password;
         this.isStaff = isStaff;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.mobileNumber = mobileNumber;
+    }
+
+    // create user getter
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isStaff() {
+        return isStaff;
     }
 
 }

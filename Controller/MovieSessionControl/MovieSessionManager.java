@@ -4,15 +4,12 @@ import java.time.LocalDate;
 import java.util.*;
 
 import Controller.ObjectControl.ObjectManager;
-import Controller.PriceControl.PriceManager;
 import Controller.SeatControl.SeatManager;
 import Model.*;
 
 public class MovieSessionManager extends ObjectManager<MovieSession> {
     // add MovieSession
-    public void addMovieSession(ArrayList<MovieSession> MovieSessionDB, Movie movie, Cinema cinema, LocalDate movieDate,
-            String movieTime, ArrayList<Seat> sessionSeats) {
-        MovieSession newMovieSession = new MovieSession(movie, cinema, movieDate, movieTime, sessionSeats);
+    public void addMovieSession(ArrayList<MovieSession> MovieSessionDB, MovieSession newMovieSession) {
         addObject(MovieSessionDB, newMovieSession);
     }
 
@@ -57,9 +54,10 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         if (movieDB == null) {
             System.out.println("No movies in the database");
         } else {
-            for (int i = 0; i < movieDB.size(); i++) {
-                listOfMoviesInSession.add(movieDB.get(i).getMovie());
-
+            for (MovieSession movieSession : movieDB) {
+                if (movieSession.getMovie().getMovieStatus().equals(Movie.MovieStatus.NOW_SHOWING)) {
+                    listOfMoviesInSession.add(movieSession.getMovie());
+                }
             }
         }
         return listOfMoviesInSession;
@@ -73,6 +71,21 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
             listOfCinemaWithMovieInSession.add(listOfMoviesInSession.get(Integer.parseInt(movieIndex) - 1).getCinema());
         }
         return listOfCinemaWithMovieInSession;
+    }
+
+    public ArrayList<MovieSession> filterSessionsByMovie(ArrayList<MovieSession> movieSessionDB,
+            Movie movie) {
+        ArrayList<MovieSession> listOfSessionsForMovie = new ArrayList<MovieSession>();
+        if (movieSessionDB == null) {
+            System.out.println("No movies in the database");
+        } else {
+            for (MovieSession movieSession : movieSessionDB) {
+                if (movieSession.getMovie().getMovieTitle().equals(movie.getMovieTitle())) {
+                    listOfSessionsForMovie.add(movieSession);
+                }
+            }
+        }
+        return listOfSessionsForMovie;
     }
 
     public ArrayList<MovieSession> filterSessionsByMovieAndCinema(ArrayList<MovieSession> movieSessionDB,

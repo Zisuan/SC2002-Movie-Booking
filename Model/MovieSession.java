@@ -19,6 +19,8 @@ public class MovieSession implements Serializable {
 
     private ArrayList<Seat> sessionSeats;
 
+    private int ticketsSold;
+
     // create showtime constructor
     public MovieSession(Movie movie, Cinema cinema, LocalDate movieDate, String movieTime,
             ArrayList<Seat> sessionSeats) {
@@ -27,6 +29,7 @@ public class MovieSession implements Serializable {
         this.movieDate = movieDate;
         this.movieTime = movieTime;
         this.sessionSeats = sessionSeats;
+        this.ticketsSold = 0;
 
     }
 
@@ -48,6 +51,18 @@ public class MovieSession implements Serializable {
     // create movie time getter
     public String getMovieTime() {
         return movieTime;
+    }
+
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void incrementTicketsSold(int ticketsSold) {
+        this.ticketsSold++;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
     }
 
     // create movie setter

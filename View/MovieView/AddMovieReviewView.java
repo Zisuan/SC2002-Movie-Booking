@@ -15,7 +15,7 @@ public class AddMovieReviewView {
         ArrayList<Review> reviewDB = new ArrayList<Review>();
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
-        reviewDB = mm.getMovieReviews(movieDB, movieTitle);
+        reviewDB = mm.getReviews(movieDB, movieTitle);
         System.out.println("Enter your rating (1-5): ");
         int rating = sc.nextInt();
         sc.nextLine();

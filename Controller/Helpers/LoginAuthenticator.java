@@ -41,8 +41,8 @@ public class LoginAuthenticator {
             String line = "";
             while ((line = br.readLine()) != null) {
                 String values[] = line.split(",");
-                if (userName.compareTo(values[1].replaceAll("\\s", "")) == 0) {
-                    if (passWord.compareTo(values[2].replaceAll("\\s", "")) == 0) {
+                if (userName.compareTo(values[2].replaceAll("\\s", "")) == 0) {
+                    if (passWord.compareTo(values[3].replaceAll("\\s", "")) == 0) {
                         valid = true;
                         name = values[0];
 
@@ -68,9 +68,9 @@ public class LoginAuthenticator {
             String line = "";
             while ((line = br.readLine()) != null) {
                 String values[] = line.split(",");
-                if (userName.compareTo(values[1].replaceAll("\\s", "")) == 0) {
-                    if (passWord.compareTo(values[2].replaceAll("\\s", "")) == 0) {
-                        if (values[3].replaceAll("\\s", "").compareTo("Staff") == 0) {
+                if (userName.compareTo(values[2].replaceAll("\\s", "")) == 0) {
+                    if (passWord.compareTo(values[3].replaceAll("\\s", "")) == 0) {
+                        if (values[4].replaceAll("\\s", "").compareTo("Staff") == 0) {
                             staff = true;
                         } else {
                             staff = false;
@@ -87,6 +87,54 @@ public class LoginAuthenticator {
         }
 
         return staff;
+
+    }
+
+    public String getFirstName() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(baseURI + filenames[0]));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String values[] = line.split(",");
+                if (userName.compareTo(values[2].replaceAll("\\s", "")) == 0) {
+                    if (passWord.compareTo(values[3].replaceAll("\\s", "")) == 0) {
+                        return values[0].replaceAll("\\s", "");
+                    }
+                }
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public String getLastName() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(baseURI + filenames[0]));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String values[] = line.split(",");
+                if (userName.compareTo(values[2].replaceAll("\\s", "")) == 0) {
+                    if (passWord.compareTo(values[3].replaceAll("\\s", "")) == 0) {
+                        return values[1].replaceAll("\\s", "");
+                    }
+                }
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
 
     }
 }

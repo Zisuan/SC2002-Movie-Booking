@@ -24,13 +24,34 @@ public class Cinema implements Serializable {
 
     private ArrayList<Movie> cinemaMovieDB;
 
+    private int cinemaHall;
+
     // create cinema constructor
     private ArrayList<String> cinemaTypes = new ArrayList<>(
             Arrays.asList("NormalClass", "PlatinumClassSuite", "GoldClassSuite"));
 
-    public Cinema(String cinemaName, String cinemaCode, CinemaType cinemaType) {
+    public Cinema(String cinemaName, int cinemaHall, String cinemaCode, CinemaType cinemaType) {
         this.cinemaName = cinemaName;
         this.cinemaCode = cinemaCode;
+        this.cinemaType = cinemaType;
+        this.cinemaHall = cinemaHall;
+        int noOfSeats = 0;
+        if (cinemaType.equals(cinemaTypes.get(0))) {
+            noOfSeats = 30;
+        } else if (cinemaType.equals(cinemaTypes.get(1))) {
+            noOfSeats = 20;
+        } else if (cinemaType.equals(cinemaTypes.get(2))) {
+            noOfSeats = 10;
+        }
+        this.cinemaSeatDB = new ArrayList<Seat>(noOfSeats);
+        this.cinemaMovieDB = new ArrayList<Movie>();
+    }
+
+    public Cinema(String cinemaName, int cinemaHall, CinemaType cinemaType) {
+        this.cinemaName = cinemaName;
+        String[] splitedCinemaName = cinemaName.split("@");
+        // hallcannot be more than 9
+        this.cinemaCode = splitedCinemaName[0].substring(0, 1) + splitedCinemaName[1].substring(0, 1) + cinemaHall;
         this.cinemaType = cinemaType;
         int noOfSeats = 0;
         if (cinemaType.equals(cinemaTypes.get(0))) {

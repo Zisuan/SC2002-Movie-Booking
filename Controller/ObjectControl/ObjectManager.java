@@ -11,6 +11,8 @@ public abstract class ObjectManager<T> {
 
     public abstract boolean objectExists(ArrayList<T> objectDB, T object);
 
+    // TODO: Add method to search for object
+
     public void addObject(ArrayList<T> objectDB, T object) {
         if (!objectExists(objectDB, object) || objectDB == null) {
             objectDB.add(object);

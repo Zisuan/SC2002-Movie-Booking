@@ -9,14 +9,13 @@ import View.Helper;
 
 public class SeatManager extends ObjectManager<Seat> {
 
-    public ArrayList<Seat> generateSeats(int rows, int columns, String cinemaCode) {
+    public ArrayList<Seat> generateSeats(int rows, int columns, Cinema cinema) {
         String rowString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         ArrayList<Seat> seats = new ArrayList<Seat>();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 String seatID = rowString.charAt(i) + String.format("%02d", j + 1);
-                Seat seat = new Seat(seatID, cinemaCode, rowString.charAt(i) + "", String.format("%02d", j + 1),
-                        SeatType.NORMAL, false, 0);
+                Seat seat = new Seat(seatID, cinema, rowString.charAt(i) + "", String.format("%02d", j + 1));
                 seats.add(seat);
             }
         }
@@ -39,11 +38,12 @@ public class SeatManager extends ObjectManager<Seat> {
         }
     }
 
-    public static void assignSeat(ArrayList<Seat> seatDB, String seatID, int customerId) {
+    public static void assignSeat(ArrayList<Seat> seatDB, Seat selectedSeat) {
+        String seatID = selectedSeat.getSeatID();
         for (Seat seat : seatDB) {
             if (seat.getSeatID().equalsIgnoreCase(seatID)) {
                 if (!seat.isAssigned()) {
-                    seat.assign(customerId);
+                    seat.assign();
                     break;
                 } else {
                     System.out.println("Seat is already taken!");
