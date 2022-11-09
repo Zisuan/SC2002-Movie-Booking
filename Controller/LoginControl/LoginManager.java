@@ -12,10 +12,13 @@ import View.UserMenuView.StaffMenu;
 
 public class LoginManager {
     public static void login() throws SecurityException, ClassNotFoundException, IOException, ParseException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         Helper.clearConsole();
         Scanner sc = new Scanner(System.in);
         String username, password;
-        System.out.println("Enter username: ");
+        System.out.println(ANSI_CYAN + "Enter username: ");
         username = sc.nextLine();
         System.out.println("Enter password: ");
         password = sc.nextLine();
@@ -32,6 +35,7 @@ public class LoginManager {
         } else {
             System.out.println("Login failed");
         }
+        System.out.println(ANSI_RESET);
         // sc.close();
     }
 

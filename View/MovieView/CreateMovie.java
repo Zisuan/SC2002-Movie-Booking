@@ -19,12 +19,18 @@ public class CreateMovie {
 
     public static void createMovie(MovieManager mm)
             throws SecurityException, ClassNotFoundException, IOException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
-        System.out.println("====CREATE NEW MOVIE LISTING====");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    Create New Movie Listing                       ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         Movie newMovie = fullMoviePrompt();
         mm.printMovie(newMovie);
-        System.out.println("\nConfirm to add this movie? (Y/N)");
+        System.out.println(ANSI_CYAN + "\nConfirm to add this movie? (Y/N)");
         String confirm = sc.nextLine();
         if (confirm.equalsIgnoreCase("Y")) {
             movieDB.add(newMovie);
@@ -34,13 +40,16 @@ public class CreateMovie {
             System.out.println("Movie not added!");
         }
         // sc.close();
-        System.out.println("Press enter to return to main menu");
+        System.out.println("Press enter to return to main menu" + ANSI_RESET);
         sc.nextLine();
         Helper.clearConsole();
     }
 
     public static Movie fullMoviePrompt() {
-        System.out.println("Enter Movie Type: \n 1. 3D \n 2. Blockbuster \n 3. Normal");
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        System.out.println(ANSI_CYAN + "Enter Movie Type: \n 1. 3D \n 2. Blockbuster \n 3. Normal");
         String movieType = sc.nextLine();
         System.out.println("Enter Movie Title: ");
         String movieTitle = sc.nextLine();
@@ -66,6 +75,7 @@ public class CreateMovie {
         Movie newMovie = new Movie(movieType, movieTitle, movieStatus, movieSynopsis, movieDirector, movieCast,
                 reviewsDB, movieRating);
         System.out.println();
+        System.out.println(ANSI_RESET);
         return newMovie;
     }
 }

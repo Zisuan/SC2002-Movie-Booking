@@ -191,13 +191,16 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movies
     public static void printMovie(Movie movie) {
-        System.out.println("Movie Type: " + movie.getMovieType());
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        System.out.println(ANSI_CYAN + "Movie Type: " + movie.getMovieType());
         System.out.println("Movie Title: " + movie.getMovieTitle());
         System.out.println("Movie Code: " + movie.getMovieCode());
         System.out.println("Movie Status: " + movie.getMovieStatus());
         System.out.println("Movie Synopsis: " + movie.getMovieSynopsis());
         System.out.println("Movie Director: " + movie.getMovieDirector());
-        System.out.println("Movie Cast: " + movie.getMovieCast());
+        System.out.println("Movie Cast: " + movie.getMovieCast() + ANSI_RESET);
     }
 
     public static void printMovies(ArrayList<Movie> movieDB) {
@@ -209,10 +212,13 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movie details by movie title
     public static void printMovieDetails(ArrayList<Movie> movieDB, String movieName) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         boolean movieExists = false;
         for (Movie movie : movieDB) {
             if (movie.getMovieTitle().equalsIgnoreCase(movieName)) {
-                System.out.println(movie.toString());
+                System.out.println(ANSI_CYAN + movie.toString() + ANSI_RESET);
                 movieExists = true;
                 break;
             }
@@ -224,19 +230,25 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movie titles
     public static void printMovieTitles(ArrayList<Movie> movieDB) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(i + 1 + ". " + movieDB.get(i).getMovieTitle());
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + ANSI_RESET);
         }
         if (movieDB.size() == 0) {
-            System.out.println("No movies available");
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
         }
     }
 
     // print movie titles + movie code
     public static void printMovieTitlesAndCode(ArrayList<Movie> movieDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(
-                    i + 1 + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode() + ")");
+            System.out.println(ANSI_CYAN +
+                    (i + 1) + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode() + ")"
+                    + ANSI_RESET);
         }
         if (movieDB.size() == 0) {
             System.out.println("No movies available");

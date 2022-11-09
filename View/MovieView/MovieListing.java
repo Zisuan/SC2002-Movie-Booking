@@ -13,19 +13,26 @@ public class MovieListing {
 
     public static void MovieMenu(MovieManager mm)
             throws SecurityException, ClassNotFoundException, IOException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
 
         int listing;
         do {
-            Helper.clearConsole();
+            // Helper.clearConsole();
             listing = 0;
             // print movie menu to staff
-            System.out.println("MOVIE LISTING");
-            System.out.println("1. Create New Movie Listing");
+            System.out.println(
+                    ANSI_BLUE + "=====================================================================");
+            System.out.println("                       Movie Listings Menu                        ");
+            System.out.println("=====================================================================" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "1. Create New Movie Listing");
             System.out.println("2. Update Current Movie Listing");
             System.out.println("3. Remove Movie Listing");
-            System.out.println("4. Back");
-            System.out.println("Option: ");
-
+            System.out.println("4. Back" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "=====================================================================");
+            System.out.println("                           Enter Option:                             ");
+            System.out.println("=====================================================================" + ANSI_RESET);
             listing = sc.nextInt();
             switch (listing) {
                 case 1:
