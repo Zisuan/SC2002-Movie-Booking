@@ -18,26 +18,32 @@ public class StaffMenu {
 
     public static void adminMenu()
             throws SecurityException, ClassNotFoundException, IOException, ParseException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         int choice;
         Scanner sc = new Scanner(System.in);
         MovieManager mm = new MovieManager();
         PriceManager pm = new PriceManager();
         do {
-            // System.out.print("\033[H\033[2J");
-            System.out.println("====Welcome to Staff Menu====");
-            System.out.println("Select an option: ");
-            System.out.println("1. Create/Update/Remove Movie Listings");
+            System.out.println(
+                    ANSI_BLUE + "=====================================================================");
+            System.out.println("                      Welcome to Staff Menu                         ");
+            System.out.println("=====================================================================" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "1. Create/Update/Remove Movie Listings");
             System.out.println("2. Create/Update/Remove Showtimes");
             System.out.println("3. Configure System Settings");
             System.out.println("4. List top 5 Movies by Ratings");
             System.out.println("5. List top 5 Movies by Sales");
 
             System.out.println("6. Logout");
-            System.out.println("7. Exit Application");
-            System.out.println("Option: ");
-
+            System.out.println("7. Exit Application" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "=====================================================================");
+            System.out.println("                           Enter Option:                             ");
+            System.out.println("=====================================================================");
             choice = sc.nextInt();
             sc.nextLine();
+            System.out.println(ANSI_RESET);
             switch (choice) {
                 case 1:
                     MovieListing.MovieMenu(mm);

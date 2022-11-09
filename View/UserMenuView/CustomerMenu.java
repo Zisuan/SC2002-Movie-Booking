@@ -22,7 +22,9 @@ public class CustomerMenu {
 
     public static void MovieGoerMenu(Customer customer)
             throws SecurityException, ClassNotFoundException, IOException {
-
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         final String FILEPATH = "./database/";
         int choice;
         MovieManager mm = new MovieManager();
@@ -37,19 +39,25 @@ public class CustomerMenu {
 
         do {
             // Helper.clearConsole();
-            System.out.println("====================================");
-            System.out.println("Hi " + customer.getUsername() + ",");
-            System.out.println("Welcome to MOBLIMA!====");
-            System.out.println("Select an option: ");
-            System.out.println("1. Search Movie");
-            System.out.println("2. List Movies");
-            System.out.println("3. View Movie Details");
-            System.out.println("4. Check Seat Availability and selection of Seats");
-            System.out.println("5. Book & Purchase Tickets");
-            System.out.println("6. View Booking History");
+            System.out.println(
+                    ANSI_BLUE + "=====================================================================");
+            System.out.println("                Welcome to MOBLIMA Movie Booking System              ");
+            System.out.println("=====================================================================");
+            System.out.println(
+                    "                              Hi " + customer.getUsername() + ","
+                            + "                           ");
+            System.out.println("=====================================================================" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "1. Search Movie                                                      ");
+            System.out.println("2. List Movies                                                       ");
+            System.out.println("3. View Movie Details                                                ");
+            System.out.println("4. Check Seat Availability and selection of Seats                    ");
+            System.out.println("5. Book & Purchase Tickets                                           ");
+            System.out.println("6. View Booking History                                              ");
             System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
-            System.out.println("8. Exit");
-            System.out.println("Option: ");
+            System.out.println("8. Exit                                                              " + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "=====================================================================");
+            System.out.println("                           Enter Option:                             ");
+            System.out.println("=====================================================================" + ANSI_RESET);
             choice = sc.nextInt();
             Helper.clearConsole();
             switch (choice) {
