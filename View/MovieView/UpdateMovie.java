@@ -38,8 +38,9 @@ public class UpdateMovie {
             System.out.println(ANSI_BLUE + "Enter Movie ID to update movie: " + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
             MovieManager.printMovieTitlesAndCode(movieDB);
-            String movieCode = sc.nextLine();
-            if (movieCode.equals("0")) {
+            String selectedMovieIndex = sc.nextLine();
+            Movie selectedMovie = mm.getMovieByIndex(movieDB, selectedMovieIndex);
+            if (selectedMovieIndex.equals("0")) {
                 return;
             }
             System.out.println(
@@ -64,7 +65,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE TYPE---------------");
                     System.out.println("Enter Movie Type: \n 1. 3D \n 2. Blockbuster \n 3. Normal");
                     String movieType = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieType, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieType, null);
                     System.out.println("Movie Type Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -72,7 +73,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE TITLE---------------");
                     System.out.println("Enter Movie Title: ");
                     String movieTitle2 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieTitle2, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieTitle2, null);
                     System.out.println("Movie Title Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -80,7 +81,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE CODE---------------");
                     System.out.println("Enter Movie Code: ");
                     String movieCode3 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieCode3, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieCode3, null);
                     System.out.println("Movie Code Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -89,7 +90,7 @@ public class UpdateMovie {
                     System.out
                             .println("Enter Movie Rating: \n 1. G \n 2. PG \n 3. PG13 \n 4. NC16 \n 5. M18 \n 6. R21");
                     String movieRating4 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieRating4, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieRating4, null);
                     System.out.println("Movie Rating Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -98,7 +99,7 @@ public class UpdateMovie {
                     System.out.println(
                             "Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing \n 4. End of Showing");
                     String movieStatus5 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieStatus5, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieStatus5, null);
                     System.out.println("Movie Status Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -106,7 +107,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE SYNOPSIS---------------");
                     System.out.println("Enter Movie Synopsis: ");
                     String movieSynopsis6 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieSynopsis6, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieSynopsis6, null);
                     System.out.println("Movie Synopsis Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -114,7 +115,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE DIRECTOR---------------");
                     System.out.println("Enter Movie Director: ");
                     String movieDirector7 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, movieDirector7, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieDirector7, null);
                     System.out.println("Movie Director Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -128,14 +129,14 @@ public class UpdateMovie {
                         String movieCast8 = sc.nextLine();
                         movieCast.add(movieCast8);
                     }
-                    mm.updateMovie(select, movieDB, movieCode, null, movieCast);
+                    mm.updateMovie(select, movieDB, selectedMovie, null, movieCast);
                     System.out.println("Movie Cast Updated!" + ANSI_RESET);
                     updated = true;
                     break;
                 case 9:
                     System.out.println(ANSI_CYAN + "---------------UPDATE EVERYTHING---------------");
 
-                    Movie oldMovie = MovieManager.searchMovieByCode(movieDB, movieCode);
+                    Movie oldMovie = selectedMovie;
                     Movie updatedMovie = CreateMovie.fullMoviePrompt();
                     mm.updateWholeMovie(movieDB, updatedMovie, oldMovie);
                     mm.printMovies(movieDB);

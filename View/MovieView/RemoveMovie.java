@@ -29,7 +29,7 @@ public class RemoveMovie {
         System.out.println("Enter Movie Code to delete movie: " + ANSI_RESET);
         MovieManager.printMovieTitlesAndCode(movieDB);
         String code = sc.nextLine();
-        MovieManager.removeMovie(movieDB, code);
+        MovieManager.removeMovie(movieDB, MovieManager.getMovieByIndex(movieDB, code));
         mm.saveObjects(DatabaseFilePath.Movies.getFilePath(), movieDB);
         System.out.println(ANSI_BLUE + "Movie Deleted!" + ANSI_RESET);
 

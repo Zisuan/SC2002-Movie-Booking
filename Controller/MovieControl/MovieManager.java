@@ -31,12 +31,13 @@ public class MovieManager extends ObjectManager<Movie> {
     }
 
     // update movie
-    public static <T> void updateMovie(int updateCase, ArrayList<Movie> movieDB, String movieCode, T updateVariable,
+    public static <T> void updateMovie(int updateCase, ArrayList<Movie> movieDB, Movie selectedMovie, T updateVariable,
             ArrayList<String> movieCast) {
+
         switch (updateCase) {
             case 1:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieType((MovieType) updateVariable);
                         break;
                     }
@@ -44,7 +45,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 2:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieTitle((String) updateVariable);
                         break;
                     }
@@ -52,7 +53,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 3:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieCode((String) updateVariable);
                         break;
                     }
@@ -60,7 +61,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 4:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieRating((String) updateVariable);
                         break;
                     }
@@ -68,7 +69,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 5:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieStatus((MovieStatus) updateVariable);
                         break;
                     }
@@ -76,7 +77,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 6:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieSynopsis((String) updateVariable);
                         break;
                     }
@@ -84,7 +85,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 7:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieDirector((String) updateVariable);
                         break;
                     }
@@ -92,7 +93,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 8:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(movieCode)) {
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         movie.setMovieCast(movieCast);
                         break;
                     }
@@ -127,9 +128,9 @@ public class MovieManager extends ObjectManager<Movie> {
     }
 
     // remove movie
-    public static void removeMovie(ArrayList<Movie> movieDB, String movieCode) {
+    public static void removeMovie(ArrayList<Movie> movieDB, Movie selectedMovie) {
         for (Movie movie : movieDB) {
-            if (movie.getMovieCode().equals(movieCode)) {
+            if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                 movieDB.remove(movie);
                 break;
             }
@@ -137,9 +138,9 @@ public class MovieManager extends ObjectManager<Movie> {
     }
 
     // search movie
-    public static Movie searchMovie(ArrayList<Movie> movieDB, String movieName) {
+    public static Movie searchMovieByTitle(ArrayList<Movie> movieDB, String movieTitle) {
         for (Movie movie : movieDB) {
-            if (movie.getMovieTitle().equalsIgnoreCase(movieName)) {
+            if (movie.getMovieTitle().equalsIgnoreCase(movieTitle)) {
                 return movie;
             }
         }
@@ -194,9 +195,9 @@ public class MovieManager extends ObjectManager<Movie> {
         return null;
     }
 
-    public ArrayList<Review> getReviewsByCode(ArrayList<Movie> movieDB, String movieCode) {
+    public ArrayList<Review> getReviewsByCode(ArrayList<Movie> movieDB, Movie selectedMovie) {
         for (Movie movie : movieDB) {
-            if (movie.getMovieCode().equalsIgnoreCase(movieCode)) {
+            if (movie.getMovieCode().equalsIgnoreCase(selectedMovie.getMovieCode())) {
                 return movie.getReviewsDB();
             }
         }

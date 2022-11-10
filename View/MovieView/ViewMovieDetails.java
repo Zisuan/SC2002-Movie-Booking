@@ -29,7 +29,7 @@ public class ViewMovieDetails {
         System.out.println("Enter Movie Title: ");
         String movieTitle = sc.nextLine();
         System.out.println();
-        if (mm.searchMovie(movieDB, movieTitle) != null) {
+        if (mm.searchMovieByTitle(movieDB, movieTitle) != null) {
             System.out.println("Movie exists!" + ANSI_RESET);
         } else {
             System.out.println("Movie does not exist!" + ANSI_RESET);
@@ -66,7 +66,7 @@ public class ViewMovieDetails {
         System.out.println();
         reviewDB = mm.getReviews(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
-        if (mm.searchMovie(movieDB, movieTitle) != null && !rm.searchReview(reviewDB, movieTitle, username)) {
+        if (mm.searchMovieByTitle(movieDB, movieTitle) != null && !rm.searchReview(reviewDB, movieTitle, username)) {
             System.out.println(ANSI_CYAN + "Would you like to rate this movie? (Y/N)" + ANSI_RESET);
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("Y")) {
