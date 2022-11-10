@@ -66,14 +66,17 @@ public class TicketManager extends ObjectManager<Ticket> {
     }
 
     public static void printAllTicketsByCustomer(ArrayList<Ticket> ticketDB, String customerId) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < ticketDB.size(); i++) {
             if (ticketDB.size() == 0) {
-                System.out.println("No tickets found");
+                System.out.println(ANSI_BLUE + "No tickets found" + ANSI_RESET);
                 break;
             } else if (ticketDB.get(i).getCustomerId().equals(customerId)) {
-                System.out.println("-------------Ticket " + (i + 1) + "-------------");
-                System.out.println(ticketDB.get(i).toString());
-                System.out.println("----------------------------------");
+                System.out.println(ANSI_BLUE + "-------------Ticket " + (i + 1) + "-------------" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + ticketDB.get(i).toString() + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "----------------------------------" + ANSI_RESET);
             }
         }
     }

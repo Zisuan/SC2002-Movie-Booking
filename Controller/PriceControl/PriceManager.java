@@ -118,20 +118,24 @@ public class PriceManager extends ObjectManager<Price> {
     }
 
     public void listPrices(Price price) {
-        System.out.println("3D surcharge: " + price.getThreeDSurcharge());
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        System.out.println(ANSI_CYAN + "3D surcharge: " + price.getThreeDSurcharge());
         System.out.println("Blockbuster Surcharge: " + price.getBlkBusterSurcharge());
         System.out.println("Platinum Class Surcharge: " + price.getPlatinumSurcharge());
         System.out.println("Gold Class Surcharge: " + price.getGoldSurcharge());
         System.out.println("Senior Base Price: " + price.getSeniorBasePrice());
         System.out.println("Student Base Price: " + price.getStudentBasePrice());
         System.out.println("Adult Base Price: " + price.getAdultBasePrice());
-        System.out.println("Weekend/Public Holiday Surcharge: " + price.getWeekendPHSurcharge());
+        System.out.println("Weekend/Public Holiday Surcharge: " + price.getWeekendPHSurcharge() + ANSI_RESET);
     }
 
     // print price model from database
     public void printPrice(ArrayList<Price> priceDB) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
         for (int i = 0; i < priceDB.size(); i++) {
-            System.out.println("Price Model " + (i + 1));
+            System.out.println(ANSI_BLUE + "Price Model " + (i + 1) + ANSI_RESET);
             listPrices(priceDB.get(i));
         }
     }

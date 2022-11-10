@@ -13,7 +13,8 @@ import Model.Review;
 import View.Helper;
 
 public class ViewMovieDetails {
-
+    // TODO : Fix the bug where overall rating is shown even if there is only 1
+    // review
     public static final Scanner sc = new Scanner(System.in);
     private static String dbPath = DatabaseFilePath.Movies.getFilePath();
 
@@ -27,6 +28,7 @@ public class ViewMovieDetails {
         System.out.println(ANSI_CYAN + "SEARCH MOVIE");
         System.out.println("Enter Movie Title: ");
         String movieTitle = sc.nextLine();
+        System.out.println();
         if (mm.searchMovie(movieDB, movieTitle) != null) {
             System.out.println("Movie exists!" + ANSI_RESET);
         } else {
@@ -61,6 +63,7 @@ public class ViewMovieDetails {
         movieDB = mm.loadObjects(dbPath);
         System.out.print(ANSI_CYAN + "Enter Movie Title: " + ANSI_RESET);
         String movieTitle = sc.nextLine();
+        System.out.println();
         reviewDB = mm.getReviews(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
         if (mm.searchMovie(movieDB, movieTitle) != null && !rm.searchReview(reviewDB, movieTitle, username)) {

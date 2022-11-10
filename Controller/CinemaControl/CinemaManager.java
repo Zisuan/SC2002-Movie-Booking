@@ -107,10 +107,13 @@ public class CinemaManager extends ObjectManager<Cinema> {
     }
 
     public static void printCinemaTitlesAndCode(ArrayList<Cinema> cinemaDB) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         int i = 0;
         for (Cinema c : cinemaDB) {
             i++;
-            System.out.println(i + ". " + c.getCinemaName() + "- " + c.getCinemaCode());
+            System.out.println(ANSI_CYAN + i + ". " + c.getCinemaName() + "- " + c.getCinemaCode() + ANSI_RESET);
         }
     }
 

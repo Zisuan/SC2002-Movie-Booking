@@ -19,7 +19,7 @@ import View.MovieView.ViewMovieDetails;
 import View.TicketView.BookTicket;
 
 public class CustomerMenu {
-
+    // TODO : LIST TOP 5 RANKING
     public static void MovieGoerMenu(Customer customer)
             throws SecurityException, ClassNotFoundException, IOException {
         final String ANSI_BLUE = "\u001B[34m";
@@ -54,7 +54,7 @@ public class CustomerMenu {
             System.out.println("5. Book & Purchase Tickets                                           ");
             System.out.println("6. View Booking History                                              ");
             System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
-            System.out.println("8. Exit                                                              " + ANSI_RESET);
+            System.out.println("8. Log Out                                                              " + ANSI_RESET);
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================" + ANSI_RESET);

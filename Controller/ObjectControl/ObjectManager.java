@@ -14,11 +14,14 @@ public abstract class ObjectManager<T> {
     // TODO: Add method to search for object
 
     public void addObject(ArrayList<T> objectDB, T object) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         if (!objectExists(objectDB, object) || objectDB == null) {
             objectDB.add(object);
-            System.out.println(object.getClass().getSimpleName() + " successfully added!");
+            System.out.println(ANSI_BLUE + object.getClass().getSimpleName() + " successfully added!" + ANSI_RESET);
         } else {
-            System.out.println(object.getClass().getSimpleName() + " already exists!");
+            System.out.println(ANSI_BLUE + object.getClass().getSimpleName() + " already exists!" + ANSI_RESET);
         }
     }
 

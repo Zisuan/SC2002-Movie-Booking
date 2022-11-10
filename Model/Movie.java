@@ -2,8 +2,6 @@ package Model;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.random.RandomGenerator;
-
 import Controller.Helpers.DateHelper;
 import Controller.ReviewControl.ReviewManager;
 

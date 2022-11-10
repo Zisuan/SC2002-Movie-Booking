@@ -14,6 +14,7 @@ public class RemoveMovie {
     public static final Scanner sc = new Scanner(System.in);
 
     public static void removeMovie(
+            // TODO : FIX REMOVE MOVIE WITH INCORRECT MOVIE CODE
             MovieManager mm) throws IOException, SecurityException, ClassNotFoundException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
@@ -30,6 +31,8 @@ public class RemoveMovie {
         String code = sc.nextLine();
         MovieManager.removeMovie(movieDB, code);
         mm.saveObjects(DatabaseFilePath.Movies.getFilePath(), movieDB);
+        System.out.println(ANSI_BLUE + "Movie Deleted!" + ANSI_RESET);
+
         // sc.close();
     }
 }

@@ -22,11 +22,11 @@ public class AddMovieReviewView {
         System.out.println(ANSI_CYAN + "Enter your rating (1-5): ");
         int rating = sc.nextInt();
         sc.nextLine();
-        System.out.println("Enter your review: " + ANSI_RESET);
+        System.out.println("Enter your review: ");
         String review = sc.nextLine();
         rm.addReview(reviewDB, review, username, movieTitle, rating);
         mm.updateReviewsDB(movieDB, movieTitle, reviewDB);
-
+        System.out.println(ANSI_RESET);
         sc.close();
     }
 }

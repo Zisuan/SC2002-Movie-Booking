@@ -116,9 +116,11 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     }
 
     public void printShowtimes(ArrayList<MovieSession> movieSessionDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieSessionDB.size(); i++) {
-            System.out.println(i + 1 + ". " + movieSessionDB.get(i).getMovieDate() + " "
-                    + movieSessionDB.get(i).getMovieTime());
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + movieSessionDB.get(i).getMovieDate() + " "
+                    + movieSessionDB.get(i).getMovieTime() + ANSI_RESET);
         }
     }
 
@@ -129,8 +131,10 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     }
 
     public void printCinemas(ArrayList<Cinema> listOfCinemas) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < listOfCinemas.size(); i++) {
-            System.out.println((i + 1) + ". " + listOfCinemas.get(i).getCinemaName());
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + listOfCinemas.get(i).getCinemaName() + ANSI_RESET);
         }
     }
 

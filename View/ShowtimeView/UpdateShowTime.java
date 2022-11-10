@@ -21,10 +21,16 @@ public class UpdateShowTime {
     public static void updateShowTime(MovieSessionManager msm, CinemaManager cm, MovieManager mm, SeatManager sm)
             throws SecurityException, ClassNotFoundException, IOException {
         // update show time
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         ArrayList<MovieSession> movieSessionDB = msm.loadObjects(DatabaseFilePath.MovieSessions.getFilePath());
         ArrayList<Cinema> cinemaDB = cm.loadObjects(DatabaseFilePath.Cinemas.getFilePath());
         ArrayList<Movie> movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
-        System.out.print("====UPDATE SHOWTIME LISTING====");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                      Update Show Time Listing                     ");
+        System.out.println("=====================================================================" + ANSI_RESET);
 
         Movie movie = CreateShowTime.chooseAMovie(movieDB);
 
@@ -32,33 +38,33 @@ public class UpdateShowTime {
 
         MovieSession movieSession = chooseAShowtime(movieSessionsByMovie, msm);
 
-        System.out.println("Select Update case");
+        System.out.println(ANSI_BLUE + "Select Update case");
         System.out.println("1. Update Movie Date");
         System.out.println("2. Update Movie Time");
         System.out.println("3. Update Movie Cinema");
         System.out.println("4. Update All");
         System.out.println("5. Back");
-        System.out.println("Option: ");
+        System.out.println("Option: " + ANSI_RESET);
         int updateCase = sc.nextInt();
         sc.nextLine();
         switch (updateCase) {
             case 1:
-                System.out.println("Enter New Showtime Date: (YYYY-MM-DD)");
+                System.out.println(ANSI_BLUE + "Enter New Showtime Date: (YYYY-MM-DD)" + ANSI_RESET);
                 String movieDate = sc.nextLine();
                 LocalDate showtimeDate = LocalDate.parse(movieDate);
                 movieSession.setMovieDate(showtimeDate);
-                System.out.println("Showtime Date Updated!");
+                System.out.println(ANSI_BLUE + "Showtime Date Updated!" + ANSI_RESET);
                 break;
             case 2:
-                System.out.print("Enter New Showtime Timing: ");
+                System.out.print(ANSI_BLUE + "Enter New Showtime Timing: " + ANSI_RESET);
                 String movieTime = sc.nextLine();
                 movieSession.setMovieTime(movieTime);
-                System.out.println("Showtime Time Updated!");
+                System.out.println(ANSI_BLUE + "Showtime Time Updated!" + ANSI_RESET);
                 break;
             case 3:
                 Cinema cinema = CreateShowTime.chooseACinema(cinemaDB);
                 movieSession.setCinema(cinema);
-                System.out.println("Showtime Cinema Updated!");
+                System.out.println(ANSI_BLUE + "Showtime Cinema Updated!" + ANSI_RESET);
                 break;
             case 4:
                 CreateShowTime.fullMovieSessionPrompt(movieDB, cinemaDB, sm);
@@ -76,10 +82,15 @@ public class UpdateShowTime {
 
     public static MovieSession chooseAShowtime(ArrayList<MovieSession> movieSessionsByMovie, MovieSessionManager msm) {
         MovieSession movieSession = null;
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
         do {
-            System.out.println("Choose a showtime: ");
+            System.out.println(ANSI_BLUE + "Choose a showtime: " + ANSI_RESET);
             msm.printShowtimes(movieSessionsByMovie);
             int showtimeID = sc.nextInt();
+            if (showtimeID == 0) {
+                break;
+            }
             movieSession = movieSessionsByMovie.get(showtimeID - 1);
 
         } while (movieSession == null);

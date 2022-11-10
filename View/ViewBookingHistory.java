@@ -16,13 +16,17 @@ public class ViewBookingHistory {
 
     public static void viewBookingHistory(String customerId, TicketManager ticketManager)
             throws SecurityException, ClassNotFoundException, IOException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
         Helper.clearConsole();
         ArrayList<Ticket> ticketDB = new ArrayList<Ticket>();
         ticketDB = ticketManager.loadObjects(dbPath);
-        System.out.println("Booking History");
-        System.out.println("---------------");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                        Booking History              ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         TicketManager.printAllTicketsByCustomer(ticketDB, customerId);
-        System.out.println("Press enter to return to main menu");
+        System.out.println(ANSI_BLUE + "Press enter to return to main menu" + ANSI_RESET);
         sc.nextLine();
         Helper.clearConsole();
         // sc.close();

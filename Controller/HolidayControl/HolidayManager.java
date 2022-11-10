@@ -67,10 +67,13 @@ public class HolidayManager extends ObjectManager<Holiday> {
     }
 
     public void listHolidays(ArrayList<Holiday> holidayDB) {
-        System.out.println("Public Holidays:");
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        System.out.println(ANSI_BLUE + "Public Holidays:" + ANSI_RESET);
         for (int i = 0; i < holidayDB.size(); i++) {
-            System.out.printf("%s   %s\n", holidayDB.get(i).getHolidayName(),
-                    holidayDB.get(i).getHolidayDate()).toString();
+            System.out.printf(ANSI_CYAN + "%s   %s\n", holidayDB.get(i).getHolidayName(),
+                    holidayDB.get(i).getHolidayDate() + ANSI_RESET).toString();
         }
     }
 

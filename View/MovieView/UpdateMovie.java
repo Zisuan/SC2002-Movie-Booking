@@ -20,6 +20,8 @@ public class UpdateMovie {
     // TODO: poor ui
     public static void updateMovie(MovieManager mm)
             throws SecurityException, ClassNotFoundException, IOException {
+        // TODO : Remove movie when update movie status to end of showing
+        // TODO : Pass object and i into updateMovie function
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
@@ -32,10 +34,16 @@ public class UpdateMovie {
                     ANSI_BLUE + "=====================================================================");
             System.out.println("                    Update Current Movie Listing                    ");
             System.out.println("=====================================================================" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "UPDATE CURRENT MOVIE LISTING");
-            System.out.println("Enter Movie Code to update movie: " + ANSI_RESET);
+
+            System.out.println(ANSI_BLUE + "Enter Movie ID to update movie: " + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
             MovieManager.printMovieTitlesAndCode(movieDB);
             String movieCode = sc.nextLine();
+            if (movieCode.equals("0")) {
+                return;
+            }
+            System.out.println(
+                    ANSI_BLUE + "=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. Update Movie Type");
             System.out.println("2. Update Movie Title");
             System.out.println("3. Update Movie Code");
@@ -90,7 +98,7 @@ public class UpdateMovie {
                     System.out.println(
                             "Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing \n 4. End of Showing");
                     String movieStatus5 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, movieCode, MovieStatus.valueOf(movieStatus5), null);
+                    mm.updateMovie(select, movieDB, movieCode, movieStatus5, null);
                     System.out.println("Movie Status Updated!" + ANSI_RESET);
                     updated = true;
                     break;

@@ -82,6 +82,10 @@ public class SeatManager extends ObjectManager<Seat> {
     }
 
     public static String getSessionSeatsInGrid(ArrayList<Seat> sessionSeats) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_CYAN = "\u001B[36m";
+        final String ANSI_GREEN = "\u001B[32m";
         int seatCount = 0;
         String seatGrid = "  ";
         String row = sessionSeats.get(sessionSeats.size() - 1).getSeatRow();
@@ -89,15 +93,15 @@ public class SeatManager extends ObjectManager<Seat> {
         int rowCount = Helper.getIntFromCharacter(row);
         int columnCount = Integer.parseInt(column);
         for (int f = 1; f < columnCount + 1; f++) {
-            seatGrid += " " + f;
+            seatGrid += " " + ANSI_CYAN + f + ANSI_RESET;
         }
         for (int i = 0; i < rowCount; i++) {
-            seatGrid += "\n" + Helper.getCharacterFromInt(i) + ": ";
+            seatGrid += ANSI_CYAN + "\n" + Helper.getCharacterFromInt(i) + ": " + ANSI_RESET;
             for (int j = 0; j < columnCount; j++) {
                 if (sessionSeats.get(seatCount).isAssigned()) {
-                    seatGrid += "X ";
+                    seatGrid += ANSI_RED + "X " + ANSI_RESET;
                 } else {
-                    seatGrid += "O ";
+                    seatGrid += ANSI_GREEN + "O " + ANSI_RESET;
                 }
                 seatCount++;
             }
