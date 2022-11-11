@@ -55,6 +55,7 @@ public class CreateShowTime {
             System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Choose a movie: " + ANSI_RESET);
             MovieManager.printMovieTitlesAndCode(movieDB);
+            // sc.nextLine();
             String movieIndex = sc.nextLine();
             if (movieIndex.equals("0")) {
                 exit = 1;
@@ -86,6 +87,7 @@ public class CreateShowTime {
         }
         System.out.println(ANSI_BLUE + "Enter number of columns: " + ANSI_RESET);
         int cols = sc.nextInt();
+        sc.nextLine();
         if (cols == 0) {
             return null;
         }

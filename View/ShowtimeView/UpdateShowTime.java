@@ -31,8 +31,12 @@ public class UpdateShowTime {
                 ANSI_BLUE + "=====================================================================");
         System.out.println("                      Update Show Time Listing                     ");
         System.out.println("=====================================================================" + ANSI_RESET);
-
+        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         Movie movie = CreateShowTime.chooseAMovie(movieDB);
+        if (movie == null) {
+            System.out.println(ANSI_BLUE + "Showtime update cancelled" + ANSI_RESET);
+            return;
+        }
         ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
         if (movieSessionsByMovie.size() == 0) {
             System.out.println("No showtime listing for " + movie.getMovieTitle() + " found!");

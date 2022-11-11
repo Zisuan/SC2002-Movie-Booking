@@ -60,20 +60,17 @@ public class CreateMovie {
         if (movieType.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter Movie Title: " + ANSI_RESET);
         String movieTitle = sc.nextLine();
         if (movieTitle.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter Movie Rating: \n 1. G \n 2. PG \n 3. PG13 \n 4. NC16 \n 5. M18 \n 6. R21"
                 + ANSI_RESET);
         String movieRating = sc.nextLine();
         if (movieRating.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out
                 .println(ANSI_BLUE + "Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing"
                         + ANSI_RESET);
@@ -81,19 +78,16 @@ public class CreateMovie {
         if (movieStatus.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter Movie Synopsis: " + ANSI_RESET);
         String movieSynopsis = sc.nextLine();
         if (movieSynopsis.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter Movie Director: " + ANSI_RESET);
         String movieDirector = sc.nextLine();
         if (movieDirector.equals("0")) {
             return null;
         }
-        System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter Number of Movie Casts: " + ANSI_RESET);
         ArrayList<String> movieCast = new ArrayList<String>();
         ArrayList<Review> reviewsDB = new ArrayList<Review>();
@@ -103,7 +97,7 @@ public class CreateMovie {
             return null;
         }
         for (int i = 0; i < cast; i++) {
-            System.out.println("Enter Movie Cast: ");
+            System.out.println(ANSI_BLUE + "Enter Movie Cast: " + ANSI_RESET);
             String castName = sc.nextLine();
             movieCast.add(castName);
         }

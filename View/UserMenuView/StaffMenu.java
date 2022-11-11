@@ -57,14 +57,14 @@ public class StaffMenu {
                 case 4:
                     ViewRankings.listRankingMenu();
                 case 5:
-                    System.out.println("Logging out!");
+                    System.out.println(ANSI_BLUE + "Logging out!" + ANSI_RESET);
                     break;
                 case 6:
-                    System.out.println("Goodbye!");
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
                     System.exit(0);
                 default:
-                    System.out.println("Invalid option");
-                    System.out.println("Please re-enter!");
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
         } while (choice != 5);
