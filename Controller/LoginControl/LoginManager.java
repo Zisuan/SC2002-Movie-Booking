@@ -19,9 +19,14 @@ public class LoginManager {
         Helper.clearConsole();
         if (asGuest) {
             CustomerMenu.MovieGoerMenu(null);
+            return;
         }
         Scanner sc = new Scanner(System.in);
         String username, password;
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    Login as Admin or Customer         ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter username: " + ANSI_RESET);
         username = sc.nextLine();
         System.out.println(ANSI_BLUE + "Enter password: " + ANSI_RESET);

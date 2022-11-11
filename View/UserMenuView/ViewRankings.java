@@ -83,7 +83,7 @@ public class ViewRankings {
                     case "4":
                         System.exit(0);
                     default:
-                        System.out.println("Invalid Input");
+                        System.out.println(ANSI_BLUE + "Invalid Input" + ANSI_RESET);
                         break;
                 }
             }

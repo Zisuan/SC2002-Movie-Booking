@@ -45,7 +45,7 @@ public class MovieBookingApp {
             } else {
                 System.out.println(ANSI_BLUE + "Invalid option" + ANSI_RESET);
             }
-        } while (option != 3);
+        } while (option != 4);
         sc.close();
 
     }

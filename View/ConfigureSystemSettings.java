@@ -53,11 +53,14 @@ public class ConfigureSystemSettings {
     }
 
     private static void displayConfigRankingMenu() {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         ArrayList<String> settings = new ArrayList<String>();
-        System.out.println("Which ranking type would you like the user to see?");
-        System.out.println("1. Top 5 Movies By Sales Only");
+        System.out.println(ANSI_BLUE+"Which ranking type would you like the user to see?"+ANSI_RESET);
+        System.out.println(ANSI_CYAN+"1. Top 5 Movies By Sales Only");
         System.out.println("2. Top 5 Movie By Overall Ratings Only");
-        System.out.println("3. Both");
+        System.out.println("3. Both"+ANSI_RESET);
         String option = new Scanner(System.in).nextLine();
         settings.add(option);
         writeSettings(settings);
