@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import Controller.*;
 import Controller.Helpers.DateHelper;
@@ -55,7 +56,9 @@ public class HolidayView {
                     month = sc.nextInt();
                     System.out.println(ANSI_BLUE + "Enter Day of month:" + ANSI_RESET);
                     day = sc.nextInt();
-                    LocalDate holidayDate = LocalDate.parse(year + "-" + month + "-" + day);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-M-d");
+
+                    LocalDate holidayDate = LocalDate.parse(year + "-" + month + "-" + day, formatter);
                     hm.addHoliday(holidayDB, holidayDate, holidayName);
                     hm.saveObjects(holidayName, holidayDB);
                     break;
