@@ -36,6 +36,9 @@ public class MovieManager extends ObjectManager<Movie> {
     // update movie
     public static <T> void updateMovie(int updateCase, ArrayList<Movie> movieDB, Movie selectedMovie, T updateVariable,
             ArrayList<String> movieCast, ArrayList<MovieSession> movieSessionDB) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
 
         switch (updateCase) {
             case 1:
@@ -107,7 +110,7 @@ public class MovieManager extends ObjectManager<Movie> {
                 }
                 break;
             default:
-                System.out.println("Invalid option");
+                System.out.println(ANSI_BLUE + "Invalid option" + ANSI_RESET);
                 break;
         }
         MovieSessionManager.updateMovieSession(3, movieSessionDB, selectedMovie.getMovieCode(), selectedMovie);

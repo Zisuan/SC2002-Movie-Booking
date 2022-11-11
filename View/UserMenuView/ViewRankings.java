@@ -34,6 +34,9 @@ public class ViewRankings {
         String whatToDisplay = ConfigureSystemSettings.getSettings().get(0);
         do {
             Helper.clearConsole();
+            System.out.println(
+                    ANSI_BLUE + "=====================================================================");
+            System.out.println("                         Top 5 Movie Rankings              ");
             System.out.println("=====================================================================" + ANSI_RESET);
             int i = 1;
             switch (Integer.parseInt(whatToDisplay)) {
@@ -89,6 +92,9 @@ public class ViewRankings {
 
     public static void listTop5ByTicketSales(BookingManager bm, TicketManager tm)
             throws SecurityException, ClassNotFoundException, IOException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Ticket> tickets = tm.loadObjects(DatabaseFilePath.Tickets.getFilePath());
         ArrayList<Movie> movies = new ArrayList<Movie>();
         for (Ticket ticket : tickets) {
@@ -127,17 +133,26 @@ public class ViewRankings {
                 }
             }
         }
-        System.out.println("Top 5 Movies by Ticket Sales");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    TOp 5 Movies by Ticket Sales              ");
+        System.out.println("=====================================================================" + ANSI_RESET);
 
         MovieManager.printMovieTitlesAndSales(movies);
 
-        System.out.println("Press Enter to Continue");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    Press Enter to Continue              ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         sc.nextLine();
 
     }
 
     public static void listTop5ByOverallRatings(MovieManager mm)
             throws SecurityException, ClassNotFoundException, IOException {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movies = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
         // use insertion sort to sort the movies by overall rating
         for (int i = 1; i < movies.size(); i++) {
@@ -149,10 +164,16 @@ public class ViewRankings {
             }
             movies.set(j + 1, temp);
         }
-        System.out.println("Top 5 Movies by Overall Ratings");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    TOp 5 Movies by Overall Ratings              ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         MovieManager.printMovieTitlesAndOverallRatings(movies);
 
-        System.out.println("Press Enter to Continue");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                    Press Enter to Continue              ");
+        System.out.println("=====================================================================" + ANSI_RESET);
         sc.nextLine();
 
     }

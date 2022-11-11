@@ -39,7 +39,7 @@ public class UpdateShowTime {
         }
         ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
         if (movieSessionsByMovie.size() == 0) {
-            System.out.println("No showtime listing for " + movie.getMovieTitle() + " found!");
+            System.out.println(ANSI_BLUE + "No showtime listing for " + movie.getMovieTitle() + " found!" + ANSI_RESET);
             return;
         }
         MovieSession movieSession = chooseAShowtime(movieSessionsByMovie, msm);
@@ -77,7 +77,7 @@ public class UpdateShowTime {
             case 5:
                 break;
             default:
-                System.out.println("Invalid Option");
+                System.out.println(ANSI_BLUE + "Invalid Option" + ANSI_RESET);
                 break;
         }
         msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);

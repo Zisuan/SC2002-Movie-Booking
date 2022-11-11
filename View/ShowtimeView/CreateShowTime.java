@@ -33,7 +33,7 @@ public class CreateShowTime {
         System.out.println("=====================================================================" + ANSI_RESET);
         MovieSession movieSession = fullMovieSessionPrompt(movieDB, cinemaDB, sm);
         if (movieSession == null) {
-            System.out.println("Showtime creation cancelled");
+            System.out.println(ANSI_BLUE + "Showtime creation cancelled" + ANSI_RESET);
             return;
         }
         msm.addMovieSession(movieSessionDB, movieSession);

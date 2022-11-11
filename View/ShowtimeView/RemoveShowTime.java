@@ -36,7 +36,7 @@ public class RemoveShowTime {
         }
         ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
         if (movieSessionsByMovie.size() == 0) {
-            System.out.println("No showtime listing for " + movie.getMovieTitle() + " found!");
+            System.out.println(ANSI_BLUE + "No showtime listing for " + movie.getMovieTitle() + " found!" + ANSI_RESET);
             return;
         }
 

@@ -16,6 +16,9 @@ public class ReviewManager extends ObjectManager<Review> {
 
     public void updateReview(ArrayList<Review> reviewDB, String movieReview, String customerName, String movieTitle,
             int movieRating) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         int i = 0;
         boolean exists = false;
         for (i = 0; i < reviewDB.size(); i++) {
@@ -28,12 +31,15 @@ public class ReviewManager extends ObjectManager<Review> {
         if (exists) {
             reviewDB.get(i).setMovieTitle(movieTitle);
             reviewDB.get(i).setMovieRating(movieRating);
-            System.out.println("Review successfully updated!");
+            System.out.println(ANSI_BLUE + "Review successfully updated!" + ANSI_RESET);
         } else
-            System.out.println("Review does not exist!");
+            System.out.println(ANSI_BLUE + "Review does not exist!" + ANSI_RESET);
     }
 
     public void removeReview(ArrayList<Review> reviewDB, String movieTitle, String customerName) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         int i = 0;
         boolean exists = false;
         for (i = 0; i < reviewDB.size(); i++) {
@@ -45,9 +51,9 @@ public class ReviewManager extends ObjectManager<Review> {
         }
         if (exists) {
             reviewDB.remove(i);
-            System.out.println("Review successfully removed!");
+            System.out.println(ANSI_BLUE + "Review successfully removed!" + ANSI_RESET);
         } else
-            System.out.println("Review does not exist!");
+            System.out.println(ANSI_BLUE + "Review does not exist!" + ANSI_RESET);
     }
 
     public boolean searchReview(ArrayList<Review> reviewDB, String movieTitle, String customerName) {

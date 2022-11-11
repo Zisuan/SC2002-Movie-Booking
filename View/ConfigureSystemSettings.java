@@ -42,11 +42,11 @@ public class ConfigureSystemSettings {
                 case 3:
                     displayConfigRankingMenu();
                 case 4:
-                    System.out.println("Returning to main menu...");
+                    System.out.println(ANSI_BLUE + "Returning to main menu..." + ANSI_RESET);
                     break;
                 default:
-                    System.out.println("Invalid option");
-                    System.out.println("Please re-enter!");
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
         } while (choice != 3);

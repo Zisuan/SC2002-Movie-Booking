@@ -40,10 +40,10 @@ public class MovieBookingApp {
             } else if (option == 3) {
                 LoginManager.login(true);
             } else if (option == 4) {
-                System.out.println("Thank you for using MOBLIMA!");
+                System.out.println(ANSI_BLUE + "Thank you for using MOBLIMA!" + ANSI_RESET);
                 System.exit(0);
             } else {
-                System.out.println("Invalid option");
+                System.out.println(ANSI_BLUE + "Invalid option" + ANSI_RESET);
             }
         } while (option != 3);
         sc.close();

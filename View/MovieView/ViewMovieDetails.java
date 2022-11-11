@@ -76,6 +76,7 @@ public class ViewMovieDetails {
         System.out.println("                            Movie Detail             ");
         System.out.println("=====================================================================");
         System.out.print("Enter Movie Title: \n" + ANSI_RESET);
+        System.out.println();
         MovieManager.printMovieTitles(movieDB);
         // mm.printMovies(movieDB);
         String movieIndex = sc.nextLine();
