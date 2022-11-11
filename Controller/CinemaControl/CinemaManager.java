@@ -1,11 +1,12 @@
 package Controller.CinemaControl;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
 
 import Controller.ObjectControl.ObjectManager;
-import Model.*;
+import Model.Cinema;
 import Model.Cinema.CinemaType;
+import Model.Movie;
+import Model.Seat;
 
 public class CinemaManager extends ObjectManager<Cinema> {
     public static final String FILEPATH = "./database/";
