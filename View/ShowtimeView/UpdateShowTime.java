@@ -33,11 +33,12 @@ public class UpdateShowTime {
         System.out.println("=====================================================================" + ANSI_RESET);
 
         Movie movie = CreateShowTime.chooseAMovie(movieDB);
-
         ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
-
+        if (movieSessionsByMovie.size() == 0) {
+            System.out.println("No showtime listing for " + movie.getMovieTitle() + " found!");
+            return;
+        }
         MovieSession movieSession = chooseAShowtime(movieSessionsByMovie, msm);
-
         System.out.println(ANSI_BLUE + "Select Update case");
         System.out.println("1. Update Movie Date");
         System.out.println("2. Update Movie Time");
@@ -85,6 +86,8 @@ public class UpdateShowTime {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         do {
+            // if no show time for movie
+
             System.out.println(ANSI_BLUE + "Choose a showtime: " + ANSI_RESET);
             msm.printShowtimes(movieSessionsByMovie);
             int showtimeID = sc.nextInt();

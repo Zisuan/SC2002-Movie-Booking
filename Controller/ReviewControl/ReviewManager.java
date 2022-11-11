@@ -2,6 +2,7 @@ package Controller.ReviewControl;
 
 import java.util.*;
 
+import Controller.Helpers.DateHelper;
 import Controller.ObjectControl.ObjectManager;
 import Model.*;
 
@@ -99,25 +100,23 @@ public class ReviewManager extends ObjectManager<Review> {
         }
         if (count > 0) {
             overallRating /= count;
-            return overallRating;
+            return DateHelper.roundAvoid(overallRating, 1);
         } else {
             // System.out.println("No reviews have been made yet.");
             return -1;
         }
     }
 
-    public String getLast3Reviews(ArrayList<Review> reviewDB) {
-        String last3Reviews = "";
+    public String getReviews(ArrayList<Review> reviewDB) {
+        String reviews = "";
         int count = 0;
         for (int i = reviewDB.size() - 1; i >= 0; i--) {
-            if (count < 3) {
-                count++;
-                last3Reviews += count + ". " + reviewDB.get(i).toString() + "\n";
-            }
+            count++;
+            reviews += count + ". " + reviewDB.get(i).toString() + "\n\n";
         }
         if (count == 0)
             return "No reviews have been made yet.";
-        return last3Reviews;
+        return reviews;
     }
 
     @Override

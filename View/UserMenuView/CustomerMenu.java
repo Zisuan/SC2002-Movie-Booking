@@ -26,7 +26,7 @@ public class CustomerMenu {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         final String FILEPATH = "./database/";
-        int choice;
+        String choice;
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
         MovieSessionManager msm = new MovieSessionManager();
@@ -58,9 +58,9 @@ public class CustomerMenu {
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================" + ANSI_RESET);
-            choice = sc.nextInt();
+            choice = sc.nextLine();
             Helper.clearConsole();
-            switch (choice) {
+            switch (Integer.parseInt(choice)) {
                 case 1:
                     ViewMovieDetails.searchMovie(mm);
                     break;
@@ -80,7 +80,7 @@ public class CustomerMenu {
                     ViewBookingHistory.viewBookingHistory(customer.getUsername(), tm);
                     break;
                 case 7:
-                    // listTop5RankingMovie();
+                    ViewRankings.listTop5RankingMovie();
                     break;
                 // case 7:
                 // System.out.println("Goodbye!");
@@ -91,7 +91,7 @@ public class CustomerMenu {
                 // break;
             }
 
-        } while (choice != 8);
+        } while (Integer.parseInt(choice) != 8);
 
     }
 

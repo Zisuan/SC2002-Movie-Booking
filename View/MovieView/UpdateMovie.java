@@ -2,14 +2,14 @@ package View.MovieView;
 
 import java.util.*;
 
-import javax.xml.crypto.Data;
-
 import Controller.Helpers.DatabaseFilePath;
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
 
 import java.io.IOException;
 
 import Model.Movie;
+import Model.MovieSession;
 import Model.Movie.MovieStatus;
 import Model.Movie.MovieType;
 
@@ -18,18 +18,16 @@ public class UpdateMovie {
     public static final Scanner sc = new Scanner(System.in);
 
     // TODO: poor ui
-    public static void updateMovie(MovieManager mm)
+    public static void updateMovie(MovieManager mm, MovieSessionManager msm)
             throws SecurityException, ClassNotFoundException, IOException {
-        // TODO : Remove movie when update movie status to end of showing
-        // TODO : Pass object and i into updateMovie function
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
-        movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
         int select;
         boolean updated = false;
         do {
+            movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
             System.out.println(
                     ANSI_BLUE + "=====================================================================");
             System.out.println("                    Update Current Movie Listing                    ");
@@ -37,12 +35,13 @@ public class UpdateMovie {
 
             System.out.println(ANSI_BLUE + "Enter Movie ID to update movie: " + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
-            MovieManager.printMovieTitlesAndCode(movieDB);
+            MovieManager.printMovieTitlesAndCodeAndStatus(movieDB);
             String selectedMovieIndex = sc.nextLine();
             Movie selectedMovie = mm.getMovieByIndex(movieDB, selectedMovieIndex);
-            if (selectedMovieIndex.equals("0")) {
-                return;
-            }
+            ArrayList<MovieSession> movieSessionDB = msm.loadObjects(DatabaseFilePath.MovieSessions.getFilePath());
+            // if (selectedMovieIndex.equals("0")) {
+            // break;
+            // }
             System.out.println(
                     ANSI_BLUE + "=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. Update Movie Type");
@@ -65,7 +64,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE TYPE---------------");
                     System.out.println("Enter Movie Type: \n 1. 3D \n 2. Blockbuster \n 3. Normal");
                     String movieType = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieType, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieType, null, movieSessionDB);
                     System.out.println("Movie Type Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -73,7 +72,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE TITLE---------------");
                     System.out.println("Enter Movie Title: ");
                     String movieTitle2 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieTitle2, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieTitle2, null, movieSessionDB);
                     System.out.println("Movie Title Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -81,7 +80,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE CODE---------------");
                     System.out.println("Enter Movie Code: ");
                     String movieCode3 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieCode3, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieCode3, null, movieSessionDB);
                     System.out.println("Movie Code Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -90,7 +89,7 @@ public class UpdateMovie {
                     System.out
                             .println("Enter Movie Rating: \n 1. G \n 2. PG \n 3. PG13 \n 4. NC16 \n 5. M18 \n 6. R21");
                     String movieRating4 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieRating4, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieRating4, null, movieSessionDB);
                     System.out.println("Movie Rating Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -99,7 +98,7 @@ public class UpdateMovie {
                     System.out.println(
                             "Enter Movie Status: \n 1. Coming Soon \n 2. Preview \n 3. Now Showing \n 4. End of Showing");
                     String movieStatus5 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieStatus5, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieStatus5, null, movieSessionDB);
                     System.out.println("Movie Status Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -107,7 +106,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE SYNOPSIS---------------");
                     System.out.println("Enter Movie Synopsis: ");
                     String movieSynopsis6 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieSynopsis6, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieSynopsis6, null, movieSessionDB);
                     System.out.println("Movie Synopsis Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -115,7 +114,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE MOVIE DIRECTOR---------------");
                     System.out.println("Enter Movie Director: ");
                     String movieDirector7 = sc.nextLine();
-                    mm.updateMovie(select, movieDB, selectedMovie, movieDirector7, null);
+                    mm.updateMovie(select, movieDB, selectedMovie, movieDirector7, null, movieSessionDB);
                     System.out.println("Movie Director Updated!" + ANSI_RESET);
                     updated = true;
                     break;
@@ -129,7 +128,7 @@ public class UpdateMovie {
                         String movieCast8 = sc.nextLine();
                         movieCast.add(movieCast8);
                     }
-                    mm.updateMovie(select, movieDB, selectedMovie, null, movieCast);
+                    mm.updateMovie(select, movieDB, selectedMovie, null, movieCast, movieSessionDB);
                     System.out.println("Movie Cast Updated!" + ANSI_RESET);
                     updated = true;
                     break;

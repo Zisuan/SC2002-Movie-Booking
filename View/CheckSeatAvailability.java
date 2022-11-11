@@ -43,25 +43,37 @@ public class CheckSeatAvailability {
                 // mm.printMovies(movieDB);
                 String movieIndex = sc.nextLine();
                 Movie selectedMovie = mm.getMovieByIndex(movieDB, movieIndex);
-                cinemaDB = msm.filterSessionsByMovie(movieSessionDB, movieIndex);
+                // cinemaDB = msm.getCinemafilterSessionsByMovie(movieSessionDB, selectedMovie);
+                ArrayList<MovieSession> listOfSessionsInCinemaWithMovie = new ArrayList<MovieSession>();
+                listOfSessionsInCinemaWithMovie = msm.filterSessionsByMovie(movieSessionDB,
+                                selectedMovie);
+                // System.out.println(
+                // ANSI_BLUE + "Please select the cinema you want to check the seat availability
+                // for:"
+                // + ANSI_RESET);
+                // msm.printCinemas(cinemaDB);
+                System.out.println(ANSI_BLUE + "Please select the showtime you want to check the seat"
+                                + " availability for:" + ANSI_RESET);
+                msm.printAll(listOfSessionsInCinemaWithMovie);
+                String showtimeIndex = sc.nextLine();
+                // Cinema selectedCinema = cinemaDB.get(Integer.parseInt(showtimeIndex) - 1);
+                MovieSession selectedMovieSession = listOfSessionsInCinemaWithMovie
+                                .get(Integer.parseInt(showtimeIndex) - 1);
+                System.out.println(ANSI_BLUE + "The seat availability for the selected showtime is:"
+                                + ANSI_RESET);
 
-                System.out.println(
-                                ANSI_BLUE + "Please select the cinema you want to check the seat availability for:"
-                                                + ANSI_RESET);
-                msm.printCinemas(cinemaDB);
-                String cinemaCode = sc.nextLine();
-                Cinema selectedCinema = cinemaDB.get(Integer.parseInt(cinemaCode) - 1);
-
-                System.out.println(
-                                ANSI_BLUE + "Please select the date you want to check the seat availability for:"
-                                                + ANSI_RESET);
-                selectedMovieSessionDB = msm.filterSessionsByMovieAndCinema(movieSessionDB,
-                                selectedMovie.getMovieTitle(),
-                                selectedCinema.getCinemaCode());
-                msm.printShowtimes(selectedMovieSessionDB);
-                String showtime = sc.nextLine();
-                MovieSession seletedShowtime = msm.getMovieSession(selectedMovieSessionDB, Integer.parseInt(showtime));
-                msm.printSessionSeats(seletedShowtime);
+                // System.out.println(
+                // ANSI_BLUE + "Please select the date you want to check the seat availability
+                // for:"
+                // + ANSI_RESET);
+                // selectedMovieSessionDB = msm.filterSessionsByMovieAndCinema(movieSessionDB,
+                // selectedMovie.getMovieTitle(),
+                // selectedCinema.getCinemaCode());
+                // msm.printShowtimes(selectedMovieSessionDB);
+                // String showtime = sc.nextLine();
+                // MovieSession seletedShowtime = msm.getMovieSession(selectedMovieSessionDB,
+                // Integer.parseInt(showtime));
+                msm.printSessionSeats(selectedMovieSession);
 
         }
 }

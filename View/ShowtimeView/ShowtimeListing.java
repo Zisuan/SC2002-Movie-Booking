@@ -36,6 +36,7 @@ public class ShowtimeListing {
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================" + ANSI_RESET);
             choice = sc.nextInt();
+            sc.nextLine();
             switch (choice) {
                 case 1:
                     CreateShowTime.CreateShowTime(msm, mm, cm, sm);

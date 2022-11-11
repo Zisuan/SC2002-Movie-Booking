@@ -57,36 +57,70 @@ public class BookTicket {
         if (movieIndex.equals("0")) {
             return;
         }
+
+        // // ArrayList<Movie> movieDB = msm.getMoviesInSession(movieSessionDB, mm);
+        // if (moviesInSessionDB.size() == 0) {
+        // System.out.println(ANSI_BLUE + "There are no movies in session at the
+        // moment.");
+        // System.out.println("Please come back later.");
+        // System.out.println("Press enter to return to main menu." + ANSI_RESET);
+        // sc.nextLine();
+        // return;
+        // }
+        // mm.printMovieTitles(moviesInSessionDB);
+        // mm.printMovies(movieDB);
         Movie selectedMovie = mm.getMovieByIndex(moviesInSessionDB, movieIndex);
+        // cinemaDB = msm.getCinemafilterSessionsByMovie(movieSessionDB, selectedMovie);
+        ArrayList<MovieSession> listOfSessionsInCinemaWithMovie = new ArrayList<MovieSession>();
+        listOfSessionsInCinemaWithMovie = msm.filterSessionsByMovie(movieSessionDB,
+                selectedMovie);
+        // System.out.println(
+        // ANSI_BLUE + "Please select the cinema you want to check the seat availability
+        // for:"
+        // + ANSI_RESET);
+        // msm.printCinemas(cinemaDB);
+        System.out.println(ANSI_BLUE + "Please select the showtime you want to check the seat"
+                + " availability for:" + ANSI_RESET);
+        msm.printAll(listOfSessionsInCinemaWithMovie);
+        String showtimeIndex = sc.nextLine();
+        // Cinema selectedCinema = cinemaDB.get(Integer.parseInt(showtimeIndex) - 1);
+        MovieSession selectedMovieSession = listOfSessionsInCinemaWithMovie
+                .get(Integer.parseInt(showtimeIndex) - 1);
 
-        cinemaDB = msm.filterSessionsByMovie(movieSessionDB, movieIndex);
-        System.out.println(ANSI_BLUE + "Please select the cinema you want to book:" + ANSI_RESET);
-        msm.printCinemas(cinemaDB);
-        String cinemaCode = sc.nextLine();
-        if (cinemaCode.equals("0")) {
-            return;
-        }
-        Cinema selectedCinema = cinemaDB.get(Integer.parseInt(cinemaCode) - 1);
+        // Movie selectedMovie = mm.getMovieByIndex(moviesInSessionDB, movieIndex);
 
-        System.out.println(ANSI_BLUE + "Please select the date you want to book:" + ANSI_RESET);
-        selectedMovieSessionDB = msm.filterSessionsByMovieAndCinema(movieSessionDB, selectedMovie.getMovieTitle(),
-                selectedCinema.getCinemaCode());
-        msm.printShowtimes(selectedMovieSessionDB);
-        String showtime = sc.nextLine();
-        if (showtime.equals("0")) {
-            return;
-        }
-        MovieSession selectedShowtime = msm.getMovieSession(selectedMovieSessionDB, Integer.parseInt(showtime));
+        // cinemaDB = msm.getSessionByMovieIndex(movieSessionDB, movieIndex);
+        // System.out.println(ANSI_BLUE + "Please select the cinema you want to book:" +
+        // ANSI_RESET);
+        // msm.printCinemas(cinemaDB);
+        // String cinemaCode = sc.nextLine();
+        // if (cinemaCode.equals("0")) {
+        // return;
+        // }
+        // Cinema selectedCinema = cinemaDB.get(Integer.parseInt(cinemaCode) - 1);
 
-        ArrayList<Seat> sessionSeats = selectedShowtime.getSessionSeats();
+        // System.out.println(ANSI_BLUE + "Please select the date you want to book:" +
+        // ANSI_RESET);
+        // selectedMovieSessionDB = msm.filterSessionsByMovieAndCinema(movieSessionDB,
+        // selectedMovie.getMovieTitle(),
+        // selectedCinema.getCinemaCode());
+        // msm.printShowtimes(selectedMovieSessionDB);
+        // String showtime = sc.nextLine();
+        // if (showtime.equals("0")) {
+        // return;
+        // }
+        // MovieSession selectedShowtime = msm.getMovieSession(selectedMovieSessionDB,
+        // Integer.parseInt(showtime));
 
-        ArrayList<String> seatIDInfo = new ArrayList<String>();
-        seatIDInfo = checkSeatAvailability(sessionSeats, selectedShowtime, msm, sm);
+        ArrayList<Seat> sessionSeats = selectedMovieSession.getSessionSeats();
+
+        ArrayList<String> seatIDInfo = checkSeatAvailability(sessionSeats, selectedMovieSession, msm, sm);
         String ticketType = getUserTicketType();
 
-        confrimBooking(selectedMovie, selectedCinema, selectedShowtime, ticketType, customer,
-                seatIDInfo,
-                selectedMovieSessionDB, sessionSeats, msm, tm, pm, hm, bm, sm);
+        confrimBooking(sessionSeats,
+                movieSessionDB, ticketType,
+                selectedMovieSession, seatIDInfo, customer,
+                pm, hm, bm, sm, tm, msm);
 
     }
 
@@ -141,13 +175,77 @@ public class BookTicket {
         return seatIDInfo;
     }
 
-    public static void confrimBooking(Movie selectedMovie, Cinema selectedCinema, MovieSession selectedShowtime,
-            String ticketType, Customer customer,
-            ArrayList<String> seatIDInfo,
-            ArrayList<MovieSession> movieSessionDB,
-            ArrayList<Seat> sessionSeats,
-            MovieSessionManager msm, TicketManager tm, PriceManager pm, HolidayManager hm, BookingManager bm,
-            SeatManager sm)
+    // public static void confrimBooking(Movie selectedMovie, Cinema selectedCinema,
+    // MovieSession selectedShowtime,
+    // String ticketType, Customer customer,
+    // ArrayList<String> seatIDInfo,
+    // ArrayList<MovieSession> movieSessionDB,
+    // ArrayList<Seat> sessionSeats,
+    // MovieSessionManager msm, TicketManager tm, PriceManager pm, HolidayManager
+    // hm, BookingManager bm,
+    // SeatManager sm)
+    // throws SecurityException, ClassNotFoundException, IOException {
+    // final String ANSI_BLUE = "\u001B[34m";
+    // final String ANSI_RESET = "\u001B[0m";
+    // final String ANSI_CYAN = "\u001B[36m";
+    // ArrayList<Ticket> ticketDB =
+    // tm.loadObjects(DatabaseFilePath.Tickets.getFilePath());
+    // ArrayList<Price> priceDB =
+    // pm.loadObjects(DatabaseFilePath.Prices.getFilePath());
+    // ArrayList<Holiday> holidayDB =
+    // hm.loadObjects(DatabaseFilePath.Holidays.getFilePath());
+    // ArrayList<Booking> bookingDB =
+    // bm.loadObjects(DatabaseFilePath.Bookings.getFilePath());
+    // Helper.clearConsole();
+
+    // System.out.println(ANSI_BLUE + "Please confirm your booking:" + ANSI_RESET);
+    // System.out.println(ANSI_CYAN + "Movie: " + selectedMovie.getMovieTitle());
+    // System.out.println("Cinema: " + selectedCinema.getCinemaCode());
+    // System.out.println("Showtime: " + selectedShowtime.getMovieDate() + " @ " +
+    // selectedShowtime.getMovieTime());
+    // System.out.println("Seat: " + seatIDInfo.get(0));
+    // double ticketPrice = pm.getPrice(selectedShowtime, pm.getPrice(priceDB),
+    // holidayDB, ticketType);
+    // System.out.println("Price: " + ticketPrice + ANSI_RESET);
+    // Seat selectedSeat = new Seat(seatIDInfo.get(0), selectedCinema,
+    // seatIDInfo.get(1), seatIDInfo.get(2),
+    // customer);
+    // sm.assignSeat(sessionSeats, selectedSeat);
+    // msm.printSessionSeats(selectedShowtime);
+
+    // System.out.println(ANSI_BLUE + "Please enter 1 to confirm booking, 2 to
+    // cancel booking:" + ANSI_RESET);
+    // String confirm = sc.nextLine();
+    // if (confirm.equals("1")) {
+    // selectedShowtime.setSessionSeats(sessionSeats);
+    // // TODO issue ticket
+
+    // Ticket ticket = new Ticket(ticketPrice, ticketType, "Booked",
+    // seatIDInfo.get(0), selectedShowtime, customer);
+    // tm.addNewTicket(ticketDB, ticket);
+    // bm.addBooking(bookingDB, customer, selectedShowtime, ticket);
+    // bm.saveObjects(DatabaseFilePath.Bookings.getFilePath(), bookingDB);
+    // msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(),
+    // movieSessionDB);
+    // tm.saveObjects(DatabaseFilePath.Tickets.getFilePath(), ticketDB);
+    // System.out.println(ANSI_BLUE + "Booking confirmed!");
+    // System.out.println("Thank you for using MOBLIMA!");
+    // System.out.println("Press enter to return to main menu" + ANSI_RESET);
+    // sc.nextLine();
+    // Helper.clearConsole();
+    // } else {
+    // System.out.println(ANSI_BLUE + "Booking cancelled!");
+    // System.out.println("Press enter to return to main menu" + ANSI_RESET);
+    // sc.nextLine();
+    // Helper.clearConsole();
+    // }
+    // }
+
+    public static void confrimBooking(ArrayList<Seat> sessionSeats, ArrayList<MovieSession> movieSessionDB,
+            String ticketType,
+            MovieSession selectedShowtime, ArrayList<String> seatIDInfo, Customer customer,
+            PriceManager pm, HolidayManager hm, BookingManager bm, SeatManager sm, TicketManager tm,
+            MovieSessionManager msm)
             throws SecurityException, ClassNotFoundException, IOException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
@@ -159,13 +257,14 @@ public class BookTicket {
         Helper.clearConsole();
 
         System.out.println(ANSI_BLUE + "Please confirm your booking:" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + "Movie: " + selectedMovie.getMovieTitle());
-        System.out.println("Cinema: " + selectedCinema.getCinemaCode());
+        System.out.println(ANSI_CYAN + "Movie: " + selectedShowtime.getMovie().getMovieTitle());
+        System.out.println("Cinema: " + selectedShowtime.getCinema().getCinemaCode());
         System.out.println("Showtime: " + selectedShowtime.getMovieDate() + " @ " + selectedShowtime.getMovieTime());
         System.out.println("Seat: " + seatIDInfo.get(0));
         double ticketPrice = pm.getPrice(selectedShowtime, pm.getPrice(priceDB), holidayDB, ticketType);
         System.out.println("Price: " + ticketPrice + ANSI_RESET);
-        Seat selectedSeat = new Seat(seatIDInfo.get(0), selectedCinema, seatIDInfo.get(1), seatIDInfo.get(2),
+        Seat selectedSeat = new Seat(seatIDInfo.get(0), selectedShowtime.getCinema(), seatIDInfo.get(1),
+                seatIDInfo.get(2),
                 customer);
         sm.assignSeat(sessionSeats, selectedSeat);
         msm.printSessionSeats(selectedShowtime);

@@ -3,6 +3,7 @@ package View.MovieView;
 import java.util.*;
 
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
 import View.Helper;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class MovieListing {
 
     public static final Scanner sc = new Scanner(System.in);
 
-    public static void MovieMenu(MovieManager mm)
+    public static void MovieMenu(MovieManager mm, MovieSessionManager msm)
             throws SecurityException, ClassNotFoundException, IOException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
@@ -39,7 +40,7 @@ public class MovieListing {
                     CreateMovie.createMovie(mm);
                     break;
                 case 2:
-                    UpdateMovie.updateMovie(mm);
+                    UpdateMovie.updateMovie(mm, msm);
                     break;
                 case 3:
                     RemoveMovie.removeMovie(mm);

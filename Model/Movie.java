@@ -77,6 +77,8 @@ public class Movie implements Serializable {
     // create movie code
     private String movieCode;
 
+    private String ticketSales;
+
     private MovieRating movieRating;
 
     // create movie constructor
@@ -127,6 +129,11 @@ public class Movie implements Serializable {
     public double getMovieOverallRating() {
         ReviewManager rm = new ReviewManager();
         return rm.movieOverallRating(this.reviewsDB, this.movieTitle);
+    }
+
+    // get number of reviews
+    public int getNumberOfReviews() {
+        return this.reviewsDB.size();
     }
 
     public MovieRating getMovieRating() {
@@ -275,10 +282,10 @@ public class Movie implements Serializable {
     public String toString() {
         String overallReviewRating = "NA";
         ReviewManager rm = new ReviewManager();
-        if (getMovieOverallRating() != -1) {
+        if (getNumberOfReviews() > 1) {
             overallReviewRating = String.valueOf(getMovieOverallRating());
         }
-        return "Movie Title: " + getMovieTitle() + "\n" +
+        String baseResults = "Movie Title: " + getMovieTitle() + "\n" +
                 "Movie Status: " + getMovieStatus().toString() + "\n" +
                 "Movie Synopsis: " + getMovieSynopsis() + "\n" +
                 "Movie Director: " + getMovieDirector() + "\n" +
@@ -286,11 +293,16 @@ public class Movie implements Serializable {
                 "Movie Rating: " + getMovieRating().toString() + "\n" +
                 "Overall Movie Review Rating: " + overallReviewRating + "\n" +
                 "Movie Type: " + getMovieType().toString() + "\n" +
-                "Movie Code: " + getMovieCode() + "\n" +
-                "=========================================================\n" +
+                "Movie Code: " + getMovieCode() + "\n";
+        String reviews = "=========================================================\n" +
                 "                  Movie Review Rating\n" +
                 "=========================================================\n" +
-                rm.getLast3Reviews(reviewsDB);
+                rm.getReviews(reviewsDB);
+        if (getMovieStatus().equals(MovieStatus.COMING_SOON)) {
+            return baseResults;
+        } else {
+            return baseResults + reviews;
+        }
 
     }
 

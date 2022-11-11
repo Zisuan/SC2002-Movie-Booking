@@ -3,6 +3,7 @@ package View.UserMenuView;
 import java.util.*;
 
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
 import Controller.PriceControl.PriceManager;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class StaffMenu {
         Scanner sc = new Scanner(System.in);
         MovieManager mm = new MovieManager();
         PriceManager pm = new PriceManager();
+        MovieSessionManager msm = new MovieSessionManager();
         do {
             System.out.println(
                     ANSI_BLUE + "=====================================================================");
@@ -46,7 +48,7 @@ public class StaffMenu {
             System.out.println(ANSI_RESET);
             switch (choice) {
                 case 1:
-                    MovieListing.MovieMenu(mm);
+                    MovieListing.MovieMenu(mm, msm);
                     break;
                 case 2:
                     ShowtimeListing.ShowtimeMenu();

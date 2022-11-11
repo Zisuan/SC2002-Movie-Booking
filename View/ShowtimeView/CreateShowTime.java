@@ -15,8 +15,7 @@ import Model.Seat;
 import Model.Cinema;
 
 public class CreateShowTime {
-    // TODO : FIX CREATE SHOWTIME , Not showing all the movies
-    // TODO : CreateShowtime adding showtime to all movie instead of one movie.
+
     public static final Scanner sc = new Scanner(System.in);
 
     public static void CreateShowTime(MovieSessionManager msm, MovieManager mm, CinemaManager cm, SeatManager sm)

@@ -22,7 +22,7 @@ public class TicketManager extends ObjectManager<Ticket> {
     // }
 
     public void addNewTicket(ArrayList<Ticket> ticketDB, Ticket newTicket) {
-        Cinema ticketCinema = newTicket.getTicketShowtime().getCinema();
+        Cinema ticketCinema = newTicket.getMovieSession().getCinema();
         newTicket.setTicketId(generateTicketID(ticketCinema));
         if (!objectExists(ticketDB, newTicket)) {
             ticketDB.add(newTicket);
@@ -45,7 +45,7 @@ public class TicketManager extends ObjectManager<Ticket> {
                 ticketDB.get(i).setTicketType(ticketType);
                 ticketDB.get(i).setTicketStatus(ticketStatus);
                 ticketDB.get(i).setTicketSeatID(ticketSeat);
-                ticketDB.get(i).setTicketShowtime(ticketShowtime);
+                ticketDB.get(i).setMovieSession(ticketShowtime);
                 ticketDB.get(i).setTicketCustomer(ticketCustomer);
             }
         }
@@ -94,7 +94,7 @@ public class TicketManager extends ObjectManager<Ticket> {
     public ArrayList<Ticket> getTicketsByMovie(ArrayList<Ticket> ticketDB, String movieTitle) {
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         for (int i = 0; i < ticketDB.size(); i++) {
-            if (ticketDB.get(i).getTicketShowtime().getMovie().getMovieTitle().equalsIgnoreCase(movieTitle)) {
+            if (ticketDB.get(i).getMovieSession().getMovie().getMovieTitle().equalsIgnoreCase(movieTitle)) {
                 tickets.add(ticketDB.get(i));
             }
         }

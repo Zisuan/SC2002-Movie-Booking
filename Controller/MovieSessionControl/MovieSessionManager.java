@@ -15,15 +15,15 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     }
 
     // update MovieSession
-    public static void updateMovieSession(int updateCase, ArrayList<MovieSession> MovieSessionDB,
+    public static <T> void updateMovieSession(int updateCase, ArrayList<MovieSession> MovieSessionDB,
             String movieCode,
-            String updateVariable) {
+            T updateVariable) {
         {
             switch (updateCase) {
                 case 1:
                     for (MovieSession MovieSession : MovieSessionDB) {
                         if (MovieSession.getMovie().getMovieCode().equals(movieCode)) {
-                            MovieSession.setMovieDate((LocalDate) LocalDate.parse(updateVariable));
+                            MovieSession.setMovieDate((LocalDate) LocalDate.parse((String) updateVariable));
                             break;
                         }
                     }
@@ -31,7 +31,15 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
                 case 2:
                     for (MovieSession MovieSession : MovieSessionDB) {
                         if (MovieSession.getMovie().getMovieCode().equals(movieCode)) {
-                            MovieSession.setMovieTime(updateVariable);
+                            MovieSession.setMovieTime((String) updateVariable);
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    for (MovieSession MovieSession : MovieSessionDB) {
+                        if (MovieSession.getMovie().getMovieCode().equals(movieCode)) {
+                            MovieSession.setMovie((Movie) updateVariable);
                             break;
                         }
                     }
@@ -43,9 +51,11 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
     // remove MovieSession
     public static void removeMovieSession(ArrayList<MovieSession> MovieSessionDB, MovieSession session) {
         String movieCode = session.getMovie().getMovieCode();
-        for (MovieSession MovieSession : MovieSessionDB) {
-            if (MovieSession.getMovie().getMovieCode().equals(movieCode)) {
-                MovieSessionDB.remove(MovieSession);
+        for (int i = 0; i < MovieSessionDB.size(); i++) {
+            if (MovieSessionDB.get(i).getMovie().getMovieCode().equals(session.getMovie().getMovieCode())
+                    && MovieSessionDB.get(i).getMovieDate().equals(session.getMovieDate())
+                    && MovieSessionDB.get(i).getMovieTime().equals(session.getMovieTime())) {
+                MovieSessionDB.remove(i);
                 break;
             }
         }
@@ -68,7 +78,7 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         return listOfMoviesInSession;
     }
 
-    public ArrayList<Cinema> filterSessionsByMovie(ArrayList<MovieSession> listOfMoviesInSession, String movieIndex) {
+    public ArrayList<Cinema> getSessionByMovieIndex(ArrayList<MovieSession> listOfMoviesInSession, String movieIndex) {
         ArrayList<Cinema> listOfCinemaWithMovieInSession = new ArrayList<Cinema>();
         if (listOfMoviesInSession == null) {
             System.out.println("No movies in the database");
@@ -91,6 +101,21 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
             }
         }
         return listOfSessionsForMovie;
+    }
+
+    public ArrayList<Cinema> getCinemafilterSessionsByMovie(ArrayList<MovieSession> listOfMoviesInSession,
+            Movie movie) {
+        ArrayList<Cinema> listOfCinemaWithMovieInSession = new ArrayList<Cinema>();
+        for (MovieSession movieSession : listOfMoviesInSession) {
+            if (movieSession.getMovie().getMovieCode().equals(movie.getMovieCode())) {
+                if (!listOfCinemaWithMovieInSession.contains(movieSession.getCinema())) {
+                    listOfCinemaWithMovieInSession.add(movieSession.getCinema());
+
+                }
+
+            }
+        }
+        return listOfCinemaWithMovieInSession;
     }
 
     public ArrayList<MovieSession> filterSessionsByMovieAndCinema(ArrayList<MovieSession> movieSessionDB,
@@ -134,7 +159,16 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < listOfCinemas.size(); i++) {
-            System.out.println(ANSI_CYAN + (i + 1) + ". " + listOfCinemas.get(i).getCinemaName() + ANSI_RESET);
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + listOfCinemas.get(i).getCinemaName()
+                    + listOfCinemas.get(i).getCinemaCode() + ANSI_RESET);
+        }
+    }
+
+    public void printAll(ArrayList<MovieSession> movieSessionDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        for (int i = 0; i < movieSessionDB.size(); i++) {
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + movieSessionDB.get(i).toString(1) + ANSI_RESET);
         }
     }
 

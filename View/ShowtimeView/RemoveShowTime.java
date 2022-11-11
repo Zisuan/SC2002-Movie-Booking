@@ -13,7 +13,6 @@ import Model.MovieSession;
 import java.io.IOException;
 
 public class RemoveShowTime {
-    // TODO : Remove Show time not working. Need to fix.
     public static final Scanner sc = new Scanner(System.in);
 
     public static void removeShowTime(MovieManager mm, MovieSessionManager msm)
@@ -31,6 +30,11 @@ public class RemoveShowTime {
         // show showtimes for movie
         // ask for showtime id to delete
         Movie movie = CreateShowTime.chooseAMovie(movieDB);
+        ArrayList<MovieSession> movieSessionsByMovie = msm.filterSessionsByMovie(movieSessionDB, movie);
+        if (movieSessionsByMovie.size() == 0) {
+            System.out.println("No showtime listing for " + movie.getMovieTitle() + " found!");
+            return;
+        }
         if (movie == null) {
             System.out.println(ANSI_BLUE + "Showtime removal cancelled" + ANSI_RESET);
             return;
@@ -38,13 +42,14 @@ public class RemoveShowTime {
         Cinema cinema = null;
 
         System.out.println(ANSI_BLUE + "Enter Showtime ID to delete movie showtime: " + ANSI_RESET);
-        MovieSession selectedSession = UpdateShowTime.chooseAShowtime(movieSessionDB, msm);
+        MovieSession selectedSession = UpdateShowTime.chooseAShowtime(movieSessionsByMovie, msm);
         if (selectedSession == null) {
             System.out.println(ANSI_BLUE + "Showtime removal cancelled" + ANSI_RESET);
             return;
         }
         // delete showtime
         msm.removeMovieSession(movieSessionDB, selectedSession);
+        msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);
         // save showtime
         // System.out.println("Showtime Listing for todo" + showtimeMovie + "
         // Deleted!");

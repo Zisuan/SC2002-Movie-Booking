@@ -2,8 +2,11 @@ package Controller.MovieControl;
 
 import java.util.*;
 
+import Controller.Helpers.DatabaseFilePath;
+import Controller.MovieSessionControl.MovieSessionManager;
 import Controller.ObjectControl.ObjectManager;
 import Model.Movie;
+import Model.MovieSession;
 import Model.Review;
 import Model.Movie.MovieStatus;
 import Model.Movie.MovieType;
@@ -32,7 +35,7 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // update movie
     public static <T> void updateMovie(int updateCase, ArrayList<Movie> movieDB, Movie selectedMovie, T updateVariable,
-            ArrayList<String> movieCast) {
+            ArrayList<String> movieCast, ArrayList<MovieSession> movieSessionDB) {
 
         switch (updateCase) {
             case 1:
@@ -69,8 +72,12 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 5:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
-                        movie.setMovieStatus((MovieStatus) updateVariable);
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())
+                            && selectedMovie.getMovieStatus() != MovieStatus.END_OF_SHOWING) {
+                        movie.setMovieStatus((String) updateVariable);
+                        break;
+                    } else {
+                        removeMovie(movieDB, selectedMovie);
                         break;
                     }
                 }
@@ -103,6 +110,8 @@ public class MovieManager extends ObjectManager<Movie> {
                 System.out.println("Invalid option");
                 break;
         }
+        MovieSessionManager.updateMovieSession(3, movieSessionDB, selectedMovie.getMovieCode(), selectedMovie);
+
     }
 
     public void updateWholeMovie(ArrayList<Movie> movieDB, Movie updatedMovie, Movie oldMovie) {
@@ -161,7 +170,7 @@ public class MovieManager extends ObjectManager<Movie> {
     public static ArrayList<Movie> filterMovieByBookableStatus(ArrayList<Movie> movieDB) {
         ArrayList<Movie> movieList = new ArrayList<Movie>();
         for (Movie movie : movieDB) {
-            if (movie.getMovieStatus().equals(MovieStatus.COMING_SOON)
+            if (movie.getMovieStatus().equals(MovieStatus.PREVIEW)
                     || movie.getMovieStatus().equals(MovieStatus.NOW_SHOWING)) {
                 movieList.add(movie);
             }
@@ -271,12 +280,16 @@ public class MovieManager extends ObjectManager<Movie> {
 
     // print movie titles + movie code + movie status
     public static void printMovieTitlesAndCodeAndStatus(ArrayList<Movie> movieDB) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieDB.size(); i++) {
-            System.out.println(i + 1 + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode()
-                    + ") - " + movieDB.get(i).getMovieStatus());
+            System.out.println(
+                    ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + " (" + movieDB.get(i).getMovieCode()
+                            + ") - " + movieDB.get(i).getMovieStatus() + ANSI_RESET);
         }
         if (movieDB.size() == 0) {
-            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "No movies available" + ANSI_RESET);
         }
     }
 
@@ -303,6 +316,10 @@ public class MovieManager extends ObjectManager<Movie> {
             }
         }
         return moviesByStatus;
+    }
+
+    public void updateMovie(int select, ArrayList<Movie> movieDB, Movie selectedMovie, String movieType,
+            Object object) {
     }
 
 }

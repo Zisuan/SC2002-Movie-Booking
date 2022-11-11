@@ -37,7 +37,7 @@ public class Ticket implements Serializable {
     // create ticket seat
     private String ticketSeatID;
     // create ticket showtime
-    private MovieSession ticketShowtime;
+    private MovieSession movieSession;
     // create ticket customer
     private Customer ticketCustomer;
     private String customerId;
@@ -49,7 +49,7 @@ public class Ticket implements Serializable {
         this.ticketPrice = ticketPrice;
         this.ticketStatus = ticketStatus;
         this.ticketSeatID = ticketSeatID;
-        this.ticketShowtime = ticketShowtime;
+        this.movieSession = ticketShowtime;
         this.ticketCustomer = ticketCustomer;
         this.customerId = ticketCustomer.getUsername();
         setTicketType(ticketType);
@@ -63,7 +63,7 @@ public class Ticket implements Serializable {
         this.ticketPrice = ticketPrice;
         this.ticketStatus = ticketStatus;
         this.ticketSeatID = ticketSeatID;
-        this.ticketShowtime = ticketShowtime;
+        this.movieSession = ticketShowtime;
         this.ticketCustomer = ticketCustomer;
         this.customerId = ticketCustomer.getUsername();
         setTicketType(ticketType);
@@ -96,8 +96,8 @@ public class Ticket implements Serializable {
     }
 
     // create ticket showtime getter
-    public MovieSession getTicketShowtime() {
-        return ticketShowtime;
+    public MovieSession getMovieSession() {
+        return movieSession;
     }
 
     // create ticket customer getter
@@ -145,8 +145,8 @@ public class Ticket implements Serializable {
     }
 
     // create ticket showtime setter
-    public void setTicketShowtime(MovieSession ticketShowtime) {
-        this.ticketShowtime = ticketShowtime;
+    public void setMovieSession(MovieSession movieSession) {
+        this.movieSession = movieSession;
     }
 
     // create ticket customer setter
@@ -166,9 +166,9 @@ public class Ticket implements Serializable {
     @Override
     public String toString() {
         return "Ticket Id: " + getTicketId() + "\n" +
-                "Movie Title: " + getTicketShowtime().getMovie().getMovieTitle() + "\n" +
-                "Cinema: " + getTicketShowtime().getCinema().getCinemaName() + "\n" +
-                "Movie Showtime: " + getTicketShowtime().getMovieDate() + " @ " + getTicketShowtime().getMovieTime()
+                "Movie Title: " + getMovieSession().getMovie().getMovieTitle() + "\n" +
+                "Cinema: " + getMovieSession().getCinema().getCinemaName() + "\n" +
+                "Movie Showtime: " + getMovieSession().getMovieDate() + " @ " + getMovieSession().getMovieTime()
                 + "\n" +
                 "Ticket Price: " + getTicketPrice() + "\n" +
                 "Ticket Type: " + getTicketType().toString() + "\n" +

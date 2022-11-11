@@ -10,10 +10,10 @@ import java.io.IOException;
 
 import Model.Movie;
 import Model.Review;
+import Model.Movie.MovieStatus;
 import View.Helper;
 
 public class ViewMovieDetails {
-    // TODO : Fix the bug where overall rating is shown even if there is only 1
     // review
     public static final Scanner sc = new Scanner(System.in);
     private static String dbPath = DatabaseFilePath.Movies.getFilePath();
@@ -65,8 +65,10 @@ public class ViewMovieDetails {
         String movieTitle = sc.nextLine();
         System.out.println();
         reviewDB = mm.getReviews(movieDB, movieTitle);
+        Movie selectedMovie = mm.searchMovieByTitle(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
-        if (mm.searchMovieByTitle(movieDB, movieTitle) != null && !rm.searchReview(reviewDB, movieTitle, username)) {
+        if (selectedMovie != null && !rm.searchReview(reviewDB, movieTitle, username)
+                && !selectedMovie.getMovieStatus().equals(MovieStatus.COMING_SOON)) {
             System.out.println(ANSI_CYAN + "Would you like to rate this movie? (Y/N)" + ANSI_RESET);
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("Y")) {

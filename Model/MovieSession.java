@@ -95,12 +95,20 @@ public class MovieSession implements Serializable {
     }
 
     // to string method
-    public String toString() {
-        return "Movie Session Movie: " + getMovie().getMovieTitle() + "\n" +
-                "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
-                "Movie Session Date: " + getMovieDate() + "\n" +
-                "Movie Session Time: " + getMovieTime() + "\n" +
-                "Movie Session Seats: \n" + SeatManager.getSessionSeatsInGrid(getSessionSeats());
+    public String toString(int i) {
+        if (i == 1) {
+            return "Movie Session Movie: " + getMovie().getMovieTitle() + "\n" +
+                    "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
+                    "Movie Session Date: " + getMovieDate() + "\n" +
+                    "Movie Session Time: " + getMovieTime() + "\n";
+        } else {
+            return "Movie Session Movie: " + getMovie().getMovieTitle() + "\n" +
+                    "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
+                    "Movie Session Date: " + getMovieDate() + "\n" +
+                    "Movie Session Time: " + getMovieTime() + "\n" +
+                    "Movie Session Seats: \n" + SeatManager.getSessionSeatsInGrid(getSessionSeats());
+        }
+
     }
 
 }
