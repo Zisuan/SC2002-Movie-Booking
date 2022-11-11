@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import Controller.Helpers.DatabaseFilePath;
 import Controller.*;
 import Controller.Helpers.DateHelper;
 import Controller.HolidayControl.HolidayManager;
@@ -21,14 +22,16 @@ public class HolidayView {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         Scanner sc = new Scanner(System.in);
-        String dbPath = "";
-        String holidayName = "";
-        dbPath = FILEPATH + "Holidays.dat";
+
         ArrayList<Holiday> holidayDB = new ArrayList<Holiday>();
         HolidayManager hm = new HolidayManager();
         DateHelper dh = new DateHelper();
-        holidayDB = hm.loadObjects(dbPath);
-        int sel2, year, month, day;
+        holidayDB = hm.loadObjects(DatabaseFilePath.Holidays.getFilePath());
+        // int sel2, year, month, day;
+        int year, sel2;
+        String month;
+        String day;
+        String holidayName = "";
         do {
             System.out.println(
                     ANSI_BLUE + "=====================================================================");
@@ -53,26 +56,26 @@ public class HolidayView {
                     System.out.println(ANSI_BLUE + "Enter Year:" + ANSI_RESET);
                     year = sc.nextInt();
                     System.out.println(ANSI_BLUE + "Enter Month:" + ANSI_RESET);
-                    month = sc.nextInt();
+                    month = sc.next();
                     System.out.println(ANSI_BLUE + "Enter Day of month:" + ANSI_RESET);
-                    day = sc.nextInt();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-M-d");
-
-                    LocalDate holidayDate = LocalDate.parse(year + "-" + month + "-" + day, formatter);
+                    day = sc.next();
+                    LocalDate holidayDate = LocalDate
+                            .parse(year + "-" + month + "-" + day);
                     hm.addHoliday(holidayDB, holidayDate, holidayName);
-                    hm.saveObjects(holidayName, holidayDB);
+                    hm.saveObjects(DatabaseFilePath.Holidays.getFilePath(), holidayDB);
                     break;
                 case 3:
                     System.out.println("Remove a Public Holiday");
                     System.out.println("Enter Year:");
                     year = sc.nextInt();
                     System.out.println("Enter Month:");
-                    month = sc.nextInt();
+                    month = sc.next();
                     System.out.println("Enter Day of month:");
-                    day = sc.nextInt();
-                    LocalDate removeDate = LocalDate.parse(year + "-" + month + "-" + day);
+                    day = sc.next();
+                    LocalDate removeDate = LocalDate
+                            .parse(year + "-" + Integer.parseInt(month) + "-" + Integer.parseInt(day));
                     hm.removeHoliday(holidayDB, removeDate);
-                    hm.saveObjects(holidayName, holidayDB);
+                    hm.saveObjects(DatabaseFilePath.Holidays.getFilePath(), holidayDB);
                     break;
                 case 4:
                     System.out.println(ANSI_BLUE + "Exiting..." + ANSI_RESET);

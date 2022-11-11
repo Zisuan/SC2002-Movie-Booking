@@ -41,6 +41,7 @@ public class ConfigureSystemSettings {
                     break;
                 case 3:
                     displayConfigRankingMenu();
+                    break;
                 case 4:
                     System.out.println(ANSI_BLUE + "Returning to main menu..." + ANSI_RESET);
                     break;
@@ -49,7 +50,7 @@ public class ConfigureSystemSettings {
                     System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
-        } while (choice != 3);
+        } while (choice != 4);
     }
 
     private static void displayConfigRankingMenu() {
@@ -57,10 +58,10 @@ public class ConfigureSystemSettings {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         ArrayList<String> settings = new ArrayList<String>();
-        System.out.println(ANSI_BLUE+"Which ranking type would you like the user to see?"+ANSI_RESET);
-        System.out.println(ANSI_CYAN+"1. Top 5 Movies By Sales Only");
+        System.out.println(ANSI_BLUE + "Which ranking type would you like the user to see?" + ANSI_RESET);
+        System.out.println(ANSI_CYAN + "1. Top 5 Movies By Sales Only");
         System.out.println("2. Top 5 Movie By Overall Ratings Only");
-        System.out.println("3. Both"+ANSI_RESET);
+        System.out.println("3. Both" + ANSI_RESET);
         String option = new Scanner(System.in).nextLine();
         settings.add(option);
         writeSettings(settings);
