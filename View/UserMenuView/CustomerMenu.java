@@ -82,13 +82,13 @@ public class CustomerMenu {
                 case 7:
                     ViewRankings.listRankingMenu();
                     break;
-                // case 7:
-                // System.out.println("Goodbye!");
-                // break;
-                // default:
-                // System.out.println("Invalid option");
-                // System.out.println("Please re-enter!");
-                // break;
+                case 8:
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
+                    break;
+                default:
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
+                    break;
             }
 
         } while (Integer.parseInt(choice) != 8);

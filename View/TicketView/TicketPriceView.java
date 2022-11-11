@@ -25,7 +25,7 @@ public class TicketPriceView {
         do {
             System.out.println(
                     ANSI_BLUE + "=====================================================================");
-            System.out.println("                 Configure Price Mdoel Menu                   ");
+            System.out.println("                 Configure Price Model Menu                   ");
             System.out.println("=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. View Current Price Model");
             System.out.println("2. Create New Price Model"); // assume only 1 model
@@ -70,8 +70,12 @@ public class TicketPriceView {
                 case 3:
                     int updateCase;
                     double newValue;
-                    System.out.println(ANSI_BLUE + "=====UPDATE PRICE MODEL=====");
-                    System.out.println("Select Update case" + ANSI_RESET);
+                    System.out.println(
+                            ANSI_BLUE + "=====================================================================");
+                    System.out.println("                       Update Price Model                  ");
+                    System.out.println(
+                            "=====================================================================" + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Select Update case" + ANSI_RESET);
                     System.out.println(ANSI_CYAN + "1. Update 3D Surcharge");
                     System.out.println("2. Update Blockbuster Surcharge");
                     System.out.println("3. Update Platinum Class Surcharge");

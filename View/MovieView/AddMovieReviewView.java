@@ -19,14 +19,13 @@ public class AddMovieReviewView {
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
         reviewDB = mm.getReviews(movieDB, movieTitle);
-        System.out.println(ANSI_CYAN + "Enter your rating (1-5): ");
+        System.out.println(ANSI_CYAN + "Enter your rating (1-5): " + ANSI_RESET);
         int rating = sc.nextInt();
         sc.nextLine();
-        System.out.println("Enter your review: ");
+        System.out.println(ANSI_CYAN + "Enter your review: " + ANSI_RESET);
         String review = sc.nextLine();
         rm.addReview(reviewDB, review, username, movieTitle, rating);
         mm.updateReviewsDB(movieDB, movieTitle, reviewDB);
-        System.out.println(ANSI_RESET);
         // sc.close();
     }
 }

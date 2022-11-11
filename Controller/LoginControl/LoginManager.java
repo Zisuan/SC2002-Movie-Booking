@@ -18,13 +18,13 @@ public class LoginManager {
         Helper.clearConsole();
         Scanner sc = new Scanner(System.in);
         String username, password;
-        System.out.println(ANSI_CYAN + "Enter username: ");
+        System.out.println(ANSI_BLUE + "Enter username: " + ANSI_RESET);
         username = sc.nextLine();
-        System.out.println("Enter password: ");
+        System.out.println(ANSI_BLUE + "Enter password: " + ANSI_RESET);
         password = sc.nextLine();
         LoginAuthenticator v = new LoginAuthenticator(username, password);
         if (v.validateLogin()) {
-            System.out.println("Login successful");
+            System.out.println(ANSI_BLUE + "Login successful" + ANSI_RESET);
             if (v.getRole()) {
                 StaffMenu.adminMenu();
             } else {
@@ -33,7 +33,7 @@ public class LoginManager {
                 CustomerMenu.MovieGoerMenu(customer);
             }
         } else {
-            System.out.println("Login failed");
+            System.out.println(ANSI_BLUE + "Login failed" + ANSI_RESET);
         }
         System.out.println(ANSI_RESET);
         // sc.close();

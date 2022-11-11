@@ -40,10 +40,9 @@ public class StaffMenu {
             System.out.println("6. Exit Application" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
-            System.out.println("=====================================================================");
+            System.out.println("=====================================================================" + ANSI_RESET);
             choice = sc.nextInt();
             sc.nextLine();
-            System.out.println(ANSI_RESET);
             switch (choice) {
                 case 1:
                     MovieListing.MovieMenu(mm, msm);
@@ -56,6 +55,7 @@ public class StaffMenu {
                     break;
                 case 4:
                     ViewRankings.listRankingMenu();
+                    break;
                 case 5:
                     System.out.println(ANSI_BLUE + "Logging out!" + ANSI_RESET);
                     break;

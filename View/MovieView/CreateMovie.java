@@ -35,7 +35,7 @@ public class CreateMovie {
         }
         mm.printMovie(newMovie);
 
-        System.out.println(ANSI_CYAN + "\nConfirm to add this movie? (Y/N)");
+        System.out.println(ANSI_CYAN + "\nConfirm to add this movie? (Y/N)" + ANSI_RESET);
         String confirm = sc.nextLine();
         if (confirm.equalsIgnoreCase("Y")) {
             movieDB.add(newMovie);

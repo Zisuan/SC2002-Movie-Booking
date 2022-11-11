@@ -39,6 +39,8 @@ public class SeatManager extends ObjectManager<Seat> {
     }
 
     public static void assignSeat(ArrayList<Seat> seatDB, Seat selectedSeat) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
         String seatID = selectedSeat.getSeatID();
         for (Seat seat : seatDB) {
             if (seat.getSeatID().equalsIgnoreCase(seatID)) {
@@ -46,7 +48,7 @@ public class SeatManager extends ObjectManager<Seat> {
                     seat.assign();
                     break;
                 } else {
-                    System.out.println("Seat is already taken!");
+                    System.out.println(ANSI_BLUE + "Seat is already taken!" + ANSI_RESET);
                     break;
                 }
             }
