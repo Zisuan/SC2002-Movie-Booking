@@ -99,6 +99,7 @@ public class MovieSession implements Serializable {
         if (i == 1) {
             return "Movie Session Movie: " + getMovie().getMovieTitle() + "\n" +
                     "Movie Session Cinema: " + getCinema().getCinemaName() + "\n" +
+                    "Movie Session Cinema: " + getCinema().getCinemaType() + "\n" +
                     "Movie Session Date: " + getMovieDate() + "\n" +
                     "Movie Session Time: " + getMovieTime() + "\n";
         } else {
