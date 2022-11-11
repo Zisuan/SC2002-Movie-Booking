@@ -48,11 +48,11 @@ public class ShowtimeListing {
                     RemoveShowTime.removeShowTime(mm, msm);
                     break;
                 case 4:
-                    System.out.println("Goodbye!");
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
                     break;
                 default:
-                    System.out.println("Invalid option");
-                    System.out.println("Please re-enter!");
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
         } while (choice != 4);

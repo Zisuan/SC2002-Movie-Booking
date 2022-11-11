@@ -25,10 +25,14 @@ public class RemoveMovie {
                 ANSI_BLUE + "=====================================================================");
         System.out.println("                    DELETE MOVIE                                    ");
         System.out.println("=====================================================================" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + "DELETE MOVIE");
-        System.out.println("Enter Movie Code to delete movie: " + ANSI_RESET);
+        System.out.println(ANSI_BLUE + "Enter 0 to exit" + ANSI_RESET);
+        System.out.println(ANSI_BLUE + "Enter Movie Code to delete movie: " + ANSI_RESET);
         MovieManager.printMovieTitlesAndCode(movieDB);
         String code = sc.nextLine();
+        if (code.equals("0")) {
+            System.out.println(ANSI_BLUE + "Movie deletion cancelled" + ANSI_RESET);
+            return;
+        }
         MovieManager.removeMovie(movieDB, MovieManager.getMovieByIndex(movieDB, code));
         mm.saveObjects(DatabaseFilePath.Movies.getFilePath(), movieDB);
         System.out.println(ANSI_BLUE + "Movie Deleted!" + ANSI_RESET);

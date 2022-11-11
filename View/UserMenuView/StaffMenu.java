@@ -61,14 +61,14 @@ public class StaffMenu {
                 case 5:
                     // List top 5 Movies by Sales
                 case 6:
-                    System.out.println("Goodbye!");
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
                     break;
                 case 7:
-                    System.out.println("Goodbye!");
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
                     System.exit(0);
                 default:
-                    System.out.println("Invalid option");
-                    System.out.println("Please re-enter!");
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
         } while (choice != 6);

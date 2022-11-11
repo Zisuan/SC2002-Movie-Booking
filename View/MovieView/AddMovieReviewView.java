@@ -27,6 +27,6 @@ public class AddMovieReviewView {
         rm.addReview(reviewDB, review, username, movieTitle, rating);
         mm.updateReviewsDB(movieDB, movieTitle, reviewDB);
         System.out.println(ANSI_RESET);
-        sc.close();
+        // sc.close();
     }
 }

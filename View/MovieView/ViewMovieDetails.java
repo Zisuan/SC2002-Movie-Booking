@@ -25,14 +25,17 @@ public class ViewMovieDetails {
         final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         movieDB = mm.loadObjects(dbPath);
-        System.out.println(ANSI_CYAN + "SEARCH MOVIE");
-        System.out.println("Enter Movie Title: ");
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                            Search Movie              ");
+        System.out.println("=====================================================================");
+        System.out.println("Enter Movie Title: " + ANSI_RESET);
         String movieTitle = sc.nextLine();
         System.out.println();
         if (mm.searchMovieByTitle(movieDB, movieTitle) != null) {
-            System.out.println("Movie exists!" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "Movie exists!" + ANSI_RESET);
         } else {
-            System.out.println("Movie does not exist!" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "Movie does not exist!" + ANSI_RESET);
 
         }
 
@@ -47,8 +50,10 @@ public class ViewMovieDetails {
         final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         movieDB = mm.loadObjects(dbPath);
-        System.out.println(ANSI_BLUE + "-------------------------");
-        System.out.println("List of Movies:" + ANSI_RESET);
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                           List of Movies              ");
+        System.out.println("=====================================================================");
         mm.printMovieTitles(movieDB);
     }
 
@@ -61,7 +66,11 @@ public class ViewMovieDetails {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         ArrayList<Review> reviewDB = new ArrayList<Review>();
         movieDB = mm.loadObjects(dbPath);
-        System.out.print(ANSI_CYAN + "Enter Movie Title: " + ANSI_RESET);
+        System.out.println(
+                ANSI_BLUE + "=====================================================================");
+        System.out.println("                            Movie Detail             ");
+        System.out.println("=====================================================================");
+        System.out.print("Enter Movie Title: " + ANSI_RESET);
         String movieTitle = sc.nextLine();
         System.out.println();
         reviewDB = mm.getReviews(movieDB, movieTitle);

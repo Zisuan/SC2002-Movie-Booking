@@ -80,7 +80,7 @@ public class CustomerMenu {
                     ViewBookingHistory.viewBookingHistory(customer.getUsername(), tm);
                     break;
                 case 7:
-                    ViewRankings.listTop5RankingMovie();
+                    // ViewRankings.listTop5RankingMovie();
                     break;
                 // case 7:
                 // System.out.println("Goodbye!");

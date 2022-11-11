@@ -37,11 +37,12 @@ public class UpdateMovie {
             System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
             MovieManager.printMovieTitlesAndCodeAndStatus(movieDB);
             String selectedMovieIndex = sc.nextLine();
+            if (selectedMovieIndex.equals("0")) {
+                break;
+            }
             Movie selectedMovie = mm.getMovieByIndex(movieDB, selectedMovieIndex);
             ArrayList<MovieSession> movieSessionDB = msm.loadObjects(DatabaseFilePath.MovieSessions.getFilePath());
-            // if (selectedMovieIndex.equals("0")) {
-            // break;
-            // }
+
             System.out.println(
                     ANSI_BLUE + "=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. Update Movie Type");
