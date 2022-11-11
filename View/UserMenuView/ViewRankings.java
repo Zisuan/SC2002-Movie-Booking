@@ -67,14 +67,14 @@ public class ViewRankings {
                         }
                         break;
                     case "2":
-                        if (Integer.parseInt(whatToDisplay) == 1) {
+                        if (Integer.parseInt(whatToDisplay) == 1 || Integer.parseInt(whatToDisplay) == 2) {
                             return;
                         } else {
                             listTop5ByOverallRatings(mm);
                         }
                         break;
                     case "3":
-                        if (Integer.parseInt(whatToDisplay) == 1) {
+                        if (Integer.parseInt(whatToDisplay) == 1 || Integer.parseInt(whatToDisplay) == 2) {
                             System.exit(0);
                         } else {
                             return;
@@ -166,7 +166,7 @@ public class ViewRankings {
         }
         System.out.println(
                 ANSI_BLUE + "=====================================================================");
-        System.out.println("                    TOp 5 Movies by Overall Ratings              ");
+        System.out.println("                    Top 5 Movies by Overall Ratings              ");
         System.out.println("=====================================================================" + ANSI_RESET);
         MovieManager.printMovieTitlesAndOverallRatings(movies);
 
