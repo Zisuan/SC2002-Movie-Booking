@@ -35,11 +35,9 @@ public class StaffMenu {
             System.out.println(ANSI_CYAN + "1. Create/Update/Remove Movie Listings");
             System.out.println("2. Create/Update/Remove Showtimes");
             System.out.println("3. Configure System Settings");
-            System.out.println("4. List top 5 Movies by Ratings");
-            System.out.println("5. List top 5 Movies by Sales");
-
-            System.out.println("6. Logout");
-            System.out.println("7. Exit Application" + ANSI_RESET);
+            System.out.println("4. View Rankings");
+            System.out.println("5. Logout");
+            System.out.println("6. Exit Application" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================");
@@ -57,13 +55,11 @@ public class StaffMenu {
                     ConfigureSystemSettings.configureSystemSettings(sc, pm);
                     break;
                 case 4:
-                    // List top 5 Movies by Ratings
+                    ViewRankings.listRankingMenu();
                 case 5:
-                    // List top 5 Movies by Sales
-                case 6:
-                    System.out.println("Goodbye!");
+                    System.out.println("Logging out!");
                     break;
-                case 7:
+                case 6:
                     System.out.println("Goodbye!");
                     System.exit(0);
                 default:
@@ -71,7 +67,7 @@ public class StaffMenu {
                     System.out.println("Please re-enter!");
                     break;
             }
-        } while (choice != 6);
+        } while (choice != 5);
         // sc.close();
     }
 }

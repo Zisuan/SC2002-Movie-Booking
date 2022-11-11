@@ -264,6 +264,34 @@ public class MovieManager extends ObjectManager<Movie> {
         }
     }
 
+    public static void printMovieTitlesAndOverallRatings(ArrayList<Movie> movieDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        for (int i = 0; i < movieDB.size(); i++) {
+            double overallRating = movieDB.get(i).getMovieOverallRating();
+            if (overallRating > 0) {
+                System.out.println(ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + " Overall Rating: "
+                        + overallRating + ANSI_RESET);
+            }
+        }
+        if (movieDB.size() == 0) {
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
+        }
+    }
+
+    public static void printMovieTitlesAndSales(ArrayList<Movie> movieDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println(
+                    ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + "(" + movieDB.get(i).getTicketSales()
+                            + " ticket(s) sold)" + ANSI_RESET);
+        }
+        if (movieDB.size() == 0) {
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
+        }
+    }
+
     // print movie titles + movie code
     public static void printMovieTitlesAndCode(ArrayList<Movie> movieDB) {
 

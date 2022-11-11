@@ -61,11 +61,13 @@ public class ViewMovieDetails {
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         ArrayList<Review> reviewDB = new ArrayList<Review>();
         movieDB = mm.loadObjects(dbPath);
-        System.out.print(ANSI_CYAN + "Enter Movie Title: " + ANSI_RESET);
-        String movieTitle = sc.nextLine();
-        System.out.println();
+        System.out.print(ANSI_CYAN + "Choose a movie: \n" + ANSI_RESET);
+        MovieManager.printMovieTitles(movieDB);
+        // mm.printMovies(movieDB);
+        String movieIndex = sc.nextLine();
+        Movie selectedMovie = mm.getMovieByIndex(movieDB, movieIndex);
+        String movieTitle = selectedMovie.getMovieTitle();
         reviewDB = mm.getReviews(movieDB, movieTitle);
-        Movie selectedMovie = mm.searchMovieByTitle(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
         if (selectedMovie != null && !rm.searchReview(reviewDB, movieTitle, username)
                 && !selectedMovie.getMovieStatus().equals(MovieStatus.COMING_SOON)) {

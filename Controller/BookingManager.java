@@ -11,6 +11,8 @@ import Model.Ticket;
 public class BookingManager extends ObjectManager<Booking> {
 
     public void addBooking(ArrayList<Booking> bookingDB, Customer customer, MovieSession bookedSession, Ticket ticket) {
+        int ticketSales = bookedSession.getMovie().getTicketSales();
+        bookedSession.getMovie().setTicketSales(ticketSales + 1);
         Booking booking = new Booking(customer, bookedSession, ticket);
         addObject(bookingDB, booking);
     }

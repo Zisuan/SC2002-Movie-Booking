@@ -77,7 +77,7 @@ public class Movie implements Serializable {
     // create movie code
     private String movieCode;
 
-    private String ticketSales;
+    private int ticketSales;
 
     private MovieRating movieRating;
 
@@ -114,6 +114,15 @@ public class Movie implements Serializable {
         setMovieStatus(movieStatus);
         setMovieRating(movieRating);
 
+    }
+
+    // getter and setter for ticket sales
+    public int getTicketSales() {
+        return ticketSales;
+    }
+
+    public void setTicketSales(int ticketSales) {
+        this.ticketSales = ticketSales;
     }
 
     // create movie reviewsDB getter and setter

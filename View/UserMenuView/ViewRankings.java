@@ -2,6 +2,7 @@ package View.UserMenuView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import Controller.BookingManager;
@@ -19,7 +20,7 @@ public class ViewRankings {
 
     public static final Scanner sc = new Scanner(System.in);
 
-    public static void listRankingMenu() {
+    public static void listRankingMenu() throws SecurityException, ClassNotFoundException, IOException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
@@ -28,6 +29,7 @@ public class ViewRankings {
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
         TicketManager tm = new TicketManager();
+        BookingManager bm = new BookingManager();
         do {
             Helper.clearConsole();
             System.out.println("=====================================================================" + ANSI_RESET);
@@ -41,10 +43,10 @@ public class ViewRankings {
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
-                    listTop5ByTicketSales();
+                    listTop5ByTicketSales(bm, tm);
                     break;
                 case "2":
-                    listTop5ByOverallRatings(mm, rm);
+                    listTop5ByOverallRatings(mm);
                     break;
                 case "3":
                     return;
@@ -57,47 +59,74 @@ public class ViewRankings {
         } while (true);
     }
 
-    private static void listTop5ByTicketSales(BookingManager bm, TicketManager tm) {
+    public static void listTop5ByTicketSales(BookingManager bm, TicketManager tm)
+            throws SecurityException, ClassNotFoundException, IOException {
         ArrayList<Ticket> tickets = tm.loadObjects(DatabaseFilePath.Tickets.getFilePath());
         ArrayList<Movie> movies = new ArrayList<Movie>();
         for (Ticket ticket : tickets) {
-            if (!movies.contains(ticket.getMovieSession().getMovie())) {
+            if (movies.size() == 0) {
                 movies.add(ticket.getMovieSession().getMovie());
+            } else {
+                boolean isExist = false;
+                for (Movie movie : movies) {
+                    if (movie.getMovieCode().equals(ticket.getMovieSession().getMovie().getMovieCode())) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (!isExist) {
+                    movies.add(ticket.getMovieSession().getMovie());
+                }
             }
         }
-        for (Movie movie : movies) {
+        for (
+
+        Movie movie : movies) {
             int count = 0;
             for (Ticket ticket : tickets) {
-                if (ticket.getMovieSession().getMovie().equals(movie)) {
+                if (ticket.getMovieSession().getMovie().getMovieTitle().equals(movie.getMovieTitle())) {
                     count++;
                 }
             }
             movie.setTicketSales(count);
         }
-        movies.sort((Movie m1, Movie m2) -> m2.getTicketSales() - m1.getTicketSales());
+        for (int i = 0; i < movies.size() - 1; i++) {
+            for (int j = i + 1; j < movies.size(); j++) {
+                if (movies.get(i).getTicketSales() < movies.get(j).getTicketSales()) {
+                    Movie temp = movies.get(i);
+                    movies.set(i, movies.get(j));
+                    movies.set(j, temp);
+                }
+            }
+        }
         System.out.println("Top 5 Movies by Ticket Sales");
-        for (int i = 0; i < 5; i++) {
-            System.out.println((i + 1) + ". " + movies.get(i).getTitle());
-        }
+
+        MovieManager.printMovieTitlesAndSales(movies);
+
+        System.out.println("Press Enter to Continue");
+        sc.nextLine();
 
     }
 
-    public static void listTop5ByOverallRatings(MovieManager mm, ReviewManager rm) {
-
-    }
-
-    public static void listTop5RankingMovieByTicketSales(MovieManager mm, TicketManager tm)
+    public static void listTop5ByOverallRatings(MovieManager mm)
             throws SecurityException, ClassNotFoundException, IOException {
-        var ticketList = tm.loadObjects(DatabaseFilePath.Tickets.getFilePath());
-        ArrayList<Movie> movieList = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
-        ArrayList<Movie> movieInSessionList = mm.getMoviesByStatus(movieList, MovieStatus.NOW_SHOWING);
-
-        for (Movie movie : movieInSessionList) {
-            Movie TopMovie = null;
-            int ticketSales = 0;
-            ticketSales = tm.getNumberOfTicketSales(ticketList, movie.getMovieTitle());
-
+        ArrayList<Movie> movies = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
+        // use insertion sort to sort the movies by overall rating
+        for (int i = 1; i < movies.size(); i++) {
+            Movie temp = movies.get(i);
+            int j = i - 1;
+            while (j >= 0 && movies.get(j).getMovieOverallRating() < temp.getMovieOverallRating()) {
+                movies.set(j + 1, movies.get(j));
+                j--;
+            }
+            movies.set(j + 1, temp);
         }
+        System.out.println("Top 5 Movies by Overall Ratings");
+        MovieManager.printMovieTitlesAndOverallRatings(movies);
+
+        System.out.println("Press Enter to Continue");
+        sc.nextLine();
+
     }
 
 }
