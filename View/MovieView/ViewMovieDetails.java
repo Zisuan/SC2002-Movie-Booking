@@ -8,6 +8,7 @@ import Controller.ReviewControl.ReviewManager;
 
 import java.io.IOException;
 
+import Model.Customer;
 import Model.Movie;
 import Model.Review;
 import Model.Movie.MovieStatus;
@@ -57,12 +58,16 @@ public class ViewMovieDetails {
         mm.printMovieTitles(movieDB);
     }
 
-    public static void ViewMovieDetail(String username, MovieManager mm, ReviewManager rm)
+    public static void ViewMovieDetail(Customer customer, MovieManager mm, ReviewManager rm)
             throws SecurityException, ClassNotFoundException, IOException {
         // show movie details
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
+        String username = null;
+        if (customer != null) {
+            username = customer.getUsername();
+        }
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
         ArrayList<Review> reviewDB = new ArrayList<Review>();
         movieDB = mm.loadObjects(dbPath);
@@ -70,7 +75,7 @@ public class ViewMovieDetails {
                 ANSI_BLUE + "=====================================================================");
         System.out.println("                            Movie Detail             ");
         System.out.println("=====================================================================");
-        System.out.print("Enter Movie Title: " + ANSI_RESET);
+        System.out.print("Enter Movie Title: \n" + ANSI_RESET);
         MovieManager.printMovieTitles(movieDB);
         // mm.printMovies(movieDB);
         String movieIndex = sc.nextLine();
@@ -78,7 +83,7 @@ public class ViewMovieDetails {
         String movieTitle = selectedMovie.getMovieTitle();
         reviewDB = mm.getReviews(movieDB, movieTitle);
         mm.printMovieDetails(movieDB, movieTitle);
-        if (selectedMovie != null && !rm.searchReview(reviewDB, movieTitle, username)
+        if (selectedMovie != null && customer != null && !rm.searchReview(reviewDB, movieTitle, username)
                 && !selectedMovie.getMovieStatus().equals(MovieStatus.COMING_SOON)) {
             System.out.println(ANSI_CYAN + "Would you like to rate this movie? (Y/N)" + ANSI_RESET);
             String choice = sc.nextLine();

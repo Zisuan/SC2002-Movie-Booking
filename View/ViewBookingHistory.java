@@ -14,7 +14,7 @@ public class ViewBookingHistory {
     private static String dbPath = DatabaseFilePath.Tickets.getFilePath();
     public static final Scanner sc = new Scanner(System.in);
 
-    public static void viewBookingHistory(String customerId, TicketManager ticketManager)
+    public static void viewBookingHistory(Customer customer, TicketManager ticketManager)
             throws SecurityException, ClassNotFoundException, IOException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
@@ -25,7 +25,8 @@ public class ViewBookingHistory {
                 ANSI_BLUE + "=====================================================================");
         System.out.println("                        Booking History              ");
         System.out.println("=====================================================================" + ANSI_RESET);
-        TicketManager.printAllTicketsByCustomer(ticketDB, customerId);
+
+        TicketManager.printAllTicketsByCustomer(ticketDB, customer);
         System.out.println(ANSI_BLUE + "Press enter to return to main menu" + ANSI_RESET);
         sc.nextLine();
         Helper.clearConsole();

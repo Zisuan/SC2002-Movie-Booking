@@ -75,6 +75,7 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
                 }
             }
         }
+
         return listOfMoviesInSession;
     }
 

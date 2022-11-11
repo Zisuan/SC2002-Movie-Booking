@@ -43,7 +43,11 @@ public class Seat implements Serializable {
         this.seatColumn = seatColumn;
         this.assigned = false;
         this.customer = customer;
-        this.customerId = customer.getUsername();
+        if (customer != null) {
+            this.customerId = customer.getUsername();
+        } else {
+            this.customerId = null;
+        }
     }
 
     public Seat(String seatID, Cinema cinema, String seatRow, String seatColumn) {

@@ -16,6 +16,7 @@ public class MovieBookingApp {
         final String ANSI_CYAN = "\u001B[36m";
         int option;
         Scanner sc = new Scanner(System.in);
+
         do {
             Helper.clearConsole();
             option = 0;
@@ -33,11 +34,11 @@ public class MovieBookingApp {
             option = sc.nextInt();
             // sc.nextLine();
             if (option == 1) {
-                LoginManager.login();
+                LoginManager.login(false);
             } else if (option == 2) {
-                LoginManager.login();
+                LoginManager.login(false);
             } else if (option == 3) {
-                // GuestMenu TBC
+                LoginManager.login(true);
             } else if (option == 4) {
                 System.out.println("Thank you for using MOBLIMA!");
                 System.exit(0);

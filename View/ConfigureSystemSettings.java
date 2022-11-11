@@ -2,6 +2,7 @@ package View;
 
 import java.util.*;
 
+import Controller.Helpers.DatabaseFilePath;
 import Controller.PriceControl.PriceManager;
 
 import java.io.*;
@@ -25,7 +26,8 @@ public class ConfigureSystemSettings {
             System.out.println("=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. Configure Holidays");
             System.out.println("2. Configure Price Model");
-            System.out.println("3. Return to Main Menu" + ANSI_RESET);
+            System.out.println("3. Configure MovieGoer Ranking Display Settings");
+            System.out.println("4. Return to Main Menu" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================" + ANSI_RESET);
@@ -38,6 +40,8 @@ public class ConfigureSystemSettings {
                     TicketPriceView.PriceMenu(sc, pm);
                     break;
                 case 3:
+                    displayConfigRankingMenu();
+                case 4:
                     System.out.println("Returning to main menu...");
                     break;
                 default:
@@ -46,5 +50,49 @@ public class ConfigureSystemSettings {
                     break;
             }
         } while (choice != 3);
+    }
+
+    private static void displayConfigRankingMenu() {
+        ArrayList<String> settings = new ArrayList<String>();
+        System.out.println("Which ranking type would you like the user to see?");
+        System.out.println("1. Top 5 Movies By Sales Only");
+        System.out.println("2. Top 5 Movie By Overall Ratings Only");
+        System.out.println("3. Both");
+        String option = new Scanner(System.in).nextLine();
+        settings.add(option);
+        writeSettings(settings);
+    }
+
+    // write to csv file with string as input
+    private static void writeSettings(ArrayList<String> settings) {
+        try {
+            FileWriter writer = new FileWriter(DatabaseFilePath.Settings.getFilePath());
+            for (String setting : settings) {
+                writer.write(setting);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<String> getSettings() {
+        ArrayList<String> settings = new ArrayList<String>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(DatabaseFilePath.Settings.getFilePath()));
+            String line = "";
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                String values[] = line.split(",");
+                settings.add(values[i]);
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return settings;
     }
 }

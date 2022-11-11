@@ -96,10 +96,10 @@ public class PriceManager extends ObjectManager<Price> {
 
         switch (Integer.parseInt(ticketType)) {
             case 1:
-                finalPrice += price.getSeniorBasePrice();
+                finalPrice += price.getStudentBasePrice();
                 break;
             case 2:
-                finalPrice += price.getStudentBasePrice();
+                finalPrice += price.getSeniorBasePrice();
                 break;
             case 3:
                 finalPrice += price.getAdultBasePrice();

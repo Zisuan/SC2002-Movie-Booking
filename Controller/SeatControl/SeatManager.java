@@ -64,7 +64,7 @@ public class SeatManager extends ObjectManager<Seat> {
 
     public static boolean getSeatStatus(ArrayList<Seat> seatDB, String seatID) {
         for (Seat seat : seatDB) {
-            if (seat.getSeatID().equals(seatID)) {
+            if (seat.getSeatID().equalsIgnoreCase(seatID)) {
                 return seat.isAssigned();
             }
         }

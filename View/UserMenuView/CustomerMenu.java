@@ -25,7 +25,6 @@ public class CustomerMenu {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
-        final String FILEPATH = "./database/";
         String choice;
         MovieManager mm = new MovieManager();
         ReviewManager rm = new ReviewManager();
@@ -36,16 +35,19 @@ public class CustomerMenu {
         HolidayManager hm = new HolidayManager();
         BookingManager bm = new BookingManager();
         Scanner sc = new Scanner(System.in);
-
         do {
             // Helper.clearConsole();
             System.out.println(
                     ANSI_BLUE + "=====================================================================");
             System.out.println("                Welcome to MOBLIMA Movie Booking System              ");
             System.out.println("=====================================================================");
-            System.out.println(
-                    "                              Hi " + customer.getUsername() + ","
-                            + "                           ");
+            if (customer != null) {
+                System.out.println("                              Hi " + customer.getUsername() + "!"
+                        + "                           ");
+            } else {
+                System.out.println("                              Hi Guest!                           ");
+            }
+
             System.out.println("=====================================================================" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1. Search Movie                                                      ");
             System.out.println("2. List Movies                                                       ");
@@ -53,7 +55,7 @@ public class CustomerMenu {
             System.out.println("4. Check Seat Availability and selection of Seats                    ");
             System.out.println("5. Book & Purchase Tickets                                           ");
             System.out.println("6. View Booking History                                              ");
-            System.out.println("7. List the Top 5 ranking movie by ticket sales OR by overall ratings");
+            System.out.println("7. List the Top 5 Movies!");
             System.out.println("8. Log Out                                                              " + ANSI_RESET);
             System.out.println(ANSI_BLUE + "=====================================================================");
             System.out.println("                           Enter Option:                             ");
@@ -68,16 +70,16 @@ public class CustomerMenu {
                     ViewMovieDetails.ViewMoviesTitle(mm);
                     break;
                 case 3:
-                    ViewMovieDetails.ViewMovieDetail(customer.getUsername(), mm, rm);
+                    ViewMovieDetails.ViewMovieDetail(customer, mm, rm);
                     break;
                 case 4:
-                    CheckSeatAvailability.checkSeatAvailability(mm, msm);
+                    CheckSeatAvailability.checkSeatAvailability(mm, msm, hm, customer, pm, bm, sm, tm);
                     break;
                 case 5:
-                    BookTicket.BookingMenu(customer, mm, msm, sm, pm, tm, hm, bm);
+                    BookTicket.BookingMenu(customer, mm, msm, sm, pm, tm, hm, bm, msm, tm);
                     break;
                 case 6:
-                    ViewBookingHistory.viewBookingHistory(customer.getUsername(), tm);
+                    ViewBookingHistory.viewBookingHistory(customer, tm);
                     break;
                 case 7:
                     ViewRankings.listRankingMenu();

@@ -154,7 +154,7 @@ public class DBTestingApp {
         PriceManager pm = new PriceManager();
         ArrayList<Price> priceDB = new ArrayList<Price>();
         String dbPath = FILEPATH + "Prices.dat";
-        pm.createPrice(priceDB, 10, 3, 4, 1, 3, 56, 7, 8);
+        pm.createPrice(priceDB, 3, 2, 6, 5, 4, 7, 8.5, 6.5);
         pm.saveObjects(dbPath, priceDB);
         priceDB = pm.loadObjects(dbPath);
         pm.printPrice(priceDB);
@@ -202,7 +202,7 @@ public class DBTestingApp {
         initCinemas();
         // initMovies();
         // initHolidays();
-        // initPrices();
+        initPrices();
         // testPriceManager();
         // initMovieSessions();
         // testMovieManager();

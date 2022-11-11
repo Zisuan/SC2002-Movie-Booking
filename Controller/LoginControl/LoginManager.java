@@ -11,11 +11,15 @@ import View.UserMenuView.CustomerMenu;
 import View.UserMenuView.StaffMenu;
 
 public class LoginManager {
-    public static void login() throws SecurityException, ClassNotFoundException, IOException, ParseException {
+    public static void login(boolean asGuest)
+            throws SecurityException, ClassNotFoundException, IOException, ParseException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         Helper.clearConsole();
+        if (asGuest) {
+            CustomerMenu.MovieGoerMenu(null);
+        }
         Scanner sc = new Scanner(System.in);
         String username, password;
         System.out.println(ANSI_CYAN + "Enter username: ");

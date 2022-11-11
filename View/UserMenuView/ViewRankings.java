@@ -13,6 +13,7 @@ import Controller.TicketControl.TicketManager;
 import Model.Movie;
 import Model.Ticket;
 import Model.Movie.MovieStatus;
+import View.ConfigureSystemSettings;
 import View.Helper;
 
 public class ViewRankings {
@@ -30,31 +31,58 @@ public class ViewRankings {
         ReviewManager rm = new ReviewManager();
         TicketManager tm = new TicketManager();
         BookingManager bm = new BookingManager();
+        String whatToDisplay = ConfigureSystemSettings.getSettings().get(0);
         do {
             Helper.clearConsole();
             System.out.println("=====================================================================" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "1. List the Top 5 ranking movie by ticket sales");
-            System.out.println("2. List the Top 5 ranking movie by overall ratings");
-            System.out.println("3. Back to Main Menu");
-            System.out.println("4. Exit");
+            int i = 1;
+            switch (Integer.parseInt(whatToDisplay)) {
+                case 1:
+                    System.out.println(ANSI_CYAN + i + ". List the Top 5 ranking movie by ticket sales");
+                    break;
+                case 2:
+                    System.out.println(ANSI_CYAN + i + ". List the Top 5 ranking movie by overall ratings");
+                    break;
+                case 3:
+                    System.out.println(ANSI_CYAN + i + ". List the Top 5 ranking movie by ticket sales");
+                    System.out.println(ANSI_CYAN + (++i) + ". List the Top 5 ranking movie by overall ratings");
+                    break;
+            }
+            System.out.println(++i + ". Back to Main Menu");
+            System.out.println(++i + ". Exit");
             System.out.println("=====================================================================");
             System.out.println("                           Enter Option:                             ");
             System.out.println("=====================================================================" + ANSI_RESET);
             choice = sc.nextLine();
-            switch (choice) {
-                case "1":
-                    listTop5ByTicketSales(bm, tm);
-                    break;
-                case "2":
-                    listTop5ByOverallRatings(mm);
-                    break;
-                case "3":
-                    return;
-                case "4":
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid Input");
-                    break;
+            if (whatToDisplay != null) {
+                switch (choice) {
+                    case "1":
+                        if (Integer.parseInt(whatToDisplay) == 1) {
+                            listTop5ByTicketSales(bm, tm);
+                        } else {
+                            listTop5ByOverallRatings(mm);
+                        }
+                        break;
+                    case "2":
+                        if (Integer.parseInt(whatToDisplay) == 1) {
+                            return;
+                        } else {
+                            listTop5ByOverallRatings(mm);
+                        }
+                        break;
+                    case "3":
+                        if (Integer.parseInt(whatToDisplay) == 1) {
+                            System.exit(0);
+                        } else {
+                            return;
+                        }
+                        return;
+                    case "4":
+                        System.exit(0);
+                    default:
+                        System.out.println("Invalid Input");
+                        break;
+                }
             }
         } while (true);
     }

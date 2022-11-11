@@ -3,6 +3,7 @@ package Controller.TicketControl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Controller.ObjectControl.ObjectManager;
 import Model.*;
@@ -20,6 +21,7 @@ public class TicketManager extends ObjectManager<Ticket> {
     // ticketDB.add(ticket);
     // }
     // }
+    final static Scanner sc = new Scanner(System.in);
 
     public void addNewTicket(ArrayList<Ticket> ticketDB, Ticket newTicket) {
         Cinema ticketCinema = newTicket.getMovieSession().getCinema();
@@ -65,19 +67,31 @@ public class TicketManager extends ObjectManager<Ticket> {
         }
     }
 
-    public static void printAllTicketsByCustomer(ArrayList<Ticket> ticketDB, String customerId) {
+    public static void printAllTicketsByCustomer(ArrayList<Ticket> ticketDB, Customer customer) {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
+        String phoneNumber = "";
+        String username = "";
+        if (customer == null) {
+            System.out.println(ANSI_BLUE + "Please enter your phone number to check your history:" + ANSI_RESET);
+            phoneNumber = sc.nextLine();
+        }
         for (int i = 0; i < ticketDB.size(); i++) {
-            if (ticketDB.size() == 0) {
-                System.out.println(ANSI_BLUE + "No tickets found" + ANSI_RESET);
-                break;
-            } else if (ticketDB.get(i).getCustomerId().equals(customerId)) {
+            if (customer == null && (ticketDB.get(i).getTicketCustomer().getMobileNumber()) != null) {
+                if (ticketDB.get(i).getTicketCustomer().getMobileNumber().equals(phoneNumber)) {
+                    System.out.println(ANSI_BLUE + "-------------Ticket " + (i + 1) + "-------------" + ANSI_RESET);
+                    System.out.println(ANSI_CYAN + ticketDB.get(i).toString() + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "----------------------------------" + ANSI_RESET);
+                }
+            } else if (customer != null && ticketDB.get(i).getCustomerId().equals(username)) {
                 System.out.println(ANSI_BLUE + "-------------Ticket " + (i + 1) + "-------------" + ANSI_RESET);
                 System.out.println(ANSI_CYAN + ticketDB.get(i).toString() + ANSI_RESET);
                 System.out.println(ANSI_BLUE + "----------------------------------" + ANSI_RESET);
             }
+        }
+        if (ticketDB.size() == 0) {
+            System.out.println(ANSI_BLUE + "No tickets found" + ANSI_RESET);
         }
     }
 
