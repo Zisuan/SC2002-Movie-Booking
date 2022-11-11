@@ -84,7 +84,7 @@ public class TicketManager extends ObjectManager<Ticket> {
                     System.out.println(ANSI_CYAN + ticketDB.get(i).toString() + ANSI_RESET);
                     System.out.println(ANSI_BLUE + "----------------------------------" + ANSI_RESET);
                 }
-            } else if (customer != null && ticketDB.get(i).getCustomerId().equals(username)) {
+            } else if (customer != null && ticketDB.get(i).getCustomerId().equals(customer.username)) {
                 System.out.println(ANSI_BLUE + "-------------Ticket " + (i + 1) + "-------------" + ANSI_RESET);
                 System.out.println(ANSI_CYAN + ticketDB.get(i).toString() + ANSI_RESET);
                 System.out.println(ANSI_BLUE + "----------------------------------" + ANSI_RESET);
