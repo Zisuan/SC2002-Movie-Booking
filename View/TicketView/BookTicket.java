@@ -305,7 +305,7 @@ public class BookTicket {
         } else if (customer == null) {
             customer = captureCustomerDetails();
             issueTicket(selectedShowtime, sessionSeats, seatIDInfo, ticketPrice, ticketDB, movieSessionDB, bookingDB,
-                    customer, confirm, tm, bm, sm, msm);
+                    customer, ticketType, tm, bm, sm, msm);
 
         } else {
             System.out.println(ANSI_BLUE + "Booking cancelled!");
