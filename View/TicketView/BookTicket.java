@@ -284,7 +284,7 @@ public class BookTicket {
         String confirm = sc.nextLine();
         if (confirm.equals("1") && customer != null) {
             issueTicket(selectedShowtime, sessionSeats, seatIDInfo, ticketPrice, ticketDB, movieSessionDB, bookingDB,
-                    customer, confirm, tm, bm, sm, msm);
+                    customer, ticketType, tm, bm, sm, msm);
         } else if (confirm.equals("2")) {
             System.out.println(ANSI_BLUE + "Booking cancelled!");
             System.out.println("Press enter to return to main menu" + ANSI_RESET);
