@@ -75,13 +75,14 @@ public class MovieManager extends ObjectManager<Movie> {
                 break;
             case 5:
                 for (Movie movie : movieDB) {
-                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())
-                            && selectedMovie.getMovieStatus() != MovieStatus.END_OF_SHOWING) {
-                        movie.setMovieStatus((String) updateVariable);
-                        break;
-                    } else {
-                        removeMovie(movieDB, selectedMovie);
-                        break;
+                    if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
+                        if (movie.getMovieStatus() != MovieStatus.END_OF_SHOWING) {
+                            movie.setMovieStatus((String) updateVariable);
+                            break;
+                        } else {
+                            removeMovie(movieDB, selectedMovie);
+                            break;
+                        }
                     }
                 }
                 break;
@@ -261,6 +262,18 @@ public class MovieManager extends ObjectManager<Movie> {
         final String ANSI_CYAN = "\u001B[36m";
         for (int i = 0; i < movieDB.size(); i++) {
             System.out.println(ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + ANSI_RESET);
+        }
+        if (movieDB.size() == 0) {
+            System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);
+        }
+    }
+
+    public static void printMovieTitlesAndMovieTypes(ArrayList<Movie> movieDB) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
+        for (int i = 0; i < movieDB.size(); i++) {
+            System.out.println(ANSI_CYAN + (i + 1) + ". " + movieDB.get(i).getMovieTitle() + "("
+                    + movieDB.get(i).getMovieType() + ")" + ANSI_RESET);
         }
         if (movieDB.size() == 0) {
             System.out.println(ANSI_CYAN + "No movies available" + ANSI_RESET);

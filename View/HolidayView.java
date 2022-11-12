@@ -73,7 +73,7 @@ public class HolidayView {
                     System.out.println("Enter Day of month:");
                     day = sc.next();
                     LocalDate removeDate = LocalDate
-                            .parse(year + "-" + Integer.parseInt(month) + "-" + Integer.parseInt(day));
+                            .parse(year + "-" + month + "-" + day);
                     hm.removeHoliday(holidayDB, removeDate);
                     hm.saveObjects(DatabaseFilePath.Holidays.getFilePath(), holidayDB);
                     break;
