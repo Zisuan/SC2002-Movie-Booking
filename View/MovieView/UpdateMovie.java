@@ -12,7 +12,6 @@ import Model.Movie;
 import Model.MovieSession;
 import Model.Movie.MovieStatus;
 import Model.Movie.MovieType;
-import View.SelectionView.SelectionView;
 
 public class UpdateMovie {
 
@@ -138,7 +137,7 @@ public class UpdateMovie {
                     System.out.println(ANSI_CYAN + "---------------UPDATE EVERYTHING---------------");
 
                     Movie oldMovie = selectedMovie;
-                    Movie updatedMovie = SelectionView.fullMoviePrompt();
+                    Movie updatedMovie = CreateMovie.fullMoviePrompt();
                     mm.updateWholeMovie(movieDB, updatedMovie, oldMovie);
                     mm.printMovies(movieDB);
                     System.out.println("Movie Updated!" + ANSI_RESET);
