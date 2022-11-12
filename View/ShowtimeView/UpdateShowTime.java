@@ -10,6 +10,7 @@ import Controller.SeatControl.SeatManager;
 import Model.Cinema;
 import Model.Movie;
 import Model.MovieSession;
+import View.SelectionView.SelectionView;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,7 +33,7 @@ public class UpdateShowTime {
         System.out.println("                      Update Show Time Listing                     ");
         System.out.println("=====================================================================" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
-        Movie movie = CreateShowTime.chooseAMovie(movieDB);
+        Movie movie = SelectionView.chooseAMovie(movieDB);
         if (movie == null) {
             System.out.println(ANSI_BLUE + "Showtime update cancelled" + ANSI_RESET);
             return;
@@ -42,7 +43,7 @@ public class UpdateShowTime {
             System.out.println(ANSI_BLUE + "No showtime listing for " + movie.getMovieTitle() + " found!" + ANSI_RESET);
             return;
         }
-        MovieSession movieSession = chooseAShowtime(movieSessionsByMovie, msm);
+        MovieSession movieSession = SelectionView.chooseAShowtime(movieSessionsByMovie, msm);
         System.out.println(ANSI_BLUE + "Select Update case");
         System.out.println("1. Update Movie Date");
         System.out.println("2. Update Movie Time");
@@ -67,7 +68,7 @@ public class UpdateShowTime {
                 System.out.println(ANSI_BLUE + "Showtime Time Updated!" + ANSI_RESET);
                 break;
             case 3:
-                Cinema cinema = CreateShowTime.chooseACinema(cinemaDB);
+                Cinema cinema = SelectionView.chooseACinema(cinemaDB);
                 movieSession.setCinema(cinema);
                 System.out.println(ANSI_BLUE + "Showtime Cinema Updated!" + ANSI_RESET);
                 break;
@@ -83,24 +84,5 @@ public class UpdateShowTime {
         msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);
         // case options for update
         // System.out.println("Showtime Listing for " + showtimeMovie + " Updated!");
-    }
-
-    public static MovieSession chooseAShowtime(ArrayList<MovieSession> movieSessionsByMovie, MovieSessionManager msm) {
-        MovieSession movieSession = null;
-        final String ANSI_BLUE = "\u001B[34m";
-        final String ANSI_RESET = "\u001B[0m";
-        do {
-            // if no show time for movie
-
-            System.out.println(ANSI_BLUE + "Choose a showtime: " + ANSI_RESET);
-            msm.printShowtimes(movieSessionsByMovie);
-            int showtimeID = sc.nextInt();
-            if (showtimeID == 0) {
-                break;
-            }
-            movieSession = movieSessionsByMovie.get(showtimeID - 1);
-
-        } while (movieSession == null);
-        return movieSession;
     }
 }

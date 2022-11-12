@@ -16,6 +16,7 @@ import Model.Cinema;
 import Model.Customer;
 import Model.Movie;
 import Model.MovieSession;
+import View.SelectionView.SelectionView;
 import View.ShowtimeView.CreateShowTime;
 import View.TicketView.BookTicket;
 
@@ -50,7 +51,7 @@ public class CheckSeatAvailability {
                         return;
                 }
 
-                Movie selectedMovie = CreateShowTime.chooseAMovie(moviesInSessionDB);
+                Movie selectedMovie = SelectionView.chooseAMovie(moviesInSessionDB);
                 ArrayList<MovieSession> listOfSessionsInCinemaWithMovie = new ArrayList<MovieSession>();
                 listOfSessionsInCinemaWithMovie = msm.filterSessionsByMovie(movieSessionDB,
                                 selectedMovie);

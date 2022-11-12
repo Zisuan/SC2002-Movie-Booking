@@ -9,6 +9,7 @@ import Controller.ObjectControl.ObjectManager;
 import Model.Cinema;
 import Model.Movie;
 import Model.MovieSession;
+import View.SelectionView.SelectionView;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class RemoveShowTime {
         System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         // show showtimes for movie
         // ask for showtime id to delete
-        Movie movie = CreateShowTime.chooseAMovie(movieDB);
+        Movie movie = SelectionView.chooseAMovie(movieDB);
         if (movie == null) {
             System.out.println(ANSI_BLUE + "Showtime removal cancelled" + ANSI_RESET);
             return;
@@ -43,7 +44,7 @@ public class RemoveShowTime {
         Cinema cinema = null;
 
         System.out.println(ANSI_BLUE + "Enter Showtime ID to delete movie showtime: " + ANSI_RESET);
-        MovieSession selectedSession = UpdateShowTime.chooseAShowtime(movieSessionsByMovie, msm);
+        MovieSession selectedSession = SelectionView.chooseAShowtime(movieSessionsByMovie, msm);
         if (selectedSession == null) {
             System.out.println(ANSI_BLUE + "Showtime removal cancelled" + ANSI_RESET);
             return;

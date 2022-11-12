@@ -12,6 +12,7 @@ import Controller.SeatControl.SeatManager;
 import Model.Movie;
 import Model.MovieSession;
 import Model.Seat;
+import View.SelectionView.SelectionView;
 import Model.Cinema;
 
 public class CreateShowTime {
@@ -78,7 +79,7 @@ public class CreateShowTime {
             return null;
         }
 
-        cinema = chooseACinema(cinemaDB);
+        cinema = SelectionView.chooseACinema(cinemaDB);
         System.out.println(ANSI_BLUE + "Please enter the number of available seating for this showtime: " + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter number of rows: " + ANSI_RESET);
         int rows = sc.nextInt();
@@ -97,34 +98,4 @@ public class CreateShowTime {
         return movieSession;
     }
 
-    public static Movie chooseAMovie(ArrayList<Movie> movieDB) {
-        final String ANSI_BLUE = "\u001B[34m";
-        final String ANSI_RESET = "\u001B[0m";
-        Movie movie = null;
-        do {
-            System.out.println(ANSI_BLUE + "Choose a movie: " + ANSI_RESET);
-            MovieManager.printMovieTitlesAndCode(movieDB);
-            String movieIndex = sc.nextLine();
-            if (movieIndex.equals("0")) {
-                break;
-            }
-            movie = MovieManager.getMovieByIndex(movieDB, movieIndex);
-        } while (movie == null);
-        return movie;
-    }
-
-    public static Cinema chooseACinema(ArrayList<Cinema> cinemaDB) {
-        final String ANSI_BLUE = "\u001B[34m";
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_CYAN = "\u001B[36m";
-        Cinema cinema = null;
-        do {
-            System.out.println(ANSI_BLUE + "Enter Cinema Code: " + ANSI_RESET);
-            CinemaManager.printCinemaTitlesAndCode(cinemaDB);
-            String cinemaCode = sc.nextLine();
-            cinemaCode = cinemaDB.get(Integer.parseInt(cinemaCode) - 1).getCinemaCode();
-            cinema = CinemaManager.searchCinemaByCode(cinemaDB, cinemaCode);
-        } while (cinema == null);
-        return cinema;
-    }
 }

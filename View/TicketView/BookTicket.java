@@ -46,7 +46,7 @@ public class BookTicket {
         System.out.println("Please select the movie you want to book:" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "Enter 0 to return to main menu." + ANSI_RESET);
         moviesInSessionDB = msm.getMoviesInSession(movieSessionDB, mm);
-        MovieManager.printMovieTitles(moviesInSessionDB);
+        MovieManager.printMovieTitlesAndType(moviesInSessionDB);
         if (moviesInSessionDB.size() == 0) {
             System.out.println(ANSI_BLUE + "There are no movies in session at the moment.");
             System.out.println("Please come back later.");
@@ -60,17 +60,6 @@ public class BookTicket {
         }
         Movie selectedMovie = mm.getMovieByIndex(moviesInSessionDB, movieIndex);
 
-        // // ArrayList<Movie> movieDB = msm.getMoviesInSession(movieSessionDB, mm);
-        // if (moviesInSessionDB.size() == 0) {
-        // System.out.println(ANSI_BLUE + "There are no movies in session at the
-        // moment.");
-        // System.out.println("Please come back later.");
-        // System.out.println("Press enter to return to main menu." + ANSI_RESET);
-        // sc.nextLine();
-        // return;
-        // }
-        // mm.printMovieTitles(moviesInSessionDB);
-        // mm.printMovies(movieDB);
         System.out.println(ANSI_BLUE + "Please select the showtime you want to check the seat"
                 + " availability for:" + ANSI_RESET);
         ArrayList<MovieSession> listOfSessionsInCinemaWithMovie = new ArrayList<MovieSession>();
@@ -78,7 +67,6 @@ public class BookTicket {
                 selectedMovie);
         msm.printAll(listOfSessionsInCinemaWithMovie);
         String showtimeIndex = sc.nextLine();
-        // Cinema selectedCinema = cinemaDB.get(Integer.parseInt(showtimeIndex) - 1);
         MovieSession selectedMovieSession = listOfSessionsInCinemaWithMovie
                 .get(Integer.parseInt(showtimeIndex) - 1);
 
