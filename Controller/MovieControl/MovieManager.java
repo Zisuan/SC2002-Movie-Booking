@@ -78,9 +78,9 @@ public class MovieManager extends ObjectManager<Movie> {
                     if (movie.getMovieCode().equals(selectedMovie.getMovieCode())) {
                         if (movie.getMovieStatus() != MovieStatus.END_OF_SHOWING) {
                             movie.setMovieStatus((String) updateVariable);
-                            break;
-                        } else {
-                            removeMovie(movieDB, selectedMovie);
+                            if (movie.getMovieStatus() == MovieStatus.END_OF_SHOWING) {
+                                removeMovie(movieDB, selectedMovie);
+                            }
                             break;
                         }
                     }
