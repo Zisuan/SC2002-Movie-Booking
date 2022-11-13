@@ -4,10 +4,12 @@ import java.util.*;
 
 import Controller.Helpers.DatabaseFilePath;
 import Controller.MovieControl.MovieManager;
+import Controller.MovieSessionControl.MovieSessionManager;
 
 import java.io.IOException;
 
 import Model.Movie;
+import Model.MovieSession;
 
 public class RemoveMovie {
     // TODO : FIX REMOVE MOVIE
@@ -15,11 +17,13 @@ public class RemoveMovie {
 
     public static void removeMovie(
             // TODO : FIX REMOVE MOVIE WITH INCORRECT MOVIE CODE
-            MovieManager mm) throws IOException, SecurityException, ClassNotFoundException {
+            MovieManager mm, MovieSessionManager msm) throws IOException, SecurityException, ClassNotFoundException {
         final String ANSI_BLUE = "\u001B[34m";
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
         ArrayList<Movie> movieDB = new ArrayList<Movie>();
+        ArrayList<MovieSession> movieSessionDB = new ArrayList<MovieSession>();
+        movieSessionDB = msm.loadObjects(DatabaseFilePath.MovieSessions.getFilePath());
         movieDB = mm.loadObjects(DatabaseFilePath.Movies.getFilePath());
         System.out.println(
                 ANSI_BLUE + "=====================================================================");
@@ -34,7 +38,10 @@ public class RemoveMovie {
             return;
         }
         MovieManager.removeMovie(movieDB, MovieManager.getMovieByIndex(movieDB, code));
+        Movie selectedMovie = MovieManager.getMovieByIndex(movieDB, code);
+        MovieSessionManager.removeMovieSession(movieSessionDB, selectedMovie);
         mm.saveObjects(DatabaseFilePath.Movies.getFilePath(), movieDB);
+        msm.saveObjects(DatabaseFilePath.MovieSessions.getFilePath(), movieSessionDB);
         System.out.println(ANSI_BLUE + "Movie Deleted!" + ANSI_RESET);
 
         // sc.close();

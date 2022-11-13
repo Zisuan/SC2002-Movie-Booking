@@ -51,6 +51,9 @@ public class HolidayManager extends ObjectManager<Holiday> {
     }
 
     public void removeHoliday(ArrayList<Holiday> holidayDB, LocalDate holidayDate) {
+        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_CYAN = "\u001B[36m";
         int i = 0;
         boolean exists = false;
         for (i = 0; i < holidayDB.size(); i++) {
@@ -61,9 +64,9 @@ public class HolidayManager extends ObjectManager<Holiday> {
         }
         if (exists) {
             holidayDB.remove(i);
-            System.out.println("Holiday succesfully removed!");
+            System.out.println(ANSI_BLUE + "Holiday succesfully removed!" + ANSI_RESET);
         } else
-            System.out.println("Holiday does not exist!");
+            System.out.println(ANSI_BLUE + "Holiday does not exist!" + ANSI_RESET);
     }
 
     public void listHolidays(ArrayList<Holiday> holidayDB) {

@@ -43,14 +43,14 @@ public class MovieListing {
                     UpdateMovie.updateMovie(mm, msm);
                     break;
                 case 3:
-                    RemoveMovie.removeMovie(mm);
+                    RemoveMovie.removeMovie(mm, msm);
                     break;
                 case 4:
-                    System.out.println(ANSI_BLUE+"Goodbye!"+ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Goodbye!" + ANSI_RESET);
                     break;
                 default:
-                    System.out.println(ANSI_BLUE+"Invalid option");
-                    System.out.println("Please re-enter!"+ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Invalid option");
+                    System.out.println("Please re-enter!" + ANSI_RESET);
                     break;
             }
         } while (listing != 4);

@@ -65,12 +65,12 @@ public class HolidayView {
                     hm.saveObjects(DatabaseFilePath.Holidays.getFilePath(), holidayDB);
                     break;
                 case 3:
-                    System.out.println("Remove a Public Holiday");
-                    System.out.println("Enter Year:");
+                    System.out.println(ANSI_BLUE + "Remove a Public Holiday" + ANSI_RESET);
+                    System.out.println(ANSI_BLUE + "Enter Year:" + ANSI_RESET);
                     year = sc.nextInt();
-                    System.out.println("Enter Month:");
+                    System.out.println(ANSI_BLUE + "Enter Month:" + ANSI_RESET);
                     month = sc.next();
-                    System.out.println("Enter Day of month:");
+                    System.out.println(ANSI_BLUE + "Enter Day of month:" + ANSI_RESET);
                     day = sc.next();
                     LocalDate removeDate = LocalDate
                             .parse(year + "-" + month + "-" + day);

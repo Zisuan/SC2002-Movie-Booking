@@ -61,6 +61,16 @@ public class MovieSessionManager extends ObjectManager<MovieSession> {
         }
     }
 
+    public static void removeMovieSession(ArrayList<MovieSession> MovieSessionDB, Movie movie) {
+        String movieCode = movie.getMovieCode();
+        for (int i = 0; i < MovieSessionDB.size(); i++) {
+            if (MovieSessionDB.get(i).getMovie().getMovieCode().equals(movieCode)) {
+                MovieSessionDB.remove(i);
+                break;
+            }
+        }
+    }
+
     public ArrayList<Movie> getMoviesInSession(ArrayList<MovieSession> movieDB, MovieManager mm) {
         ArrayList<Movie> listOfMoviesInSession = new ArrayList<Movie>();
         if (movieDB == null) {
